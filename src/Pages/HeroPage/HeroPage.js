@@ -6,6 +6,8 @@ import gsap from "gsap"
 import MainView from '../MainView/MainView';
 
 const HeroPage = () => {
+   const [displayView, setDisplayView] = useState(false)
+
    const t1 = useRef(null)
    const t2 = useRef(null)
 
@@ -42,22 +44,18 @@ const HeroPage = () => {
 
       if(t2.current){
          t2.current
-            .set(btnSpanRef.current, {
-               background: '#151515',
-            })
-            .set(btnRef.current,{
-               color: '#e2e2e2',
-            })
             .to(btnSpanRef.current, {
                scale: 20,
-               duration: 0.7,
+               duration: 0.9,
             })
             .to(btnRef.current, {
                color: '#151515',
                duration: .2,
             }, "-=.3")
             .set(mainViewRef.current, {
-               display: 'block',
+               onComplete: () => {
+                  setDisplayView(true)
+               }
             }, "+=.2")
             .set(heroWrapperRef.current, {
                display: 'none',
@@ -65,8 +63,10 @@ const HeroPage = () => {
       }
    }, [])
 
-   const handleChangeScene = () => {
-      t2.current.play()
+   const handleChangeScene = () => t2.current.play()
+   const handleGoBack = () => {
+      t2.current.reverse()
+      setDisplayView(!displayView)
    }
 
    return (
@@ -85,7 +85,10 @@ const HeroPage = () => {
             </StyledHeroImage>
          </Wrapper>
 
-         <MainView ref={mainViewRef}/>
+         {displayView ? (
+            <MainView ref={mainViewRef} handleGoBack={handleGoBack}/>
+         ) : null}
+
       </div>
    )
 }

@@ -16,18 +16,35 @@ export const StyledHeroImage = styled.div`
    flex-direction: column;
    gap: 5rem;
 
-   background: linear-gradient(rgba(213,213,213, 0.5), rgba(0,0,0, 0.4)), url(${({hero}) => hero}) center/cover no-repeat;
+   background: url(${({hero}) => hero}) center/cover no-repeat;
    opacity: 0.6;
    transform: scale(1.2);
 `
 
 export const StyledTitleWrapper = styled.div`
+   position: relative;
    transform: rotate(-25deg);
    font-size: ${({theme}) => theme.fontSize.xxl};
    font-weight: bold;
-   color: ${({theme}) => theme.colors.black};
-   text-shadow: 2px 2px 2px ${({theme}) => theme.colors.grey};
+   color: black;
+   text-shadow: 3px 3px 3px ${({theme}) => theme.colors.white};
    line-height: 0.98;
+   border-radius: 50px;
+   box-shadow: 0px 0px 100px -40px rgba(0, 0, 0, 1);
+
+   &::after{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      z-index: -1;
+      opacity: 0.2;
+      border-radius: 50px;
+      
+   }
 `
 
 export const StyledTitle = styled.span`
@@ -54,9 +71,9 @@ export const StyledButton = styled.button`
    height: 150px;
    border-radius: 100%;
    border: none;
-   background-color: transparent;
+   background-color: ${({theme}) => theme.colors.black};
    font-size: ${({theme}) => theme.fontSize.l};
-   color: ${({theme}) => theme.colors.black};
+   color: ${({theme}) => theme.colors.white};
    transform: scale(0);
    cursor: pointer;
    
@@ -64,25 +81,14 @@ export const StyledButton = styled.button`
 
    span{
       position: absolute;
-      width: 100%;
-      height: 100%;
+      width: 150px;
+      height: 150px;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background-color: ${({theme, isBlack}) => isBlack ? `${theme.colors.black}` : `${theme.colors.white}`};
+      background-color: ${({theme}) => theme.colors.black};
       border-radius: 100%;
       z-index: -1;
-      border: 5px solid ${({theme}) => theme.colors.black};
       cursor: pointer;
-
-      transition: border .2s ease-in-out, transform .2s;
-   }
-
-   &:hover{
-      color: ${({theme}) => theme.colors.white};
-   }
-
-   &:hover span{
-      border: 75px solid ${({theme}) => theme.colors.black};
    }
 `
