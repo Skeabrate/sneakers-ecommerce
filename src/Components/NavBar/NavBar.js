@@ -1,35 +1,51 @@
-import React from 'react';
+import React, { useState } from 'react';
 import avatarImg from "../../Assets/Images/image-avatar.png"
-import { Wrapper, StyledNav, StyledLogo, StyledTitleWrapper, StyledNavItem, StyledCart, StyledCartItem } from "./NavBar.styles"
+import { Wrapper, StyledNav, StyledLogo, StyledTitleWrapper, StyledTitle, StyledNavItem, StyledCart, StyledCartItem } from "./NavBar.styles"
+import { StyledHamburger, StyledHamburgerWrapper, StyledHamburgerInner } from "./Hamburger.styles"
 
-const NavBar = React.forwardRef(({handleGoBack, goHome}, navBarRef) => {
+const NavBar = React.forwardRef(({ goBack }, navBarRef) => {
+   const [toggle, setToggle] = useState(false)
+
+   const toggleMenu = () => setToggle(!toggle)
+
+   const goBackHandler = () => toggle ? setToggle(!toggle) || goBack() : goBack()
+
    return (
       <Wrapper ref={navBarRef}>
          <StyledTitleWrapper>
-            <header>
-               <StyledLogo onClick={handleGoBack}>sneakers</StyledLogo>
-            </header>
+
+            <StyledTitle>
+               <StyledHamburger onClick={toggleMenu}>
+                  <StyledHamburgerWrapper>
+                     <StyledHamburgerInner isToggled={toggle}></StyledHamburgerInner>
+                  </StyledHamburgerWrapper>
+               </StyledHamburger>
+
+               <header>
+                  <StyledLogo onClick={goBackHandler}>sneakers</StyledLogo>
+               </header>
+            </StyledTitle>
 
             <nav>
-               <StyledNav>
+               <StyledNav isToggled={toggle}>
                   <li>
-                     <StyledNavItem exact to="/" onClick={goHome}>Home</StyledNavItem>
+                     <StyledNavItem exact to="/" onClick={toggleMenu}>Home</StyledNavItem>
                   </li>
 
                   <li>
-                     <StyledNavItem to="/men">Men</StyledNavItem>
+                     <StyledNavItem to="/men" onClick={toggleMenu}>Men</StyledNavItem>
                   </li>
 
                   <li>
-                     <StyledNavItem to="/women">Women</StyledNavItem>
+                     <StyledNavItem to="/women" onClick={toggleMenu}>Women</StyledNavItem>
                   </li>
 
                   <li>
-                     <StyledNavItem to="/about">About</StyledNavItem>
+                     <StyledNavItem to="/about" onClick={toggleMenu}>About</StyledNavItem>
                   </li>
 
                   <li>
-                     <StyledNavItem to="/contact">Contact</StyledNavItem>
+                     <StyledNavItem to="/contact" onClick={toggleMenu}>Contact</StyledNavItem>
                   </li>
                </StyledNav>
             </nav>

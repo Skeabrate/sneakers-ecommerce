@@ -2,16 +2,20 @@ import { NavLink } from "react-router-dom"
 import styled from "styled-components"
 
 export const Wrapper = styled.div`
+   position: fixed;
+   top: 0;
+   left: 0;
    width: 100%;
    display: flex;
    justify-content: space-between;
-   padding: 0 10vw;
+   padding: 0 3vw;
    align-items: center;
    background-color: black;
    color: ${({theme}) => theme.colors.white};
-   height: 10vh;
+   height: 100px;
    font-size: 1.4rem;
    transform: translateY(-100%);
+   z-index: 9999;
 `
 
 export const StyledTitleWrapper = styled.div`
@@ -19,6 +23,13 @@ export const StyledTitleWrapper = styled.div`
    justify-content: center;
    align-items: center;
    gap: 8vw;
+`
+
+export const StyledTitle = styled.div`
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 10px;
 `
 
 export const StyledLogo = styled.h1`
@@ -29,6 +40,18 @@ export const StyledLogo = styled.h1`
 export const StyledNav = styled.div`
    list-style: none;
    display: flex;
+   transition: transform .3s ease-in-out;
+
+   @media (max-width: 1100px){
+      position: fixed;
+      flex-direction: column;
+      background-color: ${({theme}) => theme.colors.white};
+      width: 100%;
+      height: 100vh;
+      top: 100px;
+      left: 0;
+      transform: ${({isToggled}) => isToggled ? 'translateX(0)' : 'translateX(-100%)'};
+   }
 `
 
 export const StyledNavItem = styled(NavLink)`
@@ -36,7 +59,7 @@ export const StyledNavItem = styled(NavLink)`
    justify-content: center;
    align-items: center;
    margin-right: 40px;
-   height: 10vh;
+   height: 100px;
    position: relative;
    cursor: pointer;
    text-decoration: none;
@@ -63,6 +86,10 @@ export const StyledNavItem = styled(NavLink)`
    &.active::after {
       opacity: 1;
    }
+
+   @media (max-width: 1100px){
+      color: ${({theme}) => theme.colors.black};
+   }
 `
 
 export const StyledCart = styled.div`
@@ -72,7 +99,7 @@ export const StyledCart = styled.div`
 `
 
 export const StyledCartItem = styled.div`
-   margin: 0 20px;
+   margin: 0 1vw;
    max-width: 70px;
    display: flex;
    justify-content: center;
@@ -87,6 +114,7 @@ export const StyledCartItem = styled.div`
 
    img{
       width: 100%;
+      height: 100%;
       border: 2px solid ${({theme}) => theme.colors.orange};
       border-radius: 100%;
    }

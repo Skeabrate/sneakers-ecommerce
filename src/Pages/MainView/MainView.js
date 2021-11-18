@@ -59,7 +59,7 @@ const MainView = React.forwardRef((props, mainViewRef) => {
    return (
       <Router>
          <Wrapper ref={mainViewRef}>
-            <NavBar ref={navBarRef} handleGoBack={goBack} />
+            <NavBar ref={navBarRef} goBack={goBack} />
             
             <Routes>
                <Route path="/contact" element={<Contact />} />

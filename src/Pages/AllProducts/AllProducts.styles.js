@@ -2,6 +2,7 @@ import styled from "styled-components"
 
 export const Wrapper = styled.section`
    color: ${({theme}) => theme.colors.white};
+   margin-top: 100px;
    padding: 6vw;
 `
 
@@ -22,6 +23,18 @@ export const StyledContent = styled.div`
    column-count: 4;
    gap: 20px;
    opacity: 0;
+
+   @media (max-width: 1400px){
+      column-count: 3;
+   }
+
+   @media (max-width: 1100px){
+      column-count: 2;
+   }
+
+   @media (max-width: 650px){
+      column-count: 1;
+   }
 `
 
 export const StyledItem = styled.div`
