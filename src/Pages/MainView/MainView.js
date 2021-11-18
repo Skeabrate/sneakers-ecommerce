@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Wrapper } from "./MainView.styles"
 import NavBar from '../../Components/NavBar/NavBar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -6,20 +6,27 @@ import gsap from 'gsap';
 
 import AllProducts from '../AllProducts/AllProducts';
 import Contact from '../Contact/Contact';
-
+import About from "../About/About"
+import WomenProducts from "../WomenProducts/WomenProducts"
+import MenProducts from "../MenProducts/MenProducts"
 
 
 const MainView = React.forwardRef((props, mainViewRef) => {
+   const [contentAnimation, setContentAnimation] = useState()
 
-   const tl = useRef(null)
-
+   const t1 = useRef(null)
+   
    const navBarRef = useRef(null)
-
+   
    const goBack = async () => {
-
       const promise1 = () => {
          return new Promise((resolve, reject) => {
-            tl.current.reverse()
+            setTimeout(() => {
+               t1.current.reverse()
+            }, 400)
+
+            contentAnimation.reverse()
+            
             resolve()
          })
       }
@@ -29,7 +36,7 @@ const MainView = React.forwardRef((props, mainViewRef) => {
             setTimeout(() => {
                props.handleGoBack()
                resolve()
-            }, 1000)
+            }, 1100)
          })
       }
 
@@ -38,10 +45,10 @@ const MainView = React.forwardRef((props, mainViewRef) => {
    }
 
    useEffect(() => {
-      tl.current = gsap.timeline()
+      t1.current = gsap.timeline()
 
-      if(tl.current) {
-         tl.current
+      if(t1.current) {
+         t1.current
             .to(navBarRef.current, {
                y: 0,
                duration: .4,
@@ -52,12 +59,18 @@ const MainView = React.forwardRef((props, mainViewRef) => {
    return (
       <Router>
          <Wrapper ref={mainViewRef}>
-            <NavBar ref={navBarRef} handleGoBack={goBack}/>
+            <NavBar ref={navBarRef} handleGoBack={goBack} />
             
             <Routes>
-               <Route path="/home" element={<AllProducts />}/>
-
                <Route path="/contact" element={<Contact />} />
+
+               <Route path="/men" element={<MenProducts />}/>
+
+               <Route path="/women" element={<WomenProducts />}/>
+
+               <Route path="/about" element={<About />}/>
+
+               <Route exact path="/" element={<AllProducts setContentAnimation={setContentAnimation}/>}/>
             </Routes>
             
          </Wrapper>

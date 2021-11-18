@@ -22,7 +22,7 @@ export const StyledTitleWrapper = styled.div`
 `
 
 export const StyledLogo = styled.h1`
-   font-size: 3rem;
+   font-size: ${({theme}) => theme.fontSize.xl};
    cursor: pointer;
 `
 

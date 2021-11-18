@@ -1,5 +1,4 @@
 import styled from "styled-components"
-import { keyframes } from "styled-components"
 
 export const Wrapper = styled.div`
    width: 100vw;
@@ -26,8 +25,8 @@ export const StyledTitleWrapper = styled.div`
    transform: rotate(-25deg);
    font-size: ${({theme}) => theme.fontSize.xxl};
    font-weight: bold;
-   color: black;
-   text-shadow: 3px 3px 3px ${({theme}) => theme.colors.white};
+   color: ${({theme}) => theme.colors.white};
+   text-shadow: 5px 5px 5px ${({theme}) => theme.colors.black};
    line-height: 0.98;
    border-radius: 50px;
    box-shadow: 0px 0px 100px -40px rgba(0, 0, 0, 1);

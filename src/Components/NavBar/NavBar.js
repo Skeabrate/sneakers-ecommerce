@@ -2,18 +2,18 @@ import React from 'react';
 import avatarImg from "../../Assets/Images/image-avatar.png"
 import { Wrapper, StyledNav, StyledLogo, StyledTitleWrapper, StyledNavItem, StyledCart, StyledCartItem } from "./NavBar.styles"
 
-const NavBar = React.forwardRef(({handleGoBack}, navBarRef) => {
+const NavBar = React.forwardRef(({handleGoBack, goHome}, navBarRef) => {
    return (
       <Wrapper ref={navBarRef}>
          <StyledTitleWrapper>
             <header>
-               <StyledLogo to="/" onClick={handleGoBack}>sneakers</StyledLogo>
+               <StyledLogo onClick={handleGoBack}>sneakers</StyledLogo>
             </header>
 
             <nav>
                <StyledNav>
                   <li>
-                     <StyledNavItem to="/home">Home</StyledNavItem>
+                     <StyledNavItem exact to="/" onClick={goHome}>Home</StyledNavItem>
                   </li>
 
                   <li>
