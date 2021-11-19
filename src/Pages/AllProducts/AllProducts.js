@@ -1,9 +1,8 @@
 import React, { useEffect, useRef } from 'react';
-import { data } from '../../helpers/data';
 import gsap from 'gsap';
 import { Wrapper, StyledTitle, StyledContent, StyledImage, StyledItem, StyledItemTitle, StyledCategory } from './AllProducts.styles';
 
-const AllProducts = ({ setContentAnimation }) => {
+const AllProducts = ({ setContentAnimation, products = [] }) => {
    const t2 = useRef(null)
 
    const contentRef = useRef(null)
@@ -36,11 +35,11 @@ const AllProducts = ({ setContentAnimation }) => {
 
          <article>
             <StyledContent ref={contentRef}>
-               {data.map(({id, image, price, title, category}) => (
+               {products.map(({id, images = [], price, title, category}) => (
                   <StyledItem key={id}>
                      <StyledImage>
-                        <img src={image} alt="" />
-                        <div>{price}</div>
+                        <img src={images[0].url} alt="" />
+                        <div>${price}</div>
                         <span>Quick <br /> view</span>
                      </StyledImage>
 

@@ -20,20 +20,21 @@ export const StyledTitle = styled.h1`
 `
 
 export const StyledContent = styled.div`
-   column-count: 4;
+   display: grid;
+   grid-template-columns: repeat(4, 1fr);
    gap: 20px;
    opacity: 0;
 
    @media (max-width: 1400px){
-      column-count: 3;
+      grid-template-columns: repeat(2, 1fr);
    }
 
    @media (max-width: 1100px){
-      column-count: 2;
+      grid-template-columns: 1fr 1fr;
    }
 
    @media (max-width: 650px){
-      column-count: 1;
+      grid-template-columns: 1fr;
    }
 `
 

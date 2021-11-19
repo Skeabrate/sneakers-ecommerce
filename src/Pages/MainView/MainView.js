@@ -10,12 +10,10 @@ import About from "../About/About"
 import WomenProducts from "../WomenProducts/WomenProducts"
 import MenProducts from "../MenProducts/MenProducts"
 
-
-const MainView = React.forwardRef((props, mainViewRef) => {
+const MainView = React.forwardRef(({data, handleGoBack}, mainViewRef) => {
    const [contentAnimation, setContentAnimation] = useState()
 
    const t1 = useRef(null)
-   
    const navBarRef = useRef(null)
    
    const goBack = async () => {
@@ -34,7 +32,7 @@ const MainView = React.forwardRef((props, mainViewRef) => {
       const promise2 = () => {
          return new Promise((resolve, reject) => {
             setTimeout(() => {
-               props.handleGoBack()
+               handleGoBack()
                resolve()
             }, 1100)
          })
@@ -70,7 +68,7 @@ const MainView = React.forwardRef((props, mainViewRef) => {
 
                <Route path="/about" element={<About />}/>
 
-               <Route exact path="/" element={<AllProducts setContentAnimation={setContentAnimation}/>}/>
+               <Route exact path="/" element={<AllProducts setContentAnimation={setContentAnimation} products={data}/>}/>
             </Routes>
             
          </Wrapper>

@@ -4,8 +4,10 @@ import heroImg from "../../Assets/Images/heroPageImg.png"
 import gsap from "gsap"
 
 import MainView from '../MainView/MainView';
+import { useData } from '../../helpers/useData';
 
 const HeroPage = () => {
+   const { data } = useData()
    const [displayView, setDisplayView] = useState(false)
 
    const t1 = useRef(null)
@@ -86,7 +88,7 @@ const HeroPage = () => {
          </Wrapper>
 
          {displayView ? (
-            <MainView ref={mainViewRef} handleGoBack={handleGoBack}/>
+            <MainView data={data} ref={mainViewRef} handleGoBack={handleGoBack}/>
          ) : null}
 
       </div>
