@@ -40,14 +40,17 @@ export const StyledLogo = styled.h1`
 export const StyledNav = styled.div`
    list-style: none;
    display: flex;
+
    transition: transform .3s ease-in-out;
 
-   @media (max-width: 1100px){
-      position: fixed;
+   @media (max-width: 1100px){   
       flex-direction: column;
-      background-color: ${({theme}) => theme.colors.white};
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      background-color: black;
       width: 100%;
-      height: 100vh;
+      height: calc(100vh - 100px);
       top: 100px;
       left: 0;
       transform: ${({isToggled}) => isToggled ? 'translateX(0)' : 'translateX(-100%)'};
@@ -88,7 +91,19 @@ export const StyledNavItem = styled(NavLink)`
    }
 
    @media (max-width: 1100px){
-      color: ${({theme}) => theme.colors.black};
+      background-color: ${({theme}) => theme.colors.black};
+      width: 95vw;
+      height: 15vh;
+      font-size: 1.5rem;
+      margin-right: 0;
+
+      &.active::after {
+         opacity: 0;
+      }
+
+      &:hover::after{
+      opacity: 1;
+   }
    }
 `
 

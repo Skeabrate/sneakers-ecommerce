@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import styled from "styled-components"
 
 export const Wrapper = styled.section`
@@ -17,6 +18,11 @@ export const StyledTitle = styled.h1`
       display: block;
       transform: translateY(100%);
    }
+`
+
+export const StyledLink = styled(Link)`
+   text-decoration: none;
+   color: ${({theme}) => theme.colors.white};
 `
 
 export const StyledContent = styled.div`

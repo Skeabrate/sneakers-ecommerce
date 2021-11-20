@@ -5,9 +5,10 @@ import gsap from "gsap"
 
 import MainView from '../MainView/MainView';
 import { useData } from '../../helpers/useData';
+import ProductsContext from '../../Context/productsContext';
 
 const HeroPage = () => {
-   const { data } = useData()
+   const { products } = useData()
    const [displayView, setDisplayView] = useState(false)
 
    const t1 = useRef(null)
@@ -72,7 +73,9 @@ const HeroPage = () => {
    }
 
    return (
-      <div>
+      <ProductsContext.Provider value={{
+         products: products,
+      }}>
          <Wrapper ref={heroWrapperRef}>
             <StyledHeroImage ref={heroRef} hero={heroImg}>
                <StyledTitleWrapper>
@@ -88,10 +91,10 @@ const HeroPage = () => {
          </Wrapper>
 
          {displayView ? (
-            <MainView data={data} ref={mainViewRef} handleGoBack={handleGoBack}/>
+            <MainView ref={mainViewRef} handleGoBack={handleGoBack}/>
          ) : null}
 
-      </div>
+      </ProductsContext.Provider>
    )
 }
 

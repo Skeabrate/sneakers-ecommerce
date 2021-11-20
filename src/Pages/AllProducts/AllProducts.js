@@ -1,12 +1,14 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { Wrapper, StyledTitle, StyledContent, StyledImage, StyledItem, StyledItemTitle, StyledCategory } from './AllProducts.styles';
+import { Wrapper, StyledTitle, StyledContent, StyledImage, StyledItem, StyledItemTitle, StyledCategory, StyledLink } from './AllProducts.styles';
+import ProductsContext from '../../Context/productsContext';
 
-const AllProducts = ({ setContentAnimation, products = [] }) => {
+const AllProducts = ({ setContentAnimation }) => {
    const t2 = useRef(null)
-
    const contentRef = useRef(null)
    const contentTitleRef = useRef(null)
+
+   const products = useContext(ProductsContext)
 
    useEffect(() => {
       t2.current = gsap.timeline()
@@ -23,6 +25,8 @@ const AllProducts = ({ setContentAnimation, products = [] }) => {
                duration: .4,
             })
       }
+
+      return () => setContentAnimation(false)
    }, [])
 
    return (
@@ -35,17 +39,19 @@ const AllProducts = ({ setContentAnimation, products = [] }) => {
 
          <article>
             <StyledContent ref={contentRef}>
-               {products.map(({id, images = [], price, title, category}) => (
-                  <StyledItem key={id}>
-                     <StyledImage>
-                        <img src={images[0].url} alt="" />
-                        <div>${price}</div>
-                        <span>Quick <br /> view</span>
-                     </StyledImage>
+               {products.products.map(({id, images = [], price, title, category}) => (
+                  <StyledLink to={`/product/${id}`} key={id}>
+                     <StyledItem>
+                        <StyledImage>
+                           <img src={images[0].url} alt="" />
+                           <div>${price}</div>
+                           <span>Quick <br /> view</span>
+                        </StyledImage>
 
-                     <StyledItemTitle>{title}</StyledItemTitle>
-                     <StyledCategory>{category}</StyledCategory>
-                  </StyledItem>
+                        <StyledItemTitle>{title}</StyledItemTitle>
+                        <StyledCategory>{category}</StyledCategory>
+                     </StyledItem>
+                  </StyledLink>
                ))}
             </StyledContent>
          </article>

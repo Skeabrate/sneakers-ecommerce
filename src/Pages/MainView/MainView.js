@@ -10,7 +10,7 @@ import About from "../About/About"
 import WomenProducts from "../WomenProducts/WomenProducts"
 import MenProducts from "../MenProducts/MenProducts"
 
-const MainView = React.forwardRef(({data, handleGoBack}, mainViewRef) => {
+const MainView = React.forwardRef(({ handleGoBack }, mainViewRef) => {
    const [contentAnimation, setContentAnimation] = useState()
 
    const t1 = useRef(null)
@@ -22,8 +22,8 @@ const MainView = React.forwardRef(({data, handleGoBack}, mainViewRef) => {
             setTimeout(() => {
                t1.current.reverse()
             }, 400)
-
-            contentAnimation.reverse()
+            
+            if(contentAnimation) contentAnimation.reverse() 
             
             resolve()
          })
@@ -52,6 +52,8 @@ const MainView = React.forwardRef(({data, handleGoBack}, mainViewRef) => {
                duration: .4,
             })
       }
+      /* const womenData = data.filter(item => item.category.includes('Women')) */
+
    }, [])
 
    return (
@@ -68,7 +70,7 @@ const MainView = React.forwardRef(({data, handleGoBack}, mainViewRef) => {
 
                <Route path="/about" element={<About />}/>
 
-               <Route exact path="/" element={<AllProducts setContentAnimation={setContentAnimation} products={data}/>}/>
+               <Route exact path="/" element={<AllProducts setContentAnimation={setContentAnimation} />}/>
             </Routes>
             
          </Wrapper>
