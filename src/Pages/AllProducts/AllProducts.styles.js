@@ -63,13 +63,13 @@ export const StyledImage = styled.div`
       transition: transform 0.2s ease-in-out;
    }
 
-   span{
+   button{
       position: absolute;
       top: 15px;
       width: 80px;
       height: 80px;
-      background-color: ${({theme}) => theme.colors.black};
       right: 10px;
+      border: none; 
       border-radius: 100%;
       display: flex;
       justify-content: center;
@@ -77,6 +77,8 @@ export const StyledImage = styled.div`
       text-align: center;
       line-height: 1rem;
       font-size: ${({theme}) => theme.fontSize.l};
+      background-color: ${({theme}) => theme.colors.black};
+      color: ${({theme}) => theme.colors.white};
       opacity: 0;
 
       transition: transform .2s ease-in-out, opacity .1s ease-in-out;
@@ -100,12 +102,12 @@ export const StyledImage = styled.div`
       transform: translateY(-10px);
    }
 
-   &:hover span{
+   &:hover button{
       opacity: 1;
       transform: translateY(-5px);
    }
 
-   span:hover{
+   button:hover{
       transform: translateY(-5px) scale(1.1);
    }
 

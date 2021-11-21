@@ -1,14 +1,18 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { Wrapper, StyledTitle, StyledContent, StyledImage, StyledItem, StyledItemTitle, StyledCategory, StyledLink } from './AllProducts.styles';
 import ProductsContext from '../../Context/productsContext';
+import QuickView from '../../Components/QuickView/QuickView';
 
 const AllProducts = ({ setContentAnimation }) => {
+   const [toggleQuickView, setToggleQuickView] = useState(false)
+   const [selectedProduct, setSelectedProduct] = useState('')
+
    const t2 = useRef(null)
    const contentRef = useRef(null)
    const contentTitleRef = useRef(null)
 
-   const products = useContext(ProductsContext)
+   const { products } = useContext(ProductsContext)
 
    useEffect(() => {
       t2.current = gsap.timeline()
@@ -29,6 +33,14 @@ const AllProducts = ({ setContentAnimation }) => {
       return () => setContentAnimation(false)
    }, [])
 
+   const handleQuickView = (e, id) => {
+      e.preventDefault()
+      setToggleQuickView(!toggleQuickView)
+      setSelectedProduct(products.find(item => item.id === id))
+   }
+
+   const handleCloseView = () => setToggleQuickView(false)
+
    return (
       <Wrapper>
          <header>
@@ -39,13 +51,15 @@ const AllProducts = ({ setContentAnimation }) => {
 
          <article>
             <StyledContent ref={contentRef}>
-               {products.products.map(({id, images = [], price, title, category}) => (
+               {products.map(({id, images = [], price, title, category}) => (
                   <StyledLink to={`/product/${id}`} key={id}>
                      <StyledItem>
                         <StyledImage>
                            <img src={images[0].url} alt="" />
                            <div>${price}</div>
-                           <span>Quick <br /> view</span>
+                           <button onClick={(e) => handleQuickView(e, id)}>
+                              Quick <br /> view
+                           </button>
                         </StyledImage>
 
                         <StyledItemTitle>{title}</StyledItemTitle>
@@ -55,6 +69,10 @@ const AllProducts = ({ setContentAnimation }) => {
                ))}
             </StyledContent>
          </article>
+
+         {toggleQuickView ? (
+            <QuickView handleCloseView={handleCloseView} selectedProduct={selectedProduct}/>
+         ) : null}
 
       </Wrapper>
    );
