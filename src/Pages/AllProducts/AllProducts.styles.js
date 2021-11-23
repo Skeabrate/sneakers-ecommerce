@@ -50,18 +50,23 @@ export const StyledItem = styled.div`
    cursor: pointer;
 `
 
+export const Image = styled.img`
+   width: 100%;
+   height: 100%;
+   transition: transform 0.2s ease-in-out;
+   position: relative;
+
+   &:hover {
+      transform: scale(1.1);
+   }
+`
+
 export const StyledImage = styled.div`
    position: relative;
    display: flex;
    overflow: hidden;
    border-left: 5px solid ${({theme}) => theme.colors.orange};
    margin-bottom: 15px;
-
-   img{
-      width: 100%;
-      
-      transition: transform 0.2s ease-in-out;
-   }
 
    button{
       position: absolute;
@@ -110,16 +115,13 @@ export const StyledImage = styled.div`
    button:hover{
       transform: translateY(-5px) scale(1.1);
    }
-
-   &:hover img{
-      transform: scale(1.1);
-   }
 `
 
 export const StyledItemTitle = styled.h3`
-   font-size: ${({theme}) => theme.fontSize.l}
+   font-size: ${({theme}) => theme.fontSize.l};
 `
 
 export const StyledCategory = styled.h4`
-   color: ${({theme}) => theme.colors.lightGrey}
+   color: ${({theme}) => theme.colors.lightGrey};
+   font-style: italic;
 `

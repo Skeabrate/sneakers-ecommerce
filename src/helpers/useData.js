@@ -33,8 +33,13 @@ export const useData = () => {
             }
          })
 
+         const arr = []
+
+         for(const key in res.data.data.allProducts){
+            arr.push({...res.data.data.allProducts[key], isLoaded: false})
+         }
          setData(res.data.data)
-         setProducts(res.data.data.allProducts)
+         setProducts(arr)
 
       } catch (ex) {
          console.log(ex.response)
@@ -51,7 +56,7 @@ export const useData = () => {
             setLimit(limit + 100)
             fetchData()
          }      
-      }   
+      }
    }, [data])
 
 

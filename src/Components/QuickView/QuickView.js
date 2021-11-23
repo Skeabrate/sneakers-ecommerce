@@ -1,21 +1,41 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import 'react-lazy-load-image-component/src/effects/blur.css';
+import { ModalWrapper, Wrapper, StyledImage, StyledPlaceHolder } from "./QuickView.styles"
+import placeholder from "../../Assets/Images/placeholder.png"
 
-import { Wrapper } from "./QuickView.styles"
+export default function QuickView({ selectedProduct: { title, category, price, images}, isOpen, onRequestClose}) {
+   const [isLoaded, setIsLoaded] = useState(false)
 
-export default function QuickView({ selectedProduct: { title, category, price, images = [] }, handleCloseView}) {
+   const closeModel = () => {
+      setIsLoaded(false)
+      onRequestClose()
+   }
+
    return (
-      <Wrapper>
-         <div>
-            <img src={images[2].url}/>
-         </div>
+      <ModalWrapper isOpen={isOpen} onRequestClose={closeModel} appElement={document.getElementById('root')}>
+         <Wrapper>
+            {isLoaded ? null : (
+               <StyledPlaceHolder>
+                  <img alt="" src={placeholder}/>
+               </StyledPlaceHolder>
+            )}
+            <StyledImage isLoaded={isLoaded}>
+               <img
+                  alt="img"
+                  src={images[2].url}
+                  onLoad={() =>  setIsLoaded(true)}
+               />
 
-         <div>
-            <h3>{title}</h3>
-            <p>{category}</p>
-            <p>${price}</p>
-         </div>
+            </StyledImage>
 
-         <button onClick={handleCloseView}>X</button>
-      </Wrapper>
+            <div>
+               <h3>{title}</h3>
+               <p>{category}</p>
+               <p>${price}</p>
+            </div>
+
+            <button onClick={closeModel}>X</button>
+         </Wrapper>
+      </ModalWrapper>
    )
 }

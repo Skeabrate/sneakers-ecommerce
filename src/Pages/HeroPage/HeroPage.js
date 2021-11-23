@@ -64,6 +64,7 @@ const HeroPage = () => {
                display: 'none',
             })
       }
+      
    }, [])
 
    const handleChangeScene = () => t2.current.play()
