@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import { ModalWrapper, Wrapper, StyledImage, StyledPlaceHolder } from "./QuickView.styles"
+import { ModalWrapper, Wrapper, StyledImage, StyledPlaceHolder, StyledButton, StyledContent, StyledTitle, StyledCategory, StyledDescription, StyledPrice, StyledCart, StyledStatus } from "./QuickView.styles"
 import placeholder from "../../Assets/Images/placeholder.png"
+import close from "../../Assets/Images/close.png"
+import plus from "../../Assets/Images/icon-plus.svg"
+import minus from "../../Assets/Images/icon-minus.svg"
 
-export default function QuickView({ selectedProduct: { title, category, price, images}, isOpen, onRequestClose}) {
+export default function QuickView({ selectedProduct: { title, category, price, images, description}, isOpen, onRequestClose}) {
    const [isLoaded, setIsLoaded] = useState(false)
 
    const closeModel = () => {
@@ -28,13 +31,20 @@ export default function QuickView({ selectedProduct: { title, category, price, i
 
             </StyledImage>
 
-            <div>
-               <h3>{title}</h3>
-               <p>{category}</p>
-               <p>${price}</p>
-            </div>
+            <StyledContent>
+               <StyledTitle>{title}</StyledTitle>
+               <StyledCategory>{category}</StyledCategory>
+               <StyledDescription>{description}</StyledDescription>
+               <StyledPrice>${price}</StyledPrice>
+               <StyledStatus>Status: <span>Available</span></StyledStatus>
 
-            <button onClick={closeModel}>X</button>
+               <StyledCart>
+               <button><img src={minus} alt="minus"/></button> 0 <button><img src={plus} alt="plus" /></button>
+               <button>Add to cart</button>
+               </StyledCart>
+            </StyledContent>
+
+            <StyledButton onClick={closeModel}><img src={close} alt="cross"/></StyledButton>
          </Wrapper>
       </ModalWrapper>
    )

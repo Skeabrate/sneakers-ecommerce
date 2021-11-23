@@ -1,13 +1,15 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
-import { Wrapper, StyledTitle, StyledContent, StyledImage, StyledItem, StyledItemTitle, StyledCategory, StyledLink, Image } from './AllProducts.styles';
+import { Wrapper, StyledPlaceholder, StyledTitle, StyledContent, StyledImage, StyledItem, StyledItemTitle, StyledCategory, StyledLink, Image } from './AllProducts.styles';
 import ProductsContext from '../../Context/productsContext';
 import QuickView from '../../Components/QuickView/QuickView';
 import placeholder from "../../Assets/Images/placeholder.png"
 
+
 const AllProducts = ({ setContentAnimation }) => {
    const [selectedProduct, setSelectedProduct] = useState(false)
    const [modalIsOpen, setIsOpen] = useState(false)
+   const [loadedImg, setLoadedImg] = useState(false)
 
    const t2 = useRef(null)
    const contentRef = useRef(null)
@@ -31,8 +33,18 @@ const AllProducts = ({ setContentAnimation }) => {
             })
       }
 
+      const arr = []
+      for(const key in products){
+         arr.push({id: products[key].id, isLoaded: products[key].isLoaded,})
+      }
+      setLoadedImg(arr)
+
       return () => setContentAnimation(false)
    }, [])
+
+   const handleChangeLoad = (index) => {
+      setLoadedImg({...loadedImg, [index]: {...loadedImg[index], isLoaded: true}})
+   }
 
    const handleQuickView = (e, id) => {
       e.preventDefault()
@@ -55,16 +67,30 @@ const AllProducts = ({ setContentAnimation }) => {
                {products.map(({id, images = [], price, title, category}, props) => (
                   <StyledLink to={`/product/${id}`} key={id}>
                      <StyledItem>
-                        <StyledImage>
-                           <Image 
-                              alt=""
-                              src={images[0].url}
-                           />
-                           <div>${price}</div>
-                           <button onClick={(e) => handleQuickView(e, id)}>
-                              Quick <br /> view
-                           </button>
-                        </StyledImage>
+                        {loadedImg ? (
+                           <>
+                           {!loadedImg[props].isLoaded ? (
+                              <StyledPlaceholder>
+                                 <img src={placeholder} alt="placeholder" />
+                              </StyledPlaceholder>
+                           ) : null}
+
+                           <StyledImage isLoaded={loadedImg[props].isLoaded}>
+                              <img
+                                 loading="lazy"
+                                 alt=""
+                                 src={images[0].url}
+                                 width="840"
+                                 height="840"
+                                 onLoad={() => handleChangeLoad(props)}
+                              />
+                              <div>${price}</div>
+                              <button onClick={(e) => handleQuickView(e, id)}>
+                                 Quick <br /> view
+                              </button>
+                           </StyledImage>
+                           </>       
+                        ) : null}
 
                         <StyledItemTitle>{title}</StyledItemTitle>
                         <StyledCategory>{category}</StyledCategory>

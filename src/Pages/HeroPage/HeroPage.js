@@ -6,6 +6,7 @@ import gsap from "gsap"
 import MainView from '../MainView/MainView';
 import { useData } from '../../helpers/useData';
 import ProductsContext from '../../Context/productsContext';
+import { imgLoad } from "../../helpers/imgLoad"
 
 const HeroPage = () => {
    const { products } = useData()
@@ -16,15 +17,24 @@ const HeroPage = () => {
 
    const heroWrapperRef = useRef(null)
    const heroRef = useRef(null)
+   const titleWrapperRef = useRef(null)
    const textRef1 = useRef(null)
    const textRef2 = useRef(null)
+   const textBackgroundRef = useRef(null)
    const btnRef = useRef(null)
    const btnSpanRef = useRef(null)
 
    const mainViewRef = useRef(null)
 
    useEffect(() => {
-      t1.current = gsap.timeline()
+      // Check if hero image is loaded, if true
+      var image = document.createElement('img')
+      image.src = imgLoad(heroRef.current) 
+      image.onload = function() {
+         t1.current.play()
+      }
+
+      t1.current = gsap.timeline({ paused: true })
       t2.current = gsap.timeline({ paused: true })
 
       if(t1.current) {
@@ -34,6 +44,14 @@ const HeroPage = () => {
                scale: 1,
                duration: 1.1,
             })
+            .to(textBackgroundRef.current, {
+               opacity: 0.3,
+               duration: .2,
+            })
+            .to(titleWrapperRef.current, {
+               boxShadow: '0px 0px 100px -25px rgba(0, 0, 0, 1)',
+               duration: .2,
+            }, "-=.2s")
             .to([textRef1.current, textRef2.current], {
                y: 0,
                duration: .5,
@@ -79,9 +97,10 @@ const HeroPage = () => {
       }}>
          <Wrapper ref={heroWrapperRef}>
             <StyledHeroImage ref={heroRef} hero={heroImg}>
-               <StyledTitleWrapper>
+               <StyledTitleWrapper ref={titleWrapperRef}>
                   <StyledTitle><span ref={textRef1}>Sneakers</span></StyledTitle>
                   <StyledTitle><span ref={textRef2}>Journey</span></StyledTitle>
+                  <div ref={textBackgroundRef}></div>
                </StyledTitleWrapper>
 
                <StyledButton ref={btnRef} onClick={handleChangeScene}>

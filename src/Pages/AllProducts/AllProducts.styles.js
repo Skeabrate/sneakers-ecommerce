@@ -50,23 +50,37 @@ export const StyledItem = styled.div`
    cursor: pointer;
 `
 
-export const Image = styled.img`
-   width: 100%;
-   height: 100%;
-   transition: transform 0.2s ease-in-out;
-   position: relative;
-
-   &:hover {
-      transform: scale(1.1);
-   }
-`
-
-export const StyledImage = styled.div`
-   position: relative;
+export const StyledPlaceholder = styled.div`
    display: flex;
    overflow: hidden;
    border-left: 5px solid ${({theme}) => theme.colors.orange};
    margin-bottom: 15px;
+
+   img{
+      width: 100%;
+      height: 100%;
+   }
+`
+
+export const StyledImage = styled.div`
+   display: flex;
+   overflow: hidden;
+   border-left: 5px solid ${({theme}) => theme.colors.orange};
+   margin-bottom: 15px;
+   position: ${({isLoaded}) => isLoaded ? 'relative' : 'absolute'};
+   
+   transition: opacity .4s;
+
+   img{
+      width: 100%;
+      height: 100%;
+      transition: transform 0.2s ease-in-out;
+      position: relative;
+   }
+
+   &:hover img{
+      transform: scale(1.1);
+   }
 
    button{
       position: absolute;
