@@ -178,6 +178,11 @@ export const StyledCart = styled.div`
    display: flex;
    align-items: center;
 
+   p{
+      text-align: center;
+      width: 30px;
+   }
+
    button{
       display: flex;
       justify-content: center;
@@ -189,7 +194,7 @@ export const StyledCart = styled.div`
 
 export const StyledPlusMinusBtn = styled.button`
    background: transparent;
-   padding: 40px;
+   padding: 30px;
 `
 
 export const StyledAddBtn = styled.button`
