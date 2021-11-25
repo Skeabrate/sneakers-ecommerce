@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { ModalWrapper, StyledBtnPrev, StyledBtnNext, StyledBtnSlider, StyledImageSection, StyledSlider, StyledPlusMinusBtn, StyledAddBtn, Wrapper, StyledPlaceHolder, StyledButton, StyledContent, StyledTitle, StyledCategory, StyledDescription, StyledPrice, StyledCart, StyledStatus } from "./QuickView.styles"
 import placeholder from "../../Assets/Images/placeholder.png"
-import close from "../../Assets/Images/close.png"
+import close from "../../Assets/Images/close.svg"
 import plus from "../../Assets/Images/icon-plus.svg"
 import minus from "../../Assets/Images/icon-minus.svg"
 
@@ -39,7 +39,20 @@ export default function QuickView({ selectedProduct: { title, category, price, i
    const increaseAmount = () => setAmount(amount + 1)
 
    return (
-      <ModalWrapper isOpen={isOpen} onRequestClose={closeModel} appElement={document.getElementById('root')}>
+      <ModalWrapper 
+         isOpen={isOpen} 
+         onRequestClose={closeModel} 
+         appElement={document.getElementById('root')}
+         style={{
+            overlay: {
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: 'rgba(120, 120, 120, 0.8)'
+         }}}
+      >
          <Wrapper>
             
             <StyledImageSection>

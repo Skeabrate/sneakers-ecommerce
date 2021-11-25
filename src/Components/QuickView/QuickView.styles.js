@@ -177,10 +177,14 @@ export const StyledStatus = styled.div`
 export const StyledCart = styled.div`
    display: flex;
    align-items: center;
+   margin-top: 20px;
 
    p{
-      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       width: 30px;
+      height: 40px;
    }
 
    button{
@@ -194,7 +198,8 @@ export const StyledCart = styled.div`
 
 export const StyledPlusMinusBtn = styled.button`
    background: transparent;
-   padding: 30px;
+   width: 60px;
+   height: 50px;
 `
 
 export const StyledAddBtn = styled.button`
