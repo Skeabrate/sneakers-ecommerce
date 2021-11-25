@@ -3,4 +3,6 @@ Technologies I used for this project:
 - styled-components
 - react-router-dom
 - Animations with GSAP
+- Datocms as headless cms
+- GraphQL
 
