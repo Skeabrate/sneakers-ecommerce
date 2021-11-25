@@ -13,7 +13,7 @@ export const Wrapper = styled.div`
    background-color: black;
    color: ${({theme}) => theme.colors.white};
    height: 100px;
-   font-size: 1.4rem;
+   font-size: ${({theme}) => theme.fontSize.s};
    transform: translateY(-100%);
    z-index: 9999;
 `
@@ -30,6 +30,7 @@ export const StyledTitle = styled.div`
    justify-content: center;
    align-items: center;
    gap: 10px;
+   font-family: 'Shadows Into Light', cursive;
 `
 
 export const StyledLogo = styled.h1`

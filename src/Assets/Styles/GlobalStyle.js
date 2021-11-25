@@ -13,6 +13,6 @@ export const GlobalStyle = createGlobalStyle`
    }
 
    body, a, button {
-      font-family: 'Shadows Into Light', cursive;
+      font-family: 'Montserrat', sans-serif;
    }
 `

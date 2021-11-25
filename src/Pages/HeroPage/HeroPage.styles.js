@@ -4,6 +4,7 @@ export const Wrapper = styled.div`
    width: 100vw;
    height: 100vh;
    overflow: hidden;
+   font-family: 'Shadows Into Light', cursive;
 `
 
 export const StyledHeroImage = styled.div`
@@ -59,6 +60,7 @@ export const StyledTitle = styled.span`
 
 export const StyledButton = styled.button`
    margin-bottom: 10vw;
+   font-family: 'Shadows Into Light', cursive;
    display: block;
    font-weight: bold;
    position: relative;

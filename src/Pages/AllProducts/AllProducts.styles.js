@@ -32,7 +32,7 @@ export const StyledContent = styled.div`
    opacity: 0;
 
    @media (max-width: 1400px){
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
    }
 
    @media (max-width: 1100px){
@@ -95,16 +95,21 @@ export const StyledImage = styled.div`
       align-items: center;
       text-align: center;
       line-height: 1rem;
-      font-size: ${({theme}) => theme.fontSize.l};
+      font-size: ${({theme}) => theme.fontSize.s};
       background-color: ${({theme}) => theme.colors.black};
       color: ${({theme}) => theme.colors.white};
       opacity: 0;
 
       transition: transform .2s ease-in-out, opacity .1s ease-in-out;
+
+      @media(max-width: 1100px){
+         display: none;
+      }
    }
 
    div{
-      font-size: 1.6rem;
+      font-size: ${({theme}) => theme.fontSize.s};
+      padding: 8px 10px;
       position: absolute;
       background-color: ${({theme}) => theme.colors.black};
       bottom: 0;

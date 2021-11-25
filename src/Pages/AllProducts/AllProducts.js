@@ -52,7 +52,10 @@ const AllProducts = ({ setContentAnimation }) => {
       setSelectedProduct(products.find(item => item.id === id))
    }
 
-   const handleCloseView = () => setIsOpen(false)
+   const handleCloseView = () => {
+      setIsOpen(false)
+      setSelectedProduct(false)
+   }
 
    return (
       <Wrapper>

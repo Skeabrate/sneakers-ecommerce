@@ -11,5 +11,6 @@ export const theme = {
       xxl: '8rem',
       xl: '3rem',
       l: '1.4rem',
+      s: '1rem',
    }
 }
