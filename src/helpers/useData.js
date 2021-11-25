@@ -5,6 +5,7 @@ export const useData = () => {
    const [data, setData] = useState(false)
    const [products, setProducts] = useState([])
    const [limit, setLimit] = useState(100)
+   const [loading, setLoading] = useState(false)
    
    const queryVal = `
    {
@@ -44,11 +45,14 @@ export const useData = () => {
       } catch (ex) {
          console.log(ex.response)
       }
+
+      setLoading(true)
    }
    useEffect(() => {
       fetchData()
       setLimit(limit + 10)
    }, [])
+
 
    useEffect(() => {
       if(data){
@@ -59,8 +63,5 @@ export const useData = () => {
       }
    }, [data])
 
-
-   return {
-      products
-   }
+   return [products, loading]
 };

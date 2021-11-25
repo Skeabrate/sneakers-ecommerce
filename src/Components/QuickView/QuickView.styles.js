@@ -32,13 +32,23 @@ export const StyledImageSection = styled.div`
 
 export const StyledSlider = styled.div`
    position: ${({isLoaded}) => isLoaded ? 'relative': 'absolute'};
+   border-left: ${({isLoaded, theme}) => isLoaded ? `5px solid ${theme.colors.orange}` : 'none'};
+   border-radius: 0 20px 20px 0;  
    height: 31.5vw;
    overflow: hidden;
-   border-radius: 20px;
 
    img{
       width: 100%;
       height: 100%;
+      transition: transform 0.2s ease-in-out;
+   }
+
+   &:hover img{
+      transform: scale(1.1)
+   }
+
+   &:hover button{
+      visibility: ${({isHidden}) => isHidden ? 'hidden' : 'visible'}
    }
 `
 
@@ -61,7 +71,8 @@ export const StyledRightImg = styled.img`
 export const StyledPlaceHolder = styled.div`
    height: 31.5vw;
    overflow: hidden;
-   border-radius: 20px;
+   border-left: ${({isLoaded, theme}) => !isLoaded ? `5px solid ${theme.colors.orange}` : 'none'};
+   border-radius: 0 20px 20px 0;  
 
    img{
       width: 100%;
@@ -74,11 +85,12 @@ const btnSwitch = css`
    top: 50%;
    transform: translateY(-50%);
    border: none;
-   opacity: 0.2;
+   opacity: 0.3;
+   visibility: hidden;
    transition: all .2s;
 
    &:hover{
-      transform: translateY(-50%) scale(1.2);
+      transform: translateY(-50%) scale(1.4);
       opacity: 0.5;
    }
 `
@@ -164,7 +176,7 @@ export const StyledStatus = styled.div`
    margin: 10px 0;
 
    span{
-      background-color: #62c606;
+      background-color: #59b605;
       margin-left: 10px;
       padding: 4px 10px;
       font-size: 12px;

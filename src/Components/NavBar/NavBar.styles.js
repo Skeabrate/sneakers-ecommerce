@@ -116,7 +116,7 @@ export const StyledCart = styled.div`
 
 export const StyledCartItem = styled.div`
    margin: 0 1vw;
-   max-width: 70px;
+   max-width: 60px;
    display: flex;
    justify-content: center;
    align-items: center;

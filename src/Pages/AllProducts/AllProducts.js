@@ -1,9 +1,10 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
-import { Wrapper, StyledPlaceholder, StyledTitle, StyledContent, StyledImage, StyledItem, StyledItemTitle, StyledCategory, StyledLink, Image } from './AllProducts.styles';
-import ProductsContext from '../../Context/productsContext';
+import { Wrapper, StyledPlaceholder, StyledTitle, StyledContent, StyledImage, StyledItem, StyledItemTitle, StyledCategory, StyledLink } from './AllProducts.styles';
 import QuickView from '../../Components/QuickView/QuickView';
 import placeholder from "../../Assets/Images/placeholder.png"
+import { useData } from '../../helpers/useData';
+import LoadingScreen from '../../Components/LoadingScreen/LoadingScreen';
 
 
 const AllProducts = ({ setContentAnimation }) => {
@@ -11,14 +12,15 @@ const AllProducts = ({ setContentAnimation }) => {
    const [modalIsOpen, setIsOpen] = useState(false)
    const [loadedImg, setLoadedImg] = useState(false)
 
+   const [products, loading] = useData()
+
    const t2 = useRef(null)
    const contentRef = useRef(null)
    const contentTitleRef = useRef(null)
 
-   const { products } = useContext(ProductsContext)
    
    useEffect(() => {
-      t2.current = gsap.timeline()
+      t2.current = gsap.timeline({ paused: !loading})
       setContentAnimation(t2.current)
 
       if(t2.current) {
@@ -33,14 +35,16 @@ const AllProducts = ({ setContentAnimation }) => {
             })
       }
 
+      return () => setContentAnimation(false)
+   }, [loading])
+
+   useEffect(() => {
       const arr = []
       for(const key in products){
          arr.push({id: products[key].id, isLoaded: products[key].isLoaded,})
       }
       setLoadedImg(arr)
-
-      return () => setContentAnimation(false)
-   }, [])
+   }, [products])
 
    const handleChangeLoad = (index) => {
       setLoadedImg({...loadedImg, [index]: {...loadedImg[index], isLoaded: true}})
@@ -66,7 +70,8 @@ const AllProducts = ({ setContentAnimation }) => {
          </header>
 
          <article>
-            <StyledContent ref={contentRef}>
+            {loading ? (
+               <StyledContent ref={contentRef}>
                {products.map(({id, images = [], price, title, category}, props) => (
                   <StyledLink to={`/product/${id}`} key={id}>
                      <StyledItem>
@@ -101,6 +106,10 @@ const AllProducts = ({ setContentAnimation }) => {
                   </StyledLink>
                ))}
             </StyledContent>
+
+            ) : (
+               <LoadingScreen />
+            )}
          </article>
 
          {selectedProduct ? (

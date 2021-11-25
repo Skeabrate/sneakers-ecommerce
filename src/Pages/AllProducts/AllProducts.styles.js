@@ -54,7 +54,6 @@ export const StyledPlaceholder = styled.div`
    display: flex;
    overflow: hidden;
    border-left: 5px solid ${({theme}) => theme.colors.orange};
-   margin-bottom: 15px;
 
    img{
       width: 100%;
@@ -67,7 +66,7 @@ export const StyledImage = styled.div`
    overflow: hidden;
    border-left: 5px solid ${({theme}) => theme.colors.orange};
    margin-bottom: 15px;
-   position: ${({isLoaded}) => isLoaded ? 'relative' : 'absolute'};
+   position: relative;
    
    transition: opacity .4s;
 
@@ -75,7 +74,7 @@ export const StyledImage = styled.div`
       width: 100%;
       height: 100%;
       transition: transform 0.2s ease-in-out;
-      position: relative;
+      position: ${({isLoaded}) => isLoaded ? 'relative' : 'absolute'};
    }
 
    &:hover img{

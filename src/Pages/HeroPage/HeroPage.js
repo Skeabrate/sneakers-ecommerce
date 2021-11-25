@@ -4,12 +4,9 @@ import heroImg from "../../Assets/Images/heroPageImg.png"
 import gsap from "gsap"
 
 import MainView from '../MainView/MainView';
-import { useData } from '../../helpers/useData';
-import ProductsContext from '../../Context/productsContext';
 import { imgLoad } from "../../helpers/imgLoad"
 
 const HeroPage = () => {
-   const { products } = useData()
    const [displayView, setDisplayView] = useState(false)
 
    const t1 = useRef(null)
@@ -92,9 +89,7 @@ const HeroPage = () => {
    }
 
    return (
-      <ProductsContext.Provider value={{
-         products: products,
-      }}>
+      <>
          <Wrapper ref={heroWrapperRef}>
             <StyledHeroImage ref={heroRef} hero={heroImg}>
                <StyledTitleWrapper ref={titleWrapperRef}>
@@ -113,8 +108,7 @@ const HeroPage = () => {
          {displayView ? (
             <MainView ref={mainViewRef} handleGoBack={handleGoBack}/>
          ) : null}
-
-      </ProductsContext.Provider>
+      </>
    )
 }
 
