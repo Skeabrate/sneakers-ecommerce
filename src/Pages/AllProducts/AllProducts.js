@@ -6,8 +6,7 @@ import placeholder from "../../Assets/Images/placeholder.png"
 import { useData } from '../../helpers/useData';
 import LoadingScreen from '../../Components/LoadingScreen/LoadingScreen';
 
-
-const AllProducts = ({ setContentAnimation }) => {
+const AllProducts = () => {
    const [selectedProduct, setSelectedProduct] = useState(false)
    const [modalIsOpen, setIsOpen] = useState(false)
    const [loadedImg, setLoadedImg] = useState(false)
@@ -21,7 +20,6 @@ const AllProducts = ({ setContentAnimation }) => {
    
    useEffect(() => {
       t2.current = gsap.timeline({ paused: !loading})
-      setContentAnimation(t2.current)
 
       if(t2.current) {
          t2.current
@@ -34,9 +32,8 @@ const AllProducts = ({ setContentAnimation }) => {
                duration: .4,
             })
       }
-
-      return () => setContentAnimation(false)
    }, [loading])
+
 
    useEffect(() => {
       const arr = []
@@ -45,6 +42,7 @@ const AllProducts = ({ setContentAnimation }) => {
       }
       setLoadedImg(arr)
    }, [products])
+
 
    const handleChangeLoad = (index) => {
       setLoadedImg({...loadedImg, [index]: {...loadedImg[index], isLoaded: true}})

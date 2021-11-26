@@ -26,7 +26,7 @@ export const StyledTitleWrapper = styled.div`
    font-size: ${({theme}) => theme.fontSize.xxl};
    font-weight: bold;
    color: ${({theme}) => theme.colors.white};
-   text-shadow: 5px 5px 5px ${({theme}) => theme.colors.black};
+   text-shadow: 5px 5px 5px black;
    line-height: 0.98;
    border-radius: 100px;
 
@@ -68,19 +68,16 @@ export const StyledButton = styled.button`
    height: 140px;
    border-radius: 100%;
    border: none;
-   background-color: ${({theme}) => theme.colors.black};
+   background-color: transparent;
    font-size: ${({theme}) => theme.fontSize.l};
    color: ${({theme}) => theme.colors.white};
    transform: scale(0);
    cursor: pointer;
-   box-shadow: 0px 0px 80px -10px rgba(0, 0, 0, 1);
-   
-   transition: color .4s ease-in-out;
 
    span{
       position: absolute;
-      width: 140px;
-      height: 140px;
+      width: 100%;
+      height: 100%;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
@@ -88,31 +85,24 @@ export const StyledButton = styled.button`
       z-index: -1;
       cursor: pointer;
       border-radius: 100%;
-      box-shadow: inset 0px 0px 10px 0px black;
-
-      transition: box-shadow .2s ease-in-out;
    }
 
    span::before{
       content: "";
       position: absolute;
-      width: 140px;
-      height: 140px;
+      width: 100%;
+      height: 100%;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background-color: transparent;
+      background-color: ${({theme}) => theme.colors.black};
       border-radius: 100%;
-      box-shadow: 0px 0px 0px 0px black; 
+      box-shadow: 0px 0px 50px -20px black; 
 
-      transition: box-shadow .2s ease-in-out;
-   }
-
-   &:hover span{
-      box-shadow: unset;
+      transition: transform .2s ease-in-out;
    }
 
    &:hover span::before{
-      box-shadow: 0px 0px 10px 0px black;
+      transform: translate(-50%, -50%) scale(1.1);
    }
 `

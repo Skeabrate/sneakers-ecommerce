@@ -1,13 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Wrapper, StyledHeroImage, StyledTitleWrapper, StyledTitle, StyledButton } from "./HeroPage.styles"
 import heroImg from "../../Assets/Images/heroPageImg.png"
 import gsap from "gsap"
-
-import MainView from '../MainView/MainView';
 import { imgLoad } from "../../helpers/imgLoad"
+import { useNavigate } from 'react-router-dom';
 
-const HeroPage = () => {
-   const [displayView, setDisplayView] = useState(false)
+const HeroPage = ({setIsHero}) => {
+   let navigate = useNavigate()
 
    const t1 = useRef(null)
    const t2 = useRef(null)
@@ -21,10 +20,9 @@ const HeroPage = () => {
    const btnRef = useRef(null)
    const btnSpanRef = useRef(null)
 
-   const mainViewRef = useRef(null)
-
    useEffect(() => {
-      // Check if hero image is loaded, if true
+      setIsHero(true)
+      // Check if hero image is loaded, if true start animation
       var image = document.createElement('img')
       image.src = imgLoad(heroRef.current) 
       image.onload = function() {
@@ -42,11 +40,11 @@ const HeroPage = () => {
                duration: 1.1,
             })
             .to(textBackgroundRef.current, {
-               opacity: 0.3,
+               opacity: 0.2,
                duration: .2,
             })
             .to(titleWrapperRef.current, {
-               boxShadow: '0px 0px 100px -25px rgba(0, 0, 0, 1)',
+               boxShadow: '0px 0px 60px -25px rgba(0, 0, 0, 1)',
                duration: .2,
             }, "-=.2s")
             .to([textRef1.current, textRef2.current], {
@@ -64,28 +62,20 @@ const HeroPage = () => {
          t2.current
             .to(btnSpanRef.current, {
                scale: 20,
-               duration: 0.9,
-            })
-            .to(btnRef.current, {
-               color: '#151515',
-               duration: .2,
-            }, "-=.3")
-            .set(mainViewRef.current, {
-               onComplete: () => {
-                  setDisplayView(true)
-               }
-            }, "+=.2")
-            .set(heroWrapperRef.current, {
-               display: 'none',
+               duration: 1.2,
             })
       }
-      
+
+      return () => {
+         setIsHero(false)
+      }
    }, [])
 
-   const handleChangeScene = () => t2.current.play()
-   const handleGoBack = () => {
-      t2.current.reverse()
-      setDisplayView(!displayView)
+   const handleChangeScene = () => {
+      t2.current.play()
+      setTimeout(() => {
+         navigate("/AllProducts")
+      }, 1000)
    }
 
    return (
@@ -104,10 +94,6 @@ const HeroPage = () => {
                </StyledButton>
             </StyledHeroImage>
          </Wrapper>
-
-         {displayView ? (
-            <MainView ref={mainViewRef} handleGoBack={handleGoBack}/>
-         ) : null}
       </>
    )
 }

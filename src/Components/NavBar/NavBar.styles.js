@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 import styled from "styled-components"
 
 export const Wrapper = styled.div`
@@ -33,9 +33,13 @@ export const StyledTitle = styled.div`
    font-family: 'Shadows Into Light', cursive;
 `
 
-export const StyledLogo = styled.h1`
+export const StyledLogo = styled(Link)`
    font-size: ${({theme}) => theme.fontSize.xl};
    cursor: pointer;
+   text-decoration: none;
+   color: ${({theme}) =>theme.colors.white};
+   font-family: 'Shadows Into Light', cursive;
+   font-weight: bold;
 `
 
 export const StyledNav = styled.div`
