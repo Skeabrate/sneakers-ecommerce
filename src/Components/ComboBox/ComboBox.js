@@ -2,7 +2,7 @@ import react, { useEffect } from 'react';
 import { useSelect } from 'downshift'
 import { Wrapper, StyledOptionBtn, StyledList } from "./ComboBox.styles"
 
-const ComboBox = ({ label, items = [], isPrice, setSelectedItem, resetGender, setResetGender = () => {}, resetCategory, setResetCategory = () => {}}) => {
+const ComboBox = ({ label, items = [], isPrice, setSelectedItem, resetGender = false, setResetGender = () => {}, resetCategory = false, setResetCategory = () => {}}) => {
    const {
       isOpen,
       selectedItem,
@@ -21,6 +21,7 @@ const ComboBox = ({ label, items = [], isPrice, setSelectedItem, resetGender, se
 
    useEffect(() => {
       if(resetCategory || resetGender) selectItem(null)
+      console.log(resetCategory, resetGender)
    }, [isOpen])
 
    return (
