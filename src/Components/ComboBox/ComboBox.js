@@ -2,7 +2,7 @@ import react, { useEffect } from 'react';
 import { useSelect } from 'downshift'
 import { Wrapper, StyledOptionBtn, StyledList } from "./ComboBox.styles"
 
-const ComboBox = ({ label, items = [], products, setLoading, sortPriceDescending, sortPriceAscending, isPrice, isCategory, isGender }) => {
+const ComboBox = ({ label, items = [], setLoading, sortPriceDescending, sortPriceAscending, isPrice, isCategory, isGender, sortByGender }) => {
    const {
       isOpen,
       selectedItem,
@@ -12,24 +12,21 @@ const ComboBox = ({ label, items = [], products, setLoading, sortPriceDescending
       getItemProps,
    } = useSelect({ items })
 
+   const loadingHandler = () => {
+      setLoading(false)
+      setTimeout(() => {
+         setLoading(true) 
+      }, 200)
+   }
 
    useEffect(() => {
       if(isPrice) {
          if(selectedItem === items[0]){
-            setLoading(false)
-            console.log('descending')
-            sortPriceDescending(products)
-            setTimeout(() => {
-               setLoading(true) 
-            }, 200)
-   
+            loadingHandler()
+            sortPriceDescending()
          } else if(selectedItem === items[1]){
-            setLoading(false)
-            console.log('ascending')
-            sortPriceAscending(products)
-            setTimeout(() => {
-               setLoading(true) 
-            }, 200)
+            loadingHandler()
+            sortPriceAscending()
          }
       }
 
@@ -37,6 +34,22 @@ const ComboBox = ({ label, items = [], products, setLoading, sortPriceDescending
          switch (selectedItem) {
             case items[0] :
                console.log('womens essential')
+         }
+      }
+
+      if(isGender) {
+         switch (selectedItem) {
+            case items[0] :
+               loadingHandler()
+               return sortByGender(`Women's`)
+
+            case items[1] :
+               loadingHandler()
+               return sortByGender(`Men's`)
+
+            case items[2] :
+               loadingHandler()
+               return sortByGender('')
          }
       }
 

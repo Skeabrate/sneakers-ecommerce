@@ -45,9 +45,10 @@ const AllProducts = () => {
       setLoadedImg(arr)
    }, [products])
 
-
    const handleChangeLoad = (index) => {
       setLoadedImg({...loadedImg, [index]: {...loadedImg[index], isLoaded: true}})
+      /* setLoadedImg(loadedImg => [...loadedImg, {id: id, isLoaded: true}]) 
+      loadedImg.splice(index, 1) */
    }
 
    const handleQuickView = (e, id) => {
@@ -86,7 +87,7 @@ const AllProducts = () => {
                      
                         <StyledItem key={id}>
                            <StyledLink to={`/product/${id}`} >
-                           {loadedImg ? (
+                           {loadedImg[props] ? (
                               <>
                               {!loadedImg[props].isLoaded ? (
                                  <StyledPlaceholder>
