@@ -1,9 +1,9 @@
 import React from 'react'
 
 const ProductsContext = React.createContext({
-   products: [],
-   setProducts: () => {},
-   setLoading: () => {},
+   productsCtx: [],
+   setProductsCtx: () => {},
+   setLoadingCtx: () => {},
 })
 
 export default ProductsContext

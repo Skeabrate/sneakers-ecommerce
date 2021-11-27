@@ -45,11 +45,7 @@ const AllProducts = () => {
       setLoadedImg(arr)
    }, [products])
 
-   const handleChangeLoad = (index) => {
-      setLoadedImg({...loadedImg, [index]: {...loadedImg[index], isLoaded: true}})
-      /* setLoadedImg(loadedImg => [...loadedImg, {id: id, isLoaded: true}]) 
-      loadedImg.splice(index, 1) */
-   }
+   const handleChangeLoad = (index) => setLoadedImg({...loadedImg, [index]: {...loadedImg[index], isLoaded: true}})
 
    const handleQuickView = (e, id) => {
       e.preventDefault()
@@ -65,9 +61,9 @@ const AllProducts = () => {
    return (
       <Wrapper>
          <ProductsContext.Provider value={{
-            products: products, 
-            setProducts: setProducts,
-            setLoading: setLoading,
+            productsCtx: products, 
+            setProductsCtx: setProducts,
+            setLoadingCtx: setLoading,
          }}>
             <header>
                <StyledTitle>
