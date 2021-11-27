@@ -4,6 +4,7 @@ import { css } from 'styled-components';
 
 export const ModalWrapper = styled(ReactModal)`
    position: fixed;
+   z-index: 99999;
    display: flex;
    padding: 20px;
    top: 55%;

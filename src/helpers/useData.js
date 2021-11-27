@@ -63,5 +63,5 @@ export const useData = () => {
       }
    }, [data])
 
-   return [products, loading]
+   return [products, loading, setLoading, setProducts]
 };

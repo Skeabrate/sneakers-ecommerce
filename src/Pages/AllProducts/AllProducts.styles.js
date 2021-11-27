@@ -14,9 +14,19 @@ export const StyledTitle = styled.h1`
    margin-bottom: 40px;
    overflow: hidden;
 
-   span{
+   div{
       display: block;
       transform: translateY(100%);
+      position: relative;
+   }
+
+   span{
+      position: absolute;
+      left: 320px;
+      bottom: 10px;
+      z-index: 9999;
+      font-size: 12px;
+      font-weight: normal;
    }
 `
 

@@ -5,13 +5,15 @@ import QuickView from '../../Components/QuickView/QuickView';
 import placeholder from "../../Assets/Images/placeholder.png"
 import { useData } from '../../helpers/useData';
 import LoadingScreen from '../../Components/LoadingScreen/LoadingScreen';
+import FiltersBar from './FiltersBar/FiltersBar';
+import ProductsContext from '../../Context/productsContext';
 
 const AllProducts = () => {
    const [selectedProduct, setSelectedProduct] = useState(false)
    const [modalIsOpen, setIsOpen] = useState(false)
    const [loadedImg, setLoadedImg] = useState(false)
 
-   const [products, loading] = useData()
+   const [products, loading, setLoading, setProducts] = useData()
 
    const t2 = useRef(null)
    const contentRef = useRef(null)
@@ -61,59 +63,71 @@ const AllProducts = () => {
 
    return (
       <Wrapper>
-         <header>
-            <StyledTitle>
-               <span ref={contentTitleRef}>All Products</span>
-            </StyledTitle>
-         </header>
+         <ProductsContext.Provider value={{
+            products: products, 
+            setProducts: setProducts,
+            setLoading: setLoading,
+         }}>
+            <header>
+               <StyledTitle>
+                  <div ref={contentTitleRef}>
+                     All Products 
+                     {products.length > 0 ? <span>[ {products.length} ]</span> : null }
+                  </div>
+               </StyledTitle>
 
-         <article>
-            {loading ? (
-               <StyledContent ref={contentRef}>
-               {products.map(({id, images = [], price, title, category}, props) => (
-                  <StyledLink to={`/product/${id}`} key={id}>
-                     <StyledItem>
-                        {loadedImg ? (
-                           <>
-                           {!loadedImg[props].isLoaded ? (
-                              <StyledPlaceholder>
-                                 <img src={placeholder} alt="placeholder" />
-                              </StyledPlaceholder>
+               {products.length > 0 ? <FiltersBar /> : null}
+            </header>
+
+            <article>
+               {loading ? (
+                  <StyledContent ref={contentRef}>
+                  {products.map(({id, images = [], price, title, category}, props) => (
+                     
+                        <StyledItem key={id}>
+                           <StyledLink to={`/product/${id}`} >
+                           {loadedImg ? (
+                              <>
+                              {!loadedImg[props].isLoaded ? (
+                                 <StyledPlaceholder>
+                                    <img src={placeholder} alt="placeholder" />
+                                 </StyledPlaceholder>
+                              ) : null}
+
+                              <StyledImage isLoaded={loadedImg[props].isLoaded}>
+                                 <img
+                                    loading="lazy"
+                                    alt=""
+                                    src={images[0].url}
+                                    width="840"
+                                    height="840"
+                                    onLoad={() => handleChangeLoad(props)}
+                                 />
+                                 <div>${price}</div>
+                                 <button onClick={(e) => handleQuickView(e, id)}>
+                                    Quick <br /> view
+                                 </button>
+                              </StyledImage>
+                              </>       
                            ) : null}
+                           </StyledLink>
 
-                           <StyledImage isLoaded={loadedImg[props].isLoaded}>
-                              <img
-                                 loading="lazy"
-                                 alt=""
-                                 src={images[0].url}
-                                 width="840"
-                                 height="840"
-                                 onLoad={() => handleChangeLoad(props)}
-                              />
-                              <div>${price}</div>
-                              <button onClick={(e) => handleQuickView(e, id)}>
-                                 Quick <br /> view
-                              </button>
-                           </StyledImage>
-                           </>       
-                        ) : null}
+                           <StyledItemTitle>{title}</StyledItemTitle>
+                           <StyledCategory>{category}</StyledCategory>
+                        </StyledItem>
+                     
+                  ))}
+               </StyledContent>
 
-                        <StyledItemTitle>{title}</StyledItemTitle>
-                        <StyledCategory>{category}</StyledCategory>
-                     </StyledItem>
-                  </StyledLink>
-               ))}
-            </StyledContent>
+               ) : (
+                  <LoadingScreen />
+               )}
+            </article>
 
-            ) : (
-               <LoadingScreen />
-            )}
-         </article>
-
-         {selectedProduct ? (
-            <QuickView isOpen={modalIsOpen} onRequestClose={handleCloseView} selectedProduct={selectedProduct}/>
-         ) : null}
-
+            {selectedProduct ? (
+               <QuickView isOpen={modalIsOpen} onRequestClose={handleCloseView} selectedProduct={selectedProduct}/>
+            ) : null}
+         </ProductsContext.Provider>
       </Wrapper>
    );
 };
