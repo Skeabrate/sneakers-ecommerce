@@ -58,7 +58,6 @@ const FiltersBar = () => {
    useEffect(() => {
       handleSortAll(selectedGender, genderItems[2])
       setResetCategory(true)
-
    }, [selectedGender])
 
 
@@ -66,7 +65,6 @@ const FiltersBar = () => {
    useEffect(() => {
       handleSortAll(selectedCategory, categoryItems[5])
       setResetGender(true)
-      
    }, [selectedCategory])
 
 

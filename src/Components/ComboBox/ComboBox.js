@@ -10,6 +10,7 @@ const ComboBox = ({ label, items = [], isPrice, setSelectedItem, resetGender, se
       getMenuProps,
       highlightedIndex,
       getItemProps,
+      selectItem
    } = useSelect({ items })
 
    useEffect(() => {
@@ -17,6 +18,10 @@ const ComboBox = ({ label, items = [], isPrice, setSelectedItem, resetGender, se
       setResetCategory(false)
       setResetGender(false)
    }, [selectedItem])
+
+   useEffect(() => {
+      if(resetCategory || resetGender) selectItem(null)
+   }, [isOpen])
 
    return (
       <Wrapper>
