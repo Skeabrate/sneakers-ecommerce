@@ -4,8 +4,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AllProducts from '../AllProducts/AllProducts';
 import Contact from '../Contact/Contact';
 import About from "../About/About"
-import WomenProducts from "../WomenProducts/WomenProducts"
-import MenProducts from "../MenProducts/MenProducts"
 import HeroPage from '../HeroPage/HeroPage';
 import NavBar from '../../Components/NavBar/NavBar';
 
@@ -18,10 +16,6 @@ const MainView = React.forwardRef((props, mainViewRef) => {
             
             <Routes>
                <Route path="/contact" element={<Contact />} />
-
-               <Route path="/men" element={<MenProducts />}/>
-
-               <Route path="/women" element={<WomenProducts />}/>
 
                <Route path="/about" element={<About />}/>
 

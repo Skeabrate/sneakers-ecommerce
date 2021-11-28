@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import ComboBox from '../../../Components/ComboBox/ComboBox';
 import ProductsContext from '../../../Context/productsContext';
-import { Wrapper, StyledFilters } from './FiltersBar.styles'
+import { Wrapper, StyledFilters, StyledPhrase } from './FiltersBar.styles'
 import { useData } from "../../../helpers/useData"
 import { sortData } from '../../../helpers/sortData';
 
@@ -9,7 +9,7 @@ const genderItems = ["Women", "Men", "All"]
 const categoryItems = ["Women's Essential", "Women's Running", "Men's Essential", "Men's Running", "Original", "All"];
 const priceItems =  ["Price (high - low)", "Price (low - high)"];
 
-const FiltersBar = () => {
+const FiltersBar = ({ term, setTerm, setError }) => {
    const [selectedGender, setSelectedGender] = useState('')
    const [selectedCategory, setSelectedCategory] = useState('')
    const [selectedPrice, setSelectedPrice] = useState('')
@@ -24,7 +24,7 @@ const FiltersBar = () => {
       setLoadingCtx(false)
       setTimeout(() => {
          setLoadingCtx(true) 
-      }, 300)
+      }, 200)
    }
 
    const unSorted = (value) => {
@@ -52,6 +52,10 @@ const FiltersBar = () => {
          } else unSorted(selectedOption)
          loadingHandler()
       }
+      if(term) {
+         setTerm('')
+         setError(false)
+      }
    }
 
 /* --------------------------------------------------------- GENDER ------------------------------------------------ */
@@ -78,6 +82,42 @@ const FiltersBar = () => {
       else if(selectedPrice === priceItems[1]) sortData(productsCtx, "ascending")
       loadingHandler()
    }, [selectedPrice])
+
+
+/* --------------------------------------------------------- TERM ------------------------------------------------ */
+   const resetTerm = () => {
+      setTerm('')
+      setProductsCtx(products)
+      setError(false)
+      loadingHandler()
+   }
+
+   const searchTerm = (value) => {
+      const results = products.filter(item => item.title.includes(value))
+      if(results.length > 0) {
+         setError(false)
+         
+         if(selectedPrice === priceItems[0]) setProductsCtx(sortData(results, "descending"))  
+         else if(selectedPrice === priceItems[1]) setProductsCtx(sortData(results, "ascending"))
+         else setProductsCtx(results)
+
+         if(selectedCategory) setResetCategory(true)
+         if(selectedGender) setResetGender(true)
+      }
+      else {
+         setError(true)
+         if(selectedCategory) setResetCategory(true)
+         if(selectedGender) setResetGender(true)
+      }
+   }
+
+   useEffect(() => {
+      if(term){
+         searchTerm(term.toUpperCase())
+         loadingHandler()
+      }
+   }, [term])
+
 
    return (
       <Wrapper>
@@ -108,6 +148,14 @@ const FiltersBar = () => {
             items={priceItems}
          />
 
+         {term ? (
+            <StyledPhrase>
+               {term}
+               <button onClick={resetTerm}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"/></svg>
+               </button>
+            </StyledPhrase>
+         ) : null}
       </Wrapper>
    );
 };

@@ -141,12 +141,12 @@ export const StyledButton = styled.button`
    position: absolute;
    top: 0;
    right: 0;
-   width: 20px;
-   height: 20px;
    transition: transform .2s;
 
-   img{
-      width: 100%;
+   svg{
+      fill: ${({theme}) => theme.colors.white};
+      height: 18px;
+      width: 18px;
    }
 
    &:hover{

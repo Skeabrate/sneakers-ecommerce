@@ -21,7 +21,6 @@ const ComboBox = ({ label, items = [], isPrice, setSelectedItem, resetGender = f
 
    useEffect(() => {
       if(resetCategory || resetGender) selectItem(null)
-      console.log(resetCategory, resetGender)
    }, [isOpen])
 
    return (

@@ -2,7 +2,6 @@ import React, { useReducer } from 'react'
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { ModalWrapper, StyledBtnPrev, StyledBtnNext, StyledBtnSlider, StyledImageSection, StyledSlider, StyledPlusMinusBtn, StyledAddBtn, Wrapper, StyledPlaceHolder, StyledButton, StyledContent, StyledTitle, StyledCategory, StyledDescription, StyledPrice, StyledCart, StyledStatus } from "./QuickView.styles"
 import placeholder from "../../Assets/Images/placeholder.png"
-import close from "../../Assets/Images/close.svg"
 import plus from "../../Assets/Images/icon-plus.svg"
 import minus from "../../Assets/Images/icon-minus.svg"
 import { reducer } from './QuickViewReducer';
@@ -102,7 +101,9 @@ export default function QuickView({ selectedProduct: { title, category, price, i
                </StyledCart>
             </StyledContent>
 
-            <StyledButton onClick={onRequestClose}><img src={close} alt="cross"/></StyledButton>
+            <StyledButton onClick={onRequestClose}>
+               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"/></svg>
+            </StyledButton>
          </Wrapper>
       </ModalWrapper>
    )

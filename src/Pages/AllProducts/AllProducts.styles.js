@@ -4,29 +4,35 @@ import styled from "styled-components"
 export const Wrapper = styled.section`
    color: ${({theme}) => theme.colors.white};
    margin-top: 100px;
-   padding: 6vw;
+   padding: 3vw;
 `
 
-export const StyledTitle = styled.h1`
-   font-size: ${({theme}) => theme.fontSize.xl};
-   font-style: italic;
-   display: block;
-   margin-bottom: 40px;
+export const StyledTitle = styled.div`
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin: 40px 0;
    overflow: hidden;
+`
 
-   div{
-      display: block;
-      transform: translateY(100%);
-      position: relative;
+export const StyledTitleWrapper = styled.div`
+   transform: translateY(100%);
+   position: relative;
+
+   h1{
+      font-size: ${({theme}) => theme.fontSize.xl};
+      font-style: italic;
    }
 
    span{
       position: absolute;
+      width: fit-content;
       left: 320px;
       bottom: 10px;
       z-index: 9999;
       font-size: 12px;
       font-weight: normal;
+      font-style: italic;
    }
 `
 
@@ -152,4 +158,18 @@ export const StyledItemTitle = styled.h3`
 export const StyledCategory = styled.h4`
    color: ${({theme}) => theme.colors.lightGrey};
    font-style: italic;
+`
+
+export const StyledError = styled.div`
+   height: 30vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   text-align: center;
+
+   h1{
+      font-style: italic;
+      font-size: 5rem;
+      color: ${({theme}) => theme.colors.lightGrey};
+   }
 `

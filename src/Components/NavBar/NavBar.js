@@ -47,14 +47,6 @@ const NavBar = () => {
                   </li>
 
                   <li>
-                     <StyledNavItem to="/men" onClick={toggleMenu}>Men</StyledNavItem>
-                  </li>
-
-                  <li>
-                     <StyledNavItem to="/women" onClick={toggleMenu}>Women</StyledNavItem>
-                  </li>
-
-                  <li>
                      <StyledNavItem to="/about" onClick={toggleMenu}>About</StyledNavItem>
                   </li>
 

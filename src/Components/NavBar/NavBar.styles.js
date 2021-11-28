@@ -22,7 +22,6 @@ export const StyledTitleWrapper = styled.div`
    display: flex;
    justify-content: center;
    align-items: center;
-   gap: 8vw;
 `
 
 export const StyledTitle = styled.div`
@@ -30,6 +29,7 @@ export const StyledTitle = styled.div`
    justify-content: center;
    align-items: center;
    gap: 10px;
+   margin-right: 8vw;
    font-family: 'Shadows Into Light', cursive;
 `
 
@@ -48,9 +48,9 @@ export const StyledNav = styled.div`
 
    transition: transform .3s ease-in-out;
 
-   @media (max-width: 1100px){   
+   @media (max-width: 800px){   
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: space-around;
       align-items: center;
       position: fixed;
       background-color: black;
@@ -95,7 +95,7 @@ export const StyledNavItem = styled(NavLink)`
       opacity: 1;
    }
 
-   @media (max-width: 1100px){
+   @media (max-width: 800px){
       background-color: ${({theme}) => theme.colors.black};
       width: 95vw;
       height: 15vh;
