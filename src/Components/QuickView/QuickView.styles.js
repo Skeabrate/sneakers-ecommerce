@@ -169,6 +169,11 @@ export const StyledDescription = styled.p`
    margin-top: 30px;
 `
 
+export const StyledInfo = styled.div`
+   display: flex;
+   align-items: center;
+`
+
 export const StyledPrice = styled.p`
    font-size: 2rem;
 `
@@ -184,6 +189,31 @@ export const StyledStatus = styled.div`
       font-weight: bold;
       border-radius: 8px;
       color: ${({theme}) => theme.colors.black};
+   }
+`
+
+export const StyledSize = styled.div`
+   display: flex;
+   align-items: center;
+   margin-left: 10vw;
+
+   select{
+      margin-left: 10px;
+      font-size: 2rem;
+      background-color:transparent;
+      border: 1px solid ${({theme}) => theme.colors.white};
+      color: ${({theme}) => theme.colors.white};
+      padding: 3px 10px;
+
+      &:focus{
+         outline: none;
+         border: 1px solid ${({theme}) => theme.colors.orange}
+      }
+   }
+
+   option{
+      background-color: black;
+      font-size: 1rem;
    }
 `
 

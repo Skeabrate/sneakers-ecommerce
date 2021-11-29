@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
-import { Wrapper, StyledError, StyledPlaceholder, StyledTitle, StyledTitleWrapper, StyledContent, StyledImage, StyledItem, StyledItemTitle, StyledCategory, StyledLink } from './AllProducts.styles';
+import { Wrapper, StyledLoading, StyledError, StyledPlaceholder, StyledTitle, StyledTitleWrapper, StyledContent, StyledImage, StyledItem, StyledItemTitle, StyledCategory, StyledLink } from './AllProducts.styles';
 import QuickView from '../../Components/QuickView/QuickView';
 import placeholder from "../../Assets/Images/placeholder.png"
-import { useData } from '../../helpers/useData';
+import { useData } from '../../hooks/useData';
 import LoadingScreen from '../../Components/LoadingScreen/LoadingScreen';
 import FiltersBar from './FiltersBar/FiltersBar';
 import ProductsContext from '../../Context/productsContext';
@@ -19,6 +19,8 @@ const AllProducts = () => {
 
    const [products, loading, setLoading, setProducts] = useData()
 
+
+   const t1 = useRef(null)
    const t2 = useRef(null)
    const contentRef = useRef(null)
    const contentTitleRef = useRef(null)
@@ -26,10 +28,10 @@ const AllProducts = () => {
 
    
    useEffect(() => {
-      t2.current = gsap.timeline({ paused: !loading})
+      t1.current = gsap.timeline({ paused: false })
 
-      if(t2.current) {
-         t2.current
+      if(t1.current) {
+         t1.current
             .to(contentTitleRef.current, {
                y: 0,
                duration: .5,
@@ -37,11 +39,20 @@ const AllProducts = () => {
             .to(searchBarRef.current, {
                width: 'auto',
                duration: .5,
-            }, "-=.5")
+            }, "-=.5") 
+      }
+
+   }, [])
+
+   useEffect(() => {
+      t2.current = gsap.timeline({ paused: !loading })
+
+      if(t1.current) {
+         t1.current
             .to(contentRef.current, {
                opacity: 1,
                duration: .4,
-            })  
+            }) 
       }
    }, [loading])
 
@@ -80,7 +91,7 @@ const AllProducts = () => {
                <StyledTitle>
                   <StyledTitleWrapper ref={contentTitleRef}>
                      <h1>All Products</h1>
-                     {products.length > 0 ? <span>[ {error ? '0' : products.length} ]</span> : null}
+                     {loading ? <span>[ {error ? '0' : products.length} ]</span> : null}
                   </StyledTitleWrapper>
 
                   <SearchBar ref={searchBarRef} term={term} setTerm={setTerm} />
@@ -134,7 +145,7 @@ const AllProducts = () => {
                                        ) : null}
                                     </StyledLink>
 
-                                    <StyledItemTitle>{title}</StyledItemTitle>
+                                    <StyledItemTitle>{title.toUpperCase()}</StyledItemTitle>
                                     <StyledCategory>{category}</StyledCategory>
                                  </StyledItem>
                               )
@@ -143,7 +154,9 @@ const AllProducts = () => {
                      )}
                   </>
                ) : (
-                  <LoadingScreen />
+                  <StyledLoading>
+                     <LoadingScreen />
+                  </StyledLoading>
                )}
             </article>
 

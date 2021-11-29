@@ -1,10 +1,11 @@
 import React, { useReducer } from 'react'
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import { ModalWrapper, StyledBtnPrev, StyledBtnNext, StyledBtnSlider, StyledImageSection, StyledSlider, StyledPlusMinusBtn, StyledAddBtn, Wrapper, StyledPlaceHolder, StyledButton, StyledContent, StyledTitle, StyledCategory, StyledDescription, StyledPrice, StyledCart, StyledStatus } from "./QuickView.styles"
+import { ModalWrapper, StyledBtnPrev, StyledSize, StyledInfo ,StyledBtnNext, StyledBtnSlider, StyledImageSection, StyledSlider, StyledPlusMinusBtn, StyledAddBtn, Wrapper, StyledPlaceHolder, StyledButton, StyledContent, StyledTitle, StyledCategory, StyledDescription, StyledPrice, StyledCart, StyledStatus } from "./QuickView.styles"
 import placeholder from "../../Assets/Images/placeholder.png"
 import plus from "../../Assets/Images/icon-plus.svg"
 import minus from "../../Assets/Images/icon-minus.svg"
 import { reducer } from './QuickViewReducer';
+import { sizes } from "../../data/sizes"
 
 const initialState = {
    isLoaded: false,
@@ -81,7 +82,23 @@ export default function QuickView({ selectedProduct: { title, category, price, i
                <StyledTitle>{title}</StyledTitle>
                <StyledDescription>{description}</StyledDescription>
                <StyledStatus>Status: <span>Available</span></StyledStatus>
-               <StyledPrice>${price}</StyledPrice>
+
+               <StyledInfo>
+                  <div>
+                     <StyledPrice>${price}</StyledPrice>
+                  </div>
+                     <StyledSize>
+                        <label>Size:</label>
+                        <select
+                           /* value={}
+                           onChange={} */
+                        >
+                           {sizes.map(item => (
+                              <option value={item}>{item}</option>
+                           ))}
+                        </select>
+                     </StyledSize>
+               </StyledInfo>
 
                <StyledCart>
                   <StyledPlusMinusBtn onClick={() => dispatch({type: 'SET_AMOUNT', option: 'DESCREASE'})}>

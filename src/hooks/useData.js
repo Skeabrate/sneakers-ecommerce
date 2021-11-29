@@ -45,7 +45,6 @@ export const useData = () => {
       } catch (ex) {
          console.log(ex.response)
       }
-
       setLoading(true)
    }
    useEffect(() => {

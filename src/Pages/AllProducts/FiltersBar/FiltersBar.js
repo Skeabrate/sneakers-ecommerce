@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import ComboBox from '../../../Components/ComboBox/ComboBox';
 import ProductsContext from '../../../Context/productsContext';
 import { Wrapper, StyledFilters, StyledPhrase } from './FiltersBar.styles'
-import { useData } from "../../../helpers/useData"
+import { useData } from "../../../hooks/useData"
 import { sortData } from '../../../helpers/sortData';
 
 const genderItems = ["Women", "Men", "All"]
@@ -24,7 +24,7 @@ const FiltersBar = ({ term, setTerm, setError }) => {
       setLoadingCtx(false)
       setTimeout(() => {
          setLoadingCtx(true) 
-      }, 200)
+      }, 100)
    }
 
    const unSorted = (value) => {
@@ -93,7 +93,7 @@ const FiltersBar = ({ term, setTerm, setError }) => {
    }
 
    const searchTerm = (value) => {
-      const results = products.filter(item => item.title.includes(value))
+      const results = products.filter(item => item.title.toUpperCase().includes(value.toUpperCase()))
       if(results.length > 0) {
          setError(false)
          
@@ -113,7 +113,7 @@ const FiltersBar = ({ term, setTerm, setError }) => {
 
    useEffect(() => {
       if(term){
-         searchTerm(term.toUpperCase())
+         searchTerm(term)
          loadingHandler()
       }
    }, [term])

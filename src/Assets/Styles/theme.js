@@ -9,6 +9,7 @@ export const theme = {
 
    fontSize: {
       xxl: '8rem',
+      error: '5rem',
       xl: '3rem',
       l: '1.4rem',
       s: '1rem',

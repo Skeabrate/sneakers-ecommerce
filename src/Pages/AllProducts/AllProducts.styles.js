@@ -169,7 +169,18 @@ export const StyledError = styled.div`
 
    h1{
       font-style: italic;
-      font-size: 5rem;
+      font-size: ${({theme}) => theme.fontSize.error};
       color: ${({theme}) => theme.colors.lightGrey};
    }
+`
+
+export const StyledLoading = styled.div`
+   position: fixed;
+   bottom: 0;
+   left: 0;
+   height: calc(100vh - 356px - 6vw);
+   width: 100vw;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 `
