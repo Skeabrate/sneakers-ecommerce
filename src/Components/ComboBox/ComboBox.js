@@ -38,6 +38,7 @@ const ComboBox = ({ label, items = [], isPrice, setSelectedItem, resetGender = f
             {isOpen &&
             items.map((item, index) => (
                <li
+                  isOpen={isOpen}
                   style={
                   highlightedIndex === index
                      ? { backgroundColor: 'black' }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import LoadingScreen from '../../Components/LoadingScreen/LoadingScreen'
-import { StyledError } from './ProductPage.styles';
+import { StyledError, Wrapper } from './ProductPage.styles';
 
 const ProductPage = () => {
    const [product, setProduct] = useState([""])
@@ -49,7 +49,7 @@ const ProductPage = () => {
    }, [])
 
    return (
-      <div style={{marginTop: '100px'}}>
+      <section style={{marginTop: '100px'}}>
          {loading ? (
             <>
             {error ? (
@@ -58,11 +58,15 @@ const ProductPage = () => {
                   <h2>Sorry, we couldn't find a product you are looking for :C</h2>
                </StyledError>
             ) : (
-               <div>udalo sie jest produkt {id}</div>
+               <Wrapper>
+                  <StyledContent>
+
+                  </StyledContent>
+               </Wrapper>
             )}
             </>
          ) : <LoadingScreen />}
-      </div>
+      </section>
    );
 };
 

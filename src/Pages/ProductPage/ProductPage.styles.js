@@ -16,3 +16,9 @@ export const StyledError = styled.div`
       color: ${({theme}) => theme.colors.grey};
    }
 `
+
+/* STYLED CONTENT */
+
+export const Wrapper = styled.div`
+   
+`

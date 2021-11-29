@@ -33,6 +33,7 @@ export const StyledTitleWrapper = styled.div`
       font-size: 12px;
       font-weight: normal;
       font-style: italic;
+      opacity: 0;
    }
 `
 
@@ -175,11 +176,7 @@ export const StyledError = styled.div`
 `
 
 export const StyledLoading = styled.div`
-   position: fixed;
-   bottom: 0;
-   left: 0;
    height: calc(100vh - 356px - 6vw);
-   width: 100vw;
    display: flex;
    justify-content: center;
    align-items: center;

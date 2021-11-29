@@ -48,6 +48,9 @@ export const StyledList = styled.ul`
    z-index: -1;
    visibility: ${({isOpen}) => isOpen ? 'visible' : 'hidden'};
    box-shadow: 0px 0px 26px -11px rgba(0, 0, 0, 1);
+   opacity: ${({isOpen}) => isOpen ? 1 : 0};
+
+   transition: opacity .2s;
 
    li{
       padding: 20px 15px;

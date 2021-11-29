@@ -24,6 +24,7 @@ const AllProducts = () => {
    const t2 = useRef(null)
    const contentRef = useRef(null)
    const contentTitleRef = useRef(null)
+   const productsCountRef = useRef(null)
    const searchBarRef = useRef(null)
 
    
@@ -49,10 +50,14 @@ const AllProducts = () => {
 
       if(t1.current) {
          t1.current
+            .to(productsCountRef.current, {
+               opacity: 1,
+               duration: .4,
+            })
             .to(contentRef.current, {
                opacity: 1,
                duration: .4,
-            }) 
+            }, "-=0.4")
       }
    }, [loading])
 
@@ -91,7 +96,7 @@ const AllProducts = () => {
                <StyledTitle>
                   <StyledTitleWrapper ref={contentTitleRef}>
                      <h1>All Products</h1>
-                     {loading ? <span>[ {error ? '0' : products.length} ]</span> : null}
+                     {loading ? <span ref={productsCountRef}>[ {error ? '0' : products.length} ]</span> : null}
                   </StyledTitleWrapper>
 
                   <SearchBar ref={searchBarRef} term={term} setTerm={setTerm} />
@@ -99,7 +104,7 @@ const AllProducts = () => {
 
                {products.length > 0 ? (
                   <FiltersBar term={term} setTerm={setTerm} setError={setError} />
-               ) : null}
+               ) : <div style={{height: '118px', width: '100%'}}></div>} {/* placeholder dla filtrow*/}
             </header>
 
             <article>

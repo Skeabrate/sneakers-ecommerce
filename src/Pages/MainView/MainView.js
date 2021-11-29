@@ -7,6 +7,7 @@ import About from "../About/About"
 import HeroPage from '../HeroPage/HeroPage';
 import NavBar from '../../Components/NavBar/NavBar';
 import ProductPage from '../ProductPage/ProductPage';
+import Footer from '../../Components/Footer/Footer';
 
 const MainView = React.forwardRef((props, mainViewRef) => {
    const [isHero, setIsHero] = useState(false)
@@ -26,6 +27,8 @@ const MainView = React.forwardRef((props, mainViewRef) => {
 
                <Route exact path="/" element={<HeroPage setIsHero={setIsHero}/>} />
             </Routes>
+
+            <Footer />
             
          </Wrapper>
       </Router>
