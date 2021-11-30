@@ -7,10 +7,11 @@ export const ModalWrapper = styled(ReactModal)`
    z-index: 99999;
    display: flex;
    padding: 20px;
-   top: 55%;
+   top: 57%;
    left: 50%;
    transform: translate(-50%, -50%);
    width: 70%;
+
    padding: 2vw 30px;
    background-color: ${({theme}) => theme.colors.black};
    border-radius: 20px;
@@ -18,6 +19,10 @@ export const ModalWrapper = styled(ReactModal)`
 
    &:focus{
       outline: none;
+   }
+
+   @media (max-width: 1100px) {
+      width: 90%;
    }
 `
 
