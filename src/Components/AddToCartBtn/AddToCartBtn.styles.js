@@ -43,6 +43,7 @@ export const StyledAddBtn = styled.button`
       opacity: 0;
       right: 15px;
       position: absolute;
+      transform: rotateY(180deg);
 
       transition: opacity;
       transition-delay: .2s;

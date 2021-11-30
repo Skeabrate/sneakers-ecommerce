@@ -11,10 +11,12 @@ import Footer from '../../Components/Footer/Footer';
 
 const MainView = React.forwardRef((props, mainViewRef) => {
    const [isHero, setIsHero] = useState(false)
+   const [isProductPage, setIsProductPage] = useState(false)
+
    return (
       <Router>
          <Wrapper ref={mainViewRef}>
-            {isHero ? null : <NavBar />}
+            {isHero ? null : <NavBar isProductPage={isProductPage}/>}
             
             <Routes>
                <Route path="/contact" element={<Contact />} />
@@ -23,12 +25,12 @@ const MainView = React.forwardRef((props, mainViewRef) => {
 
                <Route path="/AllProducts" element={<AllProducts />}/>
 
-               <Route path="/product/:id" element={<ProductPage />} />
+               <Route path="/product/:id" element={<ProductPage setIsProductPage={setIsProductPage}/>} />
 
                <Route exact path="/" element={<HeroPage setIsHero={setIsHero}/>} />
             </Routes>
 
-            <Footer />
+            {isHero ? null : <Footer />}
             
          </Wrapper>
       </Router>

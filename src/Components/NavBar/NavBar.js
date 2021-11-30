@@ -4,7 +4,7 @@ import { Wrapper, StyledNav, StyledLogo, StyledTitleWrapper, StyledTitle, Styled
 import { StyledHamburger, StyledHamburgerWrapper, StyledHamburgerInner } from "./Hamburger.styles"
 import gsap from 'gsap';
 
-const NavBar = () => {
+const NavBar = ({isProductPage}) => {
    const [toggle, setToggle] = useState(false)
 
    const toggleMenu = () => setToggle(!toggle)
@@ -25,7 +25,7 @@ const NavBar = () => {
    }, [])
 
    return (
-      <Wrapper ref={navBarRef}>
+      <Wrapper ref={navBarRef} isProductPage={isProductPage}>
          <StyledTitleWrapper>
 
             <StyledTitle>
