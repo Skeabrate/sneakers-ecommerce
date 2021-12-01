@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import LoadingScreen from '../../Components/LoadingScreen/LoadingScreen'
-import { StyledError, Wrapper } from './ProductPage.styles';
+import { StyledError, Wrapper, LoadingWrapper } from './ProductPage.styles';
 import { useProductID } from "../../hooks/useProductID"
 import ShopingCart from './ShopingCart/ShopingCart';
 import Content from './Content/Content';
@@ -52,6 +51,7 @@ const ProductPage = ({setIsProductPage}) => {
    }, [wrapperEndRef.current, options])
 
    useEffect(() => {
+      window.scrollTo(0, 0)
       setIsProductPage(true)
 
       return () => {
@@ -70,13 +70,9 @@ const ProductPage = ({setIsProductPage}) => {
                <Wrapper>
                   <div style={{ position: 'absolute', top: '0' }} ref={wrapperBeginRef}></div>
 
-                  {loading ? (
-                     <>
-                        <Content product={product} />
+                     <Content product={product} loading={loading}/>
 
-                        <ShopingCart isStickyBegin={isStickyBegin} isStickyEnd={isStickyEnd} product={product}/>
-                     </>
-                  ) : <LoadingScreen />}
+                     <ShopingCart isStickyBegin={isStickyBegin} isStickyEnd={isStickyEnd} product={product} loading={loading}/>
 
                   <div style={{ position: 'absolute', bottom: '0' }} ref={wrapperEndRef}></div>
                </Wrapper>

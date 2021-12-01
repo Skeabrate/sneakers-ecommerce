@@ -1,31 +1,53 @@
-import React, { useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import AddToCartBtn from '../../../Components/AddToCartBtn/AddToCartBtn';
 import { sizes } from '../../../data/sizes'
+import gsap from "gsap"
 
 import { StyledInfo, StyledInfoItem, StyledPrice, StyledSizesWrapper, StyledSize, StyledCategory, StyledTitle, StyledShopp} from "./ShopingCart.styles"
 
-const ShopingCart = ({isStickyBegin, isStickyEnd, product}) => {
+const ShopingCart = ({isStickyBegin, isStickyEnd, product, loading}) => {
    const [size, setSize] = useState(false)
+
+   const t1 = useRef(null)
+   const productInfoRef = useRef(null)
+
+   useEffect(() => {
+      t1.current = gsap.timeline({ paused: !loading })
+
+      if(t1.current){
+         t1.current
+            .to(productInfoRef.current, {
+               opacity: 1,
+               scale: 1,
+               duration: .4,
+            })
+      }
+
+   }, [loading])
 
    return (
       <StyledShopp isStickyBegin={isStickyBegin} isStickyEnd={isStickyEnd}>
-         <StyledCategory>
-            {product.category}
-            <div>
-               <span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 .288l2.833 8.718h9.167l-7.417 5.389 2.833 8.718-7.416-5.388-7.417 5.388 2.833-8.718-7.416-5.389h9.167z"/></svg>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 .288l2.833 8.718h9.167l-7.417 5.389 2.833 8.718-7.416-5.388-7.417 5.388 2.833-8.718-7.416-5.389h9.167z"/></svg>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 .288l2.833 8.718h9.167l-7.417 5.389 2.833 8.718-7.416-5.388-7.417 5.388 2.833-8.718-7.416-5.389h9.167z"/></svg>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 .288l2.833 8.718h9.167l-7.417 5.389 2.833 8.718-7.416-5.388-7.417 5.388 2.833-8.718-7.416-5.389h9.167z"/></svg>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 .288l2.833 8.718h9.167l-7.417 5.389 2.833 8.718-7.416-5.388-7.417 5.388 2.833-8.718-7.416-5.389h9.167z"/></svg>
-               </span>
-               105
-            </div>
-         </StyledCategory>
-         
-         <StyledTitle>{product.title}</StyledTitle>
+         {loading ? (
+            <div style={{opacity: '0', transform: 'scale(0.95)'}} ref={productInfoRef}>
+               <StyledCategory>
+                  {product.category}
+                  <div>
+                     <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 .288l2.833 8.718h9.167l-7.417 5.389 2.833 8.718-7.416-5.388-7.417 5.388 2.833-8.718-7.416-5.389h9.167z"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 .288l2.833 8.718h9.167l-7.417 5.389 2.833 8.718-7.416-5.388-7.417 5.388 2.833-8.718-7.416-5.389h9.167z"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 .288l2.833 8.718h9.167l-7.417 5.389 2.833 8.718-7.416-5.388-7.417 5.388 2.833-8.718-7.416-5.389h9.167z"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 .288l2.833 8.718h9.167l-7.417 5.389 2.833 8.718-7.416-5.388-7.417 5.388 2.833-8.718-7.416-5.389h9.167z"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 .288l2.833 8.718h9.167l-7.417 5.389 2.833 8.718-7.416-5.388-7.417 5.388 2.833-8.718-7.416-5.389h9.167z"/></svg>
+                     </span>
+                     105
+                  </div>
+               </StyledCategory>
+               
+               <StyledTitle>{product.title}</StyledTitle>
 
-         <StyledPrice>${product.price}</StyledPrice>
+               <StyledPrice>${product.price}</StyledPrice>
+            </div>
+         ) : <div style={{height: '231px', width: '100%'}}></div>}
 
          <div>
             <h3>Select size</h3>

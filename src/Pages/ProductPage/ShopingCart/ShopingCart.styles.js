@@ -64,12 +64,13 @@ export const StyledCategory = styled.div`
 export const StyledTitle = styled.h1`
    font-size: 36px;
    font-style: italic;
+   height: 88px;
 `
 
 export const StyledPrice = styled.p`
-   font-size: 1.5rem;
+   font-size: 24px;
    font-weight: bold;
-   padding: 3.5vh 0;
+   padding: 40px 0;
 `
 
 export const StyledSizesWrapper = styled.div`
