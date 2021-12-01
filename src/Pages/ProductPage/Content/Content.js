@@ -34,19 +34,9 @@ const Content = ({product, loading}) => {
       }
    }, [loading])
 
-   useEffect(() => {
-      sliderRef.current.addEventListener('mouseenter', (e) => setIsHovered(true))
-      sliderRef.current.addEventListener('mouseleave', (e) => setIsHovered(false))
-
-      return () => {
-         sliderRef.current.removeEventListener('mouseenter', () => {})
-         sliderRef.current.removeEventListener('mouseleave', () => {})
-      }
-   }, [])
-
    return (
       <StyledContent>
-         <StyledSlider ref={sliderRef}>
+         <StyledSlider ref={sliderRef} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
             <div style={{ opacity: 0 }} ref={imagesRef}>
                {loading ? (
                   <StyledImage current={current}>
