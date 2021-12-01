@@ -19,7 +19,7 @@ const ShopingCart = ({isStickyBegin, isStickyEnd, product, loading}) => {
             .to(productInfoRef.current, {
                opacity: 1,
                scale: 1,
-               duration: .4,
+               duration: .5,
             })
       }
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { StyledError, Wrapper, LoadingWrapper } from './ProductPage.styles';
+import { StyledError, Wrapper } from './ProductPage.styles';
 import { useProductID } from "../../hooks/useProductID"
 import ShopingCart from './ShopingCart/ShopingCart';
 import Content from './Content/Content';
