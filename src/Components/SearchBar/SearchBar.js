@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Wrapper, StyledInput, StyledSearchBtn, StyledAnimation } from "./SearchBar.styles"
+import FiltersContext from "../../Context/filtersContext"
 
-const SearchBar = React.forwardRef(({term, setTerm}, searchBarRef) => {
+const SearchBar = React.forwardRef((props, searchBarRef) => {
    const [searchPhrase, setSearchPhrase] = useState('')
    const [isFocused, setIsFocused] = useState(false)
+
+   const { setTerm } = useContext(FiltersContext)
 
    const handleSubmit = () => {
       if(searchPhrase !== '' && searchPhrase !== ' '){

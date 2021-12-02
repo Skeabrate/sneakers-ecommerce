@@ -15,7 +15,6 @@ const AllProducts = ({AllProducts}) => {
    const [modalIsOpen, setIsOpen] = useState(false)
    const [loadedImg, setLoadedImg] = useState(false)
 
-   const [term, setTerm] = useState(false)
    const [error, setError] = useState(false)
 
    const t1 = useRef(null)
@@ -90,11 +89,11 @@ const AllProducts = ({AllProducts}) => {
                   {loadingCtx ? <span ref={productsCountRef}>[ {error ? '0' : productsCtx.length} ]</span> : null}
                </StyledTitleWrapper>
 
-               <SearchBar ref={searchBarRef} term={term} setTerm={setTerm} />
+               <SearchBar ref={searchBarRef} />
             </StyledTitle>
 
-            {productsCtx.length > 0 ? (
-               <FiltersBar term={term} setTerm={setTerm} setError={setError} AllProducts={AllProducts} />
+            {productsCtx.length ? (
+               <FiltersBar setError={setError} AllProducts={AllProducts} />
             ) : <div style={{height: '118px', width: '100%'}}></div>} {/* placeholder dla filtrow*/}
          </header>
 

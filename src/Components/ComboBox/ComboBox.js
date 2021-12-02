@@ -14,8 +14,7 @@ const ComboBox = ({ label, items = [], isPrice, option, setSelectedItem }) => {
    } = useSelect({ items })
 
    useEffect(() => {
-      setSelectedItem(selectedItem)
-     
+      if(selectedItem) setSelectedItem(selectedItem)
    }, [selectedItem])
 
    useEffect(() => {
@@ -27,7 +26,7 @@ const ComboBox = ({ label, items = [], isPrice, option, setSelectedItem }) => {
    return (
       <Wrapper>
          <StyledOptionBtn isOpen={isOpen} type="button" {...getToggleButtonProps()}>
-            { isPrice && selectedItem ? selectedItem : label}
+            { isPrice && option ? option : label}
             <span isOpen={isOpen}>&#9660;</span>
          </StyledOptionBtn>
 
