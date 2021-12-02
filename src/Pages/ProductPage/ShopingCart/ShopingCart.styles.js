@@ -25,7 +25,7 @@ export const StyledShopp = styled.div`
 
    right: 0;
    height: 100vh;
-   padding: 3vw 3vw;
+   padding: 2.5vw;
    color: ${({theme}) => theme.colors.white};
    overflow: auto;
 
@@ -88,7 +88,7 @@ export const StyledSize = styled.div`
       padding: 18px;
       background-color: transparent;
       color: ${({theme}) => theme.colors.white};
-      font-size: 1rem;
+      font-size: 14px;
       transition: background-color .1s ease-in-out;
       font-weight: ${({isSize}) => isSize ? 'bold' : 'normal'};
       border: none;

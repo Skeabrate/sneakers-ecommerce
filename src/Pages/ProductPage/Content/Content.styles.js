@@ -8,8 +8,9 @@ export const StyledContent = styled.div`
 
 export const StyledSlider = styled.div`
    background-color: #EBEEEF;
-   height: 85vh;
+   height: 80vh;
    position: relative;
+   overflow: hidden;
 
    &::after{
       content: 'RECYCLED MATERIALS';
@@ -31,8 +32,8 @@ export const StyledImage = styled.div`
    position: absolute;
    top: 50%;
    left: 50%;
-   width: 40vw;
-   height: 40vw;
+   width: 650px;
+   height: 650px;
    display: flex;
    transform: translate(-50%, -50%);
    overflow: hidden;
@@ -41,7 +42,7 @@ export const StyledImage = styled.div`
       width: 100%;
       height: 100%;
       transform: ${({current}) => current ? `translateX(-${current * 100}%)` : 'translateX(0)'};
-      transition: transform .3s ease-in-out;
+      transition: transform .5s ease-in-out;
    }
 `
 
@@ -79,23 +80,25 @@ export const StyledLegend = styled.div`
 `
 
 export const StyledButton = styled.button`
-   box-sizing: content-box;
    display: flex;
    justify-content: center;
    align-items: center;
-   height: 40px;
+   height: ${({isCurrent}) => isCurrent ? '42px' : '40px'};
    width: 40px;
    border: none;
-   border-bottom: ${({isCurrent}) => isCurrent ? '3px solid black' : '1px solid black'};;
+   border-bottom: ${({isCurrent, theme}) => isCurrent ? `3px solid ${theme.colors.orange}` : '1px solid black'};
    background: transparent;
    position: relative;
    margin: 0 10px;
    overflow: hidden;
 
+
    img{
+      position: absolute;
       transform: ${({isHovered}) => isHovered ? 'translateY(0)' : 'translateY(100%)'} ;
-      width: 38px;
-      height: 38px;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
       transition: transform .15s ease-in-out;
       border: 1px solid black;
       border-bottom: none;

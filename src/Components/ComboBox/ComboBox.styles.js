@@ -9,7 +9,7 @@ export const StyledOptionBtn = styled.button`
    text-transform: uppercase;
    background-color: ${({isOpen, theme}) => isOpen ? `${theme.colors.black}` : 'transparent'};
    color: ${({theme}) => theme.colors.white}; 
-   font-size: ${({theme}) => theme.fontSize.s};
+   font-size: ${({theme}) => theme.fontSize.xs};
    border: 1px solid ${({isOpen, theme}) => isOpen ? theme.colors.orange : 'transparent'};
    border-bottom: ${({isOpen}) => isOpen ? `none` : null};
    height: 40px;
@@ -54,6 +54,7 @@ export const StyledList = styled.ul`
 
    li{
       padding: 20px 15px;
+      cursor: pointer;
    }
 
    &:focus{

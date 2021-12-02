@@ -12,10 +12,14 @@ export const Wrapper = styled.div`
    align-items: center;
    background-color: black;
    color: ${({theme}) => theme.colors.white};
-   height: 100px;
+   height: 80px;
    font-size: ${({theme}) => theme.fontSize.s};
    transform: translateY(-100%);
    z-index: 9999;
+
+   @media (max-width: 800px){
+      position: fixed;
+   }
 `
 
 export const StyledTitleWrapper = styled.div`
@@ -65,9 +69,10 @@ export const StyledNav = styled.div`
 export const StyledNavItem = styled(NavLink)`
    display: flex;
    justify-content: center;
-   align-items: center;
+   align-items: end;
    margin-right: 40px;
-   height: 100px;
+   padding-bottom: 20px;
+   height: 80px;
    position: relative;
    cursor: pointer;
    text-decoration: none;

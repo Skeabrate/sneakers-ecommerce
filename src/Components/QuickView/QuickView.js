@@ -93,7 +93,7 @@ export default function QuickView({ selectedProduct: { title, category, price, i
                            onChange={} */
                         >
                            {sizes.map(item => (
-                              <option value={item}>{item}</option>
+                              <option key={item} value={item}>{item}</option>
                            ))}
                         </select>
                      </StyledSize>

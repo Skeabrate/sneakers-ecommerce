@@ -27,8 +27,8 @@ export const StyledTitleWrapper = styled.div`
    span{
       position: absolute;
       width: fit-content;
-      left: 320px;
-      bottom: 10px;
+      left: 280px;
+      bottom: 9px;
       z-index: 9999;
       font-size: 12px;
       font-weight: normal;

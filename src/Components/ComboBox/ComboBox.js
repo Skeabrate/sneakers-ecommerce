@@ -1,4 +1,4 @@
-import react, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useSelect } from 'downshift'
 import { Wrapper, StyledOptionBtn, StyledList } from "./ComboBox.styles"
 
@@ -26,7 +26,7 @@ const ComboBox = ({ label, items = [], isPrice, setSelectedItem, resetGender = f
    return (
       <Wrapper>
          <StyledOptionBtn isOpen={isOpen} type="button" {...getToggleButtonProps()}>
-            {resetCategory || resetGender ? label : selectedItem || label}
+            { isPrice && selectedItem ? selectedItem : label}
             <span isOpen={isOpen}>&#9660;</span>
          </StyledOptionBtn>
 

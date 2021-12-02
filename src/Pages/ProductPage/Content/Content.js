@@ -4,7 +4,8 @@ import gsap from "gsap"
 
 const Content = ({product, loading}) => {
    const [current, setCurrent] = useState(0)
-   const [isHovered, setIsHovered] = useState(false)
+   const [isHovered, setIsHovered] = useState(true)
+   const [isImgLoaded, setIsImgLoaded] = useState(false)
 
    const t1 = useRef((null))
    const imagesRef = useRef(null)
@@ -22,8 +23,10 @@ const Content = ({product, loading}) => {
       else setCurrent(current + 1)
    }
 
+   const handleLoadImg = (index) => !index && setIsImgLoaded(true)
+
    useEffect(() => {
-      t1.current = gsap.timeline({ paused: !loading })
+      t1.current = gsap.timeline({ paused: !isImgLoaded })
 
       if(t1.current){
          t1.current
@@ -32,7 +35,7 @@ const Content = ({product, loading}) => {
                duration: .5,
             })
       }
-   }, [loading])
+   }, [isImgLoaded])
 
    return (
       <StyledContent>
@@ -45,6 +48,7 @@ const Content = ({product, loading}) => {
                            key={index} 
                            src={img.url} 
                            alt="snickers"
+                           onLoad={() => handleLoadImg(index)}
                         />
                      ))}
                      
