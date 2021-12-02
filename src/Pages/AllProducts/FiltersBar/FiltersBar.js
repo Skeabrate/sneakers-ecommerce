@@ -5,14 +5,12 @@ import { Wrapper, StyledActiveFilters, StyledFiltersBar, StyledFilters } from '.
 import { sortData } from '../../../helpers/sortData';
 import { genderItems, categoryItems, priceItems } from "../../../data/filters"
 import StyledPhrase from './StyledPhrase';
+import FiltersContext from "../../../Context/filtersContext"
 
 const FiltersBar = ({ term, setTerm, setError, AllProducts }) => {
-   const [selectedGender, setSelectedGender] = useState('')
-   const [selectedCategory, setSelectedCategory] = useState('')
-   const [selectedPrice, setSelectedPrice] = useState('')
-
-   const [resetGender, setResetGender] = useState(false)
-   const [resetCategory, setResetCategory] = useState(false)
+   const [selectedGender, setSelectedGender] = useState(false)
+   const [selectedCategory, setSelectedCategory] = useState(false)
+   const [selectedPrice, setSelectedPrice] = useState(false)
 
    const { productsCtx, setProductsCtx, setLoadingCtx } = useContext(ProductsContext)
 
@@ -52,10 +50,10 @@ const FiltersBar = ({ term, setTerm, setError, AllProducts }) => {
       if(selectedGender){
          handleSortAll(selectedGender)
          if(selectedCategory) {
-            setResetCategory(true)
             setSelectedCategory(false)
          }
       }
+      console.log(selectedGender)
    }, [selectedGender])
 
 
@@ -64,7 +62,6 @@ const FiltersBar = ({ term, setTerm, setError, AllProducts }) => {
       if(selectedCategory){
          handleSortAll(selectedCategory)
          if(selectedGender) {
-            setResetGender(true)
             setSelectedGender(false)
          }
       }
@@ -90,11 +87,9 @@ const FiltersBar = ({ term, setTerm, setError, AllProducts }) => {
          else setProductsCtx(results)
 
          if(selectedCategory) {
-            setResetCategory(true)
             setSelectedCategory(false)
          }
          if(selectedGender) {
-            setResetGender(true)
             setSelectedGender(false)
          }
       }
@@ -102,11 +97,9 @@ const FiltersBar = ({ term, setTerm, setError, AllProducts }) => {
          setError(true)
 
          if(selectedCategory) {
-            setResetCategory(true)
             setSelectedCategory(false)
          }
          if(selectedGender) {
-            setResetGender(true)
             setSelectedGender(false)
          }
       }
@@ -127,16 +120,8 @@ const FiltersBar = ({ term, setTerm, setError, AllProducts }) => {
       } else unSorted('')
 
       if(term) setTerm('')
-
-      if(selectedCategory) {
-         setSelectedCategory(false)
-         setResetCategory(true)
-      }
-
-      if(selectedGender) {
-         setSelectedGender(false)
-         setResetGender(true)
-      }
+      if(selectedCategory) setSelectedCategory(false)
+      if(selectedGender) setSelectedGender(false)
 
       setError(false)
       loadingHandler()
@@ -144,50 +129,56 @@ const FiltersBar = ({ term, setTerm, setError, AllProducts }) => {
 
 
    return (
-      <Wrapper>
-         <StyledFiltersBar>
-            <StyledFilters>
-               <ComboBox 
-                  label="gender"
-                  setSelectedItem={setSelectedGender}
-                  items={genderItems}
-                  resetGender={resetGender} 
-                  setResetGender={setResetGender}
+      <FiltersContext.Provider value={{
+         gender: selectedGender,
+         category: selectedCategory,
+         price: selectedPrice,
+      }}>
+         <Wrapper>
+            <StyledFiltersBar>
+               <StyledFilters>
+                  <ComboBox 
+                     label="gender"
+                     setSelectedItem={setSelectedGender}
+                     option={selectedGender}
+                     items={genderItems}
+                     resetHandler={resetHandler}
+                  />
+
+                  <ComboBox 
+                     label="category" 
+                     setSelectedItem={setSelectedCategory}
+                     option={selectedCategory}
+                     items={categoryItems}
+                     resetHandler={resetHandler}
+                  />
+
+               </StyledFilters>
+
+               <ComboBox
+                  isPrice
+                  label="sort by" 
+                  setSelectedItem={setSelectedPrice}
+                  items={priceItems}
                />
-
-               <ComboBox 
-                  label="category" 
-                  setSelectedItem={setSelectedCategory}
-                  items={categoryItems}
-                  resetCategory={resetCategory}
-                  setResetCategory={setResetCategory}
-               />
-
-            </StyledFilters>
-
-            <ComboBox
-               isPrice
-               label="sort by" 
-               setSelectedItem={setSelectedPrice}
-               items={priceItems}
-            />
-         </StyledFiltersBar>
+            </StyledFiltersBar>
 
 
-         <StyledActiveFilters>
-            {term ? (
-               <StyledPhrase label={term} resetHandler={resetHandler}/>
-            ) : null}
+            <StyledActiveFilters>
+               {term ? (
+                  <StyledPhrase label={term} resetHandler={resetHandler}/>
+               ) : null}
 
-            {selectedGender ? (
-               <StyledPhrase label={selectedGender} resetHandler={resetHandler}/>
-            ) : null}
-            
-            {selectedCategory ? (
-               <StyledPhrase label={selectedCategory} resetHandler={resetHandler}/>
-            ) : null}
-         </StyledActiveFilters>
-      </Wrapper>
+               {selectedGender ? (
+                  <StyledPhrase label={selectedGender} resetHandler={resetHandler}/>
+               ) : null}
+               
+               {selectedCategory ? (
+                  <StyledPhrase label={selectedCategory} resetHandler={resetHandler}/>
+               ) : null}
+            </StyledActiveFilters>
+         </Wrapper>
+      </FiltersContext.Provider>
    );
 };
 
