@@ -33,10 +33,8 @@ const ProductPage = ({setIsProductPage}) => {
 
    useEffect(() => {
       const observer = new IntersectionObserver(callbackFunctionBegin, options)
-      if(wrapperBeginRef.current) {
-         observer.observe(wrapperBeginRef.current)
-         
-      }
+      if(wrapperBeginRef.current) observer.observe(wrapperBeginRef.current)
+
       return () => {
          if(wrapperBeginRef.current) observer.unobserve(wrapperBeginRef.current)
       }
@@ -45,6 +43,7 @@ const ProductPage = ({setIsProductPage}) => {
    useEffect(() => {
       const observer = new IntersectionObserver(callbackFunctionEnd, options)
       if(wrapperEndRef.current) observer.observe(wrapperEndRef.current)
+      
       return () => {
          if(wrapperEndRef.current) observer.unobserve(wrapperEndRef.current)
       }
@@ -68,7 +67,7 @@ const ProductPage = ({setIsProductPage}) => {
                </StyledError>
             ) : (
                <Wrapper>
-                  <div style={{ position: 'absolute', top: '0' }} ref={wrapperBeginRef}></div>
+                  <div style={{ position: 'absolute', top: '-1px' }} ref={wrapperBeginRef}></div>
 
                      <Content product={product} loading={loading}/>
 

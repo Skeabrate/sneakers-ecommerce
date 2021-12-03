@@ -13,6 +13,7 @@ export const StyledFiltersBar = styled.div`
    border-top: ${({isSticky, theme}) => isSticky ? `1px solid ${theme.colors.grey}` : `none`};
    border-bottom: ${({isSticky, theme}) => isSticky ? `1px solid ${theme.colors.grey}` : `none`};
    z-index: 1;
+   box-shadow: ${({isSticky}) => isSticky ? 'none' : '0px 0px 24px -3px rgba(0, 0, 0, 1)'};
 
    transition: background-color .2s ease-in-out, 
                padding .3s ease-in-out,

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useCallback, useRef, useMemo } from 'react';
+import React, { useState, useContext, useEffect, useCallback, useRef } from 'react';
 import ComboBox from '../../../Components/ComboBox/ComboBox';
 import ProductsContext from '../../../Context/productsContext';
 import { StyledActiveFilters, StyledFiltersBar, StyledFilters } from './FiltersBar.styles'
@@ -6,44 +6,15 @@ import { sortData } from '../../../helpers/sortData';
 import { genderItems, categoryItems, priceItems } from "../../../data/filters"
 import StyledPhrase from './StyledPhrase';
 import FiltersContext from '../../../Context/filtersContext';
+import { useSticky } from "../../../hooks/useSticky"
 
 const FiltersBar = ({ setError, AllProducts }) => {
-   const [isSticky, setIsSticky] = useState(true)
-
    const { productsCtx, setProductsCtx, setLoadingCtx } = useContext(ProductsContext)
    const { gender, category, price, term, setGender, setCategory, setPrice, setTerm} = useContext(FiltersContext)
 
-   useEffect(() => {
-      console.log(isSticky)
-   }, [isSticky])
-
-/* --------------------------------------------------------- OBSERVER ------------------------------------------------ */
    const filtersRef = useRef(null)
 
-   const callbackFunction = (entries) => {
-      const [entry] = entries
-      setIsSticky(entry.isIntersecting)
-   }
-
-   const options = useMemo(() => {
-      return {
-         root: null,
-         rootMargin: '0px',
-         threshold: 1,
-      }
-   }, [])
-
-   useEffect(() => {
-      const observer = new IntersectionObserver(callbackFunction, options)
-      if(filtersRef.current) {
-         observer.observe(filtersRef.current)
-         
-      }
-      return () => {
-         if(filtersRef.current) observer.unobserve(filtersRef.current)
-      }
-   }, [filtersRef.current, options])
-/* ------------------------------------------------------------------------------------------------------------------- */
+   const isSticky = useSticky(filtersRef.current)
 
    const loadingHandler = () => { /// odswieżenie widoku
       setLoadingCtx(false)

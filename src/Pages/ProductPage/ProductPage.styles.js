@@ -28,7 +28,7 @@ export const LoadingWrapper = styled.div`
 /* STYLED CONTENT */
 export const Wrapper = styled.div`
    display: grid;
-   grid-template-columns: 1.4fr 0.6fr;
+   grid-template-columns: 1.45fr 0.55fr;
    position: relative;
    margin-top: 0;
 `

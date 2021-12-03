@@ -10,7 +10,7 @@ export const StyledShopp = styled.div`
    }};
 
    width: ${({isStickyBegin}) => {
-      if(!isStickyBegin) return '30%'
+      if(!isStickyBegin) return '27.5%'
    }};
 
    top: ${({isStickyBegin, isStickyEnd}) => {
@@ -62,13 +62,12 @@ export const StyledCategory = styled.div`
 `
 
 export const StyledTitle = styled.h1`
-   font-size: 36px;
+   font-size: 32px;
    font-style: italic;
    height: 88px;
 `
 
 export const StyledPrice = styled.p`
-   font-size: 24px;
    font-weight: bold;
    padding: 40px 0;
 `
@@ -85,7 +84,7 @@ export const StyledSize = styled.div`
    background-color: ${({isSize, theme}) => isSize ? theme.colors.orange : 'transparent'};
 
    button{
-      padding: 18px;
+      padding: 13px;
       background-color: transparent;
       color: ${({theme}) => theme.colors.white};
       font-size: 14px;
