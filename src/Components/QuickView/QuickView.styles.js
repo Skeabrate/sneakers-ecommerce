@@ -1,18 +1,15 @@
 import ReactModal from "react-modal";
 import styled from "styled-components";
-import { css } from 'styled-components';
 
 export const ModalWrapper = styled(ReactModal)`
    position: fixed;
    z-index: 99999;
    display: flex;
-   padding: 20px;
+   padding: 30px;
    top: 57%;
    left: 50%;
    transform: translate(-50%, -50%);
    width: 70%;
-
-   padding: 2vw 30px;
    background-color: ${({theme}) => theme.colors.black};
    border-radius: 20px;
    color: ${({theme}) => theme.colors.white};
@@ -21,119 +18,17 @@ export const ModalWrapper = styled(ReactModal)`
       outline: none;
    }
 
-   @media (max-width: 1100px) {
+   @media (max-width: 1400px) {
       width: 90%;
    }
 `
 
 export const Wrapper = styled.div`
    display: grid;
-   grid-template-columns: 1fr 1fr;
-   position: relative;
-   gap: 30px;
-`
-
-export const StyledImageSection = styled.div`
-   display: flex;
-   justify-content: center;
+   grid-template-columns: 1.3fr 0.7fr;
    align-items: center;
    position: relative;
-`
-
-export const StyledSlider = styled.div`
-   position: ${({isLoaded}) => isLoaded ? 'relative': 'absolute'};
-   border-left: ${({isLoaded, theme}) => isLoaded ? `5px solid ${theme.colors.orange}` : 'none'};
-   border-radius: 0 20px 20px 0;  
-   height: 31.5vw;
-   overflow: hidden;
-
-   img{
-      width: 100%;
-      height: 100%;
-      transition: transform 0.2s ease-in-out;
-   }
-
-   &:hover img{
-      transform: scale(1.1)
-   }
-
-   &:hover button{
-      visibility: ${({isHidden}) => isHidden ? 'hidden' : 'visible'}
-   }
-`
-
-export const StyledLeftImg = styled.img`
-   position: absolute;
-   top: 0;
-   left: 0;
-   width: 100%;
-   transform: translateX(100%);
-`
-
-export const StyledRightImg = styled.img`
-   position: absolute;
-   top: 0;
-   left: 0;
-   width: 100%;
-   transform: translateX(-100%);
-`
-
-export const StyledPlaceHolder = styled.div`
-   height: 31.5vw;
-   overflow: hidden;
-   border-left: ${({isLoaded, theme}) => !isLoaded ? `5px solid ${theme.colors.orange}` : 'none'};
-   border-radius: 0 20px 20px 0;  
-
-   img{
-      width: 100%;
-      height: 100%;
-   }
-`
-
-const btnSwitch = css`
-   position: absolute;
-   top: 50%;
-   transform: translateY(-50%);
-   border: none;
-   opacity: 0.3;
-   visibility: hidden;
-   transition: all .2s;
-
-   &:hover{
-      transform: translateY(-50%) scale(1.4);
-      opacity: 0.5;
-   }
-`
-
-export const StyledBtnPrev = styled.button`
-   ${btnSwitch}
-   left: 10px;
-`
-
-export const StyledBtnNext = styled.button`
-   ${btnSwitch}
-   right: 10px;
-`
-
-const btnOption = ({isActive, theme}) => css`
-   position: absolute;
-   width: 10px;
-   height: 10px;
-   border-radius: 100%;
-   font-weight: bold;
-   font-size: 12px;
-   background-color: ${isActive ? theme.colors.orange : theme.colors.lightGrey};
-   bottom: 10px;
-   border: none;
-`
-
-export const StyledBtnSlider = styled.button`
-   ${btnOption}
-   left: ${({ isFirst, isSecond, isThird }) => {
-      if(isFirst) return '54%'
-      if(isSecond) return '50%'
-      if(isThird) return '46%'
-   }};
+   gap: 30px;
 `
 
 /* CONTENT */
@@ -141,7 +36,6 @@ export const StyledContent = styled.div`
    display: flex;
    flex-direction: column;
    justify-content: center;
-   padding: 0 2vw;
 `
 
 export const StyledButton = styled.button`
@@ -175,7 +69,7 @@ export const StyledCategory = styled.p`
 
 export const StyledDescription = styled.p`
    color: ${({theme}) => theme.colors.lightGrey};
-   margin-top: 30px;
+   margin-top: 3vw;
 `
 
 export const StyledInfo = styled.div`
@@ -188,7 +82,7 @@ export const StyledPrice = styled.p`
 `
 
 export const StyledStatus = styled.div`
-   margin: 10px 0;
+   margin: 1vw 0;
 
    span{
       background-color: #59b605;

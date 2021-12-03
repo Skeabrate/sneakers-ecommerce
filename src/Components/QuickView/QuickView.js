@@ -1,19 +1,11 @@
-import React, { useReducer } from 'react'
+import React, { useState } from 'react'
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import { ModalWrapper, StyledBtnPrev, StyledSize, StyledInfo ,StyledBtnNext, StyledBtnSlider, StyledImageSection, StyledSlider, Wrapper, StyledPlaceHolder, StyledButton, StyledContent, StyledTitle, StyledCategory, StyledDescription, StyledPrice, StyledStatus } from "./QuickView.styles"
-import placeholder from "../../Assets/Images/placeholder.png"
-import { reducer } from './QuickViewReducer';
+import { ModalWrapper, StyledSize, StyledInfo, Wrapper, StyledButton, StyledContent, StyledTitle, StyledCategory, StyledDescription, StyledPrice, StyledStatus } from "./QuickView.styles"
 import { sizes } from "../../data/sizes"
 import AddToCartBtn from '../AddToCartBtn/AddToCartBtn';
+import ImageSlider from '../ImageSlider/ImageSlider';
 
-const initialState = {
-   isLoaded: false,
-   current: 2,
-   amount: 1,
-}
-
-export default function QuickView({ selectedProduct: { title, category, price, images, description}, isOpen, onRequestClose}) {
-   const [state, dispatch] = useReducer(reducer, initialState)
+export default function QuickView({ selectedProduct, isOpen, onRequestClose}) {
 
    return (
       <ModalWrapper 
@@ -32,56 +24,17 @@ export default function QuickView({ selectedProduct: { title, category, price, i
          }}}
       >
          <Wrapper>
-            
-            <StyledImageSection>
-               {state.isLoaded ? null : (
-                  <StyledPlaceHolder>
-                     <img alt="" src={placeholder}/>
-                  </StyledPlaceHolder>
-               )}
-               <StyledSlider isLoaded={state.isLoaded}>
-                  <img
-                     alt="img"
-                     src={images[state.current].url}
-                     onLoad={() =>  dispatch({type: 'SET_LOADING', value: true})}
-                  />
-                  <StyledBtnPrev 
-                     isHidden 
-                     onClick={() => dispatch({type: 'SET_CURRENT', direcion: 'SLIDE_LEFT'})}
-                  >
-                     <svg width="12" height="18" xmlns="http://www.w3.org/2000/svg"><path d="M11 1 3 9l8 8" stroke="#1D2026" stroke-width="3" fill="none" fill-rule="evenodd"/></svg>
-                  </StyledBtnPrev>
-
-                  <StyledBtnNext 
-                     isHidden 
-                     onClick={() => dispatch({type: 'SET_CURRENT', direcion: 'SLIDE_RIGHT'})}
-                  >
-                     <svg width="13" height="18" xmlns="http://www.w3.org/2000/svg"><path d="m2 1 8 8-8 8" stroke="#1D2026" stroke-width="3" fill="none" fill-rule="evenodd"/></svg>
-                  </StyledBtnNext>
-
-                  {/* {buttonSlider.map(val => (
-                     <StyledBtnSlider 
-                        onClick={() => dispatch({type: 'SET_CURRENT', value: val})} 
-                        isActive={state.current === val} 
-                        key={val}
-                        isFirst={val === 1}
-                        isSecond={val === 0}
-                        isThird={val === 2}
-                     />
-                  ))} */}
-
-               </StyledSlider>
-            </StyledImageSection>
+            <ImageSlider product={selectedProduct} loading={true} isQuickView/>
 
             <StyledContent>
-               <StyledCategory>{category}</StyledCategory>
-               <StyledTitle>{title}</StyledTitle>
-               <StyledDescription>{description}</StyledDescription>
+               <StyledCategory>{selectedProduct.category}</StyledCategory>
+               <StyledTitle>{selectedProduct.title}</StyledTitle>
+               <StyledDescription>{selectedProduct.description}</StyledDescription>
                <StyledStatus>Status: <span>Available</span></StyledStatus>
 
                <StyledInfo>
                   <div>
-                     <StyledPrice>${price}</StyledPrice>
+                     <StyledPrice>${selectedProduct.price}</StyledPrice>
                   </div>
                      <StyledSize>
                         <label>Size:</label>

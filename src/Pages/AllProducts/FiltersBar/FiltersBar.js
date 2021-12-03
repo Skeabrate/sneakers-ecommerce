@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useCallback } from 'react';
+import React, { useState, useContext, useEffect, useCallback, useRef, useMemo } from 'react';
 import ComboBox from '../../../Components/ComboBox/ComboBox';
 import ProductsContext from '../../../Context/productsContext';
 import { StyledActiveFilters, StyledFiltersBar, StyledFilters } from './FiltersBar.styles'
@@ -8,8 +8,42 @@ import StyledPhrase from './StyledPhrase';
 import FiltersContext from '../../../Context/filtersContext';
 
 const FiltersBar = ({ setError, AllProducts }) => {
+   const [isSticky, setIsSticky] = useState(true)
+
    const { productsCtx, setProductsCtx, setLoadingCtx } = useContext(ProductsContext)
    const { gender, category, price, term, setGender, setCategory, setPrice, setTerm} = useContext(FiltersContext)
+
+   useEffect(() => {
+      console.log(isSticky)
+   }, [isSticky])
+
+/* --------------------------------------------------------- OBSERVER ------------------------------------------------ */
+   const filtersRef = useRef(null)
+
+   const callbackFunction = (entries) => {
+      const [entry] = entries
+      setIsSticky(entry.isIntersecting)
+   }
+
+   const options = useMemo(() => {
+      return {
+         root: null,
+         rootMargin: '0px',
+         threshold: 1,
+      }
+   }, [])
+
+   useEffect(() => {
+      const observer = new IntersectionObserver(callbackFunction, options)
+      if(filtersRef.current) {
+         observer.observe(filtersRef.current)
+         
+      }
+      return () => {
+         if(filtersRef.current) observer.unobserve(filtersRef.current)
+      }
+   }, [filtersRef.current, options])
+/* ------------------------------------------------------------------------------------------------------------------- */
 
    const loadingHandler = () => { /// odswieżenie widoku
       setLoadingCtx(false)
@@ -102,7 +136,7 @@ const FiltersBar = ({ setError, AllProducts }) => {
 
    return (
       <div>
-         <StyledFiltersBar>
+         <StyledFiltersBar isSticky={isSticky}>
             <StyledFilters>
                <ComboBox 
                   label="gender"
@@ -127,8 +161,10 @@ const FiltersBar = ({ setError, AllProducts }) => {
                items={priceItems}
             />
          </StyledFiltersBar>
+         {!isSticky ? <div style={{height: '52px', width: '1px'}}></div> : null}
 
          <StyledActiveFilters>
+            <div ref={filtersRef} style={{position: 'absolute', top: '-133px'}}></div>
             {term ? (
                <StyledPhrase label={term} resetHandler={resetHandler}/>
             ) : null}
