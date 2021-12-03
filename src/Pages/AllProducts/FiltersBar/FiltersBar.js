@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useCallback, useRef } from 'react';
+import React, { useContext, useEffect, useCallback, useRef } from 'react';
 import ComboBox from '../../../Components/ComboBox/ComboBox';
 import ProductsContext from '../../../Context/productsContext';
 import { StyledActiveFilters, StyledFiltersBar, StyledFilters } from './FiltersBar.styles'
@@ -14,7 +14,7 @@ const FiltersBar = ({ setError, AllProducts }) => {
 
    const filtersRef = useRef(null)
 
-   const isSticky = useSticky(filtersRef.current)
+   const { isSticky } = useSticky(filtersRef.current)
 
    const loadingHandler = () => { /// odswieżenie widoku
       setLoadingCtx(false)
@@ -132,7 +132,7 @@ const FiltersBar = ({ setError, AllProducts }) => {
                items={priceItems}
             />
          </StyledFiltersBar>
-         {!isSticky ? <div style={{height: '52px', width: '1px'}}></div> : null}
+         {!isSticky ? <div style={{height: '52px'}}></div> : null}
 
          <StyledActiveFilters>
             <div ref={filtersRef} style={{position: 'absolute', top: '-133px'}}></div>

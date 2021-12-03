@@ -8,7 +8,7 @@ const center = css`
 `
 
 export const StyledContent = styled.div`
-   background-color: ${({theme}) => theme.colors.white};
+   background-color: white;
    max-width: 100%;
 `
 
@@ -17,8 +17,14 @@ export const StyledList = styled.ul`
    ${center};
    list-style: none;
    height: 70px;
+   background-color: white;
    border-top: 1px solid ${({theme}) => theme.colors.lightGrey};
    border-bottom: 1px solid ${({theme}) => theme.colors.lightGrey};
+   position: ${({isSticky}) => isSticky ? 'relative' : 'fixed'};
+   width: ${({isSticky}) => isSticky ? 'unset' : '72.5%'};
+   top: 0;
+   left: 0;
+   z-index: 1;
 `
 
 export const StyledListItem = styled.li`
@@ -41,12 +47,12 @@ export const StyledListItem = styled.li`
 export const StyledLink = styled(Link)`
    ${center};
    letter-spacing: 1px;
-   font-weight: normal;
+   font-weight: ${({cheatActive}) => cheatActive ? 'bold' : 'normal'};
    padding: 0 20px;
    height: 100%;
-   font-size: ${({theme}) => theme.fontSize.xs};
+   font-size: 13px;
    border-top: 3px solid transparent;
-   border-bottom: 3px solid transparent;
+   border-bottom: 3px solid ${({cheatActive}) => cheatActive ? 'black' : 'transparent'};
    transition: border-bottom .05s ease-in-out;
 
    &:hover{
