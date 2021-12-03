@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useCallback } from 'react';
 import ComboBox from '../../../Components/ComboBox/ComboBox';
 import ProductsContext from '../../../Context/productsContext';
-import { Wrapper, StyledActiveFilters, StyledFiltersBar, StyledFilters } from './FiltersBar.styles'
+import { StyledActiveFilters, StyledFiltersBar, StyledFilters } from './FiltersBar.styles'
 import { sortData } from '../../../helpers/sortData';
 import { genderItems, categoryItems, priceItems } from "../../../data/filters"
 import StyledPhrase from './StyledPhrase';
@@ -101,7 +101,7 @@ const FiltersBar = ({ setError, AllProducts }) => {
    }, [term])
 
    return (
-      <Wrapper>
+      <div>
          <StyledFiltersBar>
             <StyledFilters>
                <ComboBox 
@@ -141,7 +141,7 @@ const FiltersBar = ({ setError, AllProducts }) => {
                <StyledPhrase label={category} resetHandler={resetHandler}/>
             ) : null}
          </StyledActiveFilters>
-      </Wrapper>
+      </div>
    );
 };
 

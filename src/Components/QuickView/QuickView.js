@@ -12,8 +12,6 @@ const initialState = {
    amount: 1,
 }
 
-const buttonSlider = [2, 0 ,1]
-
 export default function QuickView({ selectedProduct: { title, category, price, images, description}, isOpen, onRequestClose}) {
    const [state, dispatch] = useReducer(reducer, initialState)
 
@@ -61,7 +59,7 @@ export default function QuickView({ selectedProduct: { title, category, price, i
                      <svg width="13" height="18" xmlns="http://www.w3.org/2000/svg"><path d="m2 1 8 8-8 8" stroke="#1D2026" stroke-width="3" fill="none" fill-rule="evenodd"/></svg>
                   </StyledBtnNext>
 
-                  {buttonSlider.map(val => (
+                  {/* {buttonSlider.map(val => (
                      <StyledBtnSlider 
                         onClick={() => dispatch({type: 'SET_CURRENT', value: val})} 
                         isActive={state.current === val} 
@@ -70,10 +68,9 @@ export default function QuickView({ selectedProduct: { title, category, price, i
                         isSecond={val === 0}
                         isThird={val === 2}
                      />
-                  ))}
+                  ))} */}
 
                </StyledSlider>
-
             </StyledImageSection>
 
             <StyledContent>

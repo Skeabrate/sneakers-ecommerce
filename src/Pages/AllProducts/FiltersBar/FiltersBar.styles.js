@@ -9,10 +9,6 @@ export const StyledFiltersBar = styled.div`
    position: relative;
 `
 
-export const Wrapper = styled.div`
-   
-`
-
 export const StyledFilters = styled.div`
    display: flex;
    align-items: center;
