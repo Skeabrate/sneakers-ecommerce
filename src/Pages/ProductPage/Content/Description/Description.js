@@ -1,10 +1,28 @@
-import React from 'react';
-import { Wrapper } from './Description.styles';
+import React, { useRef } from 'react';
+import { Wrapper, StyledTitle, StyledContent } from "../GlobalStyles.styles"
+import { useAnimation } from '../../../../hooks/useAnimation';
 
-const Description = () => {
+const Description = ({ product: { title, description, images }, loading }) => {
+   const wrapperRef = useRef(null)
+   const isPaused = useAnimation(wrapperRef.current)
+
    return (
-      <Wrapper>
-         Description
+      <Wrapper ref={wrapperRef}>
+         {loading ? (
+            <StyledContent count={2} isDesc>
+               <div>
+                  <header>
+                     <StyledTitle>{title}</StyledTitle>
+                  </header>
+                  <h3>RUNNING SHOES WITH PRECISELY CODED CUSHIONING FOR EVERYDAY COMFORT.</h3>
+                  <p>{description}</p>
+               </div>
+
+               <div>
+                  <img src={images[2].url} alt="sneakers" loading="lazy" />
+               </div>
+            </StyledContent>
+         ) : null}
       </Wrapper>
    );
 };

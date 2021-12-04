@@ -1,21 +1,38 @@
-import React from 'react';
-import { Wrapper } from "./Highlights.styles"
+import React, { useRef } from 'react';
+import { Wrapper, StyledTitle, StyledContent } from "../GlobalStyles.styles"
+import { useAnimation } from '../../../../hooks/useAnimation';
 
 const Highlights = () => {
+   const wrapperRef = useRef(null)
+   const isPaused = useAnimation(wrapperRef.current)
+
    return (
-      <Wrapper>
-         Highlights
-         ADIDAS 4D MIDSOLE
-         Precisely-coded performance zones combine our best stability, best comfort and best absorption so you can conquer the unpredictable city streets.
+      <Wrapper ref={wrapperRef}>
+         <header>
+            <StyledTitle>HIGHLIGHTS</StyledTitle>
+         </header>
 
-         SOCK-LIKE FEEL
-         The upper hugs your foot with a supportive, flexible fit.
+         <StyledContent count={4}>
+            <div>
+               <h3>ADIDAS 4D MIDSOLE</h3>
+               <p>Precisely-coded performance zones combine our best stability, best comfort and best absorption so you can conquer the unpredictable city streets.</p>
+            </div>
 
-         ADIDAS PRIMEKNIT
-         Precision-made, seamless zones combine strength and performance with smooth comfort to ensure distraction-free movement.
+            <div>
+               <h3>SOCK-LIKE FEEL</h3>
+               <p>The upper hugs your foot with a supportive, flexible fit.</p>
+            </div>
 
-         CONTINENTAL™ RUBBER OUTSOLE
-         Continental™ Rubber outsole provides extraordinary traction in wet and dry conditions.
+            <div>
+               <h3>ADIDAS PRIMEKNIT</h3>
+               <p>Precision-made, seamless zones combine strength and performance with smooth comfort to ensure distraction-free movement.</p>
+            </div>
+
+            <div>
+               <h3>CONTINENTAL™ RUBBER OUTSOLE</h3>
+               <p>Continental™ Rubber outsole provides extraordinary traction in wet and dry conditions.</p>
+            </div>
+         </StyledContent>
       </Wrapper>
    );
 };

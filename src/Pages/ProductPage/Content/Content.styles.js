@@ -7,9 +7,14 @@ const center = css`
    align-items: center;
 `
 
-export const StyledContent = styled.div`
+export const StyledContentWrapper = styled.div`
    background-color: white;
    max-width: 100%;
+`
+
+export const StyledContent = styled.section`
+   margin: auto;
+   max-width: 1200px;
 `
 
 /* NAVIGATION */

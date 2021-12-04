@@ -1,22 +1,37 @@
-import React from 'react';
-import { Wrapper } from "./Details.styles"
+import React, { useRef } from 'react';
+import { Wrapper, StyledTitle, StyledContent } from "../GlobalStyles.styles"
+import { useAnimation } from '../../../../hooks/useAnimation';
+import styled from "styled-components"
+import { specifications } from "../../../../data/specifications"
+
+const StyledList = styled.ul`
+   column-count: 2;
+   padding: 20px;
+
+   li{
+      padding: 14px 5px;
+      font-size: ${({theme}) => theme.fontSize.xs};
+   }
+`
 
 const Details = () => {
+   const wrapperRef = useRef(null)
+   const isPaused = useAnimation(wrapperRef.current)
+
    return (
-      <Wrapper>
-         SPECIFICATIONS
-         Regular fit
-         Lace closure
-         adidas Primeknit upper
-         Sock-like feel
-         Textile lining
-         adidas 4D midsole
-         Weight: 12.7 ounces
-         Midsole drop: 8.5 mm (heel 32.7 mm / forefoot 24.2 mm)
-         Continental™ Rubber outsole
-         Imported
-         Product color: Crystal White / Chalk White / Core Black
-         Product code: Q46229
+      <Wrapper ref={wrapperRef}>
+         <header>
+            <StyledTitle>SPECIFICATIONS</StyledTitle>
+         </header>
+
+         <StyledContent count={1}>
+            <StyledList>
+               {specifications.map((spec, index) => (
+                  <li key={index}>{spec}</li>
+               ))}
+            </StyledList>
+         </StyledContent>
+
       </Wrapper>
    );
 };

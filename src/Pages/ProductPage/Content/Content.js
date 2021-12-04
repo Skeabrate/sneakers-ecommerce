@@ -1,6 +1,6 @@
-import react, { useRef, useEffect, useState } from 'react'
+import react, { useRef, useState } from 'react'
 import ImageSlider from '../../../Components/ImageSlider/ImageSlider';
-import { StyledContent, StyledList, StyledListItem, StyledLink } from "./Content.styles"
+import { StyledContent, StyledList, StyledListItem, StyledLink, StyledContentWrapper } from "./Content.styles"
 import { Element } from 'react-scroll'
 import { useSticky } from "../../../hooks/useSticky"
 import Highlights from "./Highlights/Highlights"
@@ -13,12 +13,8 @@ const Content = ({product, loading}) => {
 
    const { isSticky } = useSticky(navRef.current)
 
-   useEffect(() => {
-      console.log(cheatActive)
-   }, [cheatActive])
-
    return (
-      <StyledContent>
+      <StyledContentWrapper>
          <Element name="gallery">
             <ImageSlider product={product} loading={loading}/>
          </Element>
@@ -47,7 +43,7 @@ const Content = ({product, loading}) => {
                         duration={400}
                         spy={true}
                         exact={true}
-                        offset={-70}
+                        offset={-69}
                         onSetActive={() => setCheatActive(false)}
                      >
                         HIGHLIGHTS
@@ -61,7 +57,7 @@ const Content = ({product, loading}) => {
                         duration={400}
                         spy={true}
                         exact={true}
-                        offset={-70}
+                        offset={-69}
                         onSetActive={() => setCheatActive(false)}
                      >
                         DESCRIPTION
@@ -75,7 +71,7 @@ const Content = ({product, loading}) => {
                         duration={400}
                         spy={true}
                         exact={true}
-                        offset={-70}
+                        offset={-69}
                         onSetActive={() => setCheatActive(false)}
                      >
                         DETAILS
@@ -87,20 +83,21 @@ const Content = ({product, loading}) => {
 
          {!isSticky ? <div style={{height: '70px'}}></div> : null}
          
+         <StyledContent>
+            <Element name="highlights" style={{ position: 'relative' }}>
+               <div ref={navRef} style={{ position: 'absolute', top: '-71px', left: 0}}></div>
+               <Highlights />
+            </Element>
 
-         <Element name="highlights" style={{ position: 'relative' }}>
-            <div ref={navRef} style={{ position: 'absolute', top: '-71px', left: 0}}></div>
-            <Highlights />
-         </Element>
+            <Element name="description">
+               <Description product={product}  loading={loading}/>
+            </Element>
 
-         <Element name="description" style={{height: '100vh'}}>
-            <Description />
-         </Element>
-
-         <Element name="details" style={{height: '100vh'}}>
-            <Details />
-         </Element>
-      </StyledContent>
+            <Element name="details">
+               <Details />
+            </Element>
+         </StyledContent>
+      </StyledContentWrapper>
    );
 };
 
