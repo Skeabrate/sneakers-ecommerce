@@ -1,24 +1,36 @@
 import styled from "styled-components"
 
 export const Wrapper = styled.article`
-   padding: 60px 0px 60px 30px;
+   padding: 60px 0px 130px 30px;
    opacity: 0;
    transform: translateY(50px);
-   margin-bottom: 70px;
+
+   @media (max-width: 1550px){
+      padding: 60px 0px 80px 30px;
+   }
 
    @media (max-width: 1000px){
       padding: 40px 0px 60px 30px;
-      margin-bottom: 40px;
-   }
-
-   @media (max-width: 1550px){
-      margin-bottom: 0px;
    }
 `
 
 export const StyledTitle = styled.h2`
    font-size: ${({theme}) => theme.fontSize.l};
+   font-style: italic;
+   position: relative;
+   width: fit-content;
+   padding-bottom: 5px;
 
+   &::after{
+      position: absolute;
+      content: '';
+      width: 110%;
+      height: 3px;
+      background-color: ${({theme}) => theme.colors.orange};
+      bottom: 0;
+      left: 0;
+      border-radius: 100%;
+   }
 `
 
 export const StyledContent = styled.div`
@@ -39,6 +51,10 @@ export const StyledContent = styled.div`
          line-height: 1.6;
          font-size: ${({theme}) => theme.fontSize.xs};
       }
+
+      h3{
+         font-size: ${({theme}) => theme.fontSize.xs};
+      }   
    }
 
    h3{
@@ -64,6 +80,16 @@ export const StyledContent = styled.div`
 
       img{
          margin-top: 30px;
+      }
+   }
+
+   @media (max-width: 550px){
+      grid-template-columns: 1fr;
+
+      div{
+         p{
+            line-height: 1.3;
+         }
       }
    }
 `

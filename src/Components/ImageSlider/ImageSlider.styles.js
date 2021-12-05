@@ -24,7 +24,7 @@ export const StyledSlider = styled.div`
    }
 
    @media (max-width: 550px){
-      margin-top: 80px;
+      margin-top: 60px;
       height: 400px;
 
       &::after{
@@ -69,9 +69,10 @@ export const StyledImage = styled.div`
          height: 400px;
       }
    }
-
-   @media (max-width: 350px) {
+   @media (max-width: 450px) {
       width: 300px;
+      height: 300px;
+      gap: 300px;
 
       img{
          height: 300px;

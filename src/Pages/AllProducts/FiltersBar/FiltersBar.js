@@ -1,12 +1,16 @@
 import React, { useContext, useEffect, useCallback, useRef } from 'react';
 import ComboBox from '../../../Components/ComboBox/ComboBox';
 import ProductsContext from '../../../Context/productsContext';
-import { StyledActiveFilters, StyledFiltersBar, StyledFilters } from './FiltersBar.styles'
 import { sortData } from '../../../helpers/sortData';
 import { genderItems, categoryItems, priceItems } from "../../../data/filters"
 import StyledPhrase from './StyledPhrase';
 import FiltersContext from '../../../Context/filtersContext';
 import { useSticky } from "../../../hooks/useSticky"
+import { 
+   StyledActiveFilters, 
+   StyledFiltersBar, 
+   StyledFilters,
+   FiltersPlaceholder } from './FiltersBar.styles'
 
 const FiltersBar = ({ setError, AllProducts }) => {
    const { productsCtx, setProductsCtx, setLoadingCtx } = useContext(ProductsContext)
@@ -132,7 +136,7 @@ const FiltersBar = ({ setError, AllProducts }) => {
                items={priceItems}
             />
          </StyledFiltersBar>
-         {!isSticky ? <div style={{height: '52px'}}></div> : null}
+         {!isSticky ? <FiltersPlaceholder></FiltersPlaceholder> : null}
 
          <StyledActiveFilters>
             <div ref={filtersRef} style={{position: 'absolute', top: '-133px'}}></div>

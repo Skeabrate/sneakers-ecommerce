@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Wrapper } from "./MainView.styles"
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AllProducts from '../AllProducts/AllProducts';
 import Contact from '../Contact/Contact';
@@ -47,7 +46,7 @@ const MainView = React.forwardRef((props, mainViewRef) => {
                setPrice: setSelectedPrice,
                setTerm: setSelectedTerm,
             }}>
-               <Wrapper ref={mainViewRef}>
+               <div ref={mainViewRef}>
                   {isHero ? null : <NavBar isProductPage={isProductPage}/>}
                   
                   <Routes>
@@ -64,7 +63,7 @@ const MainView = React.forwardRef((props, mainViewRef) => {
 
                   {isHero ? null : <Footer />}
                   
-               </Wrapper>
+               </div>
             </FiltersContext.Provider>
          </ProductsContext.Provider>
       </Router>

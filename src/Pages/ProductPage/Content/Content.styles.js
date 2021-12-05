@@ -50,15 +50,10 @@ export const StyledListItem = styled.li`
 
    span{
       ${center};
-      padding: 0 20px;
    }
 
    @media (max-width: 550px){
       margin: 0 2px;
-
-      span{
-         padding: 0 10px;
-      }
    }
 `
 
@@ -70,8 +65,9 @@ export const StyledLink = styled(Link)`
    height: 100%;
    font-size: ${({theme}) => theme.fontSize.s};
    border-top: 3px solid transparent;
-   border-bottom: 3px solid ${({cheatActive}) => cheatActive ? 'black' : 'transparent'};
+   border-bottom: 3px solid ${({cheatActive, theme}) => cheatActive ? theme.colors.orange : 'transparent'};
    transition: border-bottom .05s ease-in-out;
+   overflow: hidden;
 
    &:hover{
       border-bottom: 3px solid grey;
@@ -79,13 +75,18 @@ export const StyledLink = styled(Link)`
 
    &.active{
       font-weight: bold;
-      border-bottom: 3px solid black;
+      border-bottom: 3px solid ${({theme}) => theme.colors.orange};
    }
 
    @media (max-width: 550px){
       margin: 0 2px;
       font-size: ${({theme}) => theme.fontSize.micro};
       padding: 0 10px;
+      letter-spacing: 0;
+   }
+
+   @media (max-width: 390px){
+      padding: 0 3px;
    }
 `
 

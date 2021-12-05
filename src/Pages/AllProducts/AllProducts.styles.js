@@ -3,8 +3,12 @@ import styled from "styled-components"
 
 export const Wrapper = styled.section`
    color: ${({theme}) => theme.colors.white};
-   margin-top: 100px;
+   margin-top: 80px;
    padding: 3vw;
+
+   @media (max-width: 550px){
+      margin-top: 60px;
+   }
 `
 
 export const StyledTitle = styled.div`
@@ -12,7 +16,7 @@ export const StyledTitle = styled.div`
    justify-content: space-between;
    align-items: center;
    overflow: hidden;
-   margin: 40px 0;
+   margin: 0 0 40px 0;
 
    @media (max-width: 1000px){
       margin: 30px 0;
@@ -85,7 +89,7 @@ export const StyledContent = styled.div`
       gap: 10px;
    }
 
-   @media (max-width: 600px){
+   @media (max-width: 550px){
       grid-template-columns: 1fr 1fr;
    }
 `

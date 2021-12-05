@@ -135,7 +135,7 @@ export const StyledInfo = styled.div`
 
    @media (max-width:1000px){
       font-size: ${({theme}) => theme.fontSize.xs};
-      margin: 31px 0 0 40px;
+      margin: 31px 0 0 2.5vw;
    }
 `
 
@@ -161,5 +161,14 @@ export const StyledInfoItem = styled.div`
       p{
          margin-top: 0px;
       }
+   }
+`
+
+export const TitlePlaceholder = styled.div`
+   height: 188px;
+   width: 100%;
+
+   @media (max-width:1000px){
+      height: 118px;
    }
 `

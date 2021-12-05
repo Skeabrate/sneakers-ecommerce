@@ -12,7 +12,8 @@ import {
    StyledCategory,
    StyledTitle, 
    StyledShopp,
-   StyledSizesAndInfo } from "./ShopingCart.styles"
+   StyledSizesAndInfo,
+   TitlePlaceholder } from "./ShopingCart.styles"
 
 const ShopingCart = ({isStickyBegin, isStickyEnd, product, loading}) => {
    const [size, setSize] = useState(false)
@@ -56,7 +57,7 @@ const ShopingCart = ({isStickyBegin, isStickyEnd, product, loading}) => {
 
                <StyledPrice>${product.price}</StyledPrice>
             </div>
-         ) : <div style={{height: '188px', width: '100%'}}></div>}
+         ) : <TitlePlaceholder></TitlePlaceholder>}
 
          <StyledSizesAndInfo>
             <div>

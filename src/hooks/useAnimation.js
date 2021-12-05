@@ -14,7 +14,7 @@ export const useAnimation = (ref) => {
    const options = useMemo(() => {
       return {
          root: null,
-         rootMargin: '-200px',
+         rootMargin: '-100px',
          threshold: 0,
       }
    }, [])

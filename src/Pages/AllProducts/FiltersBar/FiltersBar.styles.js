@@ -18,6 +18,17 @@ export const StyledFiltersBar = styled.div`
    transition: background-color .2s ease-in-out, 
                padding .3s ease-in-out,
                transform .3s ease-in-out;
+
+   @media (max-width: 550px){
+      position: relative;
+      top: unset;
+      transform: translate(-50%);
+      width: unset;
+      background-color: unset;
+      padding: 5px 0;
+      border-top: ${({theme}) => `1px solid ${theme.colors.grey}`};
+      border-bottom: ${({theme}) => `1px solid ${theme.colors.grey}`};
+   }
 `
 
 export const StyledFilters = styled.div`
@@ -30,4 +41,12 @@ export const StyledActiveFilters = styled.div`
    align-items: center;
    height: 58px;
    position: relative;
+`
+
+export const FiltersPlaceholder = styled.div`
+   height: 52px;
+
+   @media (max-width: 550px){
+      display: none;
+   }
 `

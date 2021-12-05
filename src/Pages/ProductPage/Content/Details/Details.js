@@ -9,7 +9,7 @@ const StyledList = styled.ul`
    padding: 20px;
 
    li{
-      padding: 14px 5px;
+      padding: 10px 5px;
       font-size: ${({theme}) => theme.fontSize.xs};
    }
 `

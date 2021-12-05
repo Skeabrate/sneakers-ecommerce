@@ -24,6 +24,7 @@ export const Wrapper = styled.div`
    @media (max-width: 550px){
       font-size: ${({theme}) => theme.fontSize.l};
       position: fixed;
+      height: 60px;
    }
 `
 
@@ -53,6 +54,10 @@ export const StyledLogo = styled(Link)`
    @media (max-width: 750px){
       font-size: 30px;
    }
+
+   @media (max-width: 550px){
+      font-size: 26px;
+   }
 `
 
 export const StyledNav = styled.div`
@@ -67,8 +72,8 @@ export const StyledNav = styled.div`
       align-items: center;
       position: fixed;
       width: 100%;
-      height: calc(100vh - 80px);
-      top: 80px;
+      height: calc(100vh - 60px);
+      top: 60px;
       left: 0;
       transform: ${({isToggled}) => isToggled ? 'translateX(0)' : 'translateX(-100%)'};
 
@@ -147,7 +152,7 @@ export const StyledCart = styled.div`
 
 export const StyledCartItem = styled.div`
    margin: 0 1vw;
-   max-width: 60px;
+   max-width: 50px;
    display: flex;
    justify-content: center;
    align-items: center;
@@ -164,5 +169,9 @@ export const StyledCartItem = styled.div`
       height: 100%;
       border: 2px solid ${({theme}) => theme.colors.orange};
       border-radius: 100%;
+   }
+
+   @media (max-width: 550px){
+      max-width: 40px;
    }
 `
