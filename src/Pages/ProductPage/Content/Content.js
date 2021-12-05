@@ -1,13 +1,14 @@
 import react, { useRef, useState } from 'react'
 import ImageSlider from '../../../Components/ImageSlider/ImageSlider';
-import { StyledContent, StyledList, StyledListItem, StyledLink, StyledContentWrapper } from "./Content.styles"
+import { StyledContent, StyledList, StyledListItem, StyledLink, StyledContentWrapper, StickyPointer } from "./Content.styles"
 import { Element } from 'react-scroll'
 import { useSticky } from "../../../hooks/useSticky"
 import Highlights from "./Highlights/Highlights"
 import Description from "./Description/Description"
 import Details from "./Details/Details"
+import ShopingCart from '../ShopingCart/ShopingCart';
 
-const Content = ({product, loading}) => {
+const Content = ({product, loading, isStickyBegin, isStickyEnd}) => {
    const [cheatActive, setCheatActive] = useState(false)
    const navRef = useRef(null)
 
@@ -18,6 +19,8 @@ const Content = ({product, loading}) => {
          <Element name="gallery">
             <ImageSlider product={product} loading={loading}/>
          </Element>
+
+         <ShopingCart product={product} loading={loading} isStickyBegin={isStickyBegin} isStickyEnd={isStickyEnd}/>
 
          <div>
             <nav>
@@ -43,7 +46,7 @@ const Content = ({product, loading}) => {
                         duration={400}
                         spy={true}
                         exact={true}
-                        offset={-69}
+                        offset={-59}
                         onSetActive={() => setCheatActive(false)}
                      >
                         HIGHLIGHTS
@@ -57,7 +60,7 @@ const Content = ({product, loading}) => {
                         duration={400}
                         spy={true}
                         exact={true}
-                        offset={-69}
+                        offset={-59}
                         onSetActive={() => setCheatActive(false)}
                      >
                         DESCRIPTION
@@ -71,7 +74,7 @@ const Content = ({product, loading}) => {
                         duration={400}
                         spy={true}
                         exact={true}
-                        offset={-69}
+                        offset={-59}
                         onSetActive={() => setCheatActive(false)}
                      >
                         DETAILS
@@ -81,11 +84,11 @@ const Content = ({product, loading}) => {
             </nav>
          </div>
 
-         {!isSticky ? <div style={{height: '70px'}}></div> : null}
+         {!isSticky ? <div style={{height: '60px'}}></div> : null}
          
          <StyledContent>
             <Element name="highlights" style={{ position: 'relative' }}>
-               <div ref={navRef} style={{ position: 'absolute', top: '-71px', left: 0}}></div>
+               <StickyPointer ref={navRef}></StickyPointer>
                <Highlights />
             </Element>
 

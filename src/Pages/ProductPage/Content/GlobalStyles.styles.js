@@ -1,13 +1,18 @@
 import styled from "styled-components"
 
 export const Wrapper = styled.article`
-   padding: 90px 0px 90px 30px;
+   padding: 60px 0px 60px 30px;
    opacity: 0;
    transform: translateY(50px);
+
+   @media (max-width: 1000px){
+      padding: 40px 0px 40px 30px;
+   }
 `
 
 export const StyledTitle = styled.h2`
-   font-size: 30px;
+   font-size: ${({theme}) => theme.fontSize.l};
+
 `
 
 export const StyledContent = styled.div`
@@ -25,15 +30,22 @@ export const StyledContent = styled.div`
       }
 
       p{
-         line-height: 1.5;
+         line-height: 1.6;
+         font-size: ${({theme}) => theme.fontSize.xs};
       }
    }
 
    h3{
       padding: 30px 0;
       padding-bottom: ${({isDesc}) => isDesc ? '30px' : '10px'};
-      font-size: 20px;
+      font-size: ${({theme}) => theme.fontSize.xxs};
       font-style: italic;
       line-height: 1;
+   }
+
+   @media (max-width: 1300px){
+      h3{
+         font-size: ${({theme}) => theme.fontSize.xs};
+      }
    }
 `

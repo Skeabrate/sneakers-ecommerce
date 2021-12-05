@@ -3,7 +3,6 @@ import styled from "styled-components"
 export const StyledCart = styled.div`
    display: flex;
    align-items: center;
-   margin-top: 20px;
 
    p{
       display: flex;
@@ -19,6 +18,10 @@ export const StyledCart = styled.div`
       align-items: center;
       border: none; 
       gap: 10px;  
+   }
+
+   @media (max-width: 1000px){
+      margin: 30px 0;
    }
 `
 

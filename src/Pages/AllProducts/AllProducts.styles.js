@@ -11,16 +11,25 @@ export const StyledTitle = styled.div`
    display: flex;
    justify-content: space-between;
    align-items: center;
-   margin: 40px 0;
    overflow: hidden;
+   margin: 40px 0;
+
+   @media (max-width: 1000px){
+      margin: 30px 0;
+   }
+
+   @media (max-width: 750px){
+      margin: 20px 0;
+   }
 `
 
 export const StyledTitleWrapper = styled.div`
    transform: translateY(100%);
    position: relative;
+   
 
    h1{
-      font-size: ${({theme}) => theme.fontSize.xl};
+      font-size: ${({theme}) => theme.fontSize.xxl};
       font-style: italic;
    }
 
@@ -30,10 +39,33 @@ export const StyledTitleWrapper = styled.div`
       left: 280px;
       bottom: 9px;
       z-index: 9999;
-      font-size: 12px;
+      font-size: ${({theme}) => theme.fontSize.s};
       font-weight: normal;
       font-style: italic;
       opacity: 0;
+   }
+
+   @media (max-width: 1000px){
+      h1{
+         font-size: ${({theme}) => theme.fontSize.xl};
+      }
+
+      span{
+         left: 240px;
+         bottom: 8px;
+      }
+   }
+
+   @media (max-width: 750px){
+      h1{
+         font-size: ${({theme}) => theme.fontSize.l};
+      }
+
+      span{
+         left: 180px;
+         bottom: 5px;
+         font-size: ${({theme}) => theme.fontSize.micro};
+      }
    }
 `
 
@@ -48,16 +80,12 @@ export const StyledContent = styled.div`
    gap: 20px;
    opacity: 0;
 
-   @media (max-width: 1400px){
+   @media (max-width: 1000px){
       grid-template-columns: repeat(3, 1fr);
    }
 
-   @media (max-width: 1100px){
+   @media (max-width: 600px){
       grid-template-columns: 1fr 1fr;
-   }
-
-   @media (max-width: 650px){
-      grid-template-columns: 1fr;
    }
 `
 
@@ -98,33 +126,8 @@ export const StyledImage = styled.div`
       transform: scale(1.1);
    }
 
-   button{
-      position: absolute;
-      top: 15px;
-      width: 80px;
-      height: 80px;
-      right: 10px;
-      border: none; 
-      border-radius: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      line-height: 1rem;
-      font-size: ${({theme}) => theme.fontSize.s};
-      background-color: ${({theme}) => theme.colors.black};
-      color: ${({theme}) => theme.colors.white};
-      opacity: 0;
-
-      transition: transform .2s ease-in-out, opacity .1s ease-in-out;
-
-      @media(max-width: 1100px){
-         display: none;
-      }
-   }
-
    div{
-      font-size: ${({theme}) => theme.fontSize.s};
+      font-size: ${({theme}) => theme.fontSize.xs};
       padding: 8px 10px;
       position: absolute;
       background-color: ${({theme}) => theme.colors.black};
@@ -142,23 +145,31 @@ export const StyledImage = styled.div`
       transform: translateY(-10px);
    }
 
-   &:hover button{
-      opacity: 1;
-      transform: translateY(-5px);
-   }
-
-   button:hover{
-      transform: translateY(-5px) scale(1.1);
+   @media (max-width: 1000px){
+      div{
+         padding: 4px 10px;
+         width: 45px;
+         font-size: ${({theme}) => theme.fontSize.s};
+      }
    }
 `
 
 export const StyledItemTitle = styled.h3`
-   font-size: ${({theme}) => theme.fontSize.l};
+   font-size: ${({theme}) => theme.fontSize.xxs};
+
+   @media (max-width: 1000px){
+      font-size: ${({theme}) => theme.fontSize.xs};
+   }
 `
 
 export const StyledCategory = styled.h4`
    color: ${({theme}) => theme.colors.lightGrey};
+   font-size: ${({theme}) => theme.fontSize.xs};
    font-style: italic;
+
+   @media (max-width: 1000px){
+      font-size: ${({theme}) => theme.fontSize.s};
+   }
 `
 
 export const StyledError = styled.div`
@@ -172,6 +183,12 @@ export const StyledError = styled.div`
       font-style: italic;
       font-size: ${({theme}) => theme.fontSize.error};
       color: ${({theme}) => theme.colors.lightGrey};
+   }
+
+   @media (max-width: 1000px){
+      h1{
+         font-size: ${({theme}) => theme.fontSize.xl};
+      }
    }
 `
 

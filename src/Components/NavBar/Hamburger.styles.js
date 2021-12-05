@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export const StyledHamburger = styled.button`
    display: none;
-   @media (max-width: 800px) {
+   @media (max-width: 750px) {
       padding: 10px;
       cursor: pointer;
       display: inline-block;

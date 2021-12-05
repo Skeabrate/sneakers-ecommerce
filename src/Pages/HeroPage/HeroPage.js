@@ -41,16 +41,16 @@ const HeroPage = ({setIsHero}) => {
             })
             .to(textBackgroundRef.current, {
                opacity: 0.2,
-               duration: .2,
+               duration: .6,
             })
             .to(titleWrapperRef.current, {
                boxShadow: '0px 0px 60px -25px rgba(0, 0, 0, 1)',
-               duration: .4,
-            }, "-=.2s")
+               duration: .6,
+            }, "-=.6s")
             .to([textRef1.current, textRef2.current], {
                y: 0,
                duration: .5,
-               stagger: .2,
+               stagger: .1,
             }, "-=.4s")
             .to(btnRef.current, {
                scale: 1,

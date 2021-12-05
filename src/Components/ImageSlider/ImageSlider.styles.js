@@ -3,12 +3,12 @@ import { css } from "styled-components"
 
 export const StyledSlider = styled.div`
    background-color: #EBEEEF;
-   height: ${({isQuickView}) => isQuickView ? '70vh' : '80vh'};
+   height: 700px;
    position: relative;
    overflow: hidden;
 
    &::after{
-      display: ${({isQuickView}) => isQuickView ? 'none' : 'block'};
+      display: block;
       content: 'RECYCLED MATERIALS';
       font-weight: bold;
       position: absolute;
@@ -28,14 +28,14 @@ export const StyledImage = styled.div`
    position: absolute;
    top: 50%;
    left: 50%;
-   width: ${({isQuickView}) => isQuickView ? '550px' : '700px'};
-   height: ${({isQuickView}) => isQuickView ? '550px' : '700px'};
+   width: 700px;
+   height: 700px;
    display: flex;
-   gap: ${({isQuickView}) => isQuickView ? '550px' : '700px'};
+   gap: 700px;
    transform: translate(-50%, -50%);
 
    img{
-      height: ${({isQuickView}) => isQuickView ? '550px' : '700px'};
+      height: 700px;
       transform: ${({current}) => current ? `translateX(-${current * 200}%)` : 'translateX(0)'};
       transition: transform .6s cubic-bezier(0.3,0,0,1);
    }

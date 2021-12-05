@@ -18,7 +18,7 @@ export const useSticky = (ref, refEnd) => {
       return {
          root: null,
          rootMargin: '0px',
-         threshold: 1,
+         threshold: 0,
       }
    }, [])
 

@@ -1,20 +1,28 @@
 import React, { useEffect, useRef, useState, useContext } from 'react';
 import gsap from 'gsap';
-import { Wrapper, StyledLoading, StyledError, StyledPlaceholder, StyledTitle, StyledTitleWrapper, StyledContent, StyledImage, StyledItem, StyledItemTitle, StyledCategory, StyledLink } from './AllProducts.styles';
-import QuickView from '../../Components/QuickView/QuickView';
 import placeholder from "../../Assets/Images/placeholder.png"
 import LoadingScreen from '../../Components/LoadingScreen/LoadingScreen';
 import FiltersBar from './FiltersBar/FiltersBar';
 import SearchBar from '../../Components/SearchBar/SearchBar';
 import ProductsContext from '../../Context/productsContext';
+import { 
+   Wrapper,
+   StyledLoading, 
+   StyledError, 
+   StyledPlaceholder, 
+   StyledTitle, 
+   StyledTitleWrapper, 
+   StyledContent, 
+   StyledImage, 
+   StyledItem, 
+   StyledItemTitle, 
+   StyledCategory, 
+   StyledLink } from './AllProducts.styles';
 
 const AllProducts = ({AllProducts}) => {
    const { productsCtx, loadingCtx } = useContext(ProductsContext)
 
-   const [selectedProduct, setSelectedProduct] = useState(false)
-   const [modalIsOpen, setIsOpen] = useState(false)
    const [loadedImg, setLoadedImg] = useState(false)
-
    const [error, setError] = useState(false)
 
    const t1 = useRef(null)
@@ -33,12 +41,12 @@ const AllProducts = ({AllProducts}) => {
          t1.current
             .to(contentTitleRef.current, {
                y: 0,
-               duration: .5,
+               duration: .6,
             })
             .to(searchBarRef.current, {
                width: 'auto',
-               duration: .5,
-            }, "-=.5") 
+               duration: .6,
+            }) 
       }
    }, [])
 
@@ -68,17 +76,6 @@ const AllProducts = ({AllProducts}) => {
    }, [productsCtx])
 
    const handleChangeLoad = (index) => setLoadedImg({...loadedImg, [index]: {...loadedImg[index], isLoaded: true}})
-
-   const handleQuickView = (e, id) => {
-      e.preventDefault()
-      setIsOpen(true)
-      setSelectedProduct(productsCtx.find(item => item.id === id))
-   }
-
-   const handleCloseView = () => {
-      setIsOpen(false)
-      setSelectedProduct(false)
-   }
 
    return (
       <Wrapper>
@@ -130,11 +127,6 @@ const AllProducts = ({AllProducts}) => {
                                                 onLoad={() => handleChangeLoad(props)}
                                              />
                                              <div>${price}</div>
-                                             <button
-                                                onClick={(e) => handleQuickView(e, id)}
-                                             >
-                                                Quick <br /> view
-                                             </button>
                                           </StyledImage>
                                        </>
                                     ) : null}
@@ -154,14 +146,6 @@ const AllProducts = ({AllProducts}) => {
                </StyledLoading>
             )}
          </article>
-
-         {selectedProduct ? (
-            <QuickView
-               isOpen={modalIsOpen}
-               onRequestClose={handleCloseView}
-               selectedProduct={selectedProduct}
-            />
-         ) : null}
       </Wrapper>
    );
 };

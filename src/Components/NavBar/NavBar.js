@@ -19,7 +19,7 @@ const NavBar = ({isProductPage}) => {
          t1.current
             .to(navBarRef.current, {
                y: 0,
-               duration: .4,
+               duration: .6,
             })
       }
    }, [])

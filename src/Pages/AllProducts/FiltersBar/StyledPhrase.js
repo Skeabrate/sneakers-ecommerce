@@ -2,7 +2,7 @@ import React from 'react';
 import styled from "styled-components"
 
 const Wrapper = styled.div`
-   font-size: 13px;
+   font-size: ${({theme}) => theme.fontSize.xs};
    background-color: ${({theme}) => theme.colors.orange};
    padding: 10px;
    display: flex;
@@ -21,6 +21,10 @@ const Wrapper = styled.div`
       fill: ${({theme}) => theme.colors.white};
       width: 10px;
       height: 10px;
+   }
+
+   @media (max-width: 1000px){
+      font-size: ${({theme}) => theme.fontSize.s};
    }
 `
 

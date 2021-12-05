@@ -8,11 +8,14 @@ export const theme = {
    },
 
    fontSize: {
-      xxl: '8rem',
+      xxxl: '8rem',
       error: '5rem',
-      xl: '42px',
-      l: '1.2rem',
-      s: '1rem',
+      xxl: '42px',
+      xl: '36px',
+      l: '26px',
+      xxs: '16px',
       xs: '14px',
+      s: '12px',
+      micro: '10px',
    }
 }

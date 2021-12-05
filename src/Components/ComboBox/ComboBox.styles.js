@@ -31,6 +31,10 @@ export const StyledOptionBtn = styled.button`
       outline: none;
       border: 1px solid ${({theme}) => theme.colors.orange};
    }
+
+   @media (max-width: 1000px) {
+      font-size: ${({theme}) => theme.fontSize.s};
+   }
 `
 
 export const StyledList = styled.ul`

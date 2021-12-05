@@ -14,7 +14,7 @@ export const StyledHeroImage = styled.div`
    justify-content: flex-end;
    align-items: center;
    flex-direction: column;
-   gap: 7rem;
+   gap: 15vh;
    background: url(${({hero}) => hero}) center/cover no-repeat;
    opacity: 0.6;
    transform: scale(1.2);
@@ -23,11 +23,11 @@ export const StyledHeroImage = styled.div`
 export const StyledTitleWrapper = styled.div`
    position: relative;
    transform: rotate(-25deg);
-   font-size: ${({theme}) => theme.fontSize.xxl};
+   font-size: ${({theme}) => theme.fontSize.xxxl};
    font-weight: bold;
    color: ${({theme}) => theme.colors.white};
-   text-shadow: 5px 5px 5px black;
-   line-height: 0.98;
+   text-shadow: 6px 6px black;
+   line-height: 0.9;
    border-radius: 100px;
 
    div{
@@ -40,6 +40,16 @@ export const StyledTitleWrapper = styled.div`
       z-index: -1;
       opacity: 0;
       border-radius: 100px; 
+   }
+
+   @media (max-width: 1000px){
+      font-size: 6rem;
+      text-shadow: 5px 5px black;
+   }
+
+   @media (max-width: 750px){
+      font-size: 5rem;
+      text-shadow: 5px 5px black;
    }
 `
 
@@ -97,12 +107,42 @@ export const StyledButton = styled.button`
       transform: translate(-50%, -50%);
       background-color: ${({theme}) => theme.colors.black};
       border-radius: 100%;
-      box-shadow: 0px 0px 50px -20px black; 
+      box-shadow: 0px 0px 10px 0px black; 
 
       transition: transform .2s ease-in-out;
    }
 
    &:hover span::before{
       transform: translate(-50%, -50%) scale(1.1);
+   }
+
+   @media (max-width: 1000px){
+      width: 125px;
+      height: 125px;
+
+      span{
+         width: 125px;
+         height: 125px;
+      }
+
+      span::before{
+         width: 125px;
+         height: 125px;
+      }
+   }
+
+   @media (max-width: 750px){
+      width: 110px;
+      height: 110px;
+
+      span{
+         width: 110px;
+         height: 110px;
+      }
+
+      span::before{
+         width: 110px;
+         height: 110px;
+      }
    }
 `

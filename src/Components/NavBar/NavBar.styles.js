@@ -13,11 +13,16 @@ export const Wrapper = styled.div`
    background-color: black;
    color: ${({theme}) => theme.colors.white};
    height: 80px;
-   font-size: ${({theme}) => theme.fontSize.s};
+   font-size: ${({theme}) => theme.fontSize.xxs};
    transform: translateY(-100%);
    z-index: 9999;
 
-   @media (max-width: 800px){
+   @media (max-width: 1000px){
+      font-size: ${({theme}) => theme.fontSize.xs};
+   }
+
+   @media (max-width: 750px){
+      font-size: ${({theme}) => theme.fontSize.l};
       position: fixed;
    }
 `
@@ -44,6 +49,10 @@ export const StyledLogo = styled(Link)`
    color: ${({theme}) =>theme.colors.white};
    font-family: 'Shadows Into Light', cursive;
    font-weight: bold;
+
+   @media (max-width: 750px){
+      font-size: 30px;
+   }
 `
 
 export const StyledNav = styled.div`
@@ -52,17 +61,28 @@ export const StyledNav = styled.div`
 
    transition: transform .3s ease-in-out;
 
-   @media (max-width: 800px){   
+   @media (max-width: 750px){   
       flex-direction: column;
       justify-content: space-around;
       align-items: center;
       position: fixed;
-      background-color: black;
       width: 100%;
-      height: calc(100vh - 100px);
-      top: 100px;
+      height: calc(100vh - 80px);
+      top: 80px;
       left: 0;
       transform: ${({isToggled}) => isToggled ? 'translateX(0)' : 'translateX(-100%)'};
+
+      &::after{
+         content: '';
+         position: fixed;
+         background-color: black;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         z-index: -1;
+         opacity: 0.8;
+      }
    }
 `
 
@@ -100,12 +120,14 @@ export const StyledNavItem = styled(NavLink)`
       opacity: 1;
    }
 
-   @media (max-width: 800px){
+   @media (max-width: 750px){
       background-color: ${({theme}) => theme.colors.black};
       width: 95vw;
       height: 15vh;
-      font-size: 1.5rem;
       margin-right: 0;
+      align-items: center;
+      padding-bottom: 0;
+      font-weight: bold;
 
       &.active::after {
          opacity: 0;
