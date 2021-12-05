@@ -124,6 +124,10 @@ export const StyledSizesAndInfo = styled.div`
       display: grid;
       grid-template-columns: 1fr 1fr;
    }
+
+   @media (max-width: 550px){
+      grid-template-columns: 1fr;
+   }
 `
 
 export const StyledInfo = styled.div`

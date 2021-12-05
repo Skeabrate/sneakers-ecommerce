@@ -1,12 +1,19 @@
 import react, { useRef, useState } from 'react'
 import ImageSlider from '../../../Components/ImageSlider/ImageSlider';
-import { StyledContent, StyledList, StyledListItem, StyledLink, StyledContentWrapper, StickyPointer } from "./Content.styles"
 import { Element } from 'react-scroll'
 import { useSticky } from "../../../hooks/useSticky"
 import Highlights from "./Highlights/Highlights"
 import Description from "./Description/Description"
 import Details from "./Details/Details"
 import ShopingCart from '../ShopingCart/ShopingCart';
+import { 
+   StyledContent, 
+   StyledList, 
+   StyledListItem, 
+   StyledLink, 
+   StyledContentWrapper, 
+   StickyPointer,
+   StickyPlaceholder } from "./Content.styles"
 
 const Content = ({product, loading, isStickyBegin, isStickyEnd}) => {
    const [cheatActive, setCheatActive] = useState(false)
@@ -84,7 +91,7 @@ const Content = ({product, loading, isStickyBegin, isStickyEnd}) => {
             </nav>
          </div>
 
-         {!isSticky ? <div style={{height: '60px'}}></div> : null}
+         {!isSticky ? <StickyPlaceholder></StickyPlaceholder> : null}
          
          <StyledContent>
             <Element name="highlights" style={{ position: 'relative' }}>

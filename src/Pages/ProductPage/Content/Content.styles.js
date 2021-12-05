@@ -30,9 +30,14 @@ export const StyledList = styled.ul`
    top: 0;
    left: 0;
    z-index: 1;
+   overflow: hidden;
 
    @media (max-width: 1000px){
       width: ${({isSticky}) => isSticky ? 'unset' : '100%'};
+   }
+
+   @media (max-width: 550px){
+      position: relative;
    }
 `
 
@@ -45,11 +50,15 @@ export const StyledListItem = styled.li`
 
    span{
       ${center};
-      letter-spacing: 1px;
-      font-weight: normal;
       padding: 0 20px;
-      height: 100%;
-      font-size: ${({theme}) => theme.fontSize.xxs};
+   }
+
+   @media (max-width: 550px){
+      margin: 0 2px;
+
+      span{
+         padding: 0 10px;
+      }
    }
 `
 
@@ -72,6 +81,12 @@ export const StyledLink = styled(Link)`
       font-weight: bold;
       border-bottom: 3px solid black;
    }
+
+   @media (max-width: 550px){
+      margin: 0 2px;
+      font-size: ${({theme}) => theme.fontSize.micro};
+      padding: 0 10px;
+   }
 `
 
 export const StickyPointer = styled.div`
@@ -84,5 +99,17 @@ export const StickyPointer = styled.div`
       height: 1370px;
       top: -1431px;
       z-index: 9999;
+   }
+
+   @media (max-width: 550px){
+      display: none;
+   }
+`
+
+export const StickyPlaceholder = styled.div`
+   height: 60px;
+
+   @media (max-width: 550px){
+      display: none;
    }
 `

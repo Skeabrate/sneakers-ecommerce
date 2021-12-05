@@ -15,13 +15,13 @@ export const Wrapper = styled.div`
    height: 80px;
    font-size: ${({theme}) => theme.fontSize.xxs};
    transform: translateY(-100%);
-   z-index: 9999;
+   z-index: 99999;
 
    @media (max-width: 1000px){
       font-size: ${({theme}) => theme.fontSize.xs};
    }
 
-   @media (max-width: 750px){
+   @media (max-width: 550px){
       font-size: ${({theme}) => theme.fontSize.l};
       position: fixed;
    }
@@ -61,7 +61,7 @@ export const StyledNav = styled.div`
 
    transition: transform .3s ease-in-out;
 
-   @media (max-width: 750px){   
+   @media (max-width: 550px){   
       flex-direction: column;
       justify-content: space-around;
       align-items: center;
@@ -120,7 +120,7 @@ export const StyledNavItem = styled(NavLink)`
       opacity: 1;
    }
 
-   @media (max-width: 750px){
+   @media (max-width: 550px){
       background-color: ${({theme}) => theme.colors.black};
       width: 95vw;
       height: 15vh;
@@ -134,8 +134,8 @@ export const StyledNavItem = styled(NavLink)`
       }
 
       &:hover::after{
-      opacity: 1;
-   }
+         opacity: 1;
+      }
    }
 `
 

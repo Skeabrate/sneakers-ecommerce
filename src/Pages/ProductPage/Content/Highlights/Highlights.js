@@ -12,7 +12,7 @@ const Highlights = () => {
             <StyledTitle>HIGHLIGHTS</StyledTitle>
          </header>
 
-         <StyledContent count={4}>
+         <StyledContent count={4} isHigh>
             <div>
                <h3>ADIDAS 4D MIDSOLE</h3>
                <p>Precisely-coded performance zones combine our best stability, best comfort and best absorption so you can conquer the unpredictable city streets.</p>

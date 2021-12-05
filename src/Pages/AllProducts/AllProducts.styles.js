@@ -35,7 +35,7 @@ export const StyledTitleWrapper = styled.div`
 
    span{
       position: absolute;
-      width: fit-content;
+      width: 40px;
       left: 280px;
       bottom: 9px;
       z-index: 9999;
@@ -82,6 +82,7 @@ export const StyledContent = styled.div`
 
    @media (max-width: 1000px){
       grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
    }
 
    @media (max-width: 600px){
@@ -93,6 +94,10 @@ export const StyledItem = styled.div`
    display: block;
    margin-bottom: 60px;
    cursor: pointer;
+
+   @media (max-width: 600px){
+      margin-bottom: 40px;
+   }
 `
 
 export const StyledPlaceholder = styled.div`

@@ -15,12 +15,32 @@ export const StyledSlider = styled.div`
       background-color: white;
       color: ${({theme}) => theme.colors.lightGrey};
       padding: 5px 8px;
-      font-size: 14px;
+      font-size: ${({theme}) => theme.fontSize.xs};
       right: -85px;
       top: 140px;
       transform: rotate(-90deg);
       letter-spacing: 3px;
       z-index: 0;
+   }
+
+   @media (max-width: 550px){
+      margin-top: 80px;
+      height: 400px;
+
+      &::after{
+         display: block;
+         content: 'RECYCLED MATERIALS';
+         font-weight: bold;
+         position: absolute;
+         background-color: white;
+         color: ${({theme}) => theme.colors.lightGrey};
+         padding: 5px 8px;
+         font-size: ${({theme}) => theme.fontSize.micro};
+         right: -58px;
+         top: 70px;
+         transform: rotate(-90deg);
+         letter-spacing: 1px;
+      }
    }
 `
 
@@ -39,6 +59,24 @@ export const StyledImage = styled.div`
       transform: ${({current}) => current ? `translateX(-${current * 200}%)` : 'translateX(0)'};
       transition: transform .6s cubic-bezier(0.3,0,0,1);
    }
+
+   @media (max-width: 550px) {
+      width: 400px;
+      height: 400px;
+      gap: 400px;
+
+      img{
+         height: 400px;
+      }
+   }
+
+   @media (max-width: 350px) {
+      width: 300px;
+
+      img{
+         height: 300px;
+      }
+   }
 `
 
 const arrowBtns = css`
@@ -51,16 +89,28 @@ const arrowBtns = css`
    padding: 10px 20px;
    border: 2px solid ${({ theme }) => theme.colors.grey};
    z-index: 1;
+
+   @media (max-width: 550px) {
+      padding: 5px 10px;
+   }
 `
 
 export const StyledBtnPrev = styled.button`
    ${arrowBtns}
    left: 30px;
+
+   @media (max-width: 550px) {
+      left: 10px;
+   }
 `
 
 export const StyledBtnNext = styled.button`
    ${arrowBtns}
    right: 30px;
+
+   @media (max-width: 550px) {
+      right: 10px;
+   }
 `
 
 export const StyledLegend = styled.div`
