@@ -26,6 +26,10 @@ const Wrapper = styled.div`
    @media (max-width: 1000px){
       font-size: ${({theme}) => theme.fontSize.s};
    }
+
+   @media (max-width: 550px) {
+      font-size: ${({theme}) => theme.fontSize.micro};
+   }
 `
 
 const StyledPhrase = ({label, resetHandler}) => {

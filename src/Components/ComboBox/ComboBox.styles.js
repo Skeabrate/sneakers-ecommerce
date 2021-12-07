@@ -35,6 +35,11 @@ export const StyledOptionBtn = styled.button`
    @media (max-width: 1000px) {
       font-size: ${({theme}) => theme.fontSize.s};
    }
+
+   @media (max-width: 550px) {
+      font-size: ${({theme}) => theme.fontSize.micro};
+      padding: 5px 25px 5px 8px;
+   }
 `
 
 export const StyledList = styled.ul`
@@ -77,5 +82,13 @@ export const StyledList = styled.ul`
    ::-webkit-scrollbar-thumb {
       background: linear-gradient(180deg, #D0368A 0%, ${({theme}) => theme.colors.orange} 99%);
       border-radius: 100px;
+   }
+
+   @media (max-width: 1000px) {
+      font-size: ${({theme}) => theme.fontSize.s};
+   }
+
+   @media (max-width: 550px) {
+      font-size: ${({theme}) => theme.fontSize.micro};
    }
 `

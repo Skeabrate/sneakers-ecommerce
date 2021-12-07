@@ -110,8 +110,12 @@ export const StyledSize = styled.div`
       width: 100%;
    }
 
-   &:hover{
-      background-color: ${({theme}) => theme.colors.orange};
+   
+
+   @media (min-width: 550px){
+      &:hover{
+         background-color: ${({theme}) => theme.colors.orange};
+      }
    }
 `
 

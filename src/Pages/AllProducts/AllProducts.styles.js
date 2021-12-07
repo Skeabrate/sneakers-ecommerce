@@ -16,6 +16,7 @@ export const StyledTitle = styled.div`
    justify-content: space-between;
    align-items: center;
    overflow: hidden;
+   
    margin: 0 0 40px 0;
 
    @media (max-width: 1000px){
@@ -24,6 +25,11 @@ export const StyledTitle = styled.div`
 
    @media (max-width: 750px){
       margin: 20px 0;
+   }
+
+   @media (max-width: 550px){
+      flex-direction: column;
+      align-items: start;
    }
 `
 
@@ -131,10 +137,6 @@ export const StyledImage = styled.div`
       position: ${({isLoaded}) => isLoaded ? 'relative' : 'absolute'};
    }
 
-   &:hover img{
-      transform: scale(1.1);
-   }
-
    div{
       font-size: ${({theme}) => theme.fontSize.xs};
       padding: 8px 10px;
@@ -150,15 +152,21 @@ export const StyledImage = styled.div`
       transition: transform .3s ease-in-out;
    }
 
-   &:hover div{
-      transform: translateY(-10px);
-   }
-
    @media (max-width: 1000px){
       div{
          padding: 4px 10px;
          width: 45px;
          font-size: ${({theme}) => theme.fontSize.s};
+      }
+   }
+
+   @media (min-width: 550px) {
+      &:hover div{
+         transform: translateY(-10px);
+      } 
+
+      &:hover img{
+         transform: scale(1.1);
       }
    }
 `

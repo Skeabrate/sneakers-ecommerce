@@ -14,7 +14,6 @@ export const Wrapper = styled.div`
    color: ${({theme}) => theme.colors.white};
    height: 80px;
    font-size: ${({theme}) => theme.fontSize.xxs};
-   transform: translateY(-100%);
    z-index: 99999;
 
    @media (max-width: 1000px){

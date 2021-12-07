@@ -1,31 +1,14 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import avatarImg from "../../Assets/Images/image-avatar.png"
 import { Wrapper, StyledNav, StyledLogo, StyledTitleWrapper, StyledTitle, StyledNavItem, StyledCart, StyledCartItem } from "./NavBar.styles"
 import { StyledHamburger, StyledHamburgerWrapper, StyledHamburgerInner } from "./Hamburger.styles"
-import gsap from 'gsap';
-
 const NavBar = ({isProductPage}) => {
    const [toggle, setToggle] = useState(false)
 
    const toggleMenu = () => setToggle(!toggle)
 
-   const t1 = useRef(null)
-   const navBarRef = useRef(null)
-
-   useEffect(() => {
-      t1.current = gsap.timeline()
-
-      if(t1.current) {
-         t1.current
-            .to(navBarRef.current, {
-               y: 0,
-               duration: .6,
-            })
-      }
-   }, [])
-
    return (
-      <Wrapper ref={navBarRef} isProductPage={isProductPage}>
+      <Wrapper isProductPage={isProductPage}>
          <StyledTitleWrapper>
 
             <StyledTitle>

@@ -140,12 +140,18 @@ export const StyledButton = styled.button`
 
    img{
       position: absolute;
-      transform: ${({ isHovered }) => isHovered ? 'translateY(0)' : 'translateY(100%)'} ;
+      
       bottom: 0;
       width: 100%;
       height: 100%;
       transition: transform .15s ease-in-out;
       border: 1px solid black;
       border-bottom: none;
+   }
+
+   @media (min-width: 550px) {
+      img{
+         transform: ${({ isHovered }) => isHovered ? 'translateY(0)' : 'translateY(100%)'};
+      }
    }
 `

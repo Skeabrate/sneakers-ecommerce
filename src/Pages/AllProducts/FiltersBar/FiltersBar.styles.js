@@ -41,6 +41,7 @@ export const StyledActiveFilters = styled.div`
    align-items: center;
    height: 58px;
    position: relative;
+
 `
 
 export const FiltersPlaceholder = styled.div`

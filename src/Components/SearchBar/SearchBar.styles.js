@@ -5,13 +5,17 @@ export const Wrapper = styled.div`
    justify-content: center;
    align-items: center;
    position: relative;
+
+   @media (max-width: 550px){
+      margin-top: 20px;
+   }
 `
 
 export const StyledAnimation = styled.div`
    position: absolute;
    bottom: 0;
    left: 0;
-   height: 1px;
+   height: 2px;
    width: calc(100% - 62px);
    background-color: ${({theme}) => theme.colors.orange};
    transform: ${({isFocused}) => isFocused ? 'scaleX(1)' : 'scaleX(0)'};
@@ -40,7 +44,7 @@ export const StyledInput = styled.input`
 export const StyledSearchBtn = styled.button`
    width: 52px;
    height: 52px;
-   background-color: ${({theme}) => theme.colors.grey};;
+   background-color: ${({theme}) => theme.colors.grey};
    border: none;
    transition: background-color .1s ease-in-out;
 
@@ -50,11 +54,13 @@ export const StyledSearchBtn = styled.button`
       transition: transform .1s ease-in-out;
    }
 
-   &:hover{
-      background-color: ${({theme}) => theme.colors.orange};
-   }
+   @media (min-width: 550px){
+      &:hover{
+         background-color: ${({theme}) => theme.colors.orange};
+      }
 
-   &:hover svg{
-      transform: scale(0.9);
+      &:hover svg{
+         transform: scale(0.9);
+      }
    }
 `
