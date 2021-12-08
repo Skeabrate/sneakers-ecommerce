@@ -35,24 +35,19 @@ export const StyledTitle = styled.div`
 
 export const StyledTitleWrapper = styled.div`
    transform: translateY(100%);
-   position: relative;
-   
+   display: flex;
+   align-items: flex-end;
+   justify-content: center;
+   font-style: italic;
 
    h1{
       font-size: ${({theme}) => theme.fontSize.xxl};
-      font-style: italic;
    }
 
    span{
-      position: absolute;
-      width: 40px;
-      left: 280px;
-      bottom: 9px;
-      z-index: 9999;
       font-size: ${({theme}) => theme.fontSize.s};
-      font-weight: normal;
-      font-style: italic;
       opacity: 0;
+      padding: 10px 20px;
    }
 
    @media (max-width: 1000px){
@@ -61,8 +56,7 @@ export const StyledTitleWrapper = styled.div`
       }
 
       span{
-         left: 240px;
-         bottom: 8px;
+         padding: 8px 20px;
       }
    }
 
@@ -72,9 +66,8 @@ export const StyledTitleWrapper = styled.div`
       }
 
       span{
-         left: 180px;
-         bottom: 5px;
          font-size: ${({theme}) => theme.fontSize.micro};
+         padding: 5px 15px;
       }
    }
 `

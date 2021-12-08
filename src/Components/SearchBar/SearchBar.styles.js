@@ -35,6 +35,7 @@ export const StyledInput = styled.input`
    margin-right: 10px;
    transform-origin: right;
    width: 80px;
+   border-radius: 0px;
 
    &:focus {
       outline: none;

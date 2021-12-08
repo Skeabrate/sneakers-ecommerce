@@ -24,7 +24,7 @@ export const StyledTitle = styled.h2`
    &::after{
       position: absolute;
       content: '';
-      width: 110%;
+      width: 105%;
       height: 3px;
       background-color: ${({theme}) => theme.colors.orange};
       bottom: 0;

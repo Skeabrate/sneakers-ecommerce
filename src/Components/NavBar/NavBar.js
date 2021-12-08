@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import avatarImg from "../../Assets/Images/image-avatar.png"
 import { Wrapper, StyledNav, StyledLogo, StyledTitleWrapper, StyledTitle, StyledNavItem, StyledCart, StyledCartItem } from "./NavBar.styles"
-import { StyledHamburger, StyledHamburgerWrapper, StyledHamburgerInner } from "./Hamburger.styles"
+import { 
+   StyledHamburger, 
+   StyledHamburgerWrapper, 
+   StyledHamburgerInner } from "./Hamburger.styles"
+
 const NavBar = ({isProductPage}) => {
    const [toggle, setToggle] = useState(false)
 

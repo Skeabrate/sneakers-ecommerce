@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 
 export const Wrapper = styled.div`
    width: 100vw;
@@ -11,55 +11,63 @@ export const StyledHeroImage = styled.div`
    width: 100%;
    height: 100%;
    display: flex;
-   justify-content: flex-end;
    align-items: center;
    flex-direction: column;
-   gap: 15vh;
    background: url(${({hero}) => hero}) center/cover no-repeat;
    opacity: 0.6;
    transform: scale(1.2);
+   position: relative;
 `
 
 export const StyledTitleWrapper = styled.div`
-   position: relative;
    transform: rotate(-25deg);
-   font-size: ${({theme}) => theme.fontSize.xxxl};
+   font-size: 13vh;
    font-weight: bold;
    color: ${({theme}) => theme.colors.white};
-   text-shadow: 6px 6px black;
+   text-shadow: 0.6vh 0.6vh black;
    line-height: 0.9;
-   border-radius: 100px;
+   border-radius: 5vh;
+   position: absolute;
+   top: 25%;
 
    div{
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 70%;
+      height: 70%;
       background-color: black;
       z-index: -1;
       opacity: 0;
-      border-radius: 100px; 
+      border-radius: 5vh;
+
+      &::after{
+         content: '';
+         position: absolute;
+         top: 1%;
+         left: 1%;
+         width: 98%;
+         height: 98%;
+         border-radius: 5vh;
+         box-shadow: 0px 0px 8vh 10vh rgba(0, 0, 0, 1);
+      }
+
    }
 
-   @media (max-width: 1000px){
-      font-size: 6rem;
-      text-shadow: 5px 5px black;
-   }
-
-   @media (max-width: 750px){
-      font-size: 5rem;
-      text-shadow: 5px 5px black;
+   @media(max-width: 550px){
+      font-size: 9vh;
+      letter-spacing: -3px;
    }
 `
 
 export const StyledTitle = styled.span`
-   padding: 0 20px;
+   padding: 0 2vh;
    overflow: hidden;
    display: block;
 
    &:nth-child(2) {
-      padding-bottom: 30px;
+      padding-bottom: 3vh;
    }
 
    span{
@@ -68,26 +76,29 @@ export const StyledTitle = styled.span`
    }
 `
 
+const buttonStyle = css`
+   width: 15vh;
+   height: 15vh;
+`
+
 export const StyledButton = styled.button`
-   margin-bottom: 10vw;
+   ${buttonStyle};
    font-family: 'Shadows Into Light', cursive;
    display: block;
    font-weight: bold;
-   position: relative;
-   width: 140px;
-   height: 140px;
    border-radius: 100%;
    border: none;
    background-color: transparent;
-   font-size: ${({theme}) => theme.fontSize.l};
+   font-size: 3vh;
    color: ${({theme}) => theme.colors.white};
    transform: scale(0);
    cursor: pointer;
+   position: absolute;
+   bottom: 14%;
 
    span{
+      ${buttonStyle};
       position: absolute;
-      width: 140px;
-      height: 140px;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
@@ -98,16 +109,15 @@ export const StyledButton = styled.button`
    }
 
    span::before{
+      ${buttonStyle};
       content: "";
       position: absolute;
-      width: 140px;
-      height: 140px;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       background-color: ${({theme}) => theme.colors.black};
       border-radius: 100%;
-      box-shadow: 0px 0px 10px 0px black; 
+      box-shadow: 0 0 1vh 0 black; 
 
       transition: transform .2s ease-in-out;
    }
@@ -116,33 +126,8 @@ export const StyledButton = styled.button`
       transform: translate(-50%, -50%) scale(1.1);
    }
 
-   @media (max-width: 1000px){
-      width: 125px;
-      height: 125px;
-
-      span{
-         width: 125px;
-         height: 125px;
-      }
-
-      span::before{
-         width: 125px;
-         height: 125px;
-      }
-   }
-
-   @media (max-width: 750px){
-      width: 110px;
-      height: 110px;
-
-      span{
-         width: 110px;
-         height: 110px;
-      }
-
-      span::before{
-         width: 110px;
-         height: 110px;
-      }
+   @media(max-width: 550px){
+      letter-spacing: -1px;
+      bottom: 20%;
    }
 `

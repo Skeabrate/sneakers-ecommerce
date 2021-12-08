@@ -15,15 +15,18 @@ export const Wrapper = styled.div`
    height: 80px;
    font-size: ${({theme}) => theme.fontSize.xxs};
    z-index: 99999;
+   
 
    @media (max-width: 1000px){
       font-size: ${({theme}) => theme.fontSize.xs};
    }
 
    @media (max-width: 550px){
-      font-size: ${({theme}) => theme.fontSize.l};
+      
+      font-size: 18px;
       position: fixed;
       height: 60px;
+      
    }
 `
 
@@ -39,7 +42,6 @@ export const StyledTitle = styled.div`
    align-items: center;
    gap: 10px;
    margin-right: 8vw;
-   font-family: 'Shadows Into Light', cursive;
 `
 
 export const StyledLogo = styled(Link)`
@@ -67,7 +69,7 @@ export const StyledNav = styled.div`
 
    @media (max-width: 550px){   
       flex-direction: column;
-      justify-content: space-around;
+      justify-content: flex-start;
       align-items: center;
       position: fixed;
       width: 100%;
@@ -101,7 +103,7 @@ export const StyledNavItem = styled(NavLink)`
    cursor: pointer;
    text-decoration: none;
    color: ${({theme}) => theme.colors.white};
-
+   font-weight: bold;
    
    &::after{
       content: '';
@@ -128,17 +130,21 @@ export const StyledNavItem = styled(NavLink)`
       background-color: ${({theme}) => theme.colors.black};
       width: 95vw;
       height: 15vh;
-      margin-right: 0;
-      align-items: center;
       padding-bottom: 0;
+      margin: 2vh 0 0;
+      align-items: center;
       font-weight: bold;
+      opacity: 0;
+
+      transform: scaleY(0);
+      transform-origin: top;
 
       &.active::after {
          opacity: 0;
       }
 
       &:hover::after{
-         opacity: 1;
+         opacity: 0;
       }
    }
 `
