@@ -93,7 +93,7 @@ const ShopingCart = ({isStickyBegin, isStickyEnd, product, loading}) => {
 
          </StyledSizesAndInfo>
 
-            <AddToCartBtn currentSize={size} />
+            <AddToCartBtn currentSize={size} product={product} />
          
       </StyledShopp>
    );

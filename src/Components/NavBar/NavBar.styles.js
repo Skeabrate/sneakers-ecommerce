@@ -1,5 +1,5 @@
 import { Link, NavLink } from "react-router-dom"
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 
 export const Wrapper = styled.div`
    position: ${({isProductPage}) => isProductPage ? 'unset' : 'fixed'};
@@ -134,10 +134,20 @@ export const StyledNavItem = styled(NavLink)`
       margin: 2vh 0 0;
       align-items: center;
       font-weight: bold;
-      opacity: 0;
-
-      transform: scaleY(0);
       transform-origin: top;
+      opacity: ${({isToggled}) => isToggled ? 1 : 0};
+      transform: ${({isToggled}) => isToggled ? 'scaleY(1)' : 'scaleY(0)'};
+
+      transition: opacity ${({isFirst, isSecond}) => {
+                     if(isFirst) return '.4s .1s ease-in-out'
+                     if(isSecond) return '.4s .2s ease-in-out'
+                     else return '.4s .3s ease-in-out'
+                  }}, 
+                  transform ${({isFirst, isSecond}) => {
+                     if(isFirst) return '.2s .2s ease-in-out'
+                     if(isSecond) return '.2s .3s ease-in-out'
+                     else return '.2s .4s ease-in-out'
+                  }};
 
       &.active::after {
          opacity: 0;
@@ -162,11 +172,12 @@ export const StyledCartItem = styled.div`
    justify-content: center;
    align-items: center;
    cursor: pointer;
+   position: relative;
    
    svg{
       transform: rotateY(-180deg); 
       fill: ${({theme}) => theme.colors.orange};
-      
+      z-index: 1;
    }
 
    img{
@@ -174,6 +185,23 @@ export const StyledCartItem = styled.div`
       height: 100%;
       border: 2px solid ${({theme}) => theme.colors.orange};
       border-radius: 100%;
+   }
+
+   span{
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      top: -12px;
+      right: -12px;
+      font-size: ${({theme}) => theme.fontSize.micro};
+      color: white;
+      font-weight: bold;
+      background-color: red;
+      border-radius: 100px;
+      width: 21px;
+      height: 21px;
+      z-index: 0;
    }
 
    @media (max-width: 550px){

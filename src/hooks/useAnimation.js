@@ -34,7 +34,7 @@ export const useAnimation = (ref) => {
             .to(ref, {
                opacity: 1,
                translateY: 0,
-               duration: .6,
+               duration: .8,
             })
       }
    }, [isPaused])

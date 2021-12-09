@@ -12,16 +12,11 @@ const ImageSlider = ({product, loading, isQuickView}) => {
    const t1 = useRef((null))
    const imagesRef = useRef(null)
    const legendRef = useRef(null)
-
    const sliderRef = useRef(null)
 
-   const nextImage = () => {
-      setCurrent(current === product.images.length - 1 ? 0 : current + 1) 
-   }
+   const nextImage = () => setCurrent(current === product.images.length - 1 ? 0 : current + 1) 
 
-   const prevImage = () => {
-      setCurrent(current === 0 ? product.images.length - 1 : current - 1)
-   }
+   const prevImage = () => setCurrent(current === 0 ? product.images.length - 1 : current - 1)
 
    const handleLoadImg = (index) => !index && setIsImgLoaded(true)
 
@@ -36,19 +31,13 @@ const ImageSlider = ({product, loading, isQuickView}) => {
       if(product.images){
          document.addEventListener('keydown', (e) => {
             if(e.keyCode === 39) {
-               if(newCurrent === product.images.length - 1){
-                  newCurrent = 0
-               } else {
-                  newCurrent += 1
-               }
+               if(newCurrent === product.images.length - 1) newCurrent = 0
+               else newCurrent += 1
                return setCurrent(newCurrent) 
             }
             if(e.keyCode === 37) {
-               if(newCurrent === 0){
-                  newCurrent = product.images.length - 1
-               } else {
-                  newCurrent -= 1
-               }
+               if(newCurrent === 0) newCurrent = product.images.length - 1
+               else newCurrent -= 1
                return setCurrent(newCurrent)
             }
          }, {signal: signal})
