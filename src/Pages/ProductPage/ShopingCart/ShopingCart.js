@@ -13,10 +13,14 @@ import {
    StyledTitle, 
    StyledShopp,
    StyledSizesAndInfo,
-   TitlePlaceholder } from "./ShopingCart.styles"
+   TitlePlaceholder,
+   StyledError,
+   StyledSizeAndError } from "./ShopingCart.styles"
 
 const ShopingCart = ({isStickyBegin, isStickyEnd, product, loading}) => {
    const [size, setSize] = useState(false)
+   const [error, setError] = useState(false)
+   const [isClicked, setIsClicked] = useState(false)
 
    const t1 = useRef(null)
    const productInfoRef = useRef(null)
@@ -60,19 +64,24 @@ const ShopingCart = ({isStickyBegin, isStickyEnd, product, loading}) => {
          ) : <TitlePlaceholder></TitlePlaceholder>}
 
          <StyledSizesAndInfo>
-            <div>
+
+            <StyledSizeAndError isClicked={isClicked}>
                <h3>Select size</h3>
                <StyledSizesWrapper>
                   {sizes.map(item => (
                      <StyledSize key={item} isSize={size === item}>
-                        <button onClick={() => setSize(item)}>
+                        <button onClick={() => {
+                           setSize(item)
+                           setError(false)
+                        }}>
                            {item}
                         </button>
                      </StyledSize>
 
                   ))}
                </StyledSizesWrapper>
-            </div>
+               {error ? <StyledError>Please select your size !</StyledError> : null}
+            </StyledSizeAndError>
 
             <StyledInfo>
                <StyledInfoItem first>
@@ -93,7 +102,13 @@ const ShopingCart = ({isStickyBegin, isStickyEnd, product, loading}) => {
 
          </StyledSizesAndInfo>
 
-            <AddToCartBtn currentSize={size} product={product} />
+            <AddToCartBtn 
+               size={size} 
+               product={product} 
+               setError={setError}
+               isClicked={isClicked}
+               setIsClicked={setIsClicked}
+            />
          
       </StyledShopp>
    );

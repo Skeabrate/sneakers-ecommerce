@@ -177,7 +177,6 @@ export const StyledCartItem = styled.div`
    svg{
       transform: rotateY(-180deg); 
       fill: ${({theme}) => theme.colors.orange};
-      z-index: 1;
    }
 
    img{
@@ -197,11 +196,10 @@ export const StyledCartItem = styled.div`
       font-size: ${({theme}) => theme.fontSize.micro};
       color: white;
       font-weight: bold;
-      background-color: red;
+      background-color: ${({theme}) => theme.colors.red};
       border-radius: 100px;
       width: 21px;
       height: 21px;
-      z-index: 0;
    }
 
    @media (max-width: 550px){

@@ -10,6 +10,8 @@ import Footer from '../../Components/Footer/Footer';
 import { useData } from '../../hooks/useData';
 import ProductsContext from '../../Context/productsContext';
 import FiltersContext from '../../Context/filtersContext';
+import { store } from '../../Redux/store'
+import { Provider } from "react-redux"
 
 const MainView = React.forwardRef((props, mainViewRef) => {
    const [isHero, setIsHero] = useState(false)
@@ -29,44 +31,46 @@ const MainView = React.forwardRef((props, mainViewRef) => {
    }, [products])
 
    return (
-      <Router>
-         <ProductsContext.Provider value={{
-               productsCtx: productsCtx,
-               setProductsCtx: setProductsCtx,
-               loadingCtx: loading,
-               setLoadingCtx: setLoading,
-         }}>
-            <FiltersContext.Provider value={{
-               gender: selectedGender,
-               category: selectedCategory,
-               price: selectedPrice,
-               term: selectedTerm,
-               setGender: setSelectedGender,
-               setCategory: setSelectedCategory,
-               setPrice: setSelectedPrice,
-               setTerm: setSelectedTerm,
+      <Provider store={store}>
+         <Router>
+            <ProductsContext.Provider value={{
+                  productsCtx: productsCtx,
+                  setProductsCtx: setProductsCtx,
+                  loadingCtx: loading,
+                  setLoadingCtx: setLoading,
             }}>
-               <div ref={mainViewRef}>
-                  {isHero ? null : <NavBar isProductPage={isProductPage}/>}
-                  
-                  <Routes>
-                     <Route path="/contact" element={<Contact />} />
+               <FiltersContext.Provider value={{
+                  gender: selectedGender,
+                  category: selectedCategory,
+                  price: selectedPrice,
+                  term: selectedTerm,
+                  setGender: setSelectedGender,
+                  setCategory: setSelectedCategory,
+                  setPrice: setSelectedPrice,
+                  setTerm: setSelectedTerm,
+               }}>
+                  <div ref={mainViewRef}>
+                     {isHero ? null : <NavBar isProductPage={isProductPage}/>}
+                     
+                     <Routes>
+                        <Route path="/contact" element={<Contact />} />
 
-                     <Route path="/about" element={<About />}/>
+                        <Route path="/about" element={<About />}/>
 
-                     <Route path="/AllProducts" element={<AllProducts AllProducts={products}/>}/>
+                        <Route path="/AllProducts" element={<AllProducts AllProducts={products}/>}/>
 
-                     <Route path="/product/:id" element={<ProductPage setIsProductPage={setIsProductPage}/>} />
+                        <Route path="/product/:id" element={<ProductPage setIsProductPage={setIsProductPage}/>} />
 
-                     <Route exact path="/" element={<HeroPage setIsHero={setIsHero}/>} />
-                  </Routes>
+                        <Route exact path="/" element={<HeroPage setIsHero={setIsHero}/>} />
+                     </Routes>
 
-                  {isHero ? null : <Footer />}
-                  
-               </div>
-            </FiltersContext.Provider>
-         </ProductsContext.Provider>
-      </Router>
+                     {isHero ? null : <Footer />}
+                     
+                  </div>
+               </FiltersContext.Provider>
+            </ProductsContext.Provider>
+         </Router>
+      </Provider>
    );
 });
 

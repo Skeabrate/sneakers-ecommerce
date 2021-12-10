@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled, {keyframes, css} from "styled-components"
 
 export const StyledShopp = styled.div`
    position: ${({isStickyBegin, isStickyEnd}) => {
@@ -87,7 +87,7 @@ export const StyledSizesWrapper = styled.div`
    display: grid;
    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
    gap: 5px;
-   margin: 15px 0 6vh;
+   margin: 15px 0;
 
    @media (max-width:1000px){
       margin-bottom: 20px;
@@ -97,7 +97,6 @@ export const StyledSizesWrapper = styled.div`
 export const StyledSize = styled.div`
    border: 1px solid ${({theme}) => theme.colors.grey};
    background-color: ${({isSize, theme}) => isSize ? theme.colors.orange : 'transparent'};
-
 
    button{
       padding: 13px;
@@ -110,13 +109,40 @@ export const StyledSize = styled.div`
       width: 100%;
    }
 
-   
-
    @media (min-width: 550px){
       &:hover{
          background-color: ${({theme}) => theme.colors.orange};
       }
    }
+`
+
+export const StyledError = styled.div`
+   color: ${({theme}) => theme.colors.red};
+   font-weight: bold;
+   font-size: ${({theme}) => theme.fontSize.xxs};
+`
+
+const showError = keyframes`
+   0%{
+      transform: translateX(-6px);
+   }
+   33%{
+      transform: translateX(6px);
+   }
+   66%{
+      transform: translateX(-2px);
+   }
+   100%{
+      transform: translateX(2px);
+   }
+`
+
+const trigerAnimation = css`
+   animation: 0.25s linear forwards alternate ${showError};
+`
+
+export const StyledSizeAndError = styled.div`
+   ${({isClicked}) => isClicked ? trigerAnimation : null}
 `
 
 export const StyledSizesAndInfo = styled.div`
