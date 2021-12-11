@@ -3,6 +3,7 @@ import { StyledError, Wrapper } from './ProductPage.styles';
 import { useProductID } from "../../hooks/useProductID"
 import Content from './Content/Content';
 import { useSticky } from "../../hooks/useSticky"
+import Error from '../404/Error';
 
 const ProductPage = ({setIsProductPage}) => {
    const [product, loading, error] = useProductID()
@@ -24,10 +25,7 @@ const ProductPage = ({setIsProductPage}) => {
    return (
       <section>
             {error ? (
-               <StyledError>
-                  <h1>404</h1>
-                  <h2>Sorry, we couldn't find a product you are looking for :C</h2>
-               </StyledError>
+               <Error label="product"/>
             ) : (
                <Wrapper>
                   <div style={{ position: 'absolute', top: '-1px' }} ref={wrapperBeginRef}></div>

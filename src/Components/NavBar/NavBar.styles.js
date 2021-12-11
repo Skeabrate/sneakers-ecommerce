@@ -1,5 +1,5 @@
 import { Link, NavLink } from "react-router-dom"
-import styled, { keyframes } from "styled-components"
+import styled from "styled-components"
 
 export const Wrapper = styled.div`
    position: ${({isProductPage}) => isProductPage ? 'unset' : 'fixed'};
@@ -61,7 +61,7 @@ export const StyledLogo = styled(Link)`
    }
 `
 
-export const StyledNav = styled.div`
+export const StyledNav = styled.ul`
    list-style: none;
    display: flex;
 
@@ -165,25 +165,17 @@ export const StyledCart = styled.div`
    align-items: center;
 `
 
-export const StyledCartItem = styled.div`
-   margin: 0 1vw;
-   max-width: 50px;
+export const StyledCartItem = styled(Link)`
    display: flex;
    justify-content: center;
    align-items: center;
    cursor: pointer;
    position: relative;
+   margin-right: 30px;
    
    svg{
       transform: rotateY(-180deg); 
-      fill: ${({theme}) => theme.colors.orange};
-   }
-
-   img{
-      width: 100%;
-      height: 100%;
-      border: 2px solid ${({theme}) => theme.colors.orange};
-      border-radius: 100%;
+      fill: ${({theme}) => theme.colors.white};
    }
 
    span{
@@ -194,12 +186,23 @@ export const StyledCartItem = styled.div`
       top: -12px;
       right: -12px;
       font-size: ${({theme}) => theme.fontSize.micro};
-      color: white;
+      color: ${({theme}) => theme.colors.white};
       font-weight: bold;
-      background-color: ${({theme}) => theme.colors.red};
+      background-color: ${({theme}) => theme.colors.orange};
       border-radius: 100px;
       width: 21px;
       height: 21px;
+   }
+`
+
+export const StyledCartProfile = styled.div`
+   max-width: 50px;
+
+   img{
+      width: 100%;
+      height: 100%;
+      border: 2px solid ${({theme}) => theme.colors.orange};
+      border-radius: 100%;
    }
 
    @media (max-width: 550px){

@@ -35,7 +35,6 @@ export const StyledAddBtn = styled.button`
    background-color: ${({theme}) => theme.colors.orange};
    color: ${({theme}) => theme.colors.white};
    padding: 15px 30px;
-   border-radius: 8px;
    font-weight: bold;
    position: relative;
    transform-origin: left;

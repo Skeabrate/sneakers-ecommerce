@@ -100,6 +100,7 @@ const ImageSlider = ({product, loading, isQuickView}) => {
                      isHovered={isHovered} 
                      isCurrent={index === current} 
                      onClick={() => setCurrent(index)}
+                     aria-label="Change image"
                   >
                      <img
                         src={img.url} 

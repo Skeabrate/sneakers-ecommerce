@@ -12,6 +12,8 @@ import ProductsContext from '../../Context/productsContext';
 import FiltersContext from '../../Context/filtersContext';
 import { store } from '../../Redux/store'
 import { Provider } from "react-redux"
+import Error from '../404/Error';
+import Cart from "../Cart/Cart"
 
 const MainView = React.forwardRef((props, mainViewRef) => {
    const [isHero, setIsHero] = useState(false)
@@ -59,9 +61,13 @@ const MainView = React.forwardRef((props, mainViewRef) => {
 
                         <Route path="/AllProducts" element={<AllProducts AllProducts={products}/>}/>
 
+                        <Route path="/cart" element={<Cart />} />
+
                         <Route path="/product/:id" element={<ProductPage setIsProductPage={setIsProductPage}/>} />
 
                         <Route exact path="/" element={<HeroPage setIsHero={setIsHero}/>} />
+
+                        <Route path='*' element={<div style={{marginTop: '80px'}}><Error /></div>} />
                      </Routes>
 
                      {isHero ? null : <Footer />}

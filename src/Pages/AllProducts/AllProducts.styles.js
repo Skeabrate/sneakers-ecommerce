@@ -42,6 +42,7 @@ export const StyledTitleWrapper = styled.div`
 
    h1{
       font-size: ${({theme}) => theme.fontSize.xxl};
+      font-display: optional
    }
 
    span{
@@ -164,7 +165,7 @@ export const StyledImage = styled.div`
    }
 `
 
-export const StyledItemTitle = styled.h3`
+export const StyledItemTitle = styled.h2`
    font-size: ${({theme}) => theme.fontSize.xxs};
 
    @media (max-width: 1000px){
@@ -172,7 +173,7 @@ export const StyledItemTitle = styled.h3`
    }
 `
 
-export const StyledCategory = styled.h4`
+export const StyledCategory = styled.h3`
    color: ${({theme}) => theme.colors.lightGrey};
    font-size: ${({theme}) => theme.fontSize.xs};
    font-style: italic;

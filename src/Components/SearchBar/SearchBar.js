@@ -18,6 +18,7 @@ const SearchBar = React.forwardRef((props, searchBarRef) => {
    return (
       <Wrapper>
          <StyledInput
+            aria-selected={isFocused}
             value={searchPhrase}
             onChange={(e) => setSearchPhrase(e.target.value)}
             onKeyDown={(e) => e.keyCode === 13 && handleSubmit()}
