@@ -51,11 +51,12 @@ export const StyledImage = styled.div`
    width: 700px;
    height: 700px;
    display: flex;
+   align-items: center;
    gap: 700px;
    transform: translate(-50%, -50%);
 
    img{
-      height: 700px;
+      width: 700px;
       transform: ${({current}) => current ? `translateX(-${current * 200}%)` : 'translateX(0)'};
       transition: transform .6s cubic-bezier(0.3,0,0,1);
    }
@@ -66,7 +67,7 @@ export const StyledImage = styled.div`
       gap: 400px;
 
       img{
-         height: 400px;
+         width: 400px;
       }
    }
    @media (max-width: 450px) {
@@ -75,7 +76,7 @@ export const StyledImage = styled.div`
       gap: 300px;
 
       img{
-         height: 300px;
+         width: 300px;
       }
    }
 `

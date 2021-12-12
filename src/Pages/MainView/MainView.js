@@ -15,12 +15,15 @@ import { Provider } from "react-redux"
 import Error from '../404/Error';
 import Cart from "../Cart/Cart"
 
-const MainView = React.forwardRef((props, mainViewRef) => {
+const MainView = () => {
    const [isHero, setIsHero] = useState(false)
    const [isProductPage, setIsProductPage] = useState(false)
 
-   const [products, loading, setLoading] = useData()
    const [productsCtx, setProductsCtx] = useState([])
+   const [products, loading, setLoading] = useData()
+
+   // Open cart passed to Navbar and cart
+   const [isCartOpen, setIsCartOpen] = useState(false)
 
    // Filters
    const [selectedGender, setSelectedGender] = useState(false)
@@ -51,8 +54,10 @@ const MainView = React.forwardRef((props, mainViewRef) => {
                   setPrice: setSelectedPrice,
                   setTerm: setSelectedTerm,
                }}>
-                  <div ref={mainViewRef}>
-                     {isHero ? null : <NavBar isProductPage={isProductPage}/>}
+                  <div>
+                     {isHero ? null : <NavBar setIsCartOpen={setIsCartOpen} isProductPage={isProductPage}/>}
+
+                     <Cart isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen}/>
                      
                      <Routes>
                         <Route path="/contact" element={<Contact />} />
@@ -60,8 +65,6 @@ const MainView = React.forwardRef((props, mainViewRef) => {
                         <Route path="/about" element={<About />}/>
 
                         <Route path="/AllProducts" element={<AllProducts AllProducts={products}/>}/>
-
-                        <Route path="/cart" element={<Cart />} />
 
                         <Route path="/product/:id" element={<ProductPage setIsProductPage={setIsProductPage}/>} />
 
@@ -71,13 +74,12 @@ const MainView = React.forwardRef((props, mainViewRef) => {
                      </Routes>
 
                      {isHero ? null : <Footer />}
-                     
                   </div>
                </FiltersContext.Provider>
             </ProductsContext.Provider>
          </Router>
       </Provider>
    );
-});
+};
 
 export default MainView;

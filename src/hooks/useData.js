@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 
 const queryAll = `
@@ -32,7 +32,7 @@ export const useData = () => {
    }
    `
 
-   const fetchProducts = async () => {
+   const fetchProducts = useCallback(async () => {
       try{
          const res = await axios.post('https://graphql.datocms.com/', {
             query: queryVal,
@@ -52,7 +52,7 @@ export const useData = () => {
          console.log(ex.response)
       }
       setLoading(true)
-   }
+   }, [dataCount])
 
    useEffect(() => {
       const fetchDataCount = async () => {

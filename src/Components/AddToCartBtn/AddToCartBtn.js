@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import plus from "../../Assets/Images/icon-plus.svg"
 import minus from "../../Assets/Images/icon-minus.svg"
 import { useSelector, useDispatch } from "react-redux";
-import { addToCart, reset, increaseAmount } from "../../Redux/addToCartSlice"
+import { addToCart, reset, changeAmount } from "../../Redux/addToCartSlice"
 import { 
    StyledCart, 
    StyledPlusMinusBtn, 
@@ -26,18 +26,10 @@ const AddToCartBtn = ({ size, product, setError, isClicked, setIsClicked }) => {
          }, 250)
       }
       else {
-         dispatch(reset())
-         /* for(const key in cart){
-            if(cart[key].title === product.title && cart[key].size === size) {
-               console.log(cart[key].id)
-               dispatch(increaseAmount({ id: cart[key].id, amount}))
-               check = true
-               break;
-            }
-         } */
+         cart.find(item => item.id === 0 && dispatch(reset())) 
          cart.find(item => {
             if(item.id === product.id && item.size === size) {
-               dispatch(increaseAmount({ 
+               dispatch(changeAmount({ 
                   id: item.id, 
                   size: size,
                   amount

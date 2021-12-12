@@ -165,13 +165,15 @@ export const StyledCart = styled.div`
    align-items: center;
 `
 
-export const StyledCartItem = styled(Link)`
+export const StyledCartItem = styled.button`
    display: flex;
    justify-content: center;
    align-items: center;
    cursor: pointer;
    position: relative;
    margin-right: 30px;
+   background-color: transparent;
+   border: none;
    
    svg{
       transform: rotateY(-180deg); 
