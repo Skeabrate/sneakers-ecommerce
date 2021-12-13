@@ -3,6 +3,7 @@ import styled from "styled-components"
 export const StyledCart = styled.div`
    display: flex;
    align-items: center;
+   justify-content: space-between;
 
    p{
       display: flex;
@@ -20,48 +21,15 @@ export const StyledCart = styled.div`
       gap: 10px;  
    }
 
+   @media (max-width: 1350px) {
+      flex-direction: column;
+      row-gap: 20px;
+   }
+
    @media (max-width: 1000px){
       margin: 30px 0;
-   }
-`
-
-export const StyledPlusMinusBtn = styled.button`
-   background: transparent;
-   width: 60px;
-   height: 50px;
-`
-
-export const StyledAddBtn = styled.button`
-   background-color: ${({theme}) => theme.colors.orange};
-   color: ${({theme}) => theme.colors.white};
-   padding: 15px 30px;
-   font-weight: bold;
-   position: relative;
-   transform-origin: left;
-
-   transition: all .3s ease-in-out;
-
-   svg{
-      opacity: 0;
-      right: 15px;
-      position: absolute;
-      transform: rotateY(180deg);
-
-      transition: opacity;
-      transition-delay: .2s;
-   }
-
-   path{
-      fill: ${({theme}) => theme.colors.orange};
-   }
-
-   &:hover{
-      background-color: ${({theme}) => theme.colors.white};
-      color: ${({theme}) => theme.colors.orange};
-      padding: 15px 50px 15px 30px ;
-   }
-
-   &:hover svg{
-      opacity: 1;
+      flex-direction: row;
+      justify-content: flex-start;
+      column-gap: 30px;
    }
 `

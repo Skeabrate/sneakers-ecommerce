@@ -14,6 +14,7 @@ import { store } from '../../Redux/store'
 import { Provider } from "react-redux"
 import Error from '../404/Error';
 import Cart from "../Cart/Cart"
+import { OpenCartContext } from '../../Context/openCartContext';
 
 const MainView = () => {
    const [isHero, setIsHero] = useState(false)
@@ -39,10 +40,10 @@ const MainView = () => {
       <Provider store={store}>
          <Router>
             <ProductsContext.Provider value={{
-                  productsCtx: productsCtx,
-                  setProductsCtx: setProductsCtx,
-                  loadingCtx: loading,
-                  setLoadingCtx: setLoading,
+               productsCtx: productsCtx,
+               setProductsCtx: setProductsCtx,
+               loadingCtx: loading,
+               setLoadingCtx: setLoading,
             }}>
                <FiltersContext.Provider value={{
                   gender: selectedGender,
@@ -54,27 +55,32 @@ const MainView = () => {
                   setPrice: setSelectedPrice,
                   setTerm: setSelectedTerm,
                }}>
-                  <div>
-                     {isHero ? null : <NavBar setIsCartOpen={setIsCartOpen} isProductPage={isProductPage}/>}
+                  <OpenCartContext.Provider value={{
+                     isCartOpen: isCartOpen,
+                     setIsCartOpen: setIsCartOpen,
+                  }}>
+                     <div>
+                        {isHero ? null : <NavBar isProductPage={isProductPage}/>}
 
-                     <Cart isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen}/>
-                     
-                     <Routes>
-                        <Route path="/contact" element={<Contact />} />
+                        <Cart />
+                        
+                        <Routes>
+                           <Route path="/contact" element={<Contact />} />
 
-                        <Route path="/about" element={<About />}/>
+                           <Route path="/about" element={<About />}/>
 
-                        <Route path="/AllProducts" element={<AllProducts AllProducts={products}/>}/>
+                           <Route path="/AllProducts" element={<AllProducts AllProducts={products}/>}/>
 
-                        <Route path="/product/:id" element={<ProductPage setIsProductPage={setIsProductPage}/>} />
+                           <Route path="/product/:id" element={<ProductPage setIsProductPage={setIsProductPage} />} />
 
-                        <Route exact path="/" element={<HeroPage setIsHero={setIsHero}/>} />
+                           <Route exact path="/" element={<HeroPage setIsHero={setIsHero}/>} />
 
-                        <Route path='*' element={<div style={{marginTop: '80px'}}><Error /></div>} />
-                     </Routes>
+                           <Route path='*' element={<div style={{marginTop: '80px'}}><Error /></div>} />
+                        </Routes>
 
-                     {isHero ? null : <Footer />}
-                  </div>
+                        {isHero ? null : <Footer />}
+                     </div>
+                  </OpenCartContext.Provider>
                </FiltersContext.Provider>
             </ProductsContext.Provider>
          </Router>

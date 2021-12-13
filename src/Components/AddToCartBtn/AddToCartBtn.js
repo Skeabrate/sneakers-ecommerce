@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
-import plus from "../../Assets/Images/icon-plus.svg"
-import minus from "../../Assets/Images/icon-minus.svg"
+import React, { useState, useContext } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart, reset, changeAmount } from "../../Redux/addToCartSlice"
+import { OpenCartContext } from '../../Context/openCartContext';
 import { 
    StyledCart, 
-   StyledPlusMinusBtn, 
-   StyledAddBtn } from "./AddToCartBtn.styles"
+} from "./AddToCartBtn.styles"
+import StyledButton from '../StyledButton/StyledButton';
+import StyledInput from '../StyledInput/StyledInput';
 
 const AddToCartBtn = ({ size, product, setError, isClicked, setIsClicked }) => {
    const [amount, setAmount] = useState(1)
 
    const cart = useSelector((state) => state.cart)
    const dispatch = useDispatch()
+   const { setIsCartOpen } = useContext(OpenCartContext)
 
    const lowerAmount = () => amount !== 1 ? setAmount(amount - 1) : null
 
@@ -42,37 +43,28 @@ const AddToCartBtn = ({ size, product, setError, isClicked, setIsClicked }) => {
             dispatch(addToCart({ 
                id: product.id, 
                title: product.title, 
-               price: product.price, 
+               price: product.price,
+               image: product.images[0].url,
                amount, 
                size
             }))
          }
          setAmount(1)
+         setIsCartOpen(true)
       }
    }
 
-   React.useEffect(() => {
-      console.log(cart)
-      /* console.log(localStorage.getItem('cart', JSON.stringify({id: product.id})))
-      console.log(product.id) */
-   }, [cart])
-
    return (
       <StyledCart>
-         <StyledPlusMinusBtn onClick={lowerAmount}>
-            <img src={minus} alt="minus"/>
-         </StyledPlusMinusBtn>
-
-         <p style={{fontWeight: 'bold'}}>{amount}</p>
-
-         <StyledPlusMinusBtn onClick={() => setAmount(amount + 1)}>
-            <img src={plus} alt="plus" />
-         </StyledPlusMinusBtn>
-
-         <StyledAddBtn onClick={addToCartHandler} disabled={isClicked}>
-         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 19.5c0 .829-.672 1.5-1.5 1.5s-1.5-.671-1.5-1.5c0-.828.672-1.5 1.5-1.5s1.5.672 1.5 1.5zm3.5-1.5c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm-10.563-5l-2.937-7h16.812l-1.977 7h-11.898zm11.233-5h-11.162l1.259 3h9.056l.847-3zm5.635-5l-3.432 12h-12.597l.839 2h13.239l3.474-12h1.929l.743-2h-4.195z"/></svg>
-            Add to cart
-         </StyledAddBtn>
+         <StyledInput
+            isCart
+            minusHandler={lowerAmount}
+            plusHandler={() => setAmount(amount + 1)}
+            value={amount}
+            setValue={(e) => setAmount(parseInt(e.currentTarget.value))}
+            setBlur={() => {}}
+         />
+         <StyledButton label="Add to cart" actionHandler={addToCartHandler} isClicked={isClicked}/>
       </StyledCart>
    )
 };

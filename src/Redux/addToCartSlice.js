@@ -12,7 +12,7 @@ export const addToCartSlice = createSlice({
          
       removeFromCart(state, action){
          const filteredData = state.filter((item) => item.id !== action.payload.id || item.size !== action.payload.size)
-         
+
          localStorage.setItem('cart', JSON.stringify(filteredData))
          return filteredData
       },
@@ -28,6 +28,7 @@ export const addToCartSlice = createSlice({
             ...action.payload
          })
       },
+
       changeAmount: (state, action) => {
          state.find(item => {
             if(item.id === action.payload.id && item.size === action.payload.size){

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import avatarImg from "../../Assets/Images/image-avatar.png"
 import { useCartLenght } from '../../hooks/useCartLenght';
 import { 
@@ -15,11 +15,13 @@ import {
    StyledHamburger, 
    StyledHamburgerWrapper, 
    StyledHamburgerInner } from "./Hamburger.styles"
+import { OpenCartContext } from '../../Context/openCartContext';
 
-const NavBar = ({isProductPage, setIsCartOpen}) => {
+const NavBar = ({ isProductPage }) => {
    const [toggle, setToggle] = useState(false)
    
    const length = useCartLenght()
+   const { setIsCartOpen } = useContext(OpenCartContext)
 
    const toggleMenu = () => setToggle(!toggle)
 
