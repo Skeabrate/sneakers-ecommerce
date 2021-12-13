@@ -1,9 +1,12 @@
 import React, { useEffect, useRef } from 'react';
-import { StyledError, Wrapper } from './ProductPage.styles';
 import { useProductID } from "../../hooks/useProductID"
 import Content from './Content/Content';
 import { useSticky } from "../../hooks/useSticky"
 import Error from '../404/Error';
+import { 
+   Wrapper,
+   StyledLinkToHome, 
+} from './ProductPage.styles';
 
 const ProductPage = ({setIsProductPage}) => {
    const [product, loading, error] = useProductID()
@@ -29,6 +32,8 @@ const ProductPage = ({setIsProductPage}) => {
             ) : (
                <Wrapper>
                   <div style={{ position: 'absolute', top: '-1px' }} ref={wrapperBeginRef}></div>
+
+                     <StyledLinkToHome to="/AllProducts" title="all products"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/></svg>BACK</StyledLinkToHome>
 
                      <Content product={product} loading={loading} isStickyBegin={isSticky} isStickyEnd={isStickyEnd} />
 

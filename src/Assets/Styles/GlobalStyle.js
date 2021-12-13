@@ -16,4 +16,8 @@ export const GlobalStyle = createGlobalStyle`
       font-family: 'Montserrat', sans-serif;
       scroll-behavior: smooth;
    }
+
+   body{
+      overflow-x: hidden;
+   }
 `
