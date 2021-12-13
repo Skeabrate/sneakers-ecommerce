@@ -1,5 +1,5 @@
 Technologies and libraries I used for this project:
-- framework: ReactJS
+- ReactJS
 - hosting from firebase
 - styled-components
 - routing: react-router-dom v6
