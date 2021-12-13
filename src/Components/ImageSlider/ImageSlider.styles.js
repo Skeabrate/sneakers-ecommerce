@@ -61,7 +61,7 @@ export const StyledImage = styled.div`
       transition: transform .6s cubic-bezier(0.3,0,0,1);
    }
 
-   @media (max-width: 550px) {
+   @media (max-width: ${({theme}) => theme.screenSize.mobile}) {
       width: 400px;
       height: 400px;
       gap: 400px;
@@ -92,7 +92,7 @@ const arrowBtns = css`
    border: 2px solid ${({ theme }) => theme.colors.grey};
    z-index: 1;
 
-   @media (max-width: 550px) {
+   @media (max-width: ${({theme}) => theme.screenSize.mobile}) {
       padding: 5px 10px;
    }
 `
@@ -101,7 +101,7 @@ export const StyledBtnPrev = styled.button`
    ${arrowBtns}
    left: 30px;
 
-   @media (max-width: 550px) {
+   @media (max-width: ${({theme}) => theme.screenSize.mobile}) {
       left: 10px;
    }
 `
@@ -110,7 +110,7 @@ export const StyledBtnNext = styled.button`
    ${arrowBtns}
    right: 30px;
 
-   @media (max-width: 550px) {
+   @media (max-width: ${({theme}) => theme.screenSize.mobile}) {
       right: 10px;
    }
 `
@@ -150,7 +150,7 @@ export const StyledButton = styled.button`
       border-bottom: none;
    }
 
-   @media (min-width: 550px) {
+   @media (min-width: ${({theme}) => theme.screenSize.mobile}) {
       img{
          transform: ${({ isHovered }) => isHovered ? 'translateY(0)' : 'translateY(100%)'};
       }

@@ -9,7 +9,7 @@ export const Wrapper = styled.article`
       padding: 60px 0px 80px 30px;
    }
 
-   @media (max-width: 1000px){
+   @media (max-width: ${({theme}) => theme.screenSize.medium}){
       padding: 40px 0px 60px 30px;
    }
 `
@@ -83,7 +83,7 @@ export const StyledContent = styled.div`
       }
    }
 
-   @media (max-width: 550px){
+   @media (max-width: ${({theme}) => theme.screenSize.mobile}){
       grid-template-columns: 1fr;
 
       div{

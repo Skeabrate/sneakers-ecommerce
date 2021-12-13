@@ -32,11 +32,11 @@ export const StyledOptionBtn = styled.button`
       border: 1px solid ${({theme}) => theme.colors.orange};
    }
 
-   @media (max-width: 1000px) {
+   @media (max-width: ${({theme}) => theme.screenSize.medium}) {
       font-size: ${({theme}) => theme.fontSize.s};
    }
 
-   @media (max-width: 550px) {
+   @media (max-width: ${({theme}) => theme.screenSize.mobile}) {
       font-size: ${({theme}) => theme.fontSize.micro};
       padding: 5px 25px 5px 8px;
    }
@@ -84,11 +84,11 @@ export const StyledList = styled.ul`
       border-radius: 100px;
    }
 
-   @media (max-width: 1000px) {
+   @media (max-width: ${({theme}) => theme.screenSize.medium}) {
       font-size: ${({theme}) => theme.fontSize.s};
    }
 
-   @media (max-width: 550px) {
+   @media (max-width: ${({theme}) => theme.screenSize.mobile}) {
       font-size: ${({theme}) => theme.fontSize.micro};
    }
 `

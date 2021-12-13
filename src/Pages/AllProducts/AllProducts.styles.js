@@ -6,7 +6,7 @@ export const Wrapper = styled.section`
    margin-top: 80px;
    padding: 3vw;
 
-   @media (max-width: 550px){
+   @media (max-width: ${({theme}) => theme.screenSize.mobile}){
       margin-top: 60px;
    }
 `
@@ -19,7 +19,7 @@ export const StyledTitle = styled.div`
    
    margin: 0 0 40px 0;
 
-   @media (max-width: 1000px){
+   @media (max-width: ${({theme}) => theme.screenSize.medium}){
       margin: 30px 0;
    }
 
@@ -27,7 +27,7 @@ export const StyledTitle = styled.div`
       margin: 20px 0;
    }
 
-   @media (max-width: 550px){
+   @media (max-width: ${({theme}) => theme.screenSize.mobile}){
       flex-direction: column;
       align-items: start;
    }
@@ -51,7 +51,7 @@ export const StyledTitleWrapper = styled.div`
       padding: 10px 20px;
    }
 
-   @media (max-width: 1000px){
+   @media (max-width: ${({theme}) => theme.screenSize.medium}){
       h1{
          font-size: ${({theme}) => theme.fontSize.xl};
       }
@@ -84,12 +84,12 @@ export const StyledContent = styled.div`
    gap: 20px;
    opacity: 0;
 
-   @media (max-width: 1000px){
+   @media (max-width: ${({theme}) => theme.screenSize.medium}){
       grid-template-columns: repeat(3, 1fr);
       gap: 10px;
    }
 
-   @media (max-width: 550px){
+   @media (max-width: ${({theme}) => theme.screenSize.mobile}){
       grid-template-columns: 1fr 1fr;
    }
 `
@@ -146,7 +146,7 @@ export const StyledImage = styled.div`
       transition: transform .3s ease-in-out;
    }
 
-   @media (max-width: 1000px){
+   @media (max-width: ${({theme}) => theme.screenSize.medium}){
       div{
          padding: 4px 10px;
          width: 45px;
@@ -154,7 +154,7 @@ export const StyledImage = styled.div`
       }
    }
 
-   @media (min-width: 550px) {
+   @media (min-width: ${({theme}) => theme.screenSize.mobile}) {
       &:hover div{
          transform: translateY(-10px);
       } 
@@ -168,7 +168,7 @@ export const StyledImage = styled.div`
 export const StyledItemTitle = styled.h2`
    font-size: ${({theme}) => theme.fontSize.xxs};
 
-   @media (max-width: 1000px){
+   @media (max-width: ${({theme}) => theme.screenSize.medium}){
       font-size: ${({theme}) => theme.fontSize.xs};
    }
 `
@@ -178,7 +178,7 @@ export const StyledCategory = styled.h3`
    font-size: ${({theme}) => theme.fontSize.xs};
    font-style: italic;
 
-   @media (max-width: 1000px){
+   @media (max-width: ${({theme}) => theme.screenSize.medium}){
       font-size: ${({theme}) => theme.fontSize.s};
    }
 `
@@ -196,7 +196,7 @@ export const StyledError = styled.div`
       color: ${({theme}) => theme.colors.lightGrey};
    }
 
-   @media (max-width: 1000px){
+   @media (max-width: ${({theme}) => theme.screenSize.medium}){
       h1{
          font-size: ${({theme}) => theme.fontSize.xl};
       }

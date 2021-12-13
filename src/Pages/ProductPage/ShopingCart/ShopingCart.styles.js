@@ -24,7 +24,7 @@ export const StyledShopp = styled.div`
       display: none;
    }
 
-   @media (max-width: 1000px){
+   @media (max-width:  ${({theme}) => theme.screenSize.medium}){
       position: relative;
       width: 100%;
       overflow: unset;
@@ -66,7 +66,7 @@ export const StyledTitle = styled.h1`
    height: 64px;
    margin-bottom: 40px;
 
-   @media (max-width:1000px){
+   @media (max-width: ${({theme}) => theme.screenSize.medium}){
       height: unset;
       margin-bottom: 20px;
    }
@@ -77,7 +77,7 @@ export const StyledPrice = styled.p`
    margin: 0 0 40px 0;
    font-size: ${({theme}) => theme.fontSize.xxs};
 
-   @media (max-width:1000px){
+   @media (max-width: ${({theme}) => theme.screenSize.medium}){
       margin-bottom: 20px;
    }
 
@@ -89,7 +89,7 @@ export const StyledSizesWrapper = styled.div`
    gap: 5px;
    margin: 15px 0;
 
-   @media (max-width:1000px){
+   @media (max-width: ${({theme}) => theme.screenSize.medium}){
       margin-bottom: 20px;
    }
 `
@@ -109,7 +109,7 @@ export const StyledSize = styled.div`
       width: 100%;
    }
 
-   @media (min-width: 550px){
+   @media (min-width: ${({theme}) => theme.screenSize.mobile}){
       &:hover{
          background-color: ${({theme}) => theme.colors.orange};
       }
@@ -150,12 +150,12 @@ export const StyledSizesAndInfo = styled.div`
       font-size: ${({theme}) => theme.fontSize.xxs};
    }
 
-   @media (max-width:1000px){
+   @media (max-width: ${({theme}) => theme.screenSize.medium}){
       display: grid;
       grid-template-columns: 1fr 1fr;
    }
 
-   @media (max-width: 550px){
+   @media (max-width: ${({theme}) => theme.screenSize.mobile}){
       grid-template-columns: 1fr;
    }
 `
@@ -163,7 +163,7 @@ export const StyledSizesAndInfo = styled.div`
 export const StyledInfo = styled.div`
    margin: 8vh 0;
 
-   @media (max-width:1000px){
+   @media (max-width: ${({theme}) => theme.screenSize.medium}){
       font-size: ${({theme}) => theme.fontSize.xs};
       margin: 31px 0 0 2.5vw;
    }
@@ -184,7 +184,7 @@ export const StyledInfoItem = styled.div`
       fill: ${({theme}) => theme.colors.white};
    }
 
-   @media (max-width:1000px){
+   @media (max-width: ${({theme}) => theme.screenSize.medium}){
       margin: 15px 0;
       margin-top: ${({first}) => first ? '0' : '15px'};
 
@@ -198,7 +198,7 @@ export const TitlePlaceholder = styled.div`
    height: 188px;
    width: 100%;
 
-   @media (max-width:1000px){
+   @media (max-width: ${({theme}) => theme.screenSize.medium}){
       height: 118px;
    }
 `

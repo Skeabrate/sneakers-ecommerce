@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
    position: relative;
    margin-top: 0;
 
-   @media (max-width: 1000px){
+   @media (max-width: ${({theme}) => theme.screenSize.medium}){
       grid-template-columns: 1fr;
    }
 `
@@ -29,5 +29,16 @@ export const StyledLinkToHome = styled(Link)`
       transform: rotateY(180deg);
       width: 15px;
       margin-right: 15px;
+   }
+
+   @media (max-width: ${({theme}) => theme.screenSize.mobile}){
+      top: 70px;
+      left: 15px;
+      letter-spacing: 1px;
+
+      svg{
+         width: 12px;
+         margin-right: 5px;
+      }
    }
 `

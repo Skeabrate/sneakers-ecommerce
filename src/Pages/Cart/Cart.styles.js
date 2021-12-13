@@ -13,7 +13,7 @@ export const StyledBackground = styled.div`
    visibility: ${({isCartOpen}) => isCartOpen ? 'visible' : 'hidden'};
 
    transition: all .5s ease-in-out;
-   transition-duration: ${({isCartOpen}) => !isCartOpen && '.2s'};
+   transition-duration: ${({isCartOpen}) => !isCartOpen && '.3s'};
 `
 
 export const StyledCart = styled.div`
@@ -32,9 +32,9 @@ export const StyledCart = styled.div`
 
    transition: transform .5s ease-in-out;
 
-   transition-duration: ${({isCartOpen}) => !isCartOpen && '.2s'};
+   transition-duration: ${({isCartOpen}) => !isCartOpen && '.3s'};
 
-   @media (max-width: 550px){
+   @media (max-width: ${({theme}) => theme.screenSize.mobile}){
       width: 100%;
    }
 `
@@ -73,8 +73,14 @@ export const StyledContent= styled.div`
 
    textarea{
       max-width: 100%;
+      min-height: 100px;
       margin: 10px 0;
    }
+
+   @media (max-width: ${({theme}) => theme.screenSize.mobile}){
+      padding: 5px;
+   }
+
 `
 
 export const StyledTotal = styled.div`

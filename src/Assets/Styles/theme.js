@@ -18,5 +18,10 @@ export const theme = {
       xs: '14px',
       s: '12px',
       micro: '10px',
+   },
+
+   screenSize: {
+      medium: '1000px',
+      mobile: '550px',
    }
 }

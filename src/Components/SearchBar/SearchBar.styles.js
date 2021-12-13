@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
    align-items: center;
    position: relative;
 
-   @media (max-width: 550px){
+   @media (max-width: ${({theme}) => theme.screenSize.mobile}){
       margin-top: 20px;
    }
 `
@@ -55,7 +55,7 @@ export const StyledSearchBtn = styled.button`
       transition: transform .1s ease-in-out;
    }
 
-   @media (min-width: 550px){
+   @media (min-width: ${({theme}) => theme.screenSize.mobile}){
       &:hover{
          background-color: ${({theme}) => theme.colors.orange};
       }

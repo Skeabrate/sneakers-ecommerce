@@ -19,7 +19,7 @@ export const StyledFiltersBar = styled.div`
                padding .3s ease-in-out,
                transform .3s ease-in-out;
 
-   @media (max-width: 550px){
+   @media (max-width: ${({theme}) => theme.screenSize.mobile}){
       position: relative;
       top: unset;
       transform: translate(-50%);
@@ -47,7 +47,7 @@ export const StyledActiveFilters = styled.div`
 export const FiltersPlaceholder = styled.div`
    height: 52px;
 
-   @media (max-width: 550px){
+   @media (max-width: ${({theme}) => theme.screenSize.mobile}){
       display: none;
    }
 `

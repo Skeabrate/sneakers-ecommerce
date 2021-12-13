@@ -17,11 +17,11 @@ export const Wrapper = styled.div`
    z-index: 99999;
    
 
-   @media (max-width: 1000px){
+   @media (max-width: ${({theme}) => theme.screenSize.medium}){
       font-size: ${({theme}) => theme.fontSize.xs};
    }
 
-   @media (max-width: 550px){
+   @media (max-width: ${({theme}) => theme.screenSize.mobile}){
       
       font-size: 18px;
       position: fixed;
@@ -56,7 +56,7 @@ export const StyledLogo = styled(Link)`
       font-size: 30px;
    }
 
-   @media (max-width: 550px){
+   @media (max-width: ${({theme}) => theme.screenSize.mobile}){
       font-size: 26px;
    }
 `
@@ -65,9 +65,7 @@ export const StyledNav = styled.ul`
    list-style: none;
    display: flex;
 
-   transition: transform .3s ease-in-out;
-
-   @media (max-width: 550px){   
+   @media (max-width: ${({theme}) => theme.screenSize.mobile}){   
       flex-direction: column;
       justify-content: flex-start;
       align-items: center;
@@ -77,6 +75,10 @@ export const StyledNav = styled.ul`
       top: 60px;
       left: 0;
       transform: ${({isToggled}) => isToggled ? 'translateX(0)' : 'translateX(-100%)'};
+
+      transition: transform .5s ease-in-out;
+
+      ${({isToggled}) => !isToggled && 'transition: .3s'};
 
       &::after{
          content: '';
@@ -126,7 +128,7 @@ export const StyledNavItem = styled(NavLink)`
       opacity: 1;
    }
 
-   @media (max-width: 550px){
+   @media (max-width: ${({theme}) => theme.screenSize.mobile}){
       background-color: ${({theme}) => theme.colors.black};
       width: 95vw;
       height: 15vh;
@@ -139,15 +141,17 @@ export const StyledNavItem = styled(NavLink)`
       transform: ${({isToggled}) => isToggled ? 'scaleY(1)' : 'scaleY(0)'};
 
       transition: opacity ${({isFirst, isSecond}) => {
-                     if(isFirst) return '.4s .1s ease-in-out'
-                     if(isSecond) return '.4s .2s ease-in-out'
-                     else return '.4s .3s ease-in-out'
+                     if(isFirst) return '.3s .3s ease-in-out'
+                     if(isSecond) return '.3s .4s ease-in-out'
+                     else return '.3s .5s ease-in-out'
                   }}, 
                   transform ${({isFirst, isSecond}) => {
-                     if(isFirst) return '.2s .2s ease-in-out'
-                     if(isSecond) return '.2s .3s ease-in-out'
-                     else return '.2s .4s ease-in-out'
+                     if(isFirst) return '.2s .3s ease-in-out'
+                     if(isSecond) return '.2s .4s ease-in-out'
+                     else return '.2s .5s ease-in-out'
                   }};
+
+      ${({isToggled}) => isToggled && 'transition-delay: 0'};
 
       &.active::after {
          opacity: 0;
@@ -156,6 +160,22 @@ export const StyledNavItem = styled(NavLink)`
       &:hover::after{
          opacity: 0;
       }
+   }
+`
+
+export const StyledBackButton = styled.button`
+   height: 49vh;
+   width: 100vw;
+   background-color: transparent;
+   border: none;
+   cursor: pointer;
+
+   &:focus{
+      outline: none;
+   }
+
+   @media (min-width: ${({theme}) => theme.screenSize.mobile}){
+      display: none;
    }
 `
 
@@ -207,7 +227,7 @@ export const StyledCartProfile = styled.div`
       border-radius: 100%;
    }
 
-   @media (max-width: 550px){
+   @media (max-width: ${({theme}) => theme.screenSize.mobile}){
       max-width: 40px;
    }
 `

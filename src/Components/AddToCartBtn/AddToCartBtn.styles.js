@@ -26,7 +26,7 @@ export const StyledCart = styled.div`
       row-gap: 20px;
    }
 
-   @media (max-width: 1000px){
+   @media (max-width: ${({theme}) => theme.screenSize.medium}){
       margin: 30px 0;
       flex-direction: row;
       justify-content: flex-start;

@@ -3,7 +3,7 @@ import styled from "styled-components"
 export const StyledHamburger = styled.button`
    display: none;
    
-   @media (max-width: 550px) {
+   @media (max-width: ${({theme}) => theme.screenSize.mobile}) {
       padding: 5px;
       cursor: pointer;
       display: inline-block;

@@ -1,6 +1,12 @@
 import React, { useState, useContext } from 'react';
 import avatarImg from "../../Assets/Images/image-avatar.png"
 import { useCartLenght } from '../../hooks/useCartLenght';
+import { OpenCartContext } from '../../Context/openCartContext';
+import { 
+   StyledHamburger, 
+   StyledHamburgerWrapper, 
+   StyledHamburgerInner 
+} from "./Hamburger.styles"
 import { 
    Wrapper, 
    StyledNav, 
@@ -10,12 +16,9 @@ import {
    StyledNavItem, 
    StyledCart, 
    StyledCartItem,
-   StyledCartProfile } from "./NavBar.styles"
-import { 
-   StyledHamburger, 
-   StyledHamburgerWrapper, 
-   StyledHamburgerInner } from "./Hamburger.styles"
-import { OpenCartContext } from '../../Context/openCartContext';
+   StyledCartProfile,
+   StyledBackButton
+} from "./NavBar.styles"
 
 const NavBar = ({ isProductPage }) => {
    const [toggle, setToggle] = useState(false)
@@ -53,6 +56,10 @@ const NavBar = ({ isProductPage }) => {
 
                   <li>
                      <StyledNavItem isToggled={toggle} to="/contact" onClick={toggleMenu}>Contact</StyledNavItem>
+                  </li>
+
+                  <li>
+                     <StyledBackButton onClick={toggleMenu}></StyledBackButton>
                   </li>
                </StyledNav>
             </nav>

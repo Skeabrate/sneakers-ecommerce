@@ -55,7 +55,7 @@ export const StyledTitleWrapper = styled.div`
 
    }
 
-   @media(max-width: 550px){
+   @media(max-width: ${({theme}) => theme.screenSize.mobile}){
       font-size: 9vh;
       letter-spacing: -3px;
    }
@@ -126,7 +126,7 @@ export const StyledButton = styled.button`
       transform: translate(-50%, -50%) scale(1.1);
    }
 
-   @media(max-width: 550px){
+   @media(max-width: ${({theme}) => theme.screenSize.mobile}){
       letter-spacing: -1px;
       bottom: 20%;
    }

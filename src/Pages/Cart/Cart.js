@@ -41,7 +41,12 @@ const Cart = () => {
                {length ? (
                   <>
                   {cart.map((item, index) => (
-                     <CartItem item={item} key={index} dispatch={dispatch}/>
+                     <CartItem 
+                        item={item} 
+                        key={index} 
+                        dispatch={dispatch}
+                        isCartOpen={isCartOpen}
+                     />
                   ))}
                   </>
                ) : null}
