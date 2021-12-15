@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import ProductItem from '../../Components/ProductItem/ProductItem';
 import { useStoreLength } from '../../hooks/useStoreLength'
 import {
    Wrapper,
@@ -23,9 +24,12 @@ const Wishlist = () => {
          <article>
             <StyledContent>
                {favorite.map(({id, title, price, image}) => (
-                  <div key={id}>
-                     
-                  </div>
+                  <ProductItem
+                     id={id}
+                     image={image}
+                     title={title}
+                     price={price}
+                  />
                ))}
             </StyledContent>
          </article>

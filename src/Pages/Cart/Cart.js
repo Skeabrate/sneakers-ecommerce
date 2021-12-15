@@ -46,6 +46,7 @@ const Cart = () => {
                         key={index} 
                         dispatch={dispatch}
                         isCartOpen={isCartOpen}
+                        setIsCartOpen={setIsCartOpen}
                      />
                   ))}
                   </>
