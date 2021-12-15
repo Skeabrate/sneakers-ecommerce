@@ -16,6 +16,8 @@ import Error from '../404/Error';
 import Cart from "../Cart/Cart"
 import { OpenCartContext } from '../../Context/openCartContext';
 import Wishlist from "../Wishlist/Wishlist"
+import Login from '../Login/Login';
+import Register from '../Register/Register';
 
 const MainView = () => {
    const [isHero, setIsHero] = useState(false)
@@ -75,6 +77,10 @@ const MainView = () => {
                            <Route path="/product/:id" element={<ProductPage setIsProductPage={setIsProductPage} />} />
 
                            <Route path="/wishlist" element={<Wishlist />} />
+
+                           <Route path="/login" element={<Login />} />
+
+                           <Route path="/register" element={<Register />} />
 
                            <Route exact path="/" element={<HeroPage setIsHero={setIsHero}/>} />
 

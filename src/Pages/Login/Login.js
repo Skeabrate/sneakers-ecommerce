@@ -1,11 +1,11 @@
 import React from 'react';
 
-const About = () => {
+const Login = () => {
    return (
       <div style={{height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', color: 'white', fontSize: '2rem'}}>
-         About us
+         Login
       </div>
    );
 };
 
-export default About;
+export default Login;

@@ -234,6 +234,10 @@ export const StyledCartProfile = styled.div`
       border-radius: 100%;
    }
 
+   svg{
+      fill: ${({theme}) => theme.colors.white};
+   }
+
    @media (max-width: ${({theme}) => theme.screenSize.mobile}){
       max-width: 40px;
    }

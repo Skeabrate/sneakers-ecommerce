@@ -1,36 +1,83 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useSelector } from 'react-redux';
 import ProductItem from '../../Components/ProductItem/ProductItem';
 import { useStoreLength } from '../../hooks/useStoreLength'
+import gsap from "gsap"
 import {
    Wrapper,
    StyledTitle,
    StyledContent,
+   StyledError,
+   StyledLink,
+   StyledLoginWrapper,
+   StyledLoginTitle,
+   StyledLoginContent
 } from "./Wishlist.styles"
+
 
 const Wishlist = () => {
    const favorite = useSelector((state) => state.favorite)
    const length = useStoreLength(favorite)
 
+   const tl = useRef(null)
+   const contentRef = useRef(null)
+   const contentLengthRef = useRef(null)
+
+   React.useEffect(() => {
+      tl.current = gsap.timeline()
+
+      if(tl.current){
+         tl.current
+            .to(contentRef.current, {
+               opacity: 1,
+               duration: 0.6,
+            }, "+=0.2s")
+            .to(contentLengthRef.current, {
+               opacity: 1,
+               duration: 0.6,
+            }, "-=0.6s")
+      }
+   }, [])
+
    return (
       <Wrapper>
          <header>
             <StyledTitle>
-               My Wish List
-               <span>[ {length} ]</span>
+               MY WISH LIST
+               <span ref={contentLengthRef}>[ {length} ]</span>
             </StyledTitle>
          </header>
 
          <article>
-            <StyledContent>
-               {favorite.map(({id, title, price, image}) => (
-                  <ProductItem
-                     id={id}
-                     image={image}
-                     title={title}
-                     price={price}
-                  />
-               ))}
+            <StyledContent ref={contentRef}>
+               {length ? (
+                  <>
+                     {favorite.map(({id, title, price, image}) => (
+                        <ProductItem
+                           id={id}
+                           image={image}
+                           title={title}
+                           price={price}
+                        />
+                     ))}
+                  </>
+               ) : (
+                  <StyledError>There are no products in your wishlist yet. Start buying and add what you like to your wish list.</StyledError>
+               )}
+                  <StyledLoginWrapper length={length}>
+                     <StyledLoginTitle>DON'T LOSE YOUR WISH LIST</StyledLoginTitle>
+                     <StyledLoginContent>
+                        <div>
+                           <p>Join the Sneakers Club today and get 15% off your first order. Or log in to save your wish list.</p>
+                           <StyledLink to="/register">Register</StyledLink>
+                        </div>
+
+                        <div>
+                           <p>Are you a member of the Creators Club?</p>
+                           <StyledLink to="/login">Log in</StyledLink>
+                        </div>
+                     </StyledLoginContent>
+                  </StyledLoginWrapper>
             </StyledContent>
          </article>
       </Wrapper>

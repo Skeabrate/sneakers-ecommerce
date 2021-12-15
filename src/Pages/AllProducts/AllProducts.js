@@ -18,30 +18,17 @@ const AllProducts = ({AllProducts}) => {
    const { productsCtx, loadingCtx } = useContext(ProductsContext)
    const [error, setError] = useState(false)
 
-   const t1 = useRef(null)
-   const t2 = useRef(null)
+   const tl = useRef(null)
    const contentRef = useRef(null)
-   const productsCountRef = useRef(null)
+   const contentLengthRef = useRef(null)
    const searchBarRef = useRef(null)
 
    useEffect(() => {
-      window.scrollTo(0, 0)
-      t1.current = gsap.timeline({ paused: false })
-      if(t1.current) {
-         t1.current
-            .to(searchBarRef.current, {
-               width: 'auto',
-               duration: .6,
-            }) 
-      }
-   }, [])
+      tl.current = gsap.timeline({ paused: !loadingCtx })
 
-   useEffect(() => {
-      t2.current = gsap.timeline({ paused: !loadingCtx })
-
-      if(t2.current) {
-         t2.current
-            .to(productsCountRef.current, {
+      if(tl.current) {
+         tl.current
+            .to(contentLengthRef.current, {
                opacity: 1,
                duration: .6,
             }, "+=0.2s")
@@ -49,7 +36,10 @@ const AllProducts = ({AllProducts}) => {
                opacity: 1,
                duration: .6,
             }, "-=0.6s")
-            
+            .to(searchBarRef.current, {
+               width: 'auto',
+               duration: .6,
+            }) 
       }
    }, [loadingCtx])
 
@@ -58,8 +48,8 @@ const AllProducts = ({AllProducts}) => {
          <header>
             <StyledTitle>
                <StyledTitleWrapper>
-                  <h1>All Products</h1>
-                  {loadingCtx ? <span ref={productsCountRef}>[ {error ? '0' : productsCtx.length} ]</span> : null}
+                  <h1>ALL PRODUCTS</h1>
+                  {loadingCtx ? <span ref={contentLengthRef}>[ {error ? '0' : productsCtx.length} ]</span> : null}
                </StyledTitleWrapper>
 
                <SearchBar ref={searchBarRef} />
