@@ -50,7 +50,7 @@ export const StyledTitleWrapper = styled.div`
          width: 98%;
          height: 98%;
          border-radius: 5vh;
-         box-shadow: 0px 0px 8vh 10vh rgba(0, 0, 0, 1);
+         box-shadow: 0px 0px 6vh 7vh rgba(0, 0, 0, 1);
       }
 
    }
@@ -58,6 +58,13 @@ export const StyledTitleWrapper = styled.div`
    @media(max-width: ${({theme}) => theme.screenSize.mobile}){
       font-size: 9vh;
       letter-spacing: -3px;
+
+      div{
+
+         &::after{
+            box-shadow: 0px 0px 4vh 4vh rgba(0, 0, 0, 1);
+         }
+      }
    }
 `
 

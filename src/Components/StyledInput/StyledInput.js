@@ -3,8 +3,10 @@ import styled from "styled-components"
 
 const Wrapper = styled.div`
    display: flex;
-   border: 1px solid ${({theme, isCart}) => theme.colors.grey};
+   border: 1px solid ${({theme}) => theme.colors.grey};
    height: ${({isCart}) => isCart ? '46px' : 'unset'};
+   width: fit-content;
+   margin: 15px 0 30px;
 
    input{
       width: ${({isCart}) => isCart ? '50px' : '40px'};
@@ -60,19 +62,21 @@ const StyledPlusMinusBtn = styled.button`
    }
 `
 
-const StyledInput = ({plusHandler, minusHandler, value, setValue ,setBlur, isCart }) => {
+const StyledInput = ({plusHandler, minusHandler, value, setValue ,setBlur, isCart, label }) => {
    return (
-      <Wrapper isCart={isCart}>
-         <StyledPlusMinusBtn isCart={isCart} onClick={minusHandler}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 10h24v4h-24z"/></svg></StyledPlusMinusBtn>
-         <input
-            
-            type="number"
-            value={value} 
-            onChange={setValue}
-            onBlur={setBlur}
-         />
-         <StyledPlusMinusBtn isCart={isCart} onClick={plusHandler}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg></StyledPlusMinusBtn>
-      </Wrapper>
+      <div>
+         {label ? <label style={{fontWeight: 'bold'}}>{label}</label> : null}
+         <Wrapper isCart={isCart}>
+            <StyledPlusMinusBtn isCart={isCart} onClick={minusHandler}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 10h24v4h-24z"/></svg></StyledPlusMinusBtn>
+            <input
+               type="number"
+               value={value} 
+               onChange={setValue}
+               onBlur={setBlur}
+            />
+            <StyledPlusMinusBtn isCart={isCart} onClick={plusHandler}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg></StyledPlusMinusBtn>
+         </Wrapper>
+      </div>
    );
 };
 

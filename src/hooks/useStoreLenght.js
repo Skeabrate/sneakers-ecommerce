@@ -1,19 +1,16 @@
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux'
 
-export const useCartLenght = () => {
+export const useStoreLenght = (store = []) => {
    const [length, setLength] = useState(0)
-
-   const cart = useSelector((state) => state.cart)
 
    useEffect(() => {
       let amount = 0
-      cart.find(item => {
+      store.find(item => {
          if(item.id === 0) setLength(0)
          else amount += item.amount
       })
       setLength(amount)
-   }, [cart])
+   }, [store])
 
    return length;
 };

@@ -5,6 +5,7 @@ import LoadingScreen from '../../Components/LoadingScreen/LoadingScreen';
 import FiltersBar from './FiltersBar/FiltersBar';
 import SearchBar from '../../Components/SearchBar/SearchBar';
 import ProductsContext from '../../Context/productsContext';
+import AddToFavouriteButton from '../../Components/AddToFavouriteButton/AddToFavouriteButton';
 import { 
    Wrapper,
    StyledLoading, 
@@ -17,7 +18,8 @@ import {
    StyledItem, 
    StyledItemTitle, 
    StyledCategory, 
-   StyledLink } from './AllProducts.styles';
+   StyledLink,
+} from './AllProducts.styles';
 
 const AllProducts = ({AllProducts}) => {
    const { productsCtx, loadingCtx } = useContext(ProductsContext)
@@ -35,14 +37,9 @@ const AllProducts = ({AllProducts}) => {
    
    useEffect(() => {
       window.scrollTo(0, 0)
-      t1.current = gsap.timeline({ paused: false })
-
+      t1.current = gsap.timeline({ paused: !loadingCtx })
       if(t1.current) {
          t1.current
-            .to(contentTitleRef.current, {
-               y: 0,
-               duration: .6,
-            })
             .to(searchBarRef.current, {
                width: 'auto',
                duration: .6,
@@ -127,6 +124,13 @@ const AllProducts = ({AllProducts}) => {
                                                 onLoad={() => handleChangeLoad(props)}
                                              />
                                              <div>${price}</div>
+                                             
+                                             <AddToFavouriteButton 
+                                                id={id}
+                                                title={title}
+                                                price={price}
+                                                image={images[0].url}
+                                             />
                                           </StyledImage>
                                        </>
                                     ) : null}

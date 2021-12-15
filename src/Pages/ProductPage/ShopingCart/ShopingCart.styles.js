@@ -161,7 +161,7 @@ export const StyledSizesAndInfo = styled.div`
 `
 
 export const StyledInfo = styled.div`
-   margin: 8vh 0;
+   margin: 6vh 0;
 
    @media (max-width: ${({theme}) => theme.screenSize.medium}){
       font-size: ${({theme}) => theme.fontSize.xs};

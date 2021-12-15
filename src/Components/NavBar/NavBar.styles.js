@@ -98,7 +98,7 @@ export const StyledNavItem = styled(NavLink)`
    display: flex;
    justify-content: center;
    align-items: end;
-   margin-right: 40px;
+   margin-right: 30px;
    padding-bottom: 20px;
    height: 80px;
    position: relative;
@@ -151,7 +151,7 @@ export const StyledNavItem = styled(NavLink)`
                      else return '.2s .5s ease-in-out'
                   }};
 
-      ${({isToggled}) => isToggled && 'transition-delay: 0'};
+      ${({isToggled}) => !isToggled && 'transition-delay: 0s'};
 
       &.active::after {
          opacity: 0;
@@ -196,6 +196,8 @@ export const StyledCartItem = styled.button`
    border: none;
    
    svg{
+      width: 22px;
+      height: 22px;
       transform: rotateY(-180deg); 
       fill: ${({theme}) => theme.colors.white};
    }
@@ -214,6 +216,11 @@ export const StyledCartItem = styled.button`
       border-radius: 100px;
       width: 21px;
       height: 21px;
+   }
+
+   @media (max-width: ${({theme}) => theme.screenSize.mobile}){
+      margin-right: 20px;
+      transform: scale(0.8);
    }
 `
 

@@ -46,6 +46,7 @@ export const StyledTitle = styled.div`
    padding-bottom: 20px;
    margin-bottom: 20px;
    padding: 10px;
+   font-style: italic;
 
    button{
       background-color: transparent;

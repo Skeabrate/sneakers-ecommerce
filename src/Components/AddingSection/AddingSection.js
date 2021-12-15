@@ -1,14 +1,16 @@
 import React, { useState, useContext } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { addToCart, reset, changeAmount } from "../../Redux/addToCartSlice"
+import { addToCart, removeFromCart, changeAmount } from "../../Redux/addToCartSlice"
 import { OpenCartContext } from '../../Context/openCartContext';
-import { 
-   StyledCart, 
-} from "./AddToCartBtn.styles"
 import StyledButton from '../StyledButton/StyledButton';
 import StyledInput from '../StyledInput/StyledInput';
+import AddToFavouriteButton from "../AddToFavouriteButton/AddToFavouriteButton"
+import { 
+   StyledCart,
+   StyledButtonContainer,
+} from "./AddingSection.styles"
 
-const AddToCartBtn = ({ size, product, setError, isClicked, setIsClicked }) => {
+const AddingSection = ({ loading, size, setError, isClicked, setIsClicked, product: {id, title, price, images = [{url: ""}]} }) => {
    const [amount, setAmount] = useState(1)
 
    const cart = useSelector((state) => state.cart)
@@ -27,9 +29,9 @@ const AddToCartBtn = ({ size, product, setError, isClicked, setIsClicked }) => {
          }, 250)
       }
       else {
-         cart.find(item => item.id === 0 && dispatch(reset())) 
+         cart.find(item => item.id === 0 && dispatch(removeFromCart({ id: 0 }))) 
          cart.find(item => {
-            if(item.id === product.id && item.size === size) {
+            if(item.id === id && item.size === size) {
                dispatch(changeAmount({ 
                   id: item.id, 
                   size: size,
@@ -41,10 +43,10 @@ const AddToCartBtn = ({ size, product, setError, isClicked, setIsClicked }) => {
 
          if(!check) {
             dispatch(addToCart({ 
-               id: product.id, 
-               title: product.title, 
-               price: product.price,
-               image: product.images[0].url,
+               id: id, 
+               title: title, 
+               price: price,
+               image: images[0].url,
                amount, 
                size
             }))
@@ -57,6 +59,7 @@ const AddToCartBtn = ({ size, product, setError, isClicked, setIsClicked }) => {
    return (
       <StyledCart>
          <StyledInput
+            label="Amount:"
             isCart
             minusHandler={lowerAmount}
             plusHandler={() => setAmount(amount + 1)}
@@ -64,9 +67,20 @@ const AddToCartBtn = ({ size, product, setError, isClicked, setIsClicked }) => {
             setValue={(e) => setAmount(parseInt(e.currentTarget.value))}
             setBlur={() => {}}
          />
-         <StyledButton label="Add to cart" actionHandler={addToCartHandler} isClicked={isClicked}/>
+
+         <StyledButtonContainer>
+            <AddToFavouriteButton 
+               id={id}
+               title={title}
+               price={price}
+               image={images[0].url}
+               isCart
+            />
+            
+            <StyledButton label="Add to cart" actionHandler={addToCartHandler} isClicked={isClicked} loading={loading}/>
+         </StyledButtonContainer>
       </StyledCart>
    )
 };
 
-export default AddToCartBtn;
+export default AddingSection;

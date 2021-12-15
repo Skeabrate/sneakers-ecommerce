@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import AddToCartBtn from '../../../Components/AddToCartBtn/AddToCartBtn';
+import AddingSection from '../../../Components/AddingSection/AddingSection';
 import { sizes } from '../../../data/sizes'
 import gsap from "gsap"
 
@@ -102,12 +102,13 @@ const ShopingCart = ({isStickyBegin, isStickyEnd, product, loading}) => {
 
          </StyledSizesAndInfo>
 
-            <AddToCartBtn 
+            <AddingSection // includes Add to favourite button
                size={size} 
                product={product} 
                setError={setError}
                isClicked={isClicked}
                setIsClicked={setIsClicked}
+               loading={loading}
             />
          
       </StyledShopp>

@@ -34,7 +34,6 @@ export const StyledTitle = styled.div`
 `
 
 export const StyledTitleWrapper = styled.div`
-   transform: translateY(100%);
    display: flex;
    align-items: flex-end;
    justify-content: center;
