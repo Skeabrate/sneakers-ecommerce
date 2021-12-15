@@ -15,8 +15,6 @@ export const StyledTitle = styled.div`
    display: flex;
    justify-content: space-between;
    align-items: center;
-   overflow: hidden;
-   
    margin: 0 0 40px 0;
 
    @media (max-width: ${({theme}) => theme.screenSize.medium}){
@@ -203,7 +201,7 @@ export const StyledError = styled.div`
 `
 
 export const StyledLoading = styled.div`
-   height: calc(100vh - 356px - 6vw);
+   height: calc(100vh - 282px - 6vw);
    display: flex;
    justify-content: center;
    align-items: center;

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export const useStoreLenght = (store = []) => {
+export const useStoreLength = (store = []) => {
    const [length, setLength] = useState(0)
 
    useEffect(() => {

@@ -1,16 +1,36 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
+import { useStoreLength } from '../../hooks/useStoreLength'
+import {
+   Wrapper,
+   StyledTitle,
+   StyledContent,
+} from "./Wishlist.styles"
 
-const Wishlist = props => {
+const Wishlist = () => {
+   const favorite = useSelector((state) => state.favorite)
+   const length = useStoreLength(favorite)
+
    return (
-      <div>
-         Wishlist
-      </div>
-   );
-};
+      <Wrapper>
+         <header>
+            <StyledTitle>
+               My Wish List
+               <span>[ {length} ]</span>
+            </StyledTitle>
+         </header>
 
-Wishlist.propTypes = {
-   
+         <article>
+            <StyledContent>
+               {favorite.map(({id, title, price, image}) => (
+                  <div key={id}>
+                     
+                  </div>
+               ))}
+            </StyledContent>
+         </article>
+      </Wrapper>
+   );
 };
 
 export default Wishlist;

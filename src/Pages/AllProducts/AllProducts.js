@@ -30,14 +30,13 @@ const AllProducts = ({AllProducts}) => {
    const t1 = useRef(null)
    const t2 = useRef(null)
    const contentRef = useRef(null)
-   const contentTitleRef = useRef(null)
    const productsCountRef = useRef(null)
    const searchBarRef = useRef(null)
 
    
    useEffect(() => {
       window.scrollTo(0, 0)
-      t1.current = gsap.timeline({ paused: !loadingCtx })
+      t1.current = gsap.timeline({ paused: false })
       if(t1.current) {
          t1.current
             .to(searchBarRef.current, {
@@ -50,16 +49,17 @@ const AllProducts = ({AllProducts}) => {
    useEffect(() => {
       t2.current = gsap.timeline({ paused: !loadingCtx })
 
-      if(t1.current) {
-         t1.current
+      if(t2.current) {
+         t2.current
             .to(productsCountRef.current, {
                opacity: 1,
-               duration: .4,
-            })
+               duration: .6,
+            }, "+=0.2s")
             .to(contentRef.current, {
                opacity: 1,
-               duration: .4,
-            }, "-=0.4")
+               duration: .6,
+            }, "-=0.6s")
+            
       }
    }, [loadingCtx])
 
@@ -78,7 +78,7 @@ const AllProducts = ({AllProducts}) => {
       <Wrapper>
          <header>
             <StyledTitle>
-               <StyledTitleWrapper ref={contentTitleRef}>
+               <StyledTitleWrapper>
                   <h1>All Products</h1>
                   {loadingCtx ? <span ref={productsCountRef}>[ {error ? '0' : productsCtx.length} ]</span> : null}
                </StyledTitleWrapper>

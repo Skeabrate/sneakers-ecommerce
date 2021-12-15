@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useStoreLenght } from '../../hooks/useStoreLenght';
+import { useStoreLength } from '../../hooks/useStoreLength';
 import CartItem from "./CartItem/CartItem"
 import { OpenCartContext } from "../../Context/openCartContext"
 import {
@@ -17,7 +17,7 @@ const Cart = () => {
 
    const cart = useSelector((state) => state.cart)
    const dispatch = useDispatch()
-   const length = useStoreLenght(cart)
+   const length = useStoreLength(cart)
    const {isCartOpen, setIsCartOpen} = useContext(OpenCartContext)
 
    useEffect(() => {

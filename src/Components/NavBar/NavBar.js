@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import avatarImg from "../../Assets/Images/image-avatar.png"
-import { useStoreLenght } from '../../hooks/useStoreLenght';
+import { useStoreLength } from '../../hooks/useStoreLength';
 import { OpenCartContext } from '../../Context/openCartContext';
 import { Link } from "react-router-dom"
 import { useSelector } from "react-redux"
@@ -28,8 +28,8 @@ const NavBar = ({ isProductPage }) => {
    const cart = useSelector((state) => state.cart)
    const favorite = useSelector((state) => state.favorite)
 
-   const cartLength = useStoreLenght(cart)
-   const favoriteLength = useStoreLenght(favorite)
+   const cartLength = useStoreLength(cart)
+   const favoriteLength = useStoreLength(favorite)
 
    const { setIsCartOpen } = useContext(OpenCartContext)
 
