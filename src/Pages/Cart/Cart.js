@@ -10,7 +10,7 @@ import {
    StyledContent,
    StyledTotal,
 } from "./Cart.styles"
-import StyledButton from '../../Components/StyledButton/StyledButton';
+import StyledButton from '../../GlobalStyledComponents/StyledButton';
 
 const Cart = () => {
    const [totalAmount, setTotalAmount] = useState(0)

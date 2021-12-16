@@ -9,19 +9,43 @@ import {
    StyledLoading, 
    StyledError, 
    StyledTitle, 
-   StyledTitleWrapper, 
-   StyledContent, 
+   StyledTitleWrapper,
+   StyledTitleInfo
 } from './AllProducts.styles';
+import { StyledContent } from "../../GlobalStyledComponents/StyledContent"
 import ProductItem from '../../Components/ProductItem/ProductItem';
+import Pagination from '../../Components/Pagination/Pagination';
 
 const AllProducts = ({AllProducts}) => {
-   const { productsCtx, loadingCtx } = useContext(ProductsContext)
+   const { productsCtx, loadingCtx, setLoadingCtx } = useContext(ProductsContext)
    const [error, setError] = useState(false)
+   const [currentPage, setCurrentPage] = useState(1)
+   const [ postPerPage ] = useState(12)
+
+   const indexOfLastPost = currentPage * postPerPage
+   const indexOfFirstPost = indexOfLastPost - postPerPage
+   const currentPosts = productsCtx.slice(indexOfFirstPost, indexOfLastPost)
 
    const tl = useRef(null)
    const contentRef = useRef(null)
    const contentLengthRef = useRef(null)
    const searchBarRef = useRef(null)
+
+   const loadingHandler = () => { /// odswieżenie widoku
+      setLoadingCtx(false)
+      setTimeout(() => {
+         setLoadingCtx(true) 
+      }, 100)
+   }
+
+   const paginate = (item) => {
+      loadingHandler()
+      setCurrentPage(item)
+      window.scrollTo({
+         top: 0, 
+         left: 0,
+      })
+   }
 
    useEffect(() => {
       tl.current = gsap.timeline({ paused: !loadingCtx })
@@ -49,14 +73,19 @@ const AllProducts = ({AllProducts}) => {
             <StyledTitle>
                <StyledTitleWrapper>
                   <h1>ALL PRODUCTS</h1>
-                  {loadingCtx ? <span ref={contentLengthRef}>[ {error ? '0' : productsCtx.length} ]</span> : null}
+                  {loadingCtx ? (
+                     <StyledTitleInfo ref={contentLengthRef}>
+                        <span>[ {error ? '0' : productsCtx.length} ]</span> 
+                        <div>Page : <p>{currentPage}</p></div>
+                     </StyledTitleInfo>
+                  ) : null}
                </StyledTitleWrapper>
 
                <SearchBar ref={searchBarRef} />
             </StyledTitle>
 
             {productsCtx.length ? (
-               <FiltersBar setError={setError} AllProducts={AllProducts} />
+               <FiltersBar setError={setError} AllProducts={AllProducts} paginate={() => paginate(1)}/>
             ) : <div style={{height: '118px', width: '100%'}}></div>} {/* placeholder dla filtrow*/}
          </header>
 
@@ -68,19 +97,27 @@ const AllProducts = ({AllProducts}) => {
                         <h1>Nothing was found! :C</h1>
                      </StyledError>
                   ) : (
-                     <StyledContent ref={contentRef}>
-                        {productsCtx.map(
-                           ({ id, images = [], price, title, category }, props) => (
-                              <ProductItem
-                                 id={id}
-                                 image={images[0].url}
-                                 price={price}
-                                 title={title}
-                                 category={category}
-                              />
-                           )
-                        )}
-                     </StyledContent>
+                     <div>
+                        <StyledContent ref={contentRef}>
+                           {currentPosts.map(
+                              ({ id, images = [], price, title, category }, props) => (
+                                 <ProductItem
+                                    id={id}
+                                    image={images[0].url}
+                                    price={price}
+                                    title={title}
+                                    category={category}
+                                 />
+                              )
+                           )}
+                        </StyledContent>
+                        <Pagination 
+                           postsPerPage={postPerPage} 
+                           totalPosts={productsCtx.length} 
+                           paginate={paginate}
+                           currentPage={currentPage}
+                        />
+                     </div>
                   )}
                </>
             ) : (

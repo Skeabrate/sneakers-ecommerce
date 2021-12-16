@@ -46,22 +46,6 @@ export const StyledTitle = styled.h1`
    }
 `
 
-export const StyledContent = styled.div`
-   display: grid;
-   grid-template-columns: repeat(4, 1fr);
-   gap: 20px;
-   opacity: 0;
-
-   @media (max-width: ${({theme}) => theme.screenSize.medium}){
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-   }
-
-   @media (max-width: ${({theme}) => theme.screenSize.mobile}){
-      grid-template-columns: repeat(2, 1fr);
-   }
-`
-
 export const StyledError = styled.h2`
    color: ${({theme}) => theme.colors.lightGrey};
    font-weight: normal;
@@ -98,6 +82,7 @@ export const StyledLoginWrapper = styled.aside`
 
    @media (max-width: ${({theme}) => theme.screenSize.mobile}){
       grid-column: 1/3;
+      margin-bottom: 40px;
    }
 `
 

@@ -2,8 +2,8 @@ import React, { useState, useContext } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart, removeFromCart, changeAmount } from "../../Redux/addToCartSlice"
 import { OpenCartContext } from '../../Context/openCartContext';
-import StyledButton from '../StyledButton/StyledButton';
-import StyledInput from '../StyledInput/StyledInput';
+import StyledButton from '../../GlobalStyledComponents/StyledButton';
+import StyledInput from '../../GlobalStyledComponents/StyledInput';
 import AddToFavouriteButton from "../AddToFavouriteButton/AddToFavouriteButton"
 import { 
    StyledCart,

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import StyledInput from '../../../Components/StyledInput/StyledInput';
+import StyledInput from '../../../GlobalStyledComponents/StyledInput';
 import { changeAmount, removeFromCart } from "../../../Redux/addToCartSlice"
 import { Link } from "react-router-dom"
 import {

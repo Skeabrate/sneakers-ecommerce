@@ -2,7 +2,6 @@ import React, { useRef, useState, useEffect } from 'react';
 import AddingSection from '../../../Components/AddingSection/AddingSection';
 import { sizes } from '../../../data/sizes'
 import gsap from "gsap"
-
 import { 
    StyledInfo, 
    StyledInfoItem, 

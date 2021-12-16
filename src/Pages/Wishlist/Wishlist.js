@@ -5,15 +5,14 @@ import { useStoreLength } from '../../hooks/useStoreLength'
 import gsap from "gsap"
 import {
    Wrapper,
-   StyledTitle,
-   StyledContent,
    StyledError,
    StyledLink,
    StyledLoginWrapper,
    StyledLoginTitle,
    StyledLoginContent
 } from "./Wishlist.styles"
-
+import { StyledContent } from "../../GlobalStyledComponents/StyledContent"
+import { StyledTitle } from "../../GlobalStyledComponents/StyledTitle"
 
 const Wishlist = () => {
    const favorite = useSelector((state) => state.favorite)
@@ -54,6 +53,7 @@ const Wishlist = () => {
                   <>
                      {favorite.map(({id, title, price, image}) => (
                         <ProductItem
+                           key={id}
                            id={id}
                            image={image}
                            title={title}

@@ -14,7 +14,7 @@ const ProductItem = ({ id, title, category, price, image }) => {
    const [isLoaded, setIsLoaded] = useState(false)
 
    return (
-      <StyledItem key={id}>
+      <StyledItem>
          <StyledLink to={`/product/${id}`}>
             {!isLoaded ? (
                <StyledPlaceholder>

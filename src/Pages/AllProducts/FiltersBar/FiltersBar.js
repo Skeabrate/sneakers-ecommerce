@@ -12,20 +12,13 @@ import {
    StyledFilters,
    FiltersPlaceholder } from './FiltersBar.styles'
 
-const FiltersBar = ({ setError, AllProducts }) => {
-   const { productsCtx, setProductsCtx, setLoadingCtx } = useContext(ProductsContext)
+const FiltersBar = ({ setError, AllProducts, paginate }) => {
+   const { productsCtx, setProductsCtx } = useContext(ProductsContext)
    const { gender, category, price, term, setGender, setCategory, setPrice, setTerm} = useContext(FiltersContext)
 
    const filtersRef = useRef(null)
 
    const { isSticky } = useSticky(filtersRef.current)
-
-   const loadingHandler = () => { /// odswieżenie widoku
-      setLoadingCtx(false)
-      setTimeout(() => {
-         setLoadingCtx(true) 
-      }, 100)
-   }
 
    const resetOption = (first = true, second = true) => {
       if(first && category) setCategory(false)
@@ -46,7 +39,7 @@ const FiltersBar = ({ setError, AllProducts }) => {
             if(price === priceItems[0]) sorted(selectedOption, "descending")
             else if(price === priceItems[1]) sorted(selectedOption, "ascending")
          } else unSorted(selectedOption)
-         loadingHandler()
+         paginate()
       }
       if(term) {
          setTerm('')
@@ -63,7 +56,7 @@ const FiltersBar = ({ setError, AllProducts }) => {
       if(term) setTerm('')
       resetOption()
       setError(false)
-      loadingHandler()
+      paginate()
    }
 
 /* --------------------------------------------------------- GENDER ------------------------------------------------ */
@@ -86,7 +79,7 @@ const FiltersBar = ({ setError, AllProducts }) => {
    useEffect(() => {
       if(price === priceItems[0]) sortData(productsCtx, "descending")  
       else if(price === priceItems[1]) sortData(productsCtx, "ascending")
-      loadingHandler()
+      paginate()
    }, [price])
 
 
@@ -105,7 +98,7 @@ const FiltersBar = ({ setError, AllProducts }) => {
             setError(true)
             resetOption()
          }
-         loadingHandler()
+         paginate()
       }
    }, [term])
 

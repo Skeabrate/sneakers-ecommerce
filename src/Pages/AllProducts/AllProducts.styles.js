@@ -35,16 +35,11 @@ export const StyledTitleWrapper = styled.div`
    align-items: flex-end;
    justify-content: center;
    font-style: italic;
+   position: relative;
 
    h1{
       font-size: ${({theme}) => theme.fontSize.xxl};
       font-display: optional
-   }
-
-   span{
-      font-size: ${({theme}) => theme.fontSize.s};
-      opacity: 0;
-      padding: 10px 20px;
    }
 
    @media (max-width: ${({theme}) => theme.screenSize.medium}){
@@ -52,9 +47,9 @@ export const StyledTitleWrapper = styled.div`
          font-size: ${({theme}) => theme.fontSize.xl};
       }
 
-      span{
+      /* span{
          padding: 8px 20px;
-      }
+      } */
    }
 
    @media (max-width: 750px){
@@ -62,26 +57,56 @@ export const StyledTitleWrapper = styled.div`
          font-size: ${({theme}) => theme.fontSize.l};
       }
 
+      /* span{
+         font-size: ${({theme}) => theme.fontSize.micro};
+         padding: 5px 15px;
+      } */
+   }
+`
+
+export const StyledTitleInfo = styled.div`
+   display: flex;
+   flex-direction: column;
+   opacity: 0;
+
+   div{
+      position: absolute;
+      left: 0;
+      bottom: -20px;
+      display: flex;
+      
+      p{
+         color: ${({theme}) => theme.colors.orange};
+         font-weight: bold;
+         margin-left: 10px;
+      }
+   }
+
+   span{
+      font-size: ${({theme}) => theme.fontSize.s};
+      padding: 10px 20px;
+   }
+
+   @media (max-width: ${({theme}) => theme.screenSize.medium}){
+      span{
+         padding: 8px 20px;
+      }
+   }
+
+   @media (max-width: 750px){
+      div{
+         font-size: ${({theme}) => theme.fontSize.micro};
+         bottom: -12px;
+
+         p{
+            margin-left: 5px;
+         }
+      }
+
       span{
          font-size: ${({theme}) => theme.fontSize.micro};
          padding: 5px 15px;
       }
-   }
-`
-
-export const StyledContent = styled.div`
-   display: grid;
-   grid-template-columns: repeat(4, 1fr);
-   gap: 20px;
-   opacity: 0;
-
-   @media (max-width: ${({theme}) => theme.screenSize.medium}){
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-   }
-
-   @media (max-width: ${({theme}) => theme.screenSize.mobile}){
-      grid-template-columns: 1fr 1fr;
    }
 `
 
