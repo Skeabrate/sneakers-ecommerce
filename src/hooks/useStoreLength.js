@@ -4,13 +4,8 @@ export const useStoreLength = (store = []) => {
    const [length, setLength] = useState(0)
 
    useEffect(() => {
-      let amount = 0
-      store.find(item => {
-         if(item.id === 0) setLength(0)
-         else amount += item.amount
-         return setLength(amount)
-      })
-      
+      const data = store.map(item => item.amount)
+      setLength(data.reduce((a, b) => a + b, 0))
    }, [store])
 
    return length;

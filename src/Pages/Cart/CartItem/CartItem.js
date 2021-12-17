@@ -10,7 +10,7 @@ import {
 } from './CartItem.styles';
 
 const CartItem = ({ item, dispatch, isCartOpen, setIsCartOpen }) => {
-   const [inputValue, setInputValue] = useState()
+   const [inputValue, setInputValue] = useState('')
 
    useEffect(() =>{
       setInputValue(item.amount)

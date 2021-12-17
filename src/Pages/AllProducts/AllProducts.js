@@ -1,17 +1,17 @@
-import React, { useEffect, useRef, useState, useContext, useCallback } from 'react';
+import React, { useEffect, useRef, useState, useContext } from 'react';
 import gsap from 'gsap';
 import LoadingScreen from '../../Components/LoadingScreen/LoadingScreen';
 import FiltersBar from './FiltersBar/FiltersBar';
 import SearchBar from '../../Components/SearchBar/SearchBar';
 import ProductsContext from '../../Context/productsContext';
 import { 
-   Wrapper,
    StyledLoading, 
    StyledError, 
    StyledTitle, 
    StyledTitleWrapper,
    StyledTitleInfo
 } from './AllProducts.styles';
+import { Wrapper } from "../../GlobalStyledComponents/Wrapper"
 import { StyledContent } from "../../GlobalStyledComponents/StyledContent"
 import ProductItem from '../../Components/ProductItem/ProductItem';
 import Pagination from '../../Components/Pagination/Pagination';
@@ -31,18 +31,24 @@ const AllProducts = ({AllProducts}) => {
    const contentLengthRef = useRef(null)
    const searchBarRef = useRef(null)
 
-   const paginate = useCallback((item) => {
-      setLoadingCtx(false)
-      setTimeout(() => {
-         setLoadingCtx(true) 
-      }, 100)
-
-      setCurrentPage(item)
-      window.scrollTo({
+   const paginate = (item) => {
+      if(currentPage !== item){
+         setLoadingCtx(false)
+         setTimeout(() => {
+            setLoadingCtx(true) 
+         }, 100)
+   
+         setCurrentPage(item)
+         window.scrollTo({
+            top: 0, 
+            left: 0,
+         })
+      } else window.scrollTo({
          top: 0, 
          left: 0,
+         behavior: 'smooth',
       })
-   }, [setLoadingCtx])
+   }
 
    useEffect(() => {
       tl.current = gsap.timeline({ paused: !loadingCtx })

@@ -5,6 +5,7 @@ export const StyledTitle = styled.h1`
    font-display: optional;
    font-style: italic;
    margin: 0 0 40px 0;
+   text-transform: uppercase;
 
    span{
       font-size: ${({theme}) => theme.fontSize.s};

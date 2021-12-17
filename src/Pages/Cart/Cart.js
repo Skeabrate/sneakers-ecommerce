@@ -14,6 +14,7 @@ import StyledButton from '../../GlobalStyledComponents/StyledButton';
 
 const Cart = () => {
    const [totalAmount, setTotalAmount] = useState(0)
+   const [textareaValue, setTextareaValue] = useState('')
 
    const cart = useSelector((state) => state.cart)
    const dispatch = useDispatch()
@@ -52,7 +53,7 @@ const Cart = () => {
                   </>
                ) : null}
                <h4>Add a note</h4>
-               <textarea />
+               <textarea value={textareaValue} onChange={(e) => setTextareaValue(e.currentTarget.value)}/>
             </StyledContent>
 
             <StyledTotal>

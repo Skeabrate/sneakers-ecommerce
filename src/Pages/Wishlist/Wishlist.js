@@ -4,15 +4,15 @@ import ProductItem from '../../Components/ProductItem/ProductItem';
 import { useStoreLength } from '../../hooks/useStoreLength'
 import gsap from "gsap"
 import {
-   Wrapper,
    StyledError,
-   StyledLink,
    StyledLoginWrapper,
    StyledLoginTitle,
    StyledLoginContent
 } from "./Wishlist.styles"
+import { Wrapper } from '../../GlobalStyledComponents/Wrapper';
 import { StyledContent } from "../../GlobalStyledComponents/StyledContent"
 import { StyledTitle } from "../../GlobalStyledComponents/StyledTitle"
+import { StyledLink } from "../../GlobalStyledComponents/StyledAccountButton"
 
 const Wishlist = () => {
    const favorite = useSelector((state) => state.favorite)
