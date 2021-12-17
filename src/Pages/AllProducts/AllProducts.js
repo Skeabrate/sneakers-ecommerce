@@ -16,7 +16,7 @@ import { StyledContent } from "../../GlobalStyledComponents/StyledContent"
 import ProductItem from '../../Components/ProductItem/ProductItem';
 import Pagination from '../../Components/Pagination/Pagination';
 
-const AllProducts = ({AllProducts}) => {
+const AllProducts = ({ AllProducts }) => {
    const { productsCtx, loadingCtx, setLoadingCtx } = useContext(ProductsContext)
    const [error, setError] = useState(false)
    const [currentPage, setCurrentPage] = useState(1)
@@ -31,24 +31,41 @@ const AllProducts = ({AllProducts}) => {
    const contentLengthRef = useRef(null)
    const searchBarRef = useRef(null)
 
-   const paginate = (item) => {
-      if(currentPage !== item){
+   const scrollFunc = (type = "auto") => window.scrollTo({
+      top: 0, 
+      left: 0,
+      behavior: type,
+   })
+
+   const paginate = (item, func = () => {}) => {
+      if(func) {
          setLoadingCtx(false)
          setTimeout(() => {
+            func()
             setLoadingCtx(true) 
          }, 100)
    
          setCurrentPage(item)
-         window.scrollTo({
-            top: 0, 
-            left: 0,
-         })
-      } else window.scrollTo({
-         top: 0, 
-         left: 0,
-         behavior: 'smooth',
-      })
+         scrollFunc()
+      } else {
+         if(currentPage !== item){
+            setLoadingCtx(false)
+            setTimeout(() => {
+               setLoadingCtx(true) 
+            }, 100)
+      
+            setCurrentPage(item)
+            scrollFunc()
+         } else scrollFunc("smooth")
+      }
    }
+
+   useEffect(() => {
+      if(AllProducts.length){
+         if(!productsCtx.length) setError(true)
+         else setError(false)
+      }
+   }, [productsCtx])
 
    useEffect(() => {
       tl.current = gsap.timeline({ paused: !loadingCtx })
@@ -86,10 +103,8 @@ const AllProducts = ({AllProducts}) => {
 
                <SearchBar ref={searchBarRef} />
             </StyledTitle>
-
-            {productsCtx.length ? (
-               <FiltersBar setError={setError} AllProducts={AllProducts} paginate={() => paginate(1)}/>
-            ) : <div style={{height: '118px', width: '100%'}}></div>} {/* placeholder dla filtrow*/}
+            
+            <FiltersBar setError={setError} AllProducts={AllProducts} paginate={paginate}/>
          </header>
 
          <article>
@@ -103,7 +118,7 @@ const AllProducts = ({AllProducts}) => {
                      <div>
                         <StyledContent ref={contentRef}>
                            {currentPosts.map(
-                              ({ id, images = [], price, title, category }, props) => (
+                              ({ id, images = [], price, title, category, gender }, props) => (
                                  <ProductItem
                                     key={id}
                                     id={id}
@@ -111,6 +126,7 @@ const AllProducts = ({AllProducts}) => {
                                     price={price}
                                     title={title}
                                     category={category}
+                                    gender={gender}
                                  />
                               )
                            )}

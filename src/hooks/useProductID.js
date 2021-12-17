@@ -18,6 +18,7 @@ export const useProductID = () => {
                  id
                  title
                  category
+                 gender
                  price
                  description
                  images {

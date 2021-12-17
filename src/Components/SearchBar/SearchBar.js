@@ -6,11 +6,14 @@ const SearchBar = React.forwardRef((props, searchBarRef) => {
    const [searchPhrase, setSearchPhrase] = useState('')
    const [isFocused, setIsFocused] = useState(false)
 
-   const { setTerm } = useContext(FiltersContext)
+   const { setFilters } = useContext(FiltersContext)
 
    const handleSubmit = () => {
       if(searchPhrase !== '' && searchPhrase !== ' '){
-         setTerm(searchPhrase)
+         setFilters((state) => ({
+            ...state, 
+            title: searchPhrase,
+         }))
       }
       setSearchPhrase('')
    }

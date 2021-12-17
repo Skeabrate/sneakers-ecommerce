@@ -5,7 +5,13 @@ const StyledList = styled.ul`
    list-style: none;
    display: flex;
    column-gap: 10px;
-   justify-content: center;
+   justify-content: left;
+   max-width: 250px;
+   width: fit-content;
+   margin: 0 auto;
+   overflow-x: auto;
+   overflow-y: hidden;
+   padding: 10px 0;
 `
 
 const StyledButton = styled.button`
@@ -54,7 +60,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
          <StyledList>
             {pageNumber.map(item => (
                <li key={item}>
-                  <StyledButton currentPage={currentPage===item} onClick={() => paginate(item)}>{item}</StyledButton>
+                  <StyledButton currentPage={currentPage===item} onClick={() => paginate(item, false)}>{item}</StyledButton>
                </li>
             ))}
          </StyledList>

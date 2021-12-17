@@ -30,10 +30,12 @@ const MainView = () => {
    const [isCartOpen, setIsCartOpen] = useState(false)
 
    // Filters
-   const [selectedGender, setSelectedGender] = useState(false)
-   const [selectedCategory, setSelectedCategory] = useState(false)
-   const [selectedPrice, setSelectedPrice] = useState(false)
-   const [selectedTerm, setSelectedTerm] = useState(false)
+   const [filters, setFilters] = useState({
+      title: '',
+      gender: '',
+      category: '',
+      price: '',
+   })
 
    useEffect(() => {
       if(products.length) setProductsCtx(products)
@@ -49,14 +51,8 @@ const MainView = () => {
                setLoadingCtx: setLoading,
             }}>
                <FiltersContext.Provider value={{
-                  gender: selectedGender,
-                  category: selectedCategory,
-                  price: selectedPrice,
-                  term: selectedTerm,
-                  setGender: setSelectedGender,
-                  setCategory: setSelectedCategory,
-                  setPrice: setSelectedPrice,
-                  setTerm: setSelectedTerm,
+                  filters: filters,
+                  setFilters: setFilters,
                }}>
                   <OpenCartContext.Provider value={{
                      isCartOpen: isCartOpen,

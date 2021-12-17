@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useCallback, useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import ComboBox from '../../../Components/ComboBox/ComboBox';
 import ProductsContext from '../../../Context/productsContext';
 import { sortData } from '../../../helpers/sortData';
@@ -12,95 +12,40 @@ import {
    StyledFilters,
    FiltersPlaceholder } from './FiltersBar.styles'
 
-const FiltersBar = ({ setError, AllProducts, paginate }) => {
-   const { productsCtx, setProductsCtx } = useContext(ProductsContext)
-   const { gender, category, price, term, setGender, setCategory, setPrice, setTerm} = useContext(FiltersContext)
-
+const FiltersBar = ({ AllProducts, paginate }) => {
+   const { setProductsCtx } = useContext(ProductsContext)
+   const { filters, setFilters } = useContext(FiltersContext)
+   
    const filtersRef = useRef(null)
-
    const { isSticky } = useSticky(filtersRef.current)
 
-   const resetOption = (first = true, second = true) => {
-      if(first && category) setCategory(false)
-      if(second && gender) setGender(false)
-   }
-
-   const unSorted = (value) => setProductsCtx(AllProducts.filter(item => item.category.includes(value)))
-
-   const sorted = (value, direction) => {
-      const data = AllProducts.filter(item => item.category.includes(value))
-      sortData(data, direction)
-      return setProductsCtx(data)
-   }
-
-   const handleSortAll = useCallback((selectedOption) => { 
-      if(selectedOption){ // Dla Women i Men
-         if(price){
-            if(price === priceItems[0]) sorted(selectedOption, "descending")
-            else if(price === priceItems[1]) sorted(selectedOption, "ascending")
-         } else unSorted(selectedOption)
-         paginate()
-      }
-      if(term) {
-         setTerm('')
-         setError(false)
-      }
-   }, [gender, category])
-
-   const resetHandler = () => { // After clicking X button on filter
-      if(price){
-         if(price === priceItems[0]) sorted('', "descending")
-         else if(price === priceItems[1]) sorted('', "ascending")
-      } else unSorted('')
-
-      if(term) setTerm('')
-      resetOption()
-      setError(false)
-      paginate()
-   }
-
-/* --------------------------------------------------------- GENDER ------------------------------------------------ */
-   useEffect(() => {
-      if(gender){
-         handleSortAll(gender)
-         resetOption(true, false)
-      }
-   }, [gender])
-
-/* --------------------------------------------------------- CATEGORY ------------------------------------------------ */
-   useEffect(() => {
-      if(category){
-         handleSortAll(category)
-         resetOption(false, true)
-      } 
-   }, [category])
-
-/* --------------------------------------------------------- PRICE ------------------------------------------------ */
-   useEffect(() => {
-      if(price === priceItems[0]) sortData(productsCtx, "descending")  
-      else if(price === priceItems[1]) sortData(productsCtx, "ascending")
-      paginate()
-   }, [price])
-
-
-/* --------------------------------------------------------- TERM ------------------------------------------------ */
-   useEffect(() => {
-      if(term){
-         const results = AllProducts.filter(item => item.title.toUpperCase().includes(term.toUpperCase()))
-         if(results.length) {
-            setError(false) 
-            if(price === priceItems[0]) setProductsCtx(sortData(results, "descending"))  
-            else if(price === priceItems[1]) setProductsCtx(sortData(results, "ascending"))
-            else setProductsCtx(results)
-            resetOption()
+   const handleSetFilters = (fieldName, option) => {
+      setFilters((state) => {
+         return {
+            ...state,
+            [fieldName]: option
          }
-         else {
-            setError(true)
-            resetOption()
-         }
-         paginate()
-      }
-   }, [term])
+      })
+   }
+
+   const handleResetFilter = (fieldName, option) => {
+      handleSetFilters(fieldName, option)
+   }
+
+   const filterData = () => {
+      if(filters.price === "Price (high - low)") sortData(AllProducts, "descending")
+      else if(filters.price === "Price (low - high)") sortData(AllProducts, "ascending")
+
+      return setProductsCtx(AllProducts.filter(item => (
+         (item.gender.includes(filters.gender) || item.gender.includes("Unisex")) 
+         && item.category.includes(filters.category) 
+         && item.title.toLowerCase().includes(filters.title.toLowerCase())
+      )))
+   }
+
+   useEffect(() => {
+      paginate(1, filterData)
+   }, [filters])
 
    return (
       <div>
@@ -108,15 +53,17 @@ const FiltersBar = ({ setError, AllProducts, paginate }) => {
             <StyledFilters>
                <ComboBox 
                   label="gender"
-                  setSelectedItem={setGender}
-                  option={gender}
+                  option="gender"
+                  filter={filters.gender}
+                  setFilters={handleSetFilters}
                   items={genderItems}
                />
 
                <ComboBox 
                   label="category" 
-                  setSelectedItem={setCategory}
-                  option={category}
+                  option="category"
+                  filter={filters.category}
+                  setFilters={handleSetFilters}
                   items={categoryItems}
                />
             </StyledFilters>
@@ -124,8 +71,9 @@ const FiltersBar = ({ setError, AllProducts, paginate }) => {
             <ComboBox
                isPrice
                label="sort by" 
-               setSelectedItem={setPrice}
-               option={price}
+               option="price"
+               filter={filters.price}
+               setFilters={handleSetFilters}
                items={priceItems}
             />
          </StyledFiltersBar>
@@ -133,8 +81,17 @@ const FiltersBar = ({ setError, AllProducts, paginate }) => {
 
          <StyledActiveFilters>
             <div ref={filtersRef} style={{position: 'absolute', top: '-133px'}}></div>
-            {term || gender || category ? (
-               <StyledPhrase label={term || gender || category} resetHandler={resetHandler}/>
+            {filters.gender ? (
+               <StyledPhrase label={filters.gender} resetHandler={() => handleResetFilter("gender", "")} />
+            ) : null}
+            {filters.category ? (
+               <StyledPhrase label={filters.category} resetHandler={() => handleResetFilter("category", '')} />
+            ) : null}
+            {filters.price ? (
+               <StyledPhrase label={filters.price} resetHandler={() => handleResetFilter("price", '')} />
+            ) : null}
+            {filters.title ? (
+               <StyledPhrase label={filters.title} resetHandler={() => handleResetFilter("title", '')} />
             ) : null}
          </StyledActiveFilters>
       </div>
@@ -142,3 +99,88 @@ const FiltersBar = ({ setError, AllProducts, paginate }) => {
 };
 
 export default FiltersBar;
+
+
+/* 
+const resetOption = (first = true, second = true) => {
+   if(first && category) setCategory(false)
+   if(second && gender) setGender(false)
+}
+
+const unSorted = (value) => setProductsCtx(AllProducts.filter(item => item.category.includes(value)))
+
+const sorted = (value, direction) => {
+   const data = AllProducts.filter(item => item.category.includes(value))
+   sortData(data, direction)
+   return setProductsCtx(data)
+}
+
+const handleSortAll = useCallback((selectedOption) => { 
+   if(selectedOption){ // Dla Women i Men
+      if(price){
+         if(price === priceItems[0]) sorted(selectedOption, "descending")
+         else if(price === priceItems[1]) sorted(selectedOption, "ascending")
+      } else unSorted(selectedOption)
+      paginate()
+   }
+   if(term) {
+      setTerm('')
+      setError(false)
+   }
+}, [gender, category])
+
+const resetHandler = () => { // After clicking X button on filter
+   if(price){
+      if(price === priceItems[0]) sorted('', "descending")
+      else if(price === priceItems[1]) sorted('', "ascending")
+   } else unSorted('')
+
+   if(term) setTerm('')
+   resetOption()
+   setError(false)
+   paginate()
+}
+
+
+useEffect(() => {
+   if(gender){
+      handleSortAll(gender)
+      resetOption(true, false)
+   }
+}, [gender])
+
+
+useEffect(() => {
+   if(category){
+      handleSortAll(category)
+      resetOption(false, true)
+   } 
+}, [category])
+
+
+useEffect(() => {
+   if(price === priceItems[0]) sortData(productsCtx, "descending")  
+   else if(price === priceItems[1]) sortData(productsCtx, "ascending")
+   paginate()
+}, [price])
+
+
+
+useEffect(() => {
+   if(term){
+      const results = AllProducts.filter(item => item.title.toUpperCase().includes(term.toUpperCase()))
+      if(results.length) {
+         setError(false) 
+         if(price === priceItems[0]) setProductsCtx(sortData(results, "descending"))  
+         else if(price === priceItems[1]) setProductsCtx(sortData(results, "ascending"))
+         else setProductsCtx(results)
+         resetOption()
+      }
+      else {
+         setError(true)
+         resetOption()
+      }
+      paginate()
+   }
+}, [term])
+ */

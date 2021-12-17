@@ -20,6 +20,7 @@ export const useData = () => {
          id
          title
          category
+         gender
          price
          description
          images {

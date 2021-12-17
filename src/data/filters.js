@@ -1,14 +1,13 @@
 export const genderItems = [
    "Women", 
-   "Men", 
+   "Men",
 ]
 
 export const categoryItems = [
-   "Women's Essential", 
-   "Women's Running", 
-   "Men's Essential", 
-   "Men's Running", 
-   "Original", 
+   "Running", 
+   "Essentials", 
+   "Originals", 
+   "Winter", 
 ]
 
 export const priceItems =  [

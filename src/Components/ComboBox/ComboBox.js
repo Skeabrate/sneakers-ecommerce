@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useSelect } from 'downshift'
 import { Wrapper, StyledOptionBtn, StyledList } from "./ComboBox.styles"
 
-const ComboBox = ({ label, items = [], isPrice, option, setSelectedItem }) => {
+const ComboBox = ({ label, items = [], isPrice, option, filter, setFilters }) => {
    const {
       isOpen,
       selectedItem,
@@ -14,14 +14,16 @@ const ComboBox = ({ label, items = [], isPrice, option, setSelectedItem }) => {
    } = useSelect({ items })
 
    useEffect(() => {
-      if(selectedItem) setSelectedItem(selectedItem)
-   }, [selectedItem, setSelectedItem])
+      if(selectedItem){
+         setFilters(option, selectedItem)
+      }
+   }, [selectedItem])
 
    useEffect(() => {
       if(isOpen){
-         if(!option) selectItem(null)
+         if(!filter) selectItem(null)
       }
-   }, [isOpen, option, selectItem])
+   }, [isOpen])
 
    return (
       <Wrapper>

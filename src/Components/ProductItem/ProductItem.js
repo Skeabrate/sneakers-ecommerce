@@ -10,7 +10,7 @@ import {
    StyledCategory
 } from "./ProductItem.styles"
 
-const ProductItem = ({ id, title, category, price, image }) => {
+const ProductItem = ({ id, title, category, gender, price, image }) => {
    const [isLoaded, setIsLoaded] = useState(false)
 
    return (
@@ -43,7 +43,8 @@ const ProductItem = ({ id, title, category, price, image }) => {
          </StyledLink>
 
          <StyledItemTitle>{title.toUpperCase()}</StyledItemTitle>
-         <StyledCategory>{category}</StyledCategory>
+         {gender && category ? <StyledCategory>{gender} / {category}</StyledCategory> : null}
+         
       </StyledItem>
    );
 };
