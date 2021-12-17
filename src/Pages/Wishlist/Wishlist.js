@@ -73,7 +73,7 @@ const Wishlist = () => {
                         </div>
 
                         <div>
-                           <p>Are you a member of the Creators Club?</p>
+                           <p>Are you a member of the Sneakers Club?</p>
                            <StyledLink to="/login">Log in</StyledLink>
                         </div>
                      </StyledLoginContent>

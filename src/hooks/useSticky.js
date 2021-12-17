@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 export const useSticky = (ref, refEnd) => {
    const [isSticky, setIsSticky] = useState(true)

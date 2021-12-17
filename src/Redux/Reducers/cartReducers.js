@@ -22,6 +22,7 @@ export function changeAmountReducer(state, action){
       if(item.id === action.payload.id && item.size === action.payload.size){
          item.amount += action.payload.amount
       }
+      return null
    })
 
    const updateItem = JSON.parse(localStorage.getItem('cart'))
@@ -29,6 +30,7 @@ export function changeAmountReducer(state, action){
       if(item.id === action.payload.id && item.size === action.payload.size){
          item.amount += action.payload.amount
       }
+      return null
    })
    
    localStorage.setItem('cart', JSON.stringify(updateItem))

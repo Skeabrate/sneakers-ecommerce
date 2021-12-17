@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useContext } from 'react';
+import React, { useEffect, useRef, useState, useContext, useCallback } from 'react';
 import gsap from 'gsap';
 import LoadingScreen from '../../Components/LoadingScreen/LoadingScreen';
 import FiltersBar from './FiltersBar/FiltersBar';
@@ -31,21 +31,18 @@ const AllProducts = ({AllProducts}) => {
    const contentLengthRef = useRef(null)
    const searchBarRef = useRef(null)
 
-   const loadingHandler = () => { /// odswieżenie widoku
+   const paginate = useCallback((item) => {
       setLoadingCtx(false)
       setTimeout(() => {
          setLoadingCtx(true) 
       }, 100)
-   }
 
-   const paginate = (item) => {
-      loadingHandler()
       setCurrentPage(item)
       window.scrollTo({
          top: 0, 
          left: 0,
       })
-   }
+   }, [setLoadingCtx])
 
    useEffect(() => {
       tl.current = gsap.timeline({ paused: !loadingCtx })
@@ -102,6 +99,7 @@ const AllProducts = ({AllProducts}) => {
                            {currentPosts.map(
                               ({ id, images = [], price, title, category }, props) => (
                                  <ProductItem
+                                    key={id}
                                     id={id}
                                     image={images[0].url}
                                     price={price}

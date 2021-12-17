@@ -4,7 +4,7 @@ import { useAnimation } from '../../../../hooks/useAnimation';
 
 const Description = ({ product: { title, description, images }, loading }) => {
    const wrapperRef = useRef(null)
-   const isPaused = useAnimation(wrapperRef.current)
+   useAnimation(wrapperRef.current)
 
    return (
       <Wrapper ref={wrapperRef}>

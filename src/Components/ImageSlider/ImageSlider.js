@@ -7,7 +7,7 @@ const ImageSlider = ({product, loading, isQuickView}) => {
    const [isHovered, setIsHovered] = useState(true)
    const [isImgLoaded, setIsImgLoaded] = useState(false)
 
-   let newCurrent = 0
+   let newCurrent = useRef(0)
 
    const t1 = useRef((null))
    const imagesRef = useRef(null)
@@ -21,7 +21,7 @@ const ImageSlider = ({product, loading, isQuickView}) => {
    const handleLoadImg = (index) => !index && setIsImgLoaded(true)
 
    useEffect(() => {
-      newCurrent = current
+      newCurrent.current = current
    }, [current])
 
    useEffect(() => {
@@ -31,14 +31,14 @@ const ImageSlider = ({product, loading, isQuickView}) => {
       if(product.images){
          document.addEventListener('keydown', (e) => {
             if(e.keyCode === 39) {
-               if(newCurrent === product.images.length - 1) newCurrent = 0
-               else newCurrent += 1
-               return setCurrent(newCurrent) 
+               if(newCurrent.current === product.images.length - 1) newCurrent.current = 0
+               else newCurrent.current += 1
+               return setCurrent(newCurrent.current) 
             }
             if(e.keyCode === 37) {
-               if(newCurrent === 0) newCurrent = product.images.length - 1
-               else newCurrent -= 1
-               return setCurrent(newCurrent)
+               if(newCurrent.current === 0) newCurrent.current = product.images.length - 1
+               else newCurrent.current -= 1
+               return setCurrent(newCurrent.current)
             }
          }, {signal: signal})
       }

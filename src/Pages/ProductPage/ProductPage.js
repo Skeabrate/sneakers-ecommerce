@@ -23,7 +23,7 @@ const ProductPage = ({setIsProductPage}) => {
       return () => {
          setIsProductPage(false)
       }
-   }, [])
+   }, [setIsProductPage])
 
    return (
       <section>

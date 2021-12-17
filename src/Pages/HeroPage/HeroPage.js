@@ -68,7 +68,7 @@ const HeroPage = ({setIsHero}) => {
       return () => {
          setIsHero(false)
       }
-   }, [])
+   }, [setIsHero])
 
    const handleChangeScene = () => {
       t2.current.play()

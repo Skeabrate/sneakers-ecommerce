@@ -37,8 +37,9 @@ const AddingSection = ({ loading, size, setError, isClicked, setIsClicked, produ
                   size: size,
                   amount
                }))
-               return check = true
+               check = true
             }
+            return check
          })
 
          if(!check) {

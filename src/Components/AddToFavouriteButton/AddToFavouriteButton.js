@@ -38,12 +38,12 @@ const AddToFavouriteButton = ({ id, title, price, image = [], isCart }) => {
 
    const handleFavorite = (e) => {
       e.preventDefault()
-
       let check = false
       
       favorite.find(item => {
          if(item.id === 0) dispatch(removeFromFavorite({ id: 0 }))
-         if(item.id === id) return check = true
+         if(item.id === id) check = true
+         return check
       })
 
       if(check) dispatch(removeFromFavorite({ id: id }))

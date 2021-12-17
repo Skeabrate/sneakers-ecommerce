@@ -8,8 +8,9 @@ export const useStoreLength = (store = []) => {
       store.find(item => {
          if(item.id === 0) setLength(0)
          else amount += item.amount
+         return setLength(amount)
       })
-      setLength(amount)
+      
    }, [store])
 
    return length;

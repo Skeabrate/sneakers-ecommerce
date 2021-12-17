@@ -37,7 +37,7 @@ export const useAnimation = (ref) => {
                duration: .8,
             })
       }
-   }, [isPaused])
+   }, [isPaused, ref])
 
    return isPaused
 };

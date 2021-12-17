@@ -15,13 +15,13 @@ const ComboBox = ({ label, items = [], isPrice, option, setSelectedItem }) => {
 
    useEffect(() => {
       if(selectedItem) setSelectedItem(selectedItem)
-   }, [selectedItem])
+   }, [selectedItem, setSelectedItem])
 
    useEffect(() => {
       if(isOpen){
          if(!option) selectItem(null)
       }
-   }, [isOpen])
+   }, [isOpen, option, selectItem])
 
    return (
       <Wrapper>

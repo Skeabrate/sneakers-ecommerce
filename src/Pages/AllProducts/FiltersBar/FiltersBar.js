@@ -133,16 +133,8 @@ const FiltersBar = ({ setError, AllProducts, paginate }) => {
 
          <StyledActiveFilters>
             <div ref={filtersRef} style={{position: 'absolute', top: '-133px'}}></div>
-            {term ? (
-               <StyledPhrase label={term} resetHandler={resetHandler}/>
-            ) : null}
-
-            {gender ? (
-               <StyledPhrase label={gender} resetHandler={resetHandler}/>
-            ) : null}
-            
-            {category ? (
-               <StyledPhrase label={category} resetHandler={resetHandler}/>
+            {term || gender || category ? (
+               <StyledPhrase label={term || gender || category} resetHandler={resetHandler}/>
             ) : null}
          </StyledActiveFilters>
       </div>

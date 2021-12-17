@@ -44,7 +44,7 @@ export const useProductID = () => {
 
    useEffect(() => {
       fetchProduct()
-   }, [id])
+   }, [fetchProduct])
 
    return [product, loading, error]
 };

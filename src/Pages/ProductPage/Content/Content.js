@@ -1,4 +1,4 @@
-import react, { useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import ImageSlider from '../../../Components/ImageSlider/ImageSlider';
 import { Element } from 'react-scroll'
 import { useSticky } from "../../../hooks/useSticky"

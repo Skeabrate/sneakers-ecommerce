@@ -42,17 +42,17 @@ export const useData = () => {
             }
          })
 
-         const arr = []
+         /* const arr = []
          console.log('fetching data')
          for(const key in res.data.data.allProducts){
             arr.push({...res.data.data.allProducts[key], isLoaded: false})
-         }
-         setProducts(arr)
+         } */
+         setProducts(res.data.data.allProducts)
       } catch (ex) {
          console.log(ex.response)
       }
       setLoading(true)
-   }, [dataCount])
+   }, [queryVal])
 
    useEffect(() => {
       const fetchDataCount = async () => {
@@ -76,7 +76,7 @@ export const useData = () => {
 
    useEffect(() => {
       if(dataCount) fetchProducts()
-   }, [dataCount])
+   }, [dataCount, fetchProducts])
 
 
    return [products, loading, setLoading, setProducts]
