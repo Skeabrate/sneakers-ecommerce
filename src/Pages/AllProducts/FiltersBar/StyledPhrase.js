@@ -6,11 +6,10 @@ const Wrapper = styled.div`
    background-color: ${({theme}) => theme.colors.orange};
    padding: 10px;
    display: flex;
-   width: fit-content;
+   min-width: fit-content;
    justify-content: center;
    align-items: center;
-   margin-right: 15px;
-
+   
    button {
       margin-left: 5px;
       background-color: transparent;

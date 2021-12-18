@@ -45,7 +45,7 @@ const FiltersBar = ({ AllProducts, paginate }) => {
 
    useEffect(() => {
       paginate(1, filterData)
-   }, [filters])
+   }, [filters]) // eslint-disable-line react-hooks/exhaustive-deps
 
    return (
       <div>

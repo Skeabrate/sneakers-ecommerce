@@ -65,7 +65,7 @@ const AllProducts = ({ AllProducts }) => {
          if(!productsCtx.length) setError(true)
          else setError(false)
       }
-   }, [productsCtx])
+   }, [productsCtx]) // eslint-disable-line react-hooks/exhaustive-deps
 
    useEffect(() => {
       tl.current = gsap.timeline({ paused: !loadingCtx })

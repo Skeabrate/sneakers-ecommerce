@@ -17,13 +17,13 @@ const ComboBox = ({ label, items = [], isPrice, option, filter, setFilters }) =>
       if(selectedItem){
          setFilters(option, selectedItem)
       }
-   }, [selectedItem])
+   }, [selectedItem]) // eslint-disable-line react-hooks/exhaustive-deps
 
    useEffect(() => {
       if(isOpen){
          if(!filter) selectItem(null)
       }
-   }, [isOpen])
+   }, [isOpen]) // eslint-disable-line react-hooks/exhaustive-deps
 
    return (
       <Wrapper>

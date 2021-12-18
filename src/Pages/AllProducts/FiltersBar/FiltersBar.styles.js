@@ -39,9 +39,19 @@ export const StyledFilters = styled.div`
 export const StyledActiveFilters = styled.div`
    display: flex;
    align-items: center;
-   height: 58px;
+   min-height: 36px;
+   column-gap: 15px;
+   row-gap: 10px;
+   margin-block: 11px;
+   row-gap: 5px;
    position: relative;
+   flex-wrap: wrap;
 
+   @media (max-width: ${({theme}) => theme.screenSize.mobile}){
+      row-gap: 10px;
+      column-gap: 10px;
+      margin-block: 10px;
+   }
 `
 
 export const FiltersPlaceholder = styled.div`
