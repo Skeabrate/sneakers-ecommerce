@@ -50,10 +50,10 @@ const Cart = () => {
                         setIsCartOpen={setIsCartOpen}
                      />
                   ))}
+                  <h4>Add a note</h4>
+                  <textarea value={textareaValue} onChange={(e) => setTextareaValue(e.currentTarget.value)}/>
                   </>
-               ) : null}
-               <h4>Add a note</h4>
-               <textarea value={textareaValue} onChange={(e) => setTextareaValue(e.currentTarget.value)}/>
+               ) : <h3>Your bag is empty</h3>}
             </StyledContent>
 
             <StyledTotal>

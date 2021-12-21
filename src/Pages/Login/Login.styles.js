@@ -1,54 +1,45 @@
+import { Form } from "formik"
 import styled from "styled-components"
 
 
-export const StyledForm = styled.form`
+export const StyledForm = styled(Form)`
    display: flex;
    flex-direction: column;
+`
 
-   div{
-      position: relative;
-      margin-bottom: 50px;
+export const StyledCheckbox = styled.div`
+   margin-bottom: 30px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: fit-content;
+   column-gap: 10px;
+   position: relative;
+
+   input{
+      width: 30px;
+      height: 30px;
+      opacity: 0;
+      cursor: pointer;
    }
 `
 
-export const StyledLabel = styled.label`
+export const StyledCustomInput = styled.span`
    position: absolute;
-   left: 20px;
-   top: 50%;
-   transform: translateY(-50%);
-   color: ${({theme}) => theme.colors.white};;
-   font-size: ${({theme}) => theme.fontSize.xxs};
-   background-color: ${({theme}) => theme.colors.black};
-   padding: 0 8px;
-   z-index: ${({isFocused}) => isFocused ? 1 : -1};
-   transform: ${({isFocused}) => isFocused ? 'translateY(-33px) scale(0.9)' : 'translateY(-50%)'};
-
-   transition: all .2s ease-in-out;
-`
-
-export const StyledInput = styled.input`
-   height: 50px;
-   width: 500px;
-   padding: 0 20px;
-   background-color: transparent;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 30px;
+   height: 30px;
+   left: 0;
+   background-color: ${({theme, value}) => value ? theme.colors.white : theme.colors.black};
    border: 2px solid ${({theme}) => theme.colors.white};
-   color: ${({theme}) => theme.colors.white};
-   transition: border-color .1s ease-in-out;
+   
+   z-index: -1;
 
-   border-bottom-color: ${({theme, error}) => error ? 'red' : theme.colors.white};
-
-   &:focus{
-      outline: none;
-      background: transparent;
+   svg{
+      width: 18px;
+      height: 18px;
+      fill: ${({theme}) => theme.colors.black};
    }
-
-   &:-webkit-autofill,
-   &:-webkit-autofill:hover,
-   &:-webkit-autofill:active,
-   &:-webkit-autofill:focus {
-      -webkit-box-shadow: 0 0 0 1000px ${({theme}) => theme.colors.black} inset !important;
-      -webkit-text-fill-color: ${({theme}) => theme.colors.white} !important;
-   }
-
-  
 `
