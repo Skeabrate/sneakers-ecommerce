@@ -33,8 +33,7 @@ export const StyledCustomInput = styled.span`
    height: 30px;
    left: 0;
    background-color: ${({theme, value}) => value ? theme.colors.white : theme.colors.black};
-   border: 2px solid ${({theme}) => theme.colors.white};
-   
+   border: 2px solid ${({theme, isFocused}) => isFocused ? theme.colors.orange : theme.colors.white};
    z-index: -1;
 
    svg{

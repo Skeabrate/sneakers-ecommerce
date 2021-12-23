@@ -20,42 +20,52 @@ const AddingSection = ({ loading, size, setError, isClicked, setIsClicked, produ
    const lowerAmount = () => amount !== 1 ? setAmount(amount - 1) : null
 
    const addToCartHandler = () => {
-      let check = false
-      if(!size) {
-         setError(true)
-         setIsClicked(true)
-         setTimeout(() => {
-            setIsClicked(false)
-         }, 250)
+      if(amount > 50) {
+         alert('Maximum amount is 50.')
+         setAmount(1)
       }
       else {
-         cart.find(item => item.id === 0 && dispatch(removeFromCart({ id: 0 }))) 
-         cart.find(item => {
-            if(item.id === id && item.size === size) {
-               dispatch(changeAmount({ 
-                  id: item.id, 
-                  size: size,
-                  amount
-               }))
-               check = true
-            }
-            return check
-         })
-
-         if(!check) {
-            dispatch(addToCart({ 
-               id: id, 
-               title: title, 
-               price: price,
-               image: images[0].url,
-               amount, 
-               size
-            }))
+         let check = false
+         if(!size) {
+            setError(true)
+            setIsClicked(true)
+            setTimeout(() => {
+               setIsClicked(false)
+            }, 250)
          }
-         setAmount(1)
-         setIsCartOpen(true)
+         else {
+            cart.find(item => item.id === 0 && dispatch(removeFromCart({ id: 0 }))) 
+            cart.find(item => {
+               if(item.id === id && item.size === size) {
+                  dispatch(changeAmount({ 
+                     id: item.id, 
+                     size: size,
+                     amount
+                  }))
+                  check = true
+               }
+               return check
+            })
+   
+            if(!check) {
+               dispatch(addToCart({ 
+                  id: id, 
+                  title: title, 
+                  price: price,
+                  image: images[0].url,
+                  amount, 
+                  size
+               }))
+            }
+            setAmount(1)
+            setIsCartOpen(true)
+         }   
       }
    }
+
+   React.useEffect(() =>{
+      if(amount > 50) setAmount(50)
+   }, [amount])
 
    return (
       <StyledCart>
@@ -66,7 +76,7 @@ const AddingSection = ({ loading, size, setError, isClicked, setIsClicked, produ
             plusHandler={() => setAmount(amount + 1)}
             value={amount}
             setValue={(e) => setAmount(parseInt(e.currentTarget.value))}
-            setBlur={() => {}}
+            setBlur={(e) => !parseInt(e.currentTarget.value) && setAmount(1)}
          />
 
          <StyledButtonContainer>

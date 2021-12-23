@@ -3,11 +3,6 @@ import { StyledTitle } from '../../GlobalStyledComponents/StyledTitle'
 import { Wrapper } from "../../GlobalStyledComponents/Wrapper"
 import {
    StyledForm,
-   StyledLabel,
-   StyledField,
-   StyledError,
-   StyledFieldWrapper,
-   StyledErrorSvg,
    StyledCheckbox,
    StyledCustomInput
 } from "./Login.styles"
@@ -22,12 +17,13 @@ const SignupSchema = Yup.object().shape({
      .min(7, 'The password is too short.')
      .max(50)
      .required('Required'),
- });
+});
 
 const Login = () => {
    const [isFocused, setIsFocused] = useState({
       email: false,
       password: false,
+      checkbox: false,
    })
    const [checkboxValue, setCheckboxValue] = useState(false)
 
@@ -35,15 +31,15 @@ const Login = () => {
       email: '',
       password: '',
    }
-   React.useEffect(() => {
-      console.log(checkboxValue)
-   }, [checkboxValue])
 
    return (
       <Wrapper>
          <header>
             <StyledTitle>
                LOG IN
+               <p>
+                  Forgot Your Password?
+               </p>
             </StyledTitle>
          </header>
 
@@ -78,8 +74,17 @@ const Login = () => {
                      />
 
                      <StyledCheckbox>
-                        <input type="checkbox" name="loggedIn" value={checkboxValue} onChange={() => setCheckboxValue(!checkboxValue)} />
-                        <StyledCustomInput value={checkboxValue}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg></StyledCustomInput>
+                        <input 
+                           type="checkbox" 
+                           name="loggedIn" 
+                           value={checkboxValue} 
+                           onChange={() => setCheckboxValue(!checkboxValue)}
+                           onFocus={() => setIsFocused({checkbox: true})}
+                           onBlur={() => setIsFocused({checkbox: false})}
+                        />
+                        <StyledCustomInput value={checkboxValue} isFocused={isFocused.checkbox}>
+                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+                        </StyledCustomInput>
                         <label htmlFor="loggedIn">Keep me logged in.</label>
                      </StyledCheckbox>
   

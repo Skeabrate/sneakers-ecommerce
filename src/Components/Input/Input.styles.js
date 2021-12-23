@@ -17,7 +17,7 @@ export const StyledLabel = styled.label`
    background-color: ${({theme}) => theme.colors.black};
    padding: 0 8px;
    z-index: ${({isFocused}) => isFocused ? 1 : -1};
-   transform: ${({isFocused}) => isFocused ? 'translateY(-33px) scale(0.9)' : 'translateY(-50%)'};
+   transform: ${({isFocused}) => isFocused ? 'translateY(-33px) scale(0.85)' : 'translateY(-50%)'};
    text-transform: capitalize;
 
    transition: all .2s ease-in-out;
@@ -31,7 +31,7 @@ export const StyledField = styled(Field)`
    border: 2px solid ${({theme}) => theme.colors.white};
    color: ${({theme}) => theme.colors.white};
 
-   border-bottom-color: ${({theme, error}) => error ? theme.colors.red : null};
+   border-color: ${({theme, error}) => error ? theme.colors.red : null};
 
    &:focus{
       outline: none;

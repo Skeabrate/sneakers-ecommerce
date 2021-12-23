@@ -30,6 +30,7 @@ const SearchBar = React.forwardRef((props, searchBarRef) => {
             ref={searchBarRef}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
+            maxLength="55"
          />
          <StyledAnimation isFocused={isFocused}></StyledAnimation>
          <StyledSearchBtn onClick={handleSubmit}>

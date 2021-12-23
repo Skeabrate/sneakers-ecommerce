@@ -13,8 +13,13 @@ const CartItem = ({ item, dispatch, isCartOpen, setIsCartOpen }) => {
    const [inputValue, setInputValue] = useState('')
 
    useEffect(() =>{
-      setInputValue(item.amount)
+      if(item.amount > 50) setInputValue(50)
+      else setInputValue(item.amount)
    }, [item.amount])
+
+   useEffect(() =>{
+      if(inputValue > 50) setInputValue(50)
+   }, [inputValue])
 
    const removeHanlder = () => dispatch(removeFromCart({ id: item.id, size: item.size }))
    const changeHandler = (value) => dispatch(changeAmount({ id: item.id, size: item.size, amount: value }))
@@ -28,7 +33,10 @@ const CartItem = ({ item, dispatch, isCartOpen, setIsCartOpen }) => {
    }
 
    const inputAmountHandler = () => {
-      if(inputValue > 0) changeHandler(inputValue - item.amount)
+      if(inputValue > 0) {
+         if(inputValue > 50) alert('Maximum amount is 50.')
+         else return changeHandler(inputValue - item.amount)
+      }
       else removeHanlder()
    }
 
