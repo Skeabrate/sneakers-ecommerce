@@ -17,62 +17,54 @@ const AddingSection = ({ loading, size, setError, isClicked, setIsClicked, produ
    const dispatch = useDispatch()
    const { setIsCartOpen } = useContext(OpenCartContext)
 
-   const lowerAmount = () => amount !== 1 ? setAmount(amount - 1) : null
-
    const addToCartHandler = () => {
-      if(amount > 50) {
-         alert('Maximum amount is 50.')
-         setAmount(1)
+      let check = false
+      if(!size) {
+         setError(true)
+         setIsClicked(true)
+         setTimeout(() => {
+            setIsClicked(false)
+         }, 250)
       }
       else {
-         let check = false
-         if(!size) {
-            setError(true)
-            setIsClicked(true)
-            setTimeout(() => {
-               setIsClicked(false)
-            }, 250)
-         }
-         else {
-            cart.find(item => item.id === 0 && dispatch(removeFromCart({ id: 0 }))) 
-            cart.find(item => {
-               if(item.id === id && item.size === size) {
-                  dispatch(changeAmount({ 
-                     id: item.id, 
-                     size: size,
-                     amount
-                  }))
-                  check = true
-               }
-               return check
-            })
-   
-            if(!check) {
-               dispatch(addToCart({ 
-                  id: id, 
-                  title: title, 
-                  price: price,
-                  image: images[0].url,
-                  amount, 
-                  size
+         cart.find(item => item.id === 0 && dispatch(removeFromCart({ id: 0 }))) 
+         cart.find(item => {
+            if(item.id === id && item.size === size) {
+               dispatch(changeAmount({ 
+                  id: item.id, 
+                  size: size,
+                  amount
                }))
+               check = true
             }
-            setAmount(1)
-            setIsCartOpen(true)
-         }   
-      }
+            return check
+         })
+
+         if(!check) {
+            dispatch(addToCart({ 
+               id: id, 
+               title: title, 
+               price: price,
+               image: images[0].url,
+               amount, 
+               size
+            }))
+         }
+         setAmount(1)
+         setIsCartOpen(true)
+      }   
    }
 
    React.useEffect(() =>{
-      if(amount > 50) setAmount(50)
+      if(amount > 10) setAmount(10)
    }, [amount])
 
    return (
       <StyledCart>
          <StyledInput
             label="Amount:"
-            isCart
-            minusHandler={lowerAmount}
+            isCartPage
+            minusHandler={() => amount !== 1 ? setAmount(amount - 1) : null}
             plusHandler={() => setAmount(amount + 1)}
             value={amount}
             setValue={(e) => setAmount(parseInt(e.currentTarget.value))}
@@ -85,7 +77,7 @@ const AddingSection = ({ loading, size, setError, isClicked, setIsClicked, produ
                title={title}
                price={price}
                image={images[0].url}
-               isCart
+               isCartPage
             />
             
             <StyledButton label="Add to cart" actionHandler={addToCartHandler} isClicked={isClicked} loading={loading}/>

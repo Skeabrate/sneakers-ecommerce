@@ -12,6 +12,7 @@ export const StyledLink = styled(Link)`
    font-weight: bold;
    margin-top: 5px;
    border: none;
+   font-size: ${({ theme }) => theme.fontSize.xxs};
 
    &::after{
       content: "";

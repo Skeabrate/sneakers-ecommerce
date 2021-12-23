@@ -13,31 +13,15 @@ const CartItem = ({ item, dispatch, isCartOpen, setIsCartOpen }) => {
    const [inputValue, setInputValue] = useState('')
 
    useEffect(() =>{
-      if(item.amount > 50) setInputValue(50)
-      else setInputValue(item.amount)
+      setInputValue(item.amount)
    }, [item.amount])
-
-   useEffect(() =>{
-      if(inputValue > 50) setInputValue(50)
-   }, [inputValue])
 
    const removeHanlder = () => dispatch(removeFromCart({ id: item.id, size: item.size }))
    const changeHandler = (value) => dispatch(changeAmount({ id: item.id, size: item.size, amount: value }))
 
    const changeAmountHandler = (option) => {
-      if(option === "decrease"){
-         if(item.amount === 1) removeHanlder()
-         else changeHandler(-1)
-
-      } else if(option === "increase") changeHandler(1)
-   }
-
-   const inputAmountHandler = () => {
-      if(inputValue > 0) {
-         if(inputValue > 50) alert('Maximum amount is 50.')
-         else return changeHandler(inputValue - item.amount)
-      }
-      else removeHanlder()
+      if(option === "decrease") item.amount === 1 ? removeHanlder() : changeHandler(-1)
+      else if(option === "increase") changeHandler(1)
    }
 
    return (
@@ -58,12 +42,11 @@ const CartItem = ({ item, dispatch, isCartOpen, setIsCartOpen }) => {
                   </div>
 
                   <StyledAmount>
-                     <StyledInput 
+                     <StyledInput
+                        isCart
                         minusHandler={() => changeAmountHandler("decrease")}
                         plusHandler={() => changeAmountHandler("increase")}
                         value={inputValue}
-                        setValue={(e) => setInputValue(e.currentTarget.value)}
-                        setBlur={inputAmountHandler}
                      />
                   </StyledAmount>
                </StyledInfo>

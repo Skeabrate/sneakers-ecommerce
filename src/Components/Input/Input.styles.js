@@ -25,7 +25,7 @@ export const StyledLabel = styled.label`
 
 export const StyledField = styled(Field)`
    height: 50px;
-   width: 500px;
+   width: 450px;
    padding: 0 20px;
    background-color: transparent;
    border: 2px solid ${({theme}) => theme.colors.white};
@@ -44,6 +44,10 @@ export const StyledField = styled(Field)`
    &:-webkit-autofill:focus {
       -webkit-box-shadow: 0 0 0 1000px ${({theme}) => theme.colors.black} inset !important;
       -webkit-text-fill-color: ${({theme}) => theme.colors.white} !important;
+   }
+
+   @media (max-width: ${({theme}) => theme.screenSize.medium}) {
+      width: calc(100vw - 6vw - 8px);
    }
 `
 

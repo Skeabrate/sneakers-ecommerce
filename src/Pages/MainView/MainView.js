@@ -76,8 +76,6 @@ const MainView = () => {
 
                            <Route path="/login" element={<Login />} />
 
-                           <Route path="/register" element={<Register />} />
-
                            <Route exact path="/" element={<HeroPage setIsHero={setIsHero}/>} />
 
                            <Route path='*' element={<div style={{marginTop: '80px'}}><Error /></div>} />

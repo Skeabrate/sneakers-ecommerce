@@ -8,7 +8,7 @@ const Wrapper = styled.div`
    width: fit-content;
    margin: 15px 0 30px;
 
-   input{
+   input, div{
       width: ${({isCart}) => isCart ? '50px' : '40px'};
       text-align: center;
       background-color: transparent;
@@ -17,6 +17,9 @@ const Wrapper = styled.div`
       font-size: ${({theme}) => theme.fontSize.xxs};
       color: ${({theme}) => theme.colors.white};
       padding: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
       ::-webkit-inner-spin-button{
          -webkit-appearance: none; 
@@ -62,19 +65,21 @@ const StyledPlusMinusBtn = styled.button`
    }
 `
 
-const StyledInput = ({plusHandler, minusHandler, value, setValue ,setBlur, isCart, label }) => {
+const StyledInput = ({plusHandler, minusHandler, value, setValue ,setBlur, isCartPage, label }) => {
    return (
       <div>
          {label ? <label style={{fontWeight: 'bold'}}>{label}</label> : null}
-         <Wrapper isCart={isCart}>
-            <StyledPlusMinusBtn isCart={isCart} onClick={minusHandler}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 10h24v4h-24z"/></svg></StyledPlusMinusBtn>
-            <input
-               type="number"
-               value={value} 
-               onChange={setValue}
-               onBlur={setBlur}
-            />
-            <StyledPlusMinusBtn isCart={isCart} onClick={plusHandler}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg></StyledPlusMinusBtn>
+         <Wrapper isCart={isCartPage}>
+            <StyledPlusMinusBtn isCart={isCartPage} onClick={minusHandler}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 10h24v4h-24z"/></svg></StyledPlusMinusBtn>
+            {isCartPage ? (
+               <input
+                  type="number"
+                  value={value} 
+                  onChange={setValue}
+                  onBlur={setBlur}
+               />
+            ) : <div>{value}</div> }
+            <StyledPlusMinusBtn isCart={isCartPage} onClick={plusHandler}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg></StyledPlusMinusBtn>
          </Wrapper>
       </div>
    );
