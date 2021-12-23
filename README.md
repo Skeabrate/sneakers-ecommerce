@@ -10,4 +10,5 @@ Technologies and libraries I used for this project:
 - react-scroll and Intersection observers
 - Redux toolkit with Local Storage for global state
 - react-downshift for searchbar component
-- Formik
+- forms - Formik
+- form validation - Yup
