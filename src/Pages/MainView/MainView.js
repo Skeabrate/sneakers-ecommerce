@@ -17,7 +17,6 @@ import Cart from "../Cart/Cart"
 import { OpenCartContext } from '../../Context/openCartContext';
 import Wishlist from "../Wishlist/Wishlist"
 import Login from '../Login/Login';
-import Register from '../Register/Register';
 
 const MainView = () => {
    const [isHero, setIsHero] = useState(false)
