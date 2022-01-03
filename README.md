@@ -10,5 +10,5 @@ Technologies and libraries I used for this project:
 - react-scroll and Intersection observers
 - Redux toolkit with Local Storage for global state
 - react-downshift for searchbar component
-- Formik - forms
-- Yup - forms validation
+- log in - form component using Formik with Yup validation
+- registration - custom form component with custom validation
