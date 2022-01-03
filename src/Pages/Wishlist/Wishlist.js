@@ -19,7 +19,7 @@ const Wishlist = () => {
    const favorite = useSelector((state) => state.favorite)
    const length = useStoreLength(favorite)
 
-   const { setIsRegisterOpen } = useContext(ModalsContext)
+   const { isRegisterOpen ,setIsRegisterOpen } = useContext(ModalsContext)
 
    const tl = useRef(null)
    const contentRef = useRef(null)
@@ -40,6 +40,10 @@ const Wishlist = () => {
             }, "-=0.6s")
       }
    }, [])
+
+   React.useEffect(() => {
+      return () => isRegisterOpen && setIsRegisterOpen(false)
+   }, [isRegisterOpen])
 
    return (
       <Wrapper>

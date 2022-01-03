@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect, useReducer } from 'react';
 import ModalBackground from '../../Components/ModalBackground/ModalBackground';
 import { ModalsContext } from "../../Context/ModalsContext"
 import { StyledTitle } from '../../GlobalStyledComponents/StyledTitle';
@@ -8,17 +8,73 @@ import {
 } from "./Register.styles"
 import CustomInput from "../../Components/CustomInput/CustomInput"
 import { StyledLink } from '../../GlobalStyledComponents/StyledAccountButton';
+import validateEmail from '../../helpers/validateEmail';
+
+const initialState = {
+   email: {
+      value: '',
+      isEmpty: '',
+      isActive: false,
+      isInvalid: true,
+   },
+   password: {
+      value: '',
+      isEmpty: '',
+      isActive: false,
+      isInvalid: true,
+   },
+}
+
+function reducer(state, action) {
+   switch (action.type){
+      case "setValue": 
+         return {
+            ...state,
+            [action.field]: {
+               ...state[action.field],
+               value: action.value,
+            }
+         }
+
+      case "setIsActive":
+         return {
+            ...state,
+            [action.field]: {
+               ...state[action.field],
+               isActive: true,
+            }
+         }
+
+      case "setIsInvalid":
+         return {
+            ...state,
+            [action.field]: {
+               ...state[action.field],
+               isActive: validateEmail(state.email.value),
+            }
+         }
+
+      default: 
+         return state
+   }
+}
 
 const Register = () => {
-   const [email, setEmail] = useState('')
-   const [password, setPassword] = useState('')
+   const [state, dispatch] = useReducer(reducer, initialState)
 
    const { isRegisterOpen, setIsRegisterOpen } = useContext(ModalsContext)
 
    const handleSubmit = (e) => {
       e.preventDefault()
-      console.log(email, password)
+      console.log(state.email.value, state.password.value)
    }
+
+   useEffect(() => {
+      if(state.email.value) dispatch({
+         type: 'setIsInvalid',
+         field: 'email',
+      })
+   }, [state.email.value])
 
    return (
       <aside>
@@ -36,18 +92,34 @@ const Register = () => {
                <CustomInput 
                   name="email"
                   autoComplete="username"
-                  value={email}
-                  onChange={(e) => setEmail(e.currentTarget.value)}
+                  value={state.email.value}
+                  onChange={(e) => dispatch({
+                     type: 'setValue',
+                     field: 'email', 
+                     value: e.currentTarget.value
+                  })}
+                  setActiveError={() => !state.email.isActive && dispatch({
+                     type: 'setIsActive',
+                     field: 'email',
+                  })}
+                  activeError={state.email.isActive}
+                  invalidError={state.email.isInvalid}
                   isCustom
                />
 
-               <CustomInput 
+               {/* <CustomInput 
                   name="password"
                   autoComplete="current-password"
                   value={password}
                   onChange={(e) => setPassword(e.currentTarget.value)}
+                  setActiveError={() => setActiveError({ 
+                     ...activeError, 
+                     password: true 
+                  })}
+                  activeError={activeError?.password}
+                  error={error?.password.isEmpty}
                   isCustom
-               />
+               /> */}
 
                <StyledLink isLogin as="button">Sign Up For Free</StyledLink>
 

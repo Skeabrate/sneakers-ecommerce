@@ -32,12 +32,16 @@ const Login = () => {
    const [isCheckboxFocused, setIsCheckboxFocused] = useState(false)
    const [checkboxValue, setCheckboxValue] = useState(false)
 
-   const { setIsRegisterOpen } = useContext(ModalsContext)
+   const { isRegisterOpen, setIsRegisterOpen } = useContext(ModalsContext)
 
    const initialValues = {
       email: '',
       password: '',
    }
+
+   React.useEffect(() => {
+      return () => isRegisterOpen && setIsRegisterOpen(false)
+   }, [isRegisterOpen])
 
    return (
       <Wrapper>
