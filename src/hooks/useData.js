@@ -56,7 +56,7 @@ export const useData = () => {
    }, [queryVal])
 
    useEffect(() => {
-      const fetchDataCount = async () => {
+      (async function() {
          try{
             const res = await axios.post('https://graphql.datocms.com/', {
                query: queryAll,
@@ -70,9 +70,8 @@ export const useData = () => {
          } catch (ex) {
             console.log(ex.response)
          }
-      }
+      })()
 
-      fetchDataCount()
    }, [])
 
    useEffect(() => {
