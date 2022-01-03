@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import avatarImg from "../../Assets/Images/image-avatar.png"
 import { useStoreLength } from '../../hooks/useStoreLength';
-import { OpenCartContext } from '../../Context/openCartContext';
+import { ModalsContext } from '../../Context/ModalsContext';
 import { Link } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { 
@@ -31,7 +31,7 @@ const NavBar = ({ isProductPage }) => {
    const cartLength = useStoreLength(cart)
    const favoriteLength = useStoreLength(favorite)
 
-   const { setIsCartOpen } = useContext(OpenCartContext)
+   const { setIsCartOpen } = useContext(ModalsContext)
 
    const toggleMenu = () => setToggle(!toggle)
 

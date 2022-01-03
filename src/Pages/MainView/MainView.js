@@ -14,9 +14,10 @@ import { store } from '../../Redux/store'
 import { Provider } from "react-redux"
 import Error from '../404/Error';
 import Cart from "../Cart/Cart"
-import { OpenCartContext } from '../../Context/openCartContext';
+import { ModalsContext } from '../../Context/ModalsContext';
 import Wishlist from "../Wishlist/Wishlist"
 import Login from '../Login/Login';
+import Register from '../Register/Register'
 
 const MainView = () => {
    const [isHero, setIsHero] = useState(false)
@@ -27,6 +28,7 @@ const MainView = () => {
 
    // Open cart passed to Navbar and cart
    const [isCartOpen, setIsCartOpen] = useState(false)
+   const [isRegisterOpen, setIsRegisterOpen] = useState(false)
 
    // Filters
    const [filters, setFilters] = useState({
@@ -53,14 +55,18 @@ const MainView = () => {
                   filters: filters,
                   setFilters: setFilters,
                }}>
-                  <OpenCartContext.Provider value={{
+                  <ModalsContext.Provider value={{
                      isCartOpen: isCartOpen,
                      setIsCartOpen: setIsCartOpen,
+                     isRegisterOpen: isRegisterOpen,
+                     setIsRegisterOpen: setIsRegisterOpen,
                   }}>
                      <div>
                         {isHero ? null : <NavBar isProductPage={isProductPage}/>}
 
                         <Cart />
+
+                        {isRegisterOpen && <Register />}
                         
                         <Routes>
                            <Route path="/contact" element={<Contact />} />
@@ -82,7 +88,7 @@ const MainView = () => {
 
                         {isHero ? null : <Footer />}
                      </div>
-                  </OpenCartContext.Provider>
+                  </ModalsContext.Provider>
                </FiltersContext.Provider>
             </ProductsContext.Provider>
          </Router>

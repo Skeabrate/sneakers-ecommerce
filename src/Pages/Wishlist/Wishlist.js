@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useContext } from 'react';
 import { useSelector } from 'react-redux';
 import ProductItem from '../../Components/ProductItem/ProductItem';
 import { useStoreLength } from '../../hooks/useStoreLength'
@@ -13,10 +13,13 @@ import { Wrapper } from '../../GlobalStyledComponents/Wrapper';
 import { StyledContent } from "../../GlobalStyledComponents/StyledContent"
 import { StyledTitle } from "../../GlobalStyledComponents/StyledTitle"
 import { StyledLink } from "../../GlobalStyledComponents/StyledAccountButton"
+import { ModalsContext } from '../../Context/ModalsContext';
 
 const Wishlist = () => {
    const favorite = useSelector((state) => state.favorite)
    const length = useStoreLength(favorite)
+
+   const { setIsRegisterOpen } = useContext(ModalsContext)
 
    const tl = useRef(null)
    const contentRef = useRef(null)
@@ -69,7 +72,7 @@ const Wishlist = () => {
                      <StyledLoginContent>
                         <div>
                            <p>Join the Sneakers Club today and get 15% off your first order. Or log in to save your wish list.</p>
-                           <StyledLink to="/register">Register</StyledLink>
+                           <StyledLink as="button" onClick={() => setIsRegisterOpen(true)}>Register</StyledLink>
                         </div>
 
                         <div>

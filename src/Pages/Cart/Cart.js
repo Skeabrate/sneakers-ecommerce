@@ -2,15 +2,15 @@ import { useContext, useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useStoreLength } from '../../hooks/useStoreLength';
 import CartItem from "./CartItem/CartItem"
-import { OpenCartContext } from "../../Context/openCartContext"
+import { ModalsContext } from "../../Context/ModalsContext"
 import {
    StyledCart,
-   StyledBackground,
    StyledTitle,
    StyledContent,
    StyledTotal,
 } from "./Cart.styles"
 import StyledButton from '../../GlobalStyledComponents/StyledButton';
+import ModalBackground from '../../Components/ModalBackground/ModalBackground';
 
 const Cart = () => {
    const [totalAmount, setTotalAmount] = useState(0)
@@ -19,7 +19,7 @@ const Cart = () => {
    const cart = useSelector((state) => state.cart)
    const dispatch = useDispatch()
    const length = useStoreLength(cart)
-   const {isCartOpen, setIsCartOpen} = useContext(OpenCartContext)
+   const {isCartOpen, setIsCartOpen} = useContext(ModalsContext)
 
    useEffect(() => {
       let totalAmount = 0
@@ -29,8 +29,8 @@ const Cart = () => {
    }, [cart])
 
    return (
-      <aside>
-         <StyledBackground isCartOpen={isCartOpen} onClick={() => setIsCartOpen(false)} ></StyledBackground>
+      <section>
+         <ModalBackground isModalOpen={isCartOpen} setIsModalOpen={() => setIsCartOpen(false)} />
 
          <StyledCart isCartOpen={isCartOpen}>
             <StyledTitle>
@@ -64,7 +64,7 @@ const Cart = () => {
                <StyledButton label="Check out" actionHandler={() => console.log('go to checkout')} isCheckout/>
             </StyledTotal>
          </StyledCart>
-      </aside>
+      </section>
    );
 };
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { StyledTitle } from '../../GlobalStyledComponents/StyledTitle'
 import { Wrapper } from "../../GlobalStyledComponents/Wrapper"
 import {
@@ -16,8 +16,9 @@ import {
 import { StyledLink } from "../../GlobalStyledComponents/StyledAccountButton"
 import { Formik } from "formik"
 import * as Yup from "yup"
-import Input from '../../Components/Input/Input';
+import FormikInput from '../../Components/FormikInput/FormikInput';
 import clubImg from "../../Assets/Images/SneakersClub.jpg"
+import { ModalsContext } from "../../Context/ModalsContext"
 
 const SignupSchema = Yup.object().shape({
    email: Yup.string().email('The email address is invalid.').required('Required'),
@@ -28,12 +29,10 @@ const SignupSchema = Yup.object().shape({
 });
 
 const Login = () => {
-   const [isFocused, setIsFocused] = useState({
-      email: false,
-      password: false,
-      checkbox: false,
-   })
+   const [isCheckboxFocused, setIsCheckboxFocused] = useState(false)
    const [checkboxValue, setCheckboxValue] = useState(false)
+
+   const { setIsRegisterOpen } = useContext(ModalsContext)
 
    const initialValues = {
       email: '',
@@ -62,24 +61,20 @@ const Login = () => {
                >
                   {({ errors, touched, values }) => (
                      <StyledForm>
-                        <Input
+                        <FormikInput
                            name="email"
                            autoComplete="username"
-                           focusHandler={() => setIsFocused({email: true})}
-                           blurHandler={() => setIsFocused({email: false})}
                            error={errors.email && touched.email}
                            errorType={errors.email}
-                           isFocused={isFocused.email || values.email.length}
+                           isEmpty={values.email.length}
                         />
 
-                        <Input
+                        <FormikInput
                            name="password"
                            autoComplete="current-password"
-                           focusHandler={() => setIsFocused({password: true})}
-                           blurHandler={() => setIsFocused({password: false})}
                            error={errors.password && touched.password}
                            errorType={errors.password}
-                           isFocused={isFocused.password || values.password.length}
+                           isEmpty={values.password.length}
                         />
 
                         <StyledCheckbox>
@@ -88,10 +83,10 @@ const Login = () => {
                               name="loggedIn" 
                               value={checkboxValue} 
                               onChange={() => setCheckboxValue(!checkboxValue)}
-                              onFocus={() => setIsFocused({checkbox: true})}
-                              onBlur={() => setIsFocused({checkbox: false})}
+                              onFocus={() => setIsCheckboxFocused(true)}
+                              onBlur={() => setIsCheckboxFocused(false)}
                            />
-                           <StyledCustomInput value={checkboxValue} isFocused={isFocused.checkbox}>
+                           <StyledCustomInput value={checkboxValue} isFocused={isCheckboxFocused}>
                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
                            </StyledCustomInput>
                            <label htmlFor="loggedIn">Keep me logged in.</label>
@@ -126,7 +121,11 @@ const Login = () => {
                   <p>Join now and start earning points to access new levels and rewards. It's time to unlock the best of sneakers.</p>
                </div>
 
-               <StyledClubImg src={clubImg} href="sneakers club"/>
+               <StyledClubImg 
+                  src={clubImg} 
+                  alt="sneakers club"
+                  loading="lazy"
+               />
 
             </article>
          </StyledSectionWrapper>
@@ -134,7 +133,7 @@ const Login = () => {
          <article>
             <StyledRegister>
                <StyledRegisterTitle>JOIN OUR SNEAKERS CLUB & GET 10% OFF</StyledRegisterTitle>
-               <StyledLink as="button">Register</StyledLink>
+               <StyledLink as="button" onClick={() => setIsRegisterOpen(true)}>Register</StyledLink>
             </StyledRegister>
          </article>
       </Wrapper>

@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart, removeFromCart, changeAmount } from "../../Redux/addToCartSlice"
-import { OpenCartContext } from '../../Context/openCartContext';
+import { ModalsContext } from '../../Context/ModalsContext';
 import StyledButton from '../../GlobalStyledComponents/StyledButton';
 import StyledInput from '../../GlobalStyledComponents/StyledInput';
 import AddToFavouriteButton from "../AddToFavouriteButton/AddToFavouriteButton"
@@ -15,7 +15,7 @@ const AddingSection = ({ loading, size, setError, isClicked, setIsClicked, produ
 
    const cart = useSelector((state) => state.cart)
    const dispatch = useDispatch()
-   const { setIsCartOpen } = useContext(OpenCartContext)
+   const { setIsCartOpen } = useContext(ModalsContext)
 
    const addToCartHandler = () => {
       let check = false

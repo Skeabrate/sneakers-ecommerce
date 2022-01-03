@@ -1,21 +1,5 @@
 import styled from "styled-components"
 
-export const StyledBackground = styled.div`
-   position: fixed;
-   top: 0;
-   left: 0;
-   width: 100%;
-   height: 100vh;
-   background-color: black;
-   cursor: pointer;
-   z-index: 999999;
-   opacity: ${({isCartOpen}) => isCartOpen ? 0.6 : 0};
-   visibility: ${({isCartOpen}) => isCartOpen ? 'visible' : 'hidden'};
-
-   transition: all .5s ease-in-out;
-   transition-duration: ${({isCartOpen}) => !isCartOpen && '.3s'};
-`
-
 export const StyledCart = styled.div`
    position: fixed;
    overflow: hidden;

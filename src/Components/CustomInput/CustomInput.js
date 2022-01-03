@@ -5,20 +5,27 @@ import {
    StyledField,
    StyledErrorSvg,
    StyledError
-} from "./Input.styles"
+} from "../../GlobalStyledComponents/LoginInputsStyles"
 
-const Input = ({name, autoComplete, focusHandler, blurHandler, error, errorType, isFocused }) => {
+const FormikInput = ({name, isCustom, autoComplete, error, errorType, value, onChange }) => {
+
+   const [isFocused, setIsFocused] = React.useState(false)
+
    return (
       <StyledFieldWrapper>
-         <StyledLabel isFocused={isFocused} htmlFor={name}>{name} *</StyledLabel>
+         <StyledLabel isFocused={isFocused || value.length} htmlFor={name}>{name} *</StyledLabel>
          <StyledField
+            as="input"
             id={name}
             name={name} 
             type={name}
             autoComplete={autoComplete}
-            onFocus={focusHandler}
-            onBlur={blurHandler}
+            value={value}
+            onChange={onChange}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
             error={error}
+            isCustom={isCustom}
          />
          {error ? (
             <>
@@ -32,4 +39,4 @@ const Input = ({name, autoComplete, focusHandler, blurHandler, error, errorType,
    );
 };
 
-export default Input;
+export default FormikInput;

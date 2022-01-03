@@ -30,7 +30,7 @@ export const StyledField = styled(Field)`
    background-color: transparent;
    border: 2px solid ${({theme}) => theme.colors.white};
    color: ${({theme}) => theme.colors.white};
-
+   border-radius: 0;
    border-color: ${({theme, error}) => error ? theme.colors.red : null};
 
    &:focus{
@@ -47,7 +47,7 @@ export const StyledField = styled(Field)`
    }
 
    @media (max-width: ${({theme}) => theme.screenSize.medium}) {
-      width: calc(100vw - 6vw - 8px);
+      width: ${({isCustom}) => isCustom ? 'calc(95vw - 60px)' : 'calc(100vw - 6vw - 8px)'};
    }
 `
 
