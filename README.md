@@ -1,14 +1,20 @@
-Technologies and libraries I used for this project:
+Technologies I used for this project:
 - ReactJS
-- hosting from firebase
-- styled-components
-- routing: react-router-dom v6
-- Animations with GSAP
-- Datocms as headless cms
+- Styled-Components
+
+- Hosting from Firebase
+- Routing: react-router-dom v6
+ 
+- Datocms as headless CMS
 - GraphQL
-- axios
+- Axios
+
 - react-scroll and Intersection observers
-- Redux toolkit with Local Storage for global state
-- react-downshift for searchbar component
-- log in - form component using Formik with Yup validation
-- registration - custom form component with custom validation
+- GSAP: gsap-scroll-trigger animations and intersection observers animations
+
+- Redux toolkit with Local Storage for global state (cart and wishlist)
+
+- React-downshift for filters comboboxes
+
+- Log in - form component using Formik with Yup validation
+- Registration - custom form component with custom validation
