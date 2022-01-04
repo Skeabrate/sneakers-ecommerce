@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, useReducer } from 'react';
+import React, { useContext, useEffect, useReducer } from 'react';
 import ModalBackground from '../../Components/ModalBackground/ModalBackground';
 import { ModalsContext } from "../../Context/ModalsContext"
 import { StyledTitle } from '../../GlobalStyledComponents/StyledTitle';
@@ -8,73 +8,43 @@ import {
 } from "./Register.styles"
 import CustomInput from "../../Components/CustomInput/CustomInput"
 import { StyledLink } from '../../GlobalStyledComponents/StyledAccountButton';
-import validateEmail from '../../helpers/validateEmail';
+import { registerReducer } from "./registerReducer"
 
 const initialState = {
    email: {
       value: '',
-      isEmpty: '',
       isActive: false,
       isInvalid: false,
    },
    password: {
       value: '',
-      isEmpty: '',
       isActive: false,
       isInvalid: false,
    },
 }
 
-function reducer(state, action) {
-   switch (action.type){
-      case "setValue": 
-         return {
-            ...state,
-            [action.field]: {
-               ...state[action.field],
-               value: action.value,
-            }
-         }
-
-      case "setIsActive":
-         return {
-            ...state,
-            [action.field]: {
-               ...state[action.field],
-               isActive: true,
-            }
-         }
-
-      case "setIsInvalid":
-         let valid = false
-         if(action.field === "email"){
-            valid = validateEmail(state.email.value) ? false : "The email address is invalid." 
-         } 
-         else if(action.field === "password"){
-            valid = state.password.value.length > 5 ? false : "The password should be at least 6 characters."
-         }
-
-         return {
-            ...state,
-            [action.field]: {
-               ...state[action.field],
-               isInvalid: valid,
-            }
-         }
-
-      default: 
-         return state
-   }
-}
-
 const Register = () => {
-   const [state, dispatch] = useReducer(reducer, initialState)
+   const [state, dispatch] = useReducer(registerReducer, initialState)
 
    const { isRegisterOpen, setIsRegisterOpen } = useContext(ModalsContext)
 
    const handleSubmit = (e) => {
       e.preventDefault()
-      console.log(state.email.value, state.password.value)
+
+      if(state.email.isInvalid || state.password.isInvalid || !state.email.value || !state.password.value) {
+         if(!state.email.value) dispatch({
+            type: 'setIsActive',
+            field: 'email',
+         })
+         if (!state.password.value) dispatch({
+            type: 'setIsActive',
+            field: 'password',
+         })
+      }
+      else {
+         console.log(state.email.value, state.password.value)
+      }
+
    }
 
    useEffect(() => {
@@ -144,7 +114,7 @@ const Register = () => {
                   isCustom
                />
 
-               <StyledLink isLogin as="button" disabled={state.email.isInvalid || !state.password.value || state.password.isInvalid}>Sign Up For Free</StyledLink>
+               <StyledLink isLogin as="button">Sign Up For Free</StyledLink>
 
             </form>
             
