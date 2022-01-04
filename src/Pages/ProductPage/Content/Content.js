@@ -91,16 +91,16 @@ const Content = ({product, loading, isStickyBegin, isStickyEnd}) => {
             </nav>
          </div>
 
-         {!isSticky ? <StickyPlaceholder></StickyPlaceholder> : null}
+         {!isSticky ? <StickyPlaceholder /> : null}
          
          <StyledContent>
             <Element name="highlights" style={{ position: 'relative' }}>
-               <StickyPointer ref={navRef}></StickyPointer>
+               <StickyPointer ref={navRef} />
                <Highlights />
             </Element>
 
             <Element name="description">
-               <Description product={product}  loading={loading}/>
+               <Description product={product} loading={loading}/>
             </Element>
 
             <Element name="details">
