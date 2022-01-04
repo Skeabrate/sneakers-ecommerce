@@ -19,6 +19,9 @@ import * as Yup from "yup"
 import FormikInput from '../../Components/FormikInput/FormikInput';
 import clubImg from "../../Assets/Images/SneakersClub.jpg"
 import { ModalsContext } from "../../Context/ModalsContext"
+import firebase from "../../firebase"
+import LoadingButton from '../../Components/LoadingButton/LoadingButton';
+import ErrorMessage from '../../Components/ErrorMessage/ErrorMessage';
 
 const SignupSchema = Yup.object().shape({
    email: Yup.string().email('The email address is invalid.').required('Required'),
@@ -32,11 +35,33 @@ const Login = () => {
    const [isCheckboxFocused, setIsCheckboxFocused] = useState(false)
    const [checkboxValue, setCheckboxValue] = useState(false)
 
+   const [loading, setLoading] = useState(false)
+   const [error, setError] = useState(false)
+
    const { isRegisterOpen, setIsRegisterOpen } = useContext(ModalsContext)
 
    const initialValues = {
       email: '',
       password: '',
+   }
+
+   function loginHandler(email, password){
+      setLoading(true)
+      console.log(email, password);
+      firebase.auth().signInWithEmailAndPassword(email, password)
+         .then((userCredential) => {
+            // Signed in
+            var user = userCredential.user;
+            console.log(user)
+            setLoading(false)
+         })
+         .catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            console.log(errorMessage)
+            setError(errorMessage)
+            setLoading(false)
+         });
    }
 
    React.useEffect(() => {
@@ -59,9 +84,7 @@ const Login = () => {
                <Formik
                   initialValues={initialValues}
                   validationSchema={SignupSchema}
-                  onSubmit={values => {
-                     console.log(values.email, values.password);
-                  }}
+                  onSubmit={values => loginHandler(values.email, values.password)}
                >
                   {({ errors, touched, values }) => (
                      <StyledForm>
@@ -95,8 +118,10 @@ const Login = () => {
                            </StyledCustomInput>
                            <label htmlFor="loggedIn">Keep me logged in.</label>
                         </StyledCheckbox>
+
+                        {error && <ErrorMessage label={error}/>}
    
-                        <StyledLink isLogin as="button" type="submit">Log In</StyledLink>
+                        <LoadingButton loading={loading} label="Log In"/>
 
                         <p style={{marginBlock: '20px'}}>OR</p>
 

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useReducer } from 'react';
+import React, { useContext, useEffect, useReducer, useState } from 'react';
 import ModalBackground from '../../Components/ModalBackground/ModalBackground';
 import { ModalsContext } from "../../Context/ModalsContext"
 import { StyledTitle } from '../../GlobalStyledComponents/StyledTitle';
@@ -7,8 +7,10 @@ import {
    StyledCloseButton
 } from "./Register.styles"
 import CustomInput from "../../Components/CustomInput/CustomInput"
-import { StyledLink } from '../../GlobalStyledComponents/StyledAccountButton';
 import { registerReducer } from "./registerReducer"
+import firebase from "../../firebase"
+import LoadingButton from '../../Components/LoadingButton/LoadingButton';
+import ErrorMessage from '../../Components/ErrorMessage/ErrorMessage';
 
 const initialState = {
    email: {
@@ -26,6 +28,9 @@ const initialState = {
 const Register = () => {
    const [state, dispatch] = useReducer(registerReducer, initialState)
 
+   const [loading, setLoading] = useState(false)
+   const [error, setError] = useState(false)
+
    const { isRegisterOpen, setIsRegisterOpen } = useContext(ModalsContext)
 
    const handleSubmit = (e) => {
@@ -42,9 +47,23 @@ const Register = () => {
          })
       }
       else {
+         setLoading(true)
          console.log(state.email.value, state.password.value)
+         firebase.auth().createUserWithEmailAndPassword(state.email.value, state.password.value)
+         .then((userCredential) => {
+            // Signed in 
+            var user = userCredential.user;
+            console.log(user)
+            setLoading(false)
+         })
+         .catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            console.log(errorCode)
+            setError(errorMessage)
+            setLoading(false)
+         });
       }
-
    }
 
    useEffect(() => {
@@ -114,7 +133,9 @@ const Register = () => {
                   isCustom
                />
 
-               <StyledLink isLogin as="button">Sign Up For Free</StyledLink>
+               {error && <ErrorMessage label={error} />}
+
+               <LoadingButton loading={loading} label="Sign Up For Free" />
 
             </form>
             

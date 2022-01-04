@@ -9,7 +9,11 @@ const firebaseConfig = {
     appId: process.env.REACT_APP_APP_ID,
 };
 
-const app = firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig)
+
+export { firebase as default }
+
+/* const app = firebase.initializeApp(firebaseConfig);
 const auth = app.auth();
 const db = app.firestore();
 const googleProvider = new firebase.auth.GoogleAuthProvider();
@@ -83,4 +87,4 @@ export {
     registerWithEmailAndPassword,
     sendPasswordResetEmail,
     logout,
-};
+}; */

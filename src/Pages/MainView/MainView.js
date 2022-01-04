@@ -18,6 +18,8 @@ import { ModalsContext } from '../../Context/ModalsContext';
 import Wishlist from "../Wishlist/Wishlist"
 import Login from '../Login/Login';
 import Register from '../Register/Register'
+import Profile from "../Profile/Profile"
+import AuthContext from '../../Context/authContext';
 
 const MainView = () => {
    const [isHero, setIsHero] = useState(false)
@@ -45,52 +47,58 @@ const MainView = () => {
    return (
       <Provider store={store}>
          <Router>
-            <ProductsContext.Provider value={{
-               productsCtx: productsCtx,
-               setProductsCtx: setProductsCtx,
-               loadingCtx: loading,
-               setLoadingCtx: setLoading,
+            <AuthContext.Provider value={{
+               isAuthenticated: false,
             }}>
-               <FiltersContext.Provider value={{
-                  filters: filters,
-                  setFilters: setFilters,
+               <ProductsContext.Provider value={{
+                  productsCtx: productsCtx,
+                  setProductsCtx: setProductsCtx,
+                  loadingCtx: loading,
+                  setLoadingCtx: setLoading,
                }}>
-                  <ModalsContext.Provider value={{
-                     isCartOpen: isCartOpen,
-                     setIsCartOpen: setIsCartOpen,
-                     isRegisterOpen: isRegisterOpen,
-                     setIsRegisterOpen: setIsRegisterOpen,
+                  <FiltersContext.Provider value={{
+                     filters: filters,
+                     setFilters: setFilters,
                   }}>
-                     <div>
-                        {isHero ? null : <NavBar isProductPage={isProductPage}/>}
+                     <ModalsContext.Provider value={{
+                        isCartOpen: isCartOpen,
+                        setIsCartOpen: setIsCartOpen,
+                        isRegisterOpen: isRegisterOpen,
+                        setIsRegisterOpen: setIsRegisterOpen,
+                     }}>
+                        <div>
+                           {isHero ? null : <NavBar isProductPage={isProductPage}/>}
 
-                        <Cart />
+                           <Cart />
 
-                        {isRegisterOpen && <Register />}
-                        
-                        <Routes>
-                           <Route path="/contact" element={<Contact />} />
+                           {isRegisterOpen && <Register />}
+                           
+                           <Routes>
+                              <Route path="/contact" element={<Contact />} />
 
-                           <Route path="/about" element={<About />}/>
+                              <Route path="/about" element={<About />}/>
 
-                           <Route path="/AllProducts" element={<AllProducts AllProducts={products}/>}/>
+                              <Route path="/AllProducts" element={<AllProducts AllProducts={products}/>}/>
 
-                           <Route path="/product/:id" element={<ProductPage setIsProductPage={setIsProductPage} />} />
+                              <Route path="/product/:id" element={<ProductPage setIsProductPage={setIsProductPage} />} />
 
-                           <Route path="/wishlist" element={<Wishlist />} />
+                              <Route path="/wishlist" element={<Wishlist />} />
 
-                           <Route path="/login" element={<Login />} />
+                              <Route path="/login" element={<Login />} />
 
-                           <Route exact path="/" element={<HeroPage setIsHero={setIsHero}/>} />
+                              <Route path="/profile" element={<Profile />} />
 
-                           <Route path='*' element={<div style={{marginTop: '80px'}}><Error /></div>} />
-                        </Routes>
+                              <Route exact path="/" element={<HeroPage setIsHero={setIsHero}/>} />
 
-                        {isHero ? null : <Footer />}
-                     </div>
-                  </ModalsContext.Provider>
-               </FiltersContext.Provider>
-            </ProductsContext.Provider>
+                              <Route path='*' element={<div style={{marginTop: '80px'}}><Error /></div>} />
+                           </Routes>
+
+                           {isHero ? null : <Footer />}
+                        </div>
+                     </ModalsContext.Provider>
+                  </FiltersContext.Provider>
+               </ProductsContext.Provider>
+            </AuthContext.Provider>
          </Router>
       </Provider>
    );
