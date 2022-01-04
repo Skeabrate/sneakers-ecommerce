@@ -15,13 +15,13 @@ const initialState = {
       value: '',
       isEmpty: '',
       isActive: false,
-      isInvalid: true,
+      isInvalid: false,
    },
    password: {
       value: '',
       isEmpty: '',
       isActive: false,
-      isInvalid: true,
+      isInvalid: false,
    },
 }
 
@@ -46,11 +46,19 @@ function reducer(state, action) {
          }
 
       case "setIsInvalid":
+         let valid = false
+         if(action.field === "email"){
+            valid = validateEmail(state.email.value) ? false : "The email address is invalid." 
+         } 
+         else if(action.field === "password"){
+            valid = state.password.value.length > 5 ? false : "The password should be at least 6 characters."
+         }
+
          return {
             ...state,
             [action.field]: {
                ...state[action.field],
-               isActive: validateEmail(state.email.value),
+               isInvalid: valid,
             }
          }
 
@@ -70,11 +78,22 @@ const Register = () => {
    }
 
    useEffect(() => {
-      if(state.email.value) dispatch({
-         type: 'setIsInvalid',
-         field: 'email',
-      })
+      if(state.email.value) {
+         dispatch({
+            type: 'setIsInvalid',
+            field: 'email',
+         })
+      }
    }, [state.email.value])
+
+   useEffect(() => {
+      if(state.password.value) {
+         dispatch({
+            type: 'setIsInvalid',
+            field: 'password',
+         })
+      }
+   }, [state.password.value])
 
    return (
       <aside>
@@ -107,21 +126,25 @@ const Register = () => {
                   isCustom
                />
 
-               {/* <CustomInput 
+               <CustomInput 
                   name="password"
                   autoComplete="current-password"
-                  value={password}
-                  onChange={(e) => setPassword(e.currentTarget.value)}
-                  setActiveError={() => setActiveError({ 
-                     ...activeError, 
-                     password: true 
+                  value={state.password.value}
+                  onChange={(e) => dispatch({
+                     type: 'setValue',
+                     field: 'password', 
+                     value: e.currentTarget.value
                   })}
-                  activeError={activeError?.password}
-                  error={error?.password.isEmpty}
+                  setActiveError={() => !state.password.isActive && dispatch({
+                     type: 'setIsActive',
+                     field: 'password',
+                  })}
+                  activeError={state.password.isActive}
+                  invalidError={state.password.isInvalid}
                   isCustom
-               /> */}
+               />
 
-               <StyledLink isLogin as="button">Sign Up For Free</StyledLink>
+               <StyledLink isLogin as="button" disabled={state.email.isInvalid || !state.password.value || state.password.isInvalid}>Sign Up For Free</StyledLink>
 
             </form>
             

@@ -56,10 +56,11 @@ export const StyledErrorSvg = styled.div`
    right: 15px;
    top: 50%;
    transform: translateY(-50%);
+
    svg{
       height: 18px;
       width: 18px;
-      fill: ${({theme}) => theme.colors.red}
+      fill: ${({theme, isValid}) => isValid ? theme.colors.green : theme.colors.red};
    }
 `
 
