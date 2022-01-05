@@ -53,7 +53,7 @@ const Register = () => {
          .then((userCredential) => {
             // Signed in 
             var user = userCredential.user;
-            console.log(user)
+            /* console.log(user) */
             setLoading(false)
          })
          .catch((error) => {
@@ -133,11 +133,10 @@ const Register = () => {
                   isCustom
                />
 
-               {error && <ErrorMessage label={error} />}
-
-               <LoadingButton loading={loading} label="Sign Up For Free" />
-
+               <LoadingButton disabled={error} loading={loading} label="Sign Up For Free" />
             </form>
+
+            {error && <ErrorMessage label={error} setError={setError} />}
             
          </StyledContent>
       </aside>

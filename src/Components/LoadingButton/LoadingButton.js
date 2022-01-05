@@ -2,11 +2,15 @@ import React from 'react';
 import { StyledLink } from '../../GlobalStyledComponents/StyledAccountButton';
 import LoadingScreen from '../LoadingScreen/LoadingScreen';
 
-const LoadingButton = ({ loading, label }) => {
+const style ={
+    position: 'absolute',
+}
+
+const LoadingButton = ({ loading, label, disabled }) => {
     return (
-        <StyledLink isLogin as="button" type="submit">
+        <StyledLink isLogin as="button" type="submit" disabled={disabled}>
             {loading ? (
-                <LoadingScreen style={{fill: "white"}}/>
+                <LoadingScreen style={style}/>
             ) : <>{label}</>}
         </StyledLink>
     );

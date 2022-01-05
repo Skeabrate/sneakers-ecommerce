@@ -1,22 +1,21 @@
-import React, { useContext } from 'react';
-import AuthContext from "../../Context/authContext"
+import React from 'react';
+import firebase from "../../firebase"
 
 const Profile = () => {
-    const { isAuthenticated } = useContext(AuthContext)
+
+    const logoutHandler = () => {
+        firebase.auth().signOut().then(() => {
+            // Sign-out successful.
+        }).catch((error) => {
+        // An error happened.
+        });
+    }
 
     return (
-        <>
-        {isAuthenticated ? (
-            <div style={{marginTop: '100px', height: '400px', color: 'white'}}>
-                Profile Settings
-            </div>
-        ) : (
-            <div style={{marginTop: '100px', height: '400px', color: 'white'}}>
-                You are not logged in
-                <button>Go To Login page</button>
-            </div>
-        )}
-        </>
+        <div style={{marginTop: '100px', height: '400px', color: 'white'}}>
+            Profile Settings
+            <button onClick={logoutHandler}>Logout</button>
+        </div>
     );
 };
 

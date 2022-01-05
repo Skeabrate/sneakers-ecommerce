@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import AllProducts from '../AllProducts/AllProducts';
 import Contact from '../Contact/Contact';
 import About from "../About/About"
@@ -20,17 +20,20 @@ import Login from '../Login/Login';
 import Register from '../Register/Register'
 import Profile from "../Profile/Profile"
 import AuthContext from '../../Context/authContext';
+import firebase from "../../firebase"
 
 const MainView = () => {
    const [isHero, setIsHero] = useState(false)
    const [isProductPage, setIsProductPage] = useState(false)
-
+   
    const [productsCtx, setProductsCtx] = useState([])
    const [products, loading, setLoading] = useData()
-
+   
    // Open cart passed to Navbar and cart
    const [isCartOpen, setIsCartOpen] = useState(false)
    const [isRegisterOpen, setIsRegisterOpen] = useState(false)
+
+   const [auth, setAuth] = useState(false)
 
    // Filters
    const [filters, setFilters] = useState({
@@ -40,6 +43,18 @@ const MainView = () => {
       price: '',
    })
 
+   useEffect(() => { // dodac pamiec lokalna, jezeli jest w pamieci token to ...
+      firebase.auth().onAuthStateChanged((user) => {
+         if (user) {
+            var uid = user.uid;
+            setAuth(true)
+            /* console.log(uid) */
+         } else {
+            setAuth(false)
+         }
+      });
+   }, [])
+
    useEffect(() => {
       if(products.length) setProductsCtx(products)
    }, [products])
@@ -48,7 +63,8 @@ const MainView = () => {
       <Provider store={store}>
          <Router>
             <AuthContext.Provider value={{
-               isAuthenticated: false,
+               isAuthenticated: auth,
+               setIsAuthenticated: setAuth,
             }}>
                <ProductsContext.Provider value={{
                   productsCtx: productsCtx,
@@ -84,9 +100,9 @@ const MainView = () => {
 
                               <Route path="/wishlist" element={<Wishlist />} />
 
-                              <Route path="/login" element={<Login />} />
+                              <Route path="/login" element={auth ? <Navigate to="/profile" /> : <Login />} />
 
-                              <Route path="/profile" element={<Profile />} />
+                              <Route path="/profile" element={auth ? <Profile /> : <Navigate to="/login" />} />
 
                               <Route exact path="/" element={<HeroPage setIsHero={setIsHero}/>} />
 

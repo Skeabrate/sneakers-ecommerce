@@ -14,12 +14,14 @@ import { StyledContent } from "../../GlobalStyledComponents/StyledContent"
 import { StyledTitle } from "../../GlobalStyledComponents/StyledTitle"
 import { StyledLink } from "../../GlobalStyledComponents/StyledAccountButton"
 import { ModalsContext } from '../../Context/ModalsContext';
+import AuthContext from "../../Context/authContext"
 
 const Wishlist = () => {
    const favorite = useSelector((state) => state.favorite)
    const length = useStoreLength(favorite)
 
    const { isRegisterOpen ,setIsRegisterOpen } = useContext(ModalsContext)
+   const { isAuthenticated } = useContext(AuthContext)
 
    const tl = useRef(null)
    const contentRef = useRef(null)
@@ -71,6 +73,8 @@ const Wishlist = () => {
                ) : (
                   <StyledError>There are no products in your wishlist yet. Start buying and add what you like to your wish list.</StyledError>
                )}
+               
+               {!isAuthenticated && (
                   <StyledLoginWrapper length={length}>
                      <StyledLoginTitle>DON'T LOSE YOUR WISH LIST</StyledLoginTitle>
                      <StyledLoginContent>
@@ -85,6 +89,7 @@ const Wishlist = () => {
                         </div>
                      </StyledLoginContent>
                   </StyledLoginWrapper>
+               )}
             </StyledContent>
          </article>
       </Wrapper>

@@ -3,12 +3,15 @@ import { Link } from "react-router-dom"
 
 export const StyledLink = styled(Link)`
    display: flex;
+   justify-content: center;
+   align-items: center;
    position: relative;
    width: fit-content;
    text-decoration: none;
    color: ${({theme, isLogin}) => isLogin ? theme.colors.black : theme.colors.orange};
    background-color: ${({theme}) => theme.colors.white};
-   padding: 20px 40px;
+   height: 60px;
+   width: 150px;
    font-weight: bold;
    margin-top: 5px;
    border: none;
@@ -35,12 +38,12 @@ export const StyledLink = styled(Link)`
 
    @media (max-width: 750px){
       font-size: ${({ theme}) => theme.fontSize.xs};
-      padding: 15px 30px;
    }
 
    @media (max-width: ${({ theme }) => theme.screenSize.mobile}){
       font-size: ${({ theme}) => theme.fontSize.s};
-      padding: 10px 20px;
       margin-top: 10px;
+      width: 130px;
+      height: 50px;
    }
 `

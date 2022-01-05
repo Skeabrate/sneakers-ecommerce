@@ -67,8 +67,9 @@ export const StyledSocialButton = styled.button`
    display: flex;
    justify-content: space-between;
    align-items: center;
-   max-width: 230px;
-   padding: 20px 40px;
+   width: 180px;
+   height: 60px;
+   padding: 0 10px;
    margin-bottom: 20px;
    font-size: ${({ theme }) => theme.fontSize.xxs};
    color: ${({ theme }) => theme.colors.black};
@@ -77,14 +78,13 @@ export const StyledSocialButton = styled.button`
 
    @media (max-width: 750px){
       font-size: ${({ theme}) => theme.fontSize.xs};
-      padding: 15px 30px;
    }
 
    @media (max-width: ${({ theme }) => theme.screenSize.mobile}){
       font-size: ${({ theme}) => theme.fontSize.s};
-      padding: 10px 20px;
       margin-top: 10px;
-      max-width: 160px;
+      width: 140px;
+      height: 50px;
    }
 `
 
