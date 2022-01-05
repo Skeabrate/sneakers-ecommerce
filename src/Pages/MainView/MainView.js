@@ -43,16 +43,27 @@ const MainView = () => {
       price: '',
    })
 
-   useEffect(() => { // dodac pamiec lokalna, jezeli jest w pamieci token to ...
+   useEffect(() => {
+      if(window.localStorage.getItem("authToken")) setAuth(true)
+      
       firebase.auth().onAuthStateChanged((user) => {
          if (user) {
-            var uid = user.uid;
-            setAuth(true)
-            /* console.log(uid) */
-         } else {
-            setAuth(false)
+            // console.log(user.uid)
+            if(!window.localStorage.getItem("authToken")){
+               window.localStorage.setItem("authToken", JSON.stringify([
+                  {
+                     token: user.uid,
+                  },
+                  {
+                     email: user.email
+                  }
+                  
+               ]))
+               setAuth(true)
+            }
          }
       });
+
    }, [])
 
    useEffect(() => {

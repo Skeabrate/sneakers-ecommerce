@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyledLink } from '../../GlobalStyledComponents/StyledAccountButton';
-import LoadingScreen from '../LoadingScreen/LoadingScreen';
+import ClipLoader from "react-spinners/ClipLoader";
 
 const style ={
     position: 'absolute',
@@ -10,7 +10,7 @@ const LoadingButton = ({ loading, label, disabled }) => {
     return (
         <StyledLink isLogin as="button" type="submit" disabled={disabled}>
             {loading ? (
-                <LoadingScreen style={style}/>
+                <div style={style}><ClipLoader color={'#1a1a1a'} /></div>
             ) : <>{label}</>}
         </StyledLink>
     );

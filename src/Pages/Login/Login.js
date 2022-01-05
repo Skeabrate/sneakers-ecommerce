@@ -49,14 +49,14 @@ const Login = () => {
       firebase.auth().signInWithEmailAndPassword(email, password)
          .then((userCredential) => {
             // Signed in
-            var user = userCredential.user;
+            // var user = userCredential.user;
             setLoading(false)
          })
          .catch((error) => {
-            /* var errorCode = error.code; */
+            // var errorCode = error.code;
             var errorMessage = error.message;
             console.log(errorMessage)
-            if(errorMessage == 'Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later.'){
+            if(errorMessage === 'Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later.'){
                setError("Account has been temporarily disabled due to many failed attempts. Try again later or reset password")
             } else {
                setError(errorMessage)

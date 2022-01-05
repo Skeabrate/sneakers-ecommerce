@@ -11,6 +11,7 @@ import { registerReducer } from "./registerReducer"
 import firebase from "../../firebase"
 import LoadingButton from '../../Components/LoadingButton/LoadingButton';
 import ErrorMessage from '../../Components/ErrorMessage/ErrorMessage';
+import { useNavigate } from "react-router-dom"
 
 const initialState = {
    email: {
@@ -33,6 +34,8 @@ const Register = () => {
 
    const { isRegisterOpen, setIsRegisterOpen } = useContext(ModalsContext)
 
+   const navigate = useNavigate()
+
    const handleSubmit = (e) => {
       e.preventDefault()
 
@@ -48,12 +51,13 @@ const Register = () => {
       }
       else {
          setLoading(true)
-         console.log(state.email.value, state.password.value)
+         // console.log(state.email.value, state.password.value)
          firebase.auth().createUserWithEmailAndPassword(state.email.value, state.password.value)
          .then((userCredential) => {
             // Signed in 
-            var user = userCredential.user;
-            /* console.log(user) */
+            /* var user = userCredential.user;
+            console.log(user) */
+            navigate("/profile")
             setLoading(false)
          })
          .catch((error) => {
