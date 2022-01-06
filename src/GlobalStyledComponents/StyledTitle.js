@@ -14,13 +14,17 @@ export const StyledTitle = styled.h1`
       opacity: 0;
    }
 
-   p{
+   button{
+      display: block;
+      background-color: transparent;
+      border: none;
       font-size: ${({ theme }) => theme.fontSize.xxs};
       text-transform: capitalize;
       color: ${({ theme }) => theme.colors.white};
       text-decoration: underline;
       margin-top: 10px;
       font-weight: normal;
+      text-align: left;
    }
 
    @media (max-width: ${({ theme }) => theme.screenSize.medium}) {
@@ -41,8 +45,8 @@ export const StyledTitle = styled.h1`
          padding: 5px 15px;
       }
 
-      p{
-      font-size: ${({ theme }) => theme.fontSize.xs};
-   }
+      button{
+         font-size: ${({ theme }) => theme.fontSize.xs};
+      }
    }
 `

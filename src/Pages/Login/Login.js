@@ -14,7 +14,6 @@ import { StyledLink } from "../../GlobalStyledComponents/StyledAccountButton"
 import { Formik } from "formik"
 import * as Yup from "yup"
 import FormikInput from '../../Components/FormikInput/FormikInput';
-
 import { ModalsContext } from "../../Context/ModalsContext"
 import firebase from "../../firebase"
 import LoadingButton from '../../Components/LoadingButton/LoadingButton';
@@ -77,9 +76,12 @@ const Login = () => {
                <header>
                   <StyledTitle>
                      LOG IN
-                     <p>
+                     <button>
                         Forgot Your Password?
-                     </p>
+                     </button>
+                     <button onClick={() => setIsRegisterOpen(true)}>
+                        You dont have an account yet? Register now!
+                     </button>
                   </StyledTitle>
                </header>
 
