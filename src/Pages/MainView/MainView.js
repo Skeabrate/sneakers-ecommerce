@@ -33,7 +33,7 @@ const MainView = () => {
    const [isCartOpen, setIsCartOpen] = useState(false)
    const [isRegisterOpen, setIsRegisterOpen] = useState(false)
 
-   const [auth, setAuth] = useState(false)
+   const [auth, setAuth] = useState(window.localStorage.getItem("authToken"))
 
    // Filters
    const [filters, setFilters] = useState({
@@ -44,26 +44,18 @@ const MainView = () => {
    })
 
    useEffect(() => {
-      if(window.localStorage.getItem("authToken")) setAuth(true)
-      
       firebase.auth().onAuthStateChanged((user) => {
          if (user) {
             // console.log(user.uid)
             if(!window.localStorage.getItem("authToken")){
                window.localStorage.setItem("authToken", JSON.stringify([
-                  {
-                     token: user.uid,
-                  },
-                  {
-                     email: user.email
-                  }
-                  
+                  { token: user.uid },
+                  { email: user.email },      
                ]))
                setAuth(true)
             }
          }
       });
-
    }, [])
 
    useEffect(() => {

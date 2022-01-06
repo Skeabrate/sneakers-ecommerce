@@ -21,7 +21,7 @@ const Profile = () => {
         <div style={{marginTop: '100px', height: '400px', color: 'white'}}>
             Profile Settings
             <br />
-            {JSON.parse(window.localStorage.getItem('authToken'))[1].email}
+            {window.localStorage.getItem('authToken') && JSON.parse(window.localStorage.getItem('authToken'))[1].email}
             <br />
             <button onClick={logoutHandler}>Logout</button>
         </div>

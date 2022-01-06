@@ -56,6 +56,7 @@ const Login = () => {
             // var errorCode = error.code;
             var errorMessage = error.message;
             console.log(errorMessage)
+            
             if(errorMessage === 'Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later.'){
                setError("Account has been temporarily disabled due to many failed attempts. Try again later or reset password")
             } else {
