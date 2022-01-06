@@ -1,21 +1,8 @@
-import React, { useContext } from 'react';
-import firebase from "../../firebase"
-import AuthContext from '../../Context/authContext';
+import React from 'react';
+import { useAuth } from "../../hooks/useAuth"
 
 const Profile = () => {
-    const { setIsAuthenticated } = useContext(AuthContext)
-    /* console.log(JSON.parse(window.localStorage.getItem('authToken'))[1].email) */
-    
-    const logoutHandler = () => {
-        firebase.auth().signOut().then(() => {
-            // Sign-out successful.
-            if(window.localStorage.getItem("authToken")) window.localStorage.removeItem("authToken")
-            setIsAuthenticated(false)
-        }).catch((error) => {
-        // An error happened.
-            console.log(error)
-        });
-    }
+    const { logOutHandler } = useAuth()
 
     return (
         <div style={{marginTop: '100px', height: '400px', color: 'white'}}>
@@ -23,7 +10,7 @@ const Profile = () => {
             <br />
             {window.localStorage.getItem('authToken') && JSON.parse(window.localStorage.getItem('authToken'))[1].email}
             <br />
-            <button onClick={logoutHandler}>Logout</button>
+            <button onClick={logOutHandler}>Logout</button>
         </div>
     );
 };

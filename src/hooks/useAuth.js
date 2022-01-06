@@ -1,28 +1,15 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import firebase from "../firebase"
 import { useNavigate } from 'react-router-dom';
+import AuthContext from "../Context/authContext"
 
 export const useAuth = () => {
-    const [auth, setAuth] = useState(window.localStorage.getItem("authToken"))
+    const  { setIsAuthenticated } = useContext(AuthContext)
+
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(false)
 
     const navigate = useNavigate()
-
-    function onAuthStateChangedHandler() {
-        firebase.auth().onAuthStateChanged((user) => {
-            if (user) {
-               // console.log(user.uid)
-               if(!window.localStorage.getItem("authToken")){
-                  window.localStorage.setItem("authToken", JSON.stringify([
-                     { token: user.uid },
-                     { email: user.email },      
-                  ]))
-                  setAuth(true)
-               }
-            }
-        });
-    }
     
     function logInHandler(email, password) {
         setLoading(true)
@@ -39,8 +26,18 @@ export const useAuth = () => {
                 console.log(errorMessage)
                 
                 if(errorMessage === 'Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later.'){
-                setError("Account has been temporarily disabled due to many failed attempts. Try again later or reset password")
-                } else {
+                    setError("Account has been temporarily disabled due to many failed attempts. Try again later or reset password")
+                } 
+                else if(errorMessage === 'There is no user record corresponding to this identifier. The user may have been deleted.'){
+                    setError("Invalid email address or password")
+                }
+                else if(errorMessage === 'The password is invalid or the user does not have a password.'){
+                    setError("Invalid email address or password")
+                }
+                else if(errorMessage === 'A network error (such as timeout, interrupted connection or unreachable host) has occurred.'){
+                    setError("Session has expired")
+                }
+                else {
                 setError(errorMessage)
                 }
                 setLoading(false)
@@ -51,7 +48,7 @@ export const useAuth = () => {
         firebase.auth().signOut().then(() => {
             // Sign-out successful.
             if(window.localStorage.getItem("authToken")) window.localStorage.removeItem("authToken")
-            setAuth(false)
+            setIsAuthenticated(false)
             navigate("/login")
         }).catch((error) => {
             // An error happened.
@@ -81,12 +78,9 @@ export const useAuth = () => {
     }
 
     return {
-        auth,
-        setAuth,
         loading,
         error,
         setError,
-        onAuthStateChangedHandler,
         logInHandler,
         logOutHandler,
         registerHandler,

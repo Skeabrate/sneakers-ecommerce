@@ -35,8 +35,8 @@ const StyledBtn = styled.button`
     background-color: transparent;
 
     svg{
-        height: 14px;
-        width: 14px;
+        height: 12px;
+        width: 12px;
         fill: ${({theme}) => theme.colors.white};
     }
 `
@@ -51,7 +51,7 @@ const timeout = keyframes`
 
 const StyledLoadingBar = styled.div`
     position: absolute;
-    bottom: 5px;
+    bottom: 8px;
     left: 50%;
     transform: translateX(-50%);
     width: 100px;

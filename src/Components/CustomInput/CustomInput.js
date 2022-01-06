@@ -7,7 +7,7 @@ import {
    StyledError
 } from "../../GlobalStyledComponents/LoginInputsStyles"
 
-const FormikInput = ({name, isCustom, autoComplete, value, onChange, activeError, setActiveError, invalidError }) => {
+const CustomInput = ({name, isCustom, autoComplete, value, onChange, activeError, setActiveError, invalidError, setLoadingError }) => {
 
     const [isFocused, setIsFocused] = React.useState(false)
 
@@ -26,12 +26,12 @@ const FormikInput = ({name, isCustom, autoComplete, value, onChange, activeError
                 type={name}
                 autoComplete={autoComplete}
                 isCustom={isCustom}
-
                 value={value}
                 onChange={onChange}
                 onFocus={() => setIsFocused(true)}
                 onBlur={blurHandler}
                 error={activeError && (invalidError || !value)}
+                onKeyDown={setLoadingError}
             />
             {activeError ? (
                 <>
@@ -57,4 +57,4 @@ const FormikInput = ({name, isCustom, autoComplete, value, onChange, activeError
     );
 };
 
-export default FormikInput;
+export default CustomInput;

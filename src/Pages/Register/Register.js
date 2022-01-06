@@ -8,10 +8,9 @@ import {
 } from "./Register.styles"
 import CustomInput from "../../Components/CustomInput/CustomInput"
 import { registerReducer } from "./registerReducer"
-import firebase from "../../firebase"
 import LoadingButton from '../../Components/LoadingButton/LoadingButton';
 import ErrorMessage from '../../Components/ErrorMessage/ErrorMessage';
-import { useNavigate } from "react-router-dom"
+import { useAuth } from '../../hooks/useAuth';
 
 const initialState = {
    email: {
@@ -29,44 +28,19 @@ const initialState = {
 const Register = () => {
    const [state, dispatch] = useReducer(registerReducer, initialState)
 
-   const [loading, setLoading] = useState(false)
-   const [error, setError] = useState(false)
-
    const { isRegisterOpen, setIsRegisterOpen } = useContext(ModalsContext)
 
-   const navigate = useNavigate()
+   const { loading ,error, setError, registerHandler } = useAuth()
 
    const handleSubmit = (e) => {
       e.preventDefault()
 
       if(state.email.isInvalid || state.password.isInvalid || !state.email.value || !state.password.value) {
-         if(!state.email.value) dispatch({
-            type: 'setIsActive',
-            field: 'email',
-         })
-         if (!state.password.value) dispatch({
-            type: 'setIsActive',
-            field: 'password',
-         })
+         if(!state.email.value) dispatch({ type: 'setIsActive', field: 'email' })
+         if (!state.password.value) dispatch({type: 'setIsActive', field: 'password' })
       }
       else {
-         setLoading(true)
-         // console.log(state.email.value, state.password.value)
-         firebase.auth().createUserWithEmailAndPassword(state.email.value, state.password.value)
-         .then((userCredential) => {
-            // Signed in 
-            /* var user = userCredential.user;
-            console.log(user) */
-            navigate("/profile")
-            setLoading(false)
-         })
-         .catch((error) => {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            console.log(errorCode)
-            setError(errorMessage)
-            setLoading(false)
-         });
+         registerHandler(state.email.value, state.password.value)
       }
    }
 
@@ -116,6 +90,7 @@ const Register = () => {
                   })}
                   activeError={state.email.isActive}
                   invalidError={state.email.isInvalid}
+                  setLoadingError={() => error && setError(false)}
                   isCustom
                />
 
@@ -134,6 +109,7 @@ const Register = () => {
                   })}
                   activeError={state.password.isActive}
                   invalidError={state.password.isInvalid}
+                  setLoadingError={() => error && setError(false)}
                   isCustom
                />
 

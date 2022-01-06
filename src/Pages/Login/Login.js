@@ -19,6 +19,7 @@ import firebase from "../../firebase"
 import LoadingButton from '../../Components/LoadingButton/LoadingButton';
 import ErrorMessage from '../../Components/ErrorMessage/ErrorMessage';
 import Content from './Content';
+import { useAuth } from '../../hooks/useAuth';
 
 const SignupSchema = Yup.object().shape({
    email: Yup.string().email('The email address is invalid.').required('Required'),
@@ -32,38 +33,9 @@ const Login = () => {
    const [isCheckboxFocused, setIsCheckboxFocused] = useState(false)
    const [checkboxValue, setCheckboxValue] = useState(false)
 
-   const [loading, setLoading] = useState(false)
-   const [error, setError] = useState(false)
-
    const { isRegisterOpen, setIsRegisterOpen } = useContext(ModalsContext)
 
-   const initialValues = {
-      email: '',
-      password: '',
-   }
-
-   function loginHandler(email, password){
-      setLoading(true)
-      /* console.log(email, password); */
-      firebase.auth().signInWithEmailAndPassword(email, password)
-         .then((userCredential) => {
-            // Signed in
-            // var user = userCredential.user;
-            setLoading(false)
-         })
-         .catch((error) => {
-            // var errorCode = error.code;
-            var errorMessage = error.message;
-            console.log(errorMessage)
-            
-            if(errorMessage === 'Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later.'){
-               setError("Account has been temporarily disabled due to many failed attempts. Try again later or reset password")
-            } else {
-               setError(errorMessage)
-            }
-            setLoading(false)
-         });
-   }
+   const { loading, error, setError, logInHandler } = useAuth()
 
    React.useEffect(() => {
       return () => isRegisterOpen && setIsRegisterOpen(false) // close register modal on unmount - kinda bad way -> to change
@@ -86,9 +58,12 @@ const Login = () => {
                </header>
 
                <Formik
-                  initialValues={initialValues}
+                  initialValues={{
+                     email: '',
+                     password: '',
+                  }}
                   validationSchema={SignupSchema}
-                  onSubmit={values => loginHandler(values.email, values.password)}
+                  onSubmit={values => logInHandler(values.email, values.password)}
                >
                   {({ errors, touched, values }) => (
                      <StyledForm>
@@ -98,6 +73,7 @@ const Login = () => {
                            error={errors.email && touched.email}
                            errorType={errors.email}
                            isEmpty={values.email.length}
+                           setLoadingError={() => error && setError(false)}
                         />
 
                         <FormikInput
@@ -106,6 +82,7 @@ const Login = () => {
                            error={errors.password && touched.password}
                            errorType={errors.password}
                            isEmpty={values.password.length}
+                           setLoadingError={() => error && setError(false)}
                         />
 
                         <StyledCheckbox>

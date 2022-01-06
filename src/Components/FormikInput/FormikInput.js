@@ -7,7 +7,7 @@ import {
    StyledError
 } from "../../GlobalStyledComponents/LoginInputsStyles"
 
-const FormikInput = ({name, autoComplete, error, errorType, isEmpty }) => {
+const FormikInput = ({name, autoComplete, error, setLoadingError, errorType, isEmpty }) => {
 
    const [isFocused, setIsFocused] = React.useState(false)
 
@@ -22,6 +22,7 @@ const FormikInput = ({name, autoComplete, error, errorType, isEmpty }) => {
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
             error={error}
+            onKeyDown={setLoadingError}
          />
          {error ? (
             <>
