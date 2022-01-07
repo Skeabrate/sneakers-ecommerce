@@ -5,10 +5,15 @@ export const Wrapper = styled.div`
    position: ${({isProductPage}) => isProductPage ? 'unset' : 'fixed'};
    top: 0;
    left: 0;
-   transform: ${({test, isProductPage}) => {
+   transform: ${({hideNav, isProductPage}) => {
       if(isProductPage) return 'translateY(0)'
-      if(test) return 'translateY(-80px)'
-      if(!test) return 'translateY(0)'
+      if(hideNav) return 'translateY(-100%)'
+      if(!hideNav) return 'translateY(0)'
+   }};
+   opacity: ${({hideNav, isProductPage}) => {
+      if(isProductPage) return '1';
+      if(hideNav) return '0';
+      if(!hideNav) return '1';
    }};
    width: 100%;
    display: flex;
@@ -21,18 +26,23 @@ export const Wrapper = styled.div`
    font-size: ${({theme}) => theme.fontSize.xxs};
    z-index: 99999;
 
-   transition: transform .3s .2s ease-in-out;
    
+   transition: transform .3s .2s ease-in-out,
+               opacity .3s .2s ease-in-out;
+   
+   transition-duration: ${({hideNav}) => hideNav ? '.3s' : '.2s'}; 
 
    @media (max-width: ${({theme}) => theme.screenSize.medium}){
       font-size: ${({theme}) => theme.fontSize.xs};
    }
 
    @media (max-width: ${({theme}) => theme.screenSize.mobile}){
-      
-      font-size: 18px;
       position: fixed;
+      font-size: 18px;
       height: 60px;
+
+      transform: ${({hideNav}) => hideNav ? 'translateY(-100%)' : 'translateY(0)'};
+      opacity: ${({hideNav}) => hideNav ? '0' : '1'};
       
    }
 `

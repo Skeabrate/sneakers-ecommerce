@@ -25,6 +25,7 @@ import AuthContext from "../../Context/authContext"
 
 const NavBar = ({ isProductPage }) => {
    const [toggle, setToggle] = useState(false)
+   const [hideNav, setHideNav] = useState(false)
 
    const cart = useSelector((state) => state.cart)
    const favorite = useSelector((state) => state.favorite)
@@ -37,7 +38,6 @@ const NavBar = ({ isProductPage }) => {
 
    const toggleMenu = () => setToggle(!toggle)
 
-   const [test, setTest] = useState(false)
 
    React.useEffect(() => {
       const abortController = new AbortController();
@@ -48,9 +48,9 @@ const NavBar = ({ isProductPage }) => {
       window.addEventListener("scroll", function(){ 
          var st = window.pageYOffset || document.documentElement.scrollTop; 
          if (st > lastScrollTop){
-            setTest(true)
+            setHideNav(true)
          } else {
-            setTest(false)
+            setHideNav(false)
          }
          lastScrollTop = st <= 0 ? 0 : st;
       }, {signal: signal});
@@ -59,7 +59,7 @@ const NavBar = ({ isProductPage }) => {
    }, [])
 
    return (
-      <Wrapper isProductPage={isProductPage} test={test}>
+      <Wrapper isProductPage={isProductPage} hideNav={hideNav}>
          <StyledTitleWrapper>
 
             <StyledTitle>

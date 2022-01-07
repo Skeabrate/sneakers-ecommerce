@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const StyledFiltersBar = styled.div`
    position: ${({isSticky}) => isSticky ? 'relative' : 'fixed'};
-   top: ${({isSticky}) => isSticky ? 'unset' : '85px'};
+   top: ${({isSticky}) => isSticky ? 'unset' : '90px'};
    left: 50%;
    transform: translate(-50%) ${({isSticky}) => isSticky ? null : 'scaleX(1.02)'};
    width: ${({isSticky}) => isSticky ? 'unset' : `calc(100% - 6vw)`};

@@ -15,7 +15,7 @@ export const StyledContentWrapper = styled.div`
 export const StyledContent = styled.section`
    margin: auto;
    max-width: 1200px;
-   padding-bottom: 200px;
+   padding-bottom: 250px;
 `
 
 /* NAVIGATION */

@@ -77,22 +77,17 @@ const FiltersBar = ({ AllProducts, paginate }) => {
                items={priceItems}
             />
          </StyledFiltersBar>
-         {!isSticky ? <FiltersPlaceholder></FiltersPlaceholder> : null}
+
+         {!isSticky && <FiltersPlaceholder />}
 
          <StyledActiveFilters>
-            <div ref={filtersRef} style={{position: 'absolute', top: '-133px'}}></div>
-            {filters.gender ? (
-               <StyledPhrase label={filters.gender} resetHandler={() => handleResetFilter("gender", "")} />
-            ) : null}
-            {filters.category ? (
-               <StyledPhrase label={filters.category} resetHandler={() => handleResetFilter("category", '')} />
-            ) : null}
-            {filters.price ? (
-               <StyledPhrase label={filters.price} resetHandler={() => handleResetFilter("price", '')} />
-            ) : null}
-            {filters.title ? (
-               <StyledPhrase label={filters.title} resetHandler={() => handleResetFilter("title", '')} />
-            ) : null}
+            <div ref={filtersRef} style={{position: 'absolute', top: '-162px'}}></div>
+
+            {filters.gender && <StyledPhrase label={filters.gender} resetHandler={() => handleResetFilter("gender", "")} />}
+            {filters.category && <StyledPhrase label={filters.category} resetHandler={() => handleResetFilter("category", '')} />}
+            {filters.price && <StyledPhrase label={filters.price} resetHandler={() => handleResetFilter("price", '')} />}
+            {filters.title && <StyledPhrase label={filters.title} resetHandler={() => handleResetFilter("title", '')} />}
+             
          </StyledActiveFilters>
       </div>
    );
