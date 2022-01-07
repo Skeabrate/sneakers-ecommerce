@@ -5,6 +5,11 @@ export const Wrapper = styled.div`
    position: ${({isProductPage}) => isProductPage ? 'unset' : 'fixed'};
    top: 0;
    left: 0;
+   transform: ${({test, isProductPage}) => {
+      if(isProductPage) return 'translateY(0)'
+      if(test) return 'translateY(-80px)'
+      if(!test) return 'translateY(0)'
+   }};
    width: 100%;
    display: flex;
    justify-content: space-between;
@@ -15,6 +20,8 @@ export const Wrapper = styled.div`
    height: 80px;
    font-size: ${({theme}) => theme.fontSize.xxs};
    z-index: 99999;
+
+   transition: transform .3s .2s ease-in-out;
    
 
    @media (max-width: ${({theme}) => theme.screenSize.medium}){

@@ -32,7 +32,7 @@ export const StyledButton = styled.button`
    }
 `
 
-const AddToFavouriteButton = ({ id, title, price, image = [], isCart }) => {
+const AddToFavouriteButton = ({ id, title, price, image = [], isCartPage }) => {
    const favorite = useSelector((state) => state.favorite)
    const dispatch = useDispatch()
 
@@ -57,7 +57,7 @@ const AddToFavouriteButton = ({ id, title, price, image = [], isCart }) => {
    }
 
    return (
-      <StyledButton isCart={isCart} onClick={(e) => handleFavorite(e)}>
+      <StyledButton isCart={isCartPage} onClick={(e) => handleFavorite(e)}>
          <p>
             {favorite.find(item => item.id === id) ? (
                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M18 1l-6 4-6-4-6 5v7l12 10 12-10v-7z"/></svg>

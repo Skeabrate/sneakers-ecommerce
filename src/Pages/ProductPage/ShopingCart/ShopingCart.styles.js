@@ -8,7 +8,6 @@ export const StyledShopp = styled.div`
       }
       else return 'absolute'
    }};
-
    width: 27.5%;
    top: ${({isStickyEnd}) => isStickyEnd ? 'unset' : '0'};
    bottom: ${({isStickyEnd}) => isStickyEnd ? '0' : 'unset'};
@@ -17,8 +16,8 @@ export const StyledShopp = styled.div`
    height: 100vh;
    padding: 2.5vw;
    color: ${({theme}) => theme.colors.white};
-   overflow: auto;
    background-color: ${({theme}) => theme.colors.black};
+   overflow: hidden;
 
    ::-webkit-scrollbar{
       display: none;

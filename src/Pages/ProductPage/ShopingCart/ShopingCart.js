@@ -16,13 +16,16 @@ import {
    StyledError,
    StyledSizeAndError } from "./ShopingCart.styles"
 
-const ShopingCart = ({isStickyBegin, isStickyEnd, product, loading}) => {
+const ShopingCart = ({ isStickyBegin, isStickyEnd, product, loading, test }) => {
    const [size, setSize] = useState(false)
    const [error, setError] = useState(false)
    const [isClicked, setIsClicked] = useState(false)
 
    const t1 = useRef(null)
    const productInfoRef = useRef(null)
+   const shopRef = useRef(null)
+
+   
 
    useEffect(() => {
       t1.current = gsap.timeline({ paused: !loading })
@@ -35,11 +38,27 @@ const ShopingCart = ({isStickyBegin, isStickyEnd, product, loading}) => {
                duration: .5,
             })
       }
-
    }, [loading])
 
+   useEffect(() => {
+      const abortController = new AbortController();
+      const { signal } = abortController;
+
+      document.addEventListener("scroll", () => {
+         if(shopRef.current) {
+            if(document.documentElement.scrollTop >= 80){
+            /*console.log(document.documentElement.scrollTop) */
+               shopRef.current.scrollTop = document.documentElement.scrollTop - 80
+            }
+            if(isStickyBegin) shopRef.current.scrollTop = 0
+         }
+      }, {signal: signal})
+
+      return () => abortController.abort()
+   }, [shopRef.current, isStickyBegin])
+
    return (
-      <StyledShopp isStickyBegin={isStickyBegin} isStickyEnd={isStickyEnd}>
+      <StyledShopp isStickyBegin={isStickyBegin} isStickyEnd={isStickyEnd} ref={shopRef}>
          {loading ? (
             <div style={{opacity: '0', transform: 'scale(0.95)'}} ref={productInfoRef}>
                <StyledCategory>

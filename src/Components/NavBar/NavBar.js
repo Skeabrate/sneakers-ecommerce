@@ -37,8 +37,29 @@ const NavBar = ({ isProductPage }) => {
 
    const toggleMenu = () => setToggle(!toggle)
 
+   const [test, setTest] = useState(false)
+
+   React.useEffect(() => {
+      const abortController = new AbortController();
+      const { signal } = abortController;
+
+      var lastScrollTop = 0
+
+      window.addEventListener("scroll", function(){ 
+         var st = window.pageYOffset || document.documentElement.scrollTop; 
+         if (st > lastScrollTop){
+            setTest(true)
+         } else {
+            setTest(false)
+         }
+         lastScrollTop = st <= 0 ? 0 : st;
+      }, {signal: signal});
+
+      return () => abortController.abort()
+   }, [])
+
    return (
-      <Wrapper isProductPage={isProductPage}>
+      <Wrapper isProductPage={isProductPage} test={test}>
          <StyledTitleWrapper>
 
             <StyledTitle>

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useReducer, useState } from 'react';
+import React, { useContext, useReducer } from 'react';
 import ModalBackground from '../../Components/ModalBackground/ModalBackground';
 import { ModalsContext } from "../../Context/ModalsContext"
 import { StyledTitle } from '../../GlobalStyledComponents/StyledTitle';
@@ -7,23 +7,11 @@ import {
    StyledCloseButton
 } from "./Register.styles"
 import CustomInput from "../../Components/CustomInput/CustomInput"
-import { registerReducer } from "./registerReducer"
+import { registerReducer } from "./Reducer/registerReducer"
+import { initialState } from "./Reducer/initialState"
 import LoadingButton from '../../Components/LoadingButton/LoadingButton';
 import ErrorMessage from '../../Components/ErrorMessage/ErrorMessage';
 import { useAuth } from '../../hooks/useAuth';
-
-const initialState = {
-   email: {
-      value: '',
-      isActive: false,
-      isInvalid: false,
-   },
-   password: {
-      value: '',
-      isActive: false,
-      isInvalid: false,
-   },
-}
 
 const Register = () => {
    const [state, dispatch] = useReducer(registerReducer, initialState)
@@ -32,35 +20,23 @@ const Register = () => {
 
    const { loading ,error, setError, registerHandler } = useAuth()
 
+   const reducerActionHandler = (type, field, value) => dispatch({ type: type, field: field, value: value, })
+
    const handleSubmit = (e) => {
       e.preventDefault()
 
-      if(state.email.isInvalid || state.password.isInvalid || !state.email.value || !state.password.value) {
-         if(!state.email.value) dispatch({ type: 'setIsActive', field: 'email' })
-         if (!state.password.value) dispatch({type: 'setIsActive', field: 'password' })
+      let rules = state.email.isInvalid || state.password.isInvalid || !state.email.value || !state.password.value ||
+      state.passwordConfirmation.isInvalid || !state.passwordConfirmation.value
+
+      if(rules) {
+         if(!state.email.value) reducerActionHandler("setIsActive", "email")
+         if (!state.password.value) reducerActionHandler("setIsActive", "password")
+         if (!state.passwordConfirmation.value) reducerActionHandler("setIsActive", "passwordConfirmation")
       }
       else {
          registerHandler(state.email.value, state.password.value)
       }
    }
-
-   useEffect(() => {
-      if(state.email.value) {
-         dispatch({
-            type: 'setIsInvalid',
-            field: 'email',
-         })
-      }
-   }, [state.email.value])
-
-   useEffect(() => {
-      if(state.password.value) {
-         dispatch({
-            type: 'setIsInvalid',
-            field: 'password',
-         })
-      }
-   }, [state.password.value])
 
    return (
       <aside>
@@ -79,15 +55,11 @@ const Register = () => {
                   name="email"
                   autoComplete="username"
                   value={state.email.value}
-                  onChange={(e) => dispatch({
-                     type: 'setValue',
-                     field: 'email', 
-                     value: e.currentTarget.value
-                  })}
-                  setActiveError={() => !state.email.isActive && dispatch({
-                     type: 'setIsActive',
-                     field: 'email',
-                  })}
+                  onChange={(e) => {
+                     reducerActionHandler("setValue", "email", e.currentTarget.value)
+                     reducerActionHandler("setIsInvalid", "email")
+                  }}
+                  setActiveError={() => !state.email.isActive && reducerActionHandler("setIsActive", "email")}
                   activeError={state.email.isActive}
                   invalidError={state.email.isInvalid}
                   setLoadingError={() => error && setError(false)}
@@ -98,17 +70,28 @@ const Register = () => {
                   name="password"
                   autoComplete="current-password"
                   value={state.password.value}
-                  onChange={(e) => dispatch({
-                     type: 'setValue',
-                     field: 'password', 
-                     value: e.currentTarget.value
-                  })}
-                  setActiveError={() => !state.password.isActive && dispatch({
-                     type: 'setIsActive',
-                     field: 'password',
-                  })}
+                  onChange={(e) => {
+                     reducerActionHandler("setValue", "password", e.currentTarget.value)
+                     reducerActionHandler("setIsInvalid", "password")
+                  }}
+                  setActiveError={() => !state.password.isActive && reducerActionHandler("setIsActive", "password")}
                   activeError={state.password.isActive}
                   invalidError={state.password.isInvalid}
+                  setLoadingError={() => error && setError(false)}
+                  isCustom
+               />
+
+               <CustomInput 
+                  name="password confirmation"
+                  autoComplete="current-password"
+                  value={state.passwordConfirmation.value}
+                  onChange={(e) => {
+                     reducerActionHandler("setValue", "passwordConfirmation", e.currentTarget.value)
+                     reducerActionHandler("setIsInvalid", "passwordConfirmation")
+                  }}
+                  setActiveError={() => !state.passwordConfirmation.isActive && reducerActionHandler("setIsActive", "passwordConfirmation")}
+                  activeError={state.passwordConfirmation.isActive}
+                  invalidError={state.passwordConfirmation.isInvalid}
                   setLoadingError={() => error && setError(false)}
                   isCustom
                />

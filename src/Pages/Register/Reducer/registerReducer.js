@@ -1,4 +1,20 @@
-import validateEmail from '../../helpers/validateEmail';
+import validateEmail from '../../../helpers/validateEmail';
+
+const validRulesHandler = (action, state) => {
+   if(action.field === "email"){
+      return validateEmail(state.email.value) ? false : "The email address is invalid." 
+   } 
+
+   else if(action.field === "password"){
+      return state.password.value.length > 5 ? false : "The password should be at least 6 characters."
+   }
+
+   else if(action.field === "passwordConfirmation"){
+      return state.passwordConfirmation.value === state.password.value ? false : "Incorrect password."
+   }
+
+   else return true
+}
 
 export function registerReducer(state, action) {
    switch (action.type){
@@ -21,19 +37,11 @@ export function registerReducer(state, action) {
          }
 
       case "setIsInvalid":
-         let valid = false
-         if(action.field === "email"){
-            valid = validateEmail(state.email.value) ? false : "The email address is invalid." 
-         } 
-         else if(action.field === "password"){
-            valid = state.password.value.length > 5 ? false : "The password should be at least 6 characters."
-         }
-
          return {
             ...state,
             [action.field]: {
                ...state[action.field],
-               isInvalid: valid,
+               isInvalid: validRulesHandler(action, state),
             }
          }
 

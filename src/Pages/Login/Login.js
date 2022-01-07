@@ -15,18 +15,17 @@ import { Formik } from "formik"
 import * as Yup from "yup"
 import FormikInput from '../../Components/FormikInput/FormikInput';
 import { ModalsContext } from "../../Context/ModalsContext"
-import firebase from "../../firebase"
 import LoadingButton from '../../Components/LoadingButton/LoadingButton';
 import ErrorMessage from '../../Components/ErrorMessage/ErrorMessage';
 import Content from './Content';
 import { useAuth } from '../../hooks/useAuth';
 
 const SignupSchema = Yup.object().shape({
-   email: Yup.string().email('The email address is invalid.').required('Required'),
+   email: Yup.string().email('The email address is invalid.').required('The email address is required'),
    password: Yup.string()
-     .min(7, 'The password is too short.')
-     .max(50)
-     .required('Required'),
+     .min(6, 'The password is too short.')
+     .max(40)
+     .required('The password is required'),
 });
 
 const Login = () => {
