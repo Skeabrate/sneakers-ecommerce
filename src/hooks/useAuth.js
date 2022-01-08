@@ -77,6 +77,20 @@ export const useAuth = () => {
         });
     }
 
+    function resetPasswordHandler(email) {
+        firebase.auth().sendPasswordResetEmail(email)
+            .then(() => {
+                // Password reset email sent!
+                // ..
+                console.log('success')
+            })
+            .catch((error) => {
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                console.log(errorMessage)
+            });
+    }
+
     return {
         loading,
         error,
@@ -84,5 +98,6 @@ export const useAuth = () => {
         logInHandler,
         logOutHandler,
         registerHandler,
+        resetPasswordHandler,
     };
 };
