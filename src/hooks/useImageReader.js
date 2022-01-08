@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 export const useImageReader = (image) => {
-    const [previewUrl, setPreviewUrl] = useState('')
+    const [previewUrl, setPreviewUrl] = useState(false)
 
     useEffect(() => {
         if (image === undefined || image === '') {

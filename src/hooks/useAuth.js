@@ -18,6 +18,7 @@ export const useAuth = () => {
             .then((userCredential) => {
                 // Signed in
                 // var user = userCredential.user;
+                console.log('logIn')
                 setLoading(false)
             })
             .catch((error) => {

@@ -52,7 +52,6 @@ const MainView = () => {
    useEffect(() => {
       firebase.auth().onAuthStateChanged((user) => {
          if (user) {
-            // console.log(user.uid)
             if(!auth){
                storage.ref(`${user.uid}`)
                .getDownloadURL()
@@ -66,6 +65,19 @@ const MainView = () => {
                      token: user.uid,
                      email: user.email,
                      image: url,
+                  })
+               })
+               .catch((ex) => {
+                  console.log(ex)
+                  window.localStorage.setItem("authToken", JSON.stringify([
+                     { token: user.uid },
+                     { email: user.email },
+                     { image: false }  
+                  ]))
+                  setAuth({
+                     token: user.uid,
+                     email: user.email,
+                     image: false,
                   })
                })  
             }
