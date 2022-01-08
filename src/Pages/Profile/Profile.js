@@ -1,6 +1,5 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import { useAuth } from "../../hooks/useAuth"
-import firebase from "../../firebase"
 import {
     Wrapper,
     StylledButton,
@@ -10,6 +9,7 @@ import { StyledLink } from '../../GlobalStyledComponents/StyledAccountButton';
 import { useImageReader } from "../../hooks/useImageReader"
 import { storage } from "../../firebase"
 import LoadingButton from '../../Components/LoadingButton/LoadingButton';
+import AuthContext from "../../Context/authContext"
 
 const typesTable = [
     { name: 'image/jpg' },
@@ -19,48 +19,45 @@ const typesTable = [
     { name: 'image/webp' },
 ]
 
-const Profile = ({ profileImg }) => {
-    const [profile, setProfile] = useState({
-        email: '',
-        uid: '',
-        image: '',
-    })
+const Profile = () => {
+    const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext)
+
+    const [image, setImage] = useState("")
     const [error, setError] = useState(false)
     const [loading, setLoading] = useState(false)
 
     const { logOutHandler } = useAuth()
-    const { previewUrl } = useImageReader(profile.image)
+    const { previewUrl } = useImageReader(image)
 
     const fileRef = useRef()
 
-    const user = firebase.auth().currentUser;
-
-    const getUser = useCallback(() => {
-        if (user !== null) {
-            setProfile({
-                email: user.email,
-                uid: user.uid,
-            })
-        }
-    }, [user])
-
     const submitHandler = () => {
-        if(profile.image){
+        if(image){
             try{
-                const uploadTask = storage.ref(`${profile.uid}`).put(profile.image)
+                const uploadTask = storage.ref(`${isAuthenticated.token}`).put(image)
                 uploadTask.on(
                     "state_changed",
                     (snapshot) => {
                         let progress = (snapshot.bytesTransferred / snapshot.totalBytes)* 100
                         console.log(progress)
                         if(!progress) setLoading(true)
-                        if(progress === 100) setLoading(false)
+                        if(progress === 100) {
+                            window.localStorage.setItem("authToken", JSON.stringify([
+                                { token: isAuthenticated.token },
+                                { email: isAuthenticated.email },
+                                { image: previewUrl }  
+                             ]))
+                            setIsAuthenticated((state) => ({
+                                ...state,
+                                image: previewUrl,
+                            }))
+                            setLoading(false)
+                        }
                     },
                     (err) => {
                         console.log(err)
                     }
                 )
-
             } catch (ex) {
                 console.log(ex.response)
             }
@@ -70,10 +67,7 @@ const Profile = ({ profileImg }) => {
     const imgChoseHandler = e => {
         if(e.target.files[0]){
             if(typesTable.find(x => x.name === e.target.files[0].type)){
-                setProfile((state) => ({
-                    ...state,
-                    image: e.target.files[0],
-                }))
+                setImage(e.target.files[0])
             } else {
                 setError("Invalid image type")
             }
@@ -86,21 +80,12 @@ const Profile = ({ profileImg }) => {
         fileRef.current.click()
     }
 
-    useEffect(() => {
-        if(window.localStorage.getItem('authToken')){
-            setProfile({
-                email: JSON.parse(window.localStorage.getItem('authToken'))[1].email,
-                uid: JSON.parse(window.localStorage.getItem('authToken'))[0].token,
-            })
-        } else getUser()
-    }, [])
-
     return (
         <section>
             <Wrapper>
                 Profile Settings
                 <br />
-                {profile && profile.email}
+                {isAuthenticated.email}
                 <br />
 
                 <h3>Add Profile Photo</h3>
@@ -113,10 +98,10 @@ const Profile = ({ profileImg }) => {
                     />
                 </div>
 
-                <StylledButton onClick={imgPrewievHandler} image={profile.image}>
-                    {profileImg && (
+                <StylledButton onClick={imgPrewievHandler} image={isAuthenticated.image}>
+                    {isAuthenticated.image && (
                         <>
-                            {previewUrl ? <img alt="avatar image" src={previewUrl} /> : <img alt="avatar image" src={profileImg} />}     
+                            {previewUrl ? <img alt="avatar image" src={previewUrl} /> : <img alt="avatar image" src={isAuthenticated.image} />}     
                         </>
                     )}
                     

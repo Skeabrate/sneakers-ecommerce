@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react';
-import avatarImg from "../../Assets/Images/image-avatar.png"
 import { useStoreLength } from '../../hooks/useStoreLength';
 import { ModalsContext } from '../../Context/ModalsContext';
 import { Link } from "react-router-dom"
@@ -23,7 +22,7 @@ import {
 } from "./NavBar.styles"
 import AuthContext from "../../Context/authContext"
 
-const NavBar = ({ isProductPage, profileImg }) => {
+const NavBar = ({ isProductPage }) => {
    const [toggle, setToggle] = useState(false)
    const [hideNav, setHideNav] = useState(false)
 
@@ -111,10 +110,10 @@ const NavBar = ({ isProductPage, profileImg }) => {
                {cartLength ? <span>{cartLength}</span> : null}  
             </StyledCartItem>
 
-            <StyledCartProfile profileImg={profileImg}>
-               {isAuthenticated && profileImg ? (
+            <StyledCartProfile profileImg={isAuthenticated && isAuthenticated.image}>
+               {isAuthenticated && isAuthenticated.image ? (
                   <Link to="/profile" title="Profile">
-                     <img src={profileImg} alt="avatarImg" />
+                     <img src={isAuthenticated.image} alt="avatarImg" />
                   </Link>
                ) : (
                   <Link to="/login" title="Log in">

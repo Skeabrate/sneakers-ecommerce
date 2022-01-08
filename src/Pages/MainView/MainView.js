@@ -35,20 +35,11 @@ const MainView = () => {
    const [isRegisterOpen, setIsRegisterOpen] = useState(false)
 
    // Auth info and Profile Image
-   const [auth, setAuth] = useState(window.localStorage.getItem("authToken"))
-   const [profileImg, setProfileImg] = useState(false)
-
-   // Get Profile Image
-   const fetchImage = async () => {
-      if(window.localStorage.getItem('authToken')){
-         let result = await storage
-            .ref(`${JSON.parse(window.localStorage.getItem('authToken'))[0].token}`)
-            .getDownloadURL()
-            .then(url => {
-               setProfileImg(url)
-            })
-      } else setProfileImg(false)
-   }
+   const [auth, setAuth] = useState(window.localStorage.getItem("authToken") && {
+      token: JSON.parse(window.localStorage.getItem('authToken'))[0].token,
+      email: JSON.parse(window.localStorage.getItem('authToken'))[1].email,
+      image: JSON.parse(window.localStorage.getItem('authToken'))[2].image,
+   })
 
    // Filters
    const [filters, setFilters] = useState({
@@ -62,15 +53,23 @@ const MainView = () => {
       firebase.auth().onAuthStateChanged((user) => {
          if (user) {
             // console.log(user.uid)
-            if(!window.localStorage.getItem("authToken")){
-               window.localStorage.setItem("authToken", JSON.stringify([
-                  { token: user.uid },
-                  { email: user.email },      
-               ]))
-               setAuth(true)
+            if(!auth){
+               storage.ref(`${user.uid}`)
+               .getDownloadURL()
+               .then(url => {
+                  window.localStorage.setItem("authToken", JSON.stringify([
+                     { token: user.uid },
+                     { email: user.email },
+                     { image: url }  
+                  ]))
+                  setAuth({
+                     token: user.uid,
+                     email: user.email,
+                     image: url,
+                  })
+               })  
             }
          }
-         fetchImage()
       });
    }, [])
 
@@ -102,7 +101,7 @@ const MainView = () => {
                         setIsRegisterOpen: setIsRegisterOpen,
                      }}>
                         <div>
-                           {isHero ? null : <NavBar isProductPage={isProductPage} profileImg={profileImg} />}
+                           {!isHero && <NavBar isProductPage={isProductPage} />}
 
                            <Cart />
 
@@ -121,7 +120,7 @@ const MainView = () => {
 
                               <Route path="/login" element={auth ? <Navigate to="/profile" /> : <Login />} />
 
-                              <Route path="/profile" element={auth ? <Profile profileImg={profileImg} /> : <Navigate to="/login" />} />
+                              <Route path="/profile" element={auth ? <Profile /> : <Navigate to="/login" />} />
 
                               <Route exact path="/" element={<HeroPage setIsHero={setIsHero}/>} />
 

@@ -250,10 +250,12 @@ export const StyledCartProfile = styled.div`
    position: relative;
    display: flex;
    justify-content: center;
-   align-items: ${({ profileImg }) => profileImg ? 'unset' : 'center'};;
+   align-items: ${({ profileImg }) => !profileImg && 'center'};;
    place-content: center;
+   background-color: ${({ profileImg, theme }) => profileImg && theme.colors.black};
 
    img{
+      font-size: 10px;
       height: 100%;
    }
 
