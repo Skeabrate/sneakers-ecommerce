@@ -113,7 +113,7 @@ const NavBar = ({ isProductPage }) => {
             <StyledCartProfile profileImg={isAuthenticated && isAuthenticated.image}>
                {isAuthenticated && isAuthenticated.image ? (
                   <Link to="/profile" title="Profile">
-                     <img src={isAuthenticated.image} alt="avatarImg" />
+                     <img src={isAuthenticated.image} alt={isAuthenticated.email} />
                   </Link>
                ) : (
                   <Link to="/login" title="Log in">

@@ -1,24 +1,20 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { StyledSlider, StyledButton, StyledLegend, StyledImage, StyledBtnNext, StyledBtnPrev } from "./ImageSlider.styles"
-import gsap from "gsap"
+import { useImgLoad } from "../../hooks/useImgLoad"
 
 const ImageSlider = ({product, loading, isQuickView}) => {
    const [current, setCurrent] = useState(0)
    const [isHovered, setIsHovered] = useState(true)
-   const [isImgLoaded, setIsImgLoaded] = useState(false)
 
    let newCurrent = useRef(0)
-
-   const t1 = useRef((null))
    const imagesRef = useRef(null)
    const legendRef = useRef(null)
-   const sliderRef = useRef(null)
+
+   const { handleLoadImg } = useImgLoad(imagesRef.current, legendRef.current)
 
    const nextImage = () => setCurrent(current === product.images.length - 1 ? 0 : current + 1) 
-
    const prevImage = () => setCurrent(current === 0 ? product.images.length - 1 : current - 1)
 
-   const handleLoadImg = (index) => !index && setIsImgLoaded(true)
 
    useEffect(() => {
       newCurrent.current = current
@@ -49,22 +45,9 @@ const ImageSlider = ({product, loading, isQuickView}) => {
       }
    }, [product, current])
 
-   useEffect(() => {
-      t1.current = gsap.timeline({ paused: !isImgLoaded })
-
-      if(t1.current){
-         t1.current
-            .to([imagesRef.current, legendRef.current], {
-               opacity: 1,
-               duration: .5,
-            })
-      }
-   }, [isImgLoaded])
-
    return (
       <StyledSlider 
          isQuickView={isQuickView}
-         ref={sliderRef} 
          onMouseEnter={() => setIsHovered(true)} 
          onMouseLeave={() => setIsHovered(false)}
       >
@@ -76,7 +59,7 @@ const ImageSlider = ({product, loading, isQuickView}) => {
                         key={index} 
                         src={img.url} 
                         alt="snickers"
-                        onLoad={() => handleLoadImg(index)}
+                        onLoad={() => !index && handleLoadImg()}
                      />
                   ))}
                   

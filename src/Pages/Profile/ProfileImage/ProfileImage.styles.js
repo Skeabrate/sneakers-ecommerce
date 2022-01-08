@@ -6,15 +6,16 @@ export const StylledButton = styled.button`
     height: 300px;
     background-color: #0f0f0f;
     border-radius: 100%;
-    border: 2px solid black;
+    border: 2px solid ${({theme}) => theme.colors.white};
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
 
     img{
+        opacity: 0;
         height: 100%;
-        transition: all .2s ease-in-out;
+        transition: transform .2s ease-in-out;
     }
 
     svg{

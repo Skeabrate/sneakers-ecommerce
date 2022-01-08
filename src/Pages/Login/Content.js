@@ -6,8 +6,13 @@ import {
     StyledClubImg,
 } from "./Login.styles"
 import { StyledTitle } from '../../GlobalStyledComponents/StyledTitle'
+import { useImgLoad } from "../../hooks/useImgLoad"
 
 const Content = () => {
+    const clubImgRef = React.useRef(null)
+
+    const { handleLoadImg } = useImgLoad(clubImgRef.current)
+
     return (
         <article>
             <header>
@@ -30,7 +35,9 @@ const Content = () => {
             <StyledClubImg 
                 src={clubImg} 
                 alt="sneakers club"
-                loading="lazy"
+                ref={clubImgRef}
+                onLoad={handleLoadImg}
+                width="440"
             />
 
         </article>

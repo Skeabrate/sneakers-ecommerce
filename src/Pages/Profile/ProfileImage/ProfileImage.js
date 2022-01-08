@@ -4,6 +4,7 @@ import { StylledButton } from "./ProfileImage.styles"
 import { useImageReader } from "../../../hooks/useImageReader"
 import { storage } from "../../../firebase"
 import AuthContext from "../../../Context/authContext"
+import { useImgLoad } from '../../../hooks/useImgLoad';
 
 const typesTable = [
     { name: 'image/jpg' },
@@ -20,8 +21,11 @@ const ProfileImage = ({ setError }) => {
     const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext)
 
     const { previewUrl } = useImageReader(image)
-
-    const fileRef = useRef()
+    
+    const fileRef = useRef(null)
+    const profileImgRef = useRef(null)
+    
+    const { handleLoadImg } = useImgLoad(profileImgRef.current)
 
     const submitHandler = () => {
         if(image){
@@ -87,7 +91,9 @@ const ProfileImage = ({ setError }) => {
             <StylledButton onClick={imgPrewievHandler} image={isAuthenticated.image || previewUrl}>
                 <img 
                     alt={isAuthenticated.image || previewUrl ? isAuthenticated.email : ""} 
-                    src={previewUrl ? previewUrl : isAuthenticated.image} 
+                    src={previewUrl ? previewUrl : isAuthenticated.image}
+                    ref={profileImgRef}
+                    onLoad={handleLoadImg}
                 />
                 
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg>
