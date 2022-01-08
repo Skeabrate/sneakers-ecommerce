@@ -53,7 +53,16 @@ export const StyledContent= styled.div`
    padding: 0 10px;
 
    ::-webkit-scrollbar {
-      width: 2px;
+      width: 6px;
+   }
+
+   ::-webkit-scrollbar-track {
+      background-color: black;
+   }
+
+   ::-webkit-scrollbar-thumb {
+      background: ${({theme}) => theme.colors.grey};
+      border-radius: 100px;
    }
 
    textarea{

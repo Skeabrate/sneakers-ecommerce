@@ -21,6 +21,7 @@ import Register from '../Register/Register'
 import Profile from "../Profile/Profile"
 import AuthContext from '../../Context/authContext';
 import firebase from "../../firebase"
+import { storage } from '../../firebase';
 
 const MainView = () => {
    const [isHero, setIsHero] = useState(false)
@@ -33,7 +34,21 @@ const MainView = () => {
    const [isCartOpen, setIsCartOpen] = useState(false)
    const [isRegisterOpen, setIsRegisterOpen] = useState(false)
 
+   // Auth info and Profile Image
    const [auth, setAuth] = useState(window.localStorage.getItem("authToken"))
+   const [profileImg, setProfileImg] = useState(false)
+
+   // Get Profile Image
+   const fetchImage = async () => {
+      if(window.localStorage.getItem('authToken')){
+         let result = await storage
+            .ref(`${JSON.parse(window.localStorage.getItem('authToken'))[0].token}`)
+            .getDownloadURL()
+            .then(url => {
+               setProfileImg(url)
+            })
+      } else setProfileImg(false)
+   }
 
    // Filters
    const [filters, setFilters] = useState({
@@ -55,6 +70,7 @@ const MainView = () => {
                setAuth(true)
             }
          }
+         fetchImage()
       });
    }, [])
 
@@ -86,7 +102,7 @@ const MainView = () => {
                         setIsRegisterOpen: setIsRegisterOpen,
                      }}>
                         <div>
-                           {isHero ? null : <NavBar isProductPage={isProductPage}/>}
+                           {isHero ? null : <NavBar isProductPage={isProductPage} profileImg={profileImg} />}
 
                            <Cart />
 
@@ -105,7 +121,7 @@ const MainView = () => {
 
                               <Route path="/login" element={auth ? <Navigate to="/profile" /> : <Login />} />
 
-                              <Route path="/profile" element={auth ? <Profile /> : <Navigate to="/login" />} />
+                              <Route path="/profile" element={auth ? <Profile profileImg={profileImg} /> : <Navigate to="/login" />} />
 
                               <Route exact path="/" element={<HeroPage setIsHero={setIsHero}/>} />
 

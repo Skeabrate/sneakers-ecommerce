@@ -242,13 +242,19 @@ export const StyledCartItem = styled.button`
 `
 
 export const StyledCartProfile = styled.div`
-   max-width: 50px;
+   height: 50px;
+   width: 50px;
+   border: ${({profileImg, theme}) => profileImg ? `2px solid ${theme.colors.orange}` : 'none'};
+   border-radius: 100%;
+   overflow: hidden;
+   position: relative;
+   display: flex;
+   justify-content: center;
+   align-items: ${({ profileImg }) => profileImg ? 'unset' : 'center'};;
+   place-content: center;
 
    img{
-      width: 100%;
       height: 100%;
-      border: 2px solid ${({theme}) => theme.colors.orange};
-      border-radius: 100%;
    }
 
    svg{
@@ -256,6 +262,7 @@ export const StyledCartProfile = styled.div`
    }
 
    @media (max-width: ${({theme}) => theme.screenSize.mobile}){
-      max-width: 40px;
+      height: 40px;
+      width: 40px;
    }
 `

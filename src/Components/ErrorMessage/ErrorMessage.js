@@ -21,7 +21,7 @@ const StyledError = styled.div`
     color: ${({theme}) => theme.colors.white};
     font-size: ${({theme}) => theme.fontSize.xs};
     text-align: center;
-    padding: 20px;
+    padding: 20px 30px 25px;
     border-radius: 5px;
 
     animation: .2s ease-in forwards ${appear};
@@ -51,11 +51,11 @@ const timeout = keyframes`
 
 const StyledLoadingBar = styled.div`
     position: absolute;
-    bottom: 8px;
+    bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
     width: 100px;
-    height: 6px;
+    height: 5px;
     border-radius: 100px;
     background-color: transparent;
     border: 1px solid ${({theme}) => theme.colors.white};

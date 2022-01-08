@@ -23,7 +23,7 @@ import {
 } from "./NavBar.styles"
 import AuthContext from "../../Context/authContext"
 
-const NavBar = ({ isProductPage }) => {
+const NavBar = ({ isProductPage, profileImg }) => {
    const [toggle, setToggle] = useState(false)
    const [hideNav, setHideNav] = useState(false)
 
@@ -37,7 +37,6 @@ const NavBar = ({ isProductPage }) => {
    const { isAuthenticated } = useContext(AuthContext)
 
    const toggleMenu = () => setToggle(!toggle)
-
 
    React.useEffect(() => {
       const abortController = new AbortController();
@@ -112,10 +111,10 @@ const NavBar = ({ isProductPage }) => {
                {cartLength ? <span>{cartLength}</span> : null}  
             </StyledCartItem>
 
-            <StyledCartProfile>
-               {isAuthenticated ? (
+            <StyledCartProfile profileImg={profileImg}>
+               {isAuthenticated && profileImg ? (
                   <Link to="/profile" title="Profile">
-                     <img src={avatarImg} alt="avatarImg" />
+                     <img src={profileImg} alt="avatarImg" />
                   </Link>
                ) : (
                   <Link to="/login" title="Log in">
