@@ -2,12 +2,13 @@ import { useState, useContext } from 'react';
 import firebase from "../firebase"
 import { useNavigate } from 'react-router-dom';
 import AuthContext from "../Context/authContext"
+import { ModalsContext } from '../Context/ModalsContext';
 
 export const useAuth = () => {
     const  { setIsAuthenticated } = useContext(AuthContext)
+    const { setIsInfoOpen } = useContext(ModalsContext)
 
     const [loading, setLoading] = useState(false)
-    const [error, setError] = useState(false)
 
     const navigate = useNavigate()
     
@@ -25,21 +26,30 @@ export const useAuth = () => {
                 // var errorCode = error.code;
                 var errorMessage = error.message;
                 console.log(errorMessage)
+
+                let message = ""
                 
                 if(errorMessage === 'Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later.'){
-                    setError("Account has been temporarily disabled due to many failed attempts. Try again later or reset password")
+                    message = "Account has been temporarily disabled due to many failed attempts. Try again later or reset password"
                 } 
                 else if(errorMessage === 'There is no user record corresponding to this identifier. The user may have been deleted.' 
                         || errorMessage === 'The password is invalid or the user does not have a password.'){
-                    setError("Invalid email address or password")
+                            message = "Invalid email address or password"
                 }
                 else if(errorMessage === 'A network error (such as timeout, interrupted connection or unreachable host) has occurred.'){
-                    setError("Session has expired")
+                    message = "Session has expired"
                 }
                 else {
-                setError(errorMessage)
+                    message = errorMessage
                 }
+
                 setLoading(false)
+                setIsInfoOpen({
+                    info: message,
+                    success: false,
+                })
+
+                return message
             });
     }
 
@@ -64,15 +74,23 @@ export const useAuth = () => {
             /* var user = userCredential.user;
             console.log(user) */
 
-            navigate("/profile")
             setLoading(false)
+            setIsInfoOpen({
+                info: "You have succesfully signed up",
+                success: true,
+            })
+            navigate("/profile")
         })
         .catch((error) => {
             var errorCode = error.code;
             var errorMessage = error.message;
             console.log(errorCode)
-            setError(errorMessage)
+
             setLoading(false)
+            setIsInfoOpen({
+                info: errorMessage,
+                success: false,
+            })
         });
     }
 
@@ -82,15 +100,22 @@ export const useAuth = () => {
             .then(() => {
                 // Password reset email sent!
                 // ..
-                console.log('success')
                 setLoading(false)
+                setIsInfoOpen({
+                    info: "Email has been sent",
+                    success: true,
+                })
             })
             .catch((error) => {
-                var errorCode = error.code;
+                // var errorCode = error.code;
                 var errorMessage = error.message;
                 console.log(errorMessage)
+
                 if(errorMessage === 'There is no user record corresponding to this identifier. The user may have been deleted.'){
-                    setError("Invalid email")
+                    setIsInfoOpen({
+                        info: "Invalid email",
+                        success: false,
+                    })
                 }
                 setLoading(false)
             });
@@ -98,8 +123,6 @@ export const useAuth = () => {
 
     return {
         loading,
-        error,
-        setError,
         logInHandler,
         logOutHandler,
         registerHandler,

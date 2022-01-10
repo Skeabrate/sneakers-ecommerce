@@ -10,7 +10,7 @@ export const StyledCart = styled.div`
    height: 100vh;
    background-color: ${({theme}) => theme.colors.black};
    color: ${({theme}) => theme.colors.white};
-   z-index: 999999;
+   z-index: 99999999;
    box-shadow: ${({isCartOpen}) => isCartOpen ? '0px 0px 24px -5px rgba(0, 0, 0, 1)' : null};
    transform: ${({isCartOpen}) => isCartOpen ? 'translateX(0)' : 'translateX(100%)'};
 

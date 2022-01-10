@@ -20,20 +20,23 @@ import Login from '../Login/Login';
 import Register from '../Register/Register'
 import Profile from "../Profile/Profile"
 import AuthContext from '../../Context/authContext';
-import firebase from "../../firebase"
-import { storage } from '../../firebase';
+import InfoModal from '../../Components/InfoModal/InfoModal'
+import { authStateChangedHandler } from "../../authStateChange"
 
 const MainView = () => {
-   const [isHero, setIsHero] = useState(false)
    const [isProductPage, setIsProductPage] = useState(false)
    
    const [productsCtx, setProductsCtx] = useState([])
    const [products, loading, setLoading] = useData()
    
-   // Open cart passed to Navbar and cart
+   // Modals: Cart, Register, Info
    const [isCartOpen, setIsCartOpen] = useState(false)
    const [isRegisterOpen, setIsRegisterOpen] = useState(false)
-
+   const [isInfoOpen, setIsInfoOpen] = useState({
+      info: false,
+      success: false,
+   })
+   
    // Auth info and Profile Image
    const [auth, setAuth] = useState(window.localStorage.getItem("authToken") && {
       token: JSON.parse(window.localStorage.getItem('authToken'))[0].token,
@@ -50,39 +53,7 @@ const MainView = () => {
    })
 
    useEffect(() => {
-      firebase.auth().onAuthStateChanged((user) => {
-         if (user) {
-            if(!auth){
-               storage.ref(`${user.uid}`)
-               .getDownloadURL()
-               .then(url => {
-                  window.localStorage.setItem("authToken", JSON.stringify([
-                     { token: user.uid },
-                     { email: user.email },
-                     { image: url }  
-                  ]))
-                  setAuth({
-                     token: user.uid,
-                     email: user.email,
-                     image: url,
-                  })
-               })
-               .catch((ex) => {
-                  console.log(ex)
-                  window.localStorage.setItem("authToken", JSON.stringify([
-                     { token: user.uid },
-                     { email: user.email },
-                     { image: false }  
-                  ]))
-                  setAuth({
-                     token: user.uid,
-                     email: user.email,
-                     image: false,
-                  })
-               })  
-            }
-         }
-      });
+      authStateChangedHandler(auth, setAuth)
    }, [])
 
    useEffect(() => {
@@ -109,15 +80,21 @@ const MainView = () => {
                      <ModalsContext.Provider value={{
                         isCartOpen: isCartOpen,
                         setIsCartOpen: setIsCartOpen,
+
                         isRegisterOpen: isRegisterOpen,
                         setIsRegisterOpen: setIsRegisterOpen,
+
+                        isInfoOpen: isInfoOpen,
+                        setIsInfoOpen: setIsInfoOpen,
                      }}>
                         <div>
-                           {!isHero && <NavBar isProductPage={isProductPage} />}
+                           <NavBar isProductPage={isProductPage} />
 
                            <Cart />
 
                            {isRegisterOpen && <Register />}
+
+                           {isInfoOpen.info && <InfoModal />}
                            
                            <Routes>
                               <Route path="/contact" element={<Contact />} />
@@ -134,12 +111,12 @@ const MainView = () => {
 
                               <Route path="/profile" element={auth ? <Profile /> : <Navigate to="/login" />} />
 
-                              <Route exact path="/" element={<HeroPage setIsHero={setIsHero}/>} />
+                              <Route path="/" element={<HeroPage />} />
 
                               <Route path='*' element={<div style={{marginTop: '80px'}}><Error /></div>} />
                            </Routes>
 
-                           {isHero ? null : <Footer />}
+                           <Footer />
                         </div>
                      </ModalsContext.Provider>
                   </FiltersContext.Provider>

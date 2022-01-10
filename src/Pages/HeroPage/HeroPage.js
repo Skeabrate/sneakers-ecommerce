@@ -5,7 +5,7 @@ import gsap from "gsap"
 import { imgLoad } from "../../helpers/imgLoad"
 import { useNavigate } from 'react-router-dom';
 
-const HeroPage = ({setIsHero}) => {
+const HeroPage = () => {
    let navigate = useNavigate()
 
    const t1 = useRef(null)
@@ -21,8 +21,6 @@ const HeroPage = ({setIsHero}) => {
    const btnSpanRef = useRef(null)
 
    useEffect(() => {
-      setIsHero(true)
-      // Check if hero image is loaded, if true start animation
       var image = document.createElement('img')
       image.src = imgLoad(heroRef.current) 
       image.onload = function() {
@@ -64,11 +62,7 @@ const HeroPage = ({setIsHero}) => {
                duration: 1.2,
             })
       }
-
-      return () => {
-         setIsHero(false)
-      }
-   }, [setIsHero])
+   }, [])
 
    const handleChangeScene = () => {
       t2.current.play()

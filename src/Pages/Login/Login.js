@@ -16,7 +16,6 @@ import * as Yup from "yup"
 import FormikInput from '../../Components/FormikInput/FormikInput';
 import { ModalsContext } from "../../Context/ModalsContext"
 import LoadingButton from '../../Components/LoadingButton/LoadingButton';
-import ErrorMessage from '../../Components/ErrorMessage/ErrorMessage';
 import Content from './Content';
 import { useAuth } from '../../hooks/useAuth';
 import ResetPasswordModal from '../../Components/ResetPasswordModal/ResetPasswordModal';
@@ -34,9 +33,14 @@ const Login = () => {
    const [checkboxValue, setCheckboxValue] = useState(false)
    const [openConfirm, setOpenConfirm] = useState(false)
 
-   const { isRegisterOpen, setIsRegisterOpen } = useContext(ModalsContext)
+   const { isRegisterOpen, setIsRegisterOpen, isInfoOpen ,setIsInfoOpen } = useContext(ModalsContext)
 
-   const { loading, error, setError, logInHandler } = useAuth()
+   const { loading, logInHandler } = useAuth()
+
+   const loadingErrorHandler = () => isInfoOpen.info && setIsInfoOpen((state) => ({
+      ...state,
+      info: false,
+   }))
 
    React.useEffect(() => {
       return () => isRegisterOpen && setIsRegisterOpen(false) // close register modal on unmount - kinda bad way -> to change
@@ -74,7 +78,7 @@ const Login = () => {
                            error={errors.email && touched.email}
                            errorType={errors.email}
                            isEmpty={values.email.length}
-                           setLoadingError={() => error && setError(false)}
+                           setLoadingError={loadingErrorHandler}
                         />
 
                         <FormikInput
@@ -83,7 +87,7 @@ const Login = () => {
                            error={errors.password && touched.password}
                            errorType={errors.password}
                            isEmpty={values.password.length}
-                           setLoadingError={() => error && setError(false)}
+                           setLoadingError={loadingErrorHandler}
                         />
 
                         <StyledCheckbox>
@@ -101,7 +105,7 @@ const Login = () => {
                            <label htmlFor="loggedIn">Keep me logged in.</label>
                         </StyledCheckbox>
    
-                        <LoadingButton isBlack disabled={error} loading={loading} label="Log In"/>
+                        <LoadingButton isBlack disabled={isInfoOpen.info} loading={loading} label="Log In"/>
 
                         <p style={{marginBlock: '20px'}}>OR</p>
 
@@ -110,8 +114,6 @@ const Login = () => {
                      </StyledForm>
                   )}
                </Formik>
-
-               {error && <ErrorMessage label={error} setError={setError} />}
             </article>
 
             <Content />

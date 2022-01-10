@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useStoreLength } from '../../hooks/useStoreLength';
 import { ModalsContext } from '../../Context/ModalsContext';
-import { Link } from "react-router-dom"
+import { Link, useLocation  } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { 
    StyledHamburger, 
@@ -35,6 +35,8 @@ const NavBar = ({ isProductPage }) => {
    const { setIsCartOpen } = useContext(ModalsContext)
    const { isAuthenticated } = useContext(AuthContext)
 
+   const location = useLocation()
+
    const toggleMenu = () => setToggle(!toggle)
 
    React.useEffect(() => {
@@ -55,6 +57,8 @@ const NavBar = ({ isProductPage }) => {
 
       return () => abortController.abort()
    }, [])
+
+   if(location.pathname === `/`) return null
 
    return (
       <Wrapper isProductPage={isProductPage} hideNav={hideNav}>

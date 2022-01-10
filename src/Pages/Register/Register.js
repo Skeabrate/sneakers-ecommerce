@@ -10,17 +10,22 @@ import CustomInput from "../../Components/CustomInput/CustomInput"
 import { registerReducer } from "./Reducer/registerReducer"
 import { initialState } from "./Reducer/initialState"
 import LoadingButton from '../../Components/LoadingButton/LoadingButton';
-import ErrorMessage from '../../Components/ErrorMessage/ErrorMessage';
 import { useAuth } from '../../hooks/useAuth';
 
 const Register = () => {
    const [state, dispatch] = useReducer(registerReducer, initialState)
 
    const { isRegisterOpen, setIsRegisterOpen } = useContext(ModalsContext)
+   const { isInfoOpen, setIsInfoOpen } = useContext(ModalsContext)
 
-   const { loading ,error, setError, registerHandler } = useAuth()
+   const { loading, registerHandler } = useAuth()
 
    const reducerActionHandler = (type, field, value) => dispatch({ type: type, field: field, value: value, })
+
+   const loadingErrorHandler = () => isInfoOpen.info && setIsInfoOpen((state) => ({
+      ...state,
+      info: false,
+   }))
 
    const handleSubmit = (e) => {
       e.preventDefault()
@@ -62,7 +67,7 @@ const Register = () => {
                   setActiveError={() => !state.email.isActive && reducerActionHandler("setIsActive", "email")}
                   activeError={state.email.isActive}
                   invalidError={state.email.isInvalid}
-                  setLoadingError={() => error && setError(false)}
+                  setLoadingError={loadingErrorHandler}
                   isCustom
                />
 
@@ -77,7 +82,7 @@ const Register = () => {
                   setActiveError={() => !state.password.isActive && reducerActionHandler("setIsActive", "password")}
                   activeError={state.password.isActive}
                   invalidError={state.password.isInvalid}
-                  setLoadingError={() => error && setError(false)}
+                  setLoadingError={loadingErrorHandler}
                   isCustom
                />
 
@@ -92,15 +97,12 @@ const Register = () => {
                   setActiveError={() => !state.passwordConfirmation.isActive && reducerActionHandler("setIsActive", "passwordConfirmation")}
                   activeError={state.passwordConfirmation.isActive}
                   invalidError={state.passwordConfirmation.isInvalid}
-                  setLoadingError={() => error && setError(false)}
+                  setLoadingError={loadingErrorHandler}
                   isCustom
                />
 
-               <LoadingButton isBlack disabled={error} loading={loading} label="Sign Up For Free" />
+               <LoadingButton isBlack disabled={isInfoOpen.info} loading={loading} label="Sign Up For Free" />
             </form>
-
-            {error && <ErrorMessage label={error} setError={setError} />}
-            
          </StyledContent>
       </aside>
    ); 

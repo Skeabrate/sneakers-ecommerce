@@ -4,6 +4,7 @@ import { useImageReader } from "../../../hooks/useImageReader"
 import { storage } from "../../../firebase"
 import AuthContext from "../../../Context/authContext"
 import { useImgLoad } from '../../../hooks/useImgLoad';
+import { ModalsContext } from "../../../Context/ModalsContext"
 import { 
     StylledButton,
     Wrapper,
@@ -17,11 +18,12 @@ const typesTable = [
     { name: 'image/webp' },
 ]
 
-const ProfileImage = ({ setError }) => {
+const ProfileImage = () => {
     const [image, setImage] = useState("")
     const [loading, setLoading] = useState(false)
 
     const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext)
+    const { isInfoOpen, setIsInfoOpen } = useContext(ModalsContext)
 
     const { previewUrl } = useImageReader(image)
     
@@ -31,6 +33,7 @@ const ProfileImage = ({ setError }) => {
     const { handleLoadImg } = useImgLoad(profileImgRef.current)
 
     const submitHandler = () => {
+        if(previewUrl === isAuthenticated.image) return null
         if(image){
             try{
                 const uploadTask = storage.ref(`${isAuthenticated.token}`).put(image)
@@ -50,6 +53,10 @@ const ProfileImage = ({ setError }) => {
                                 ...state,
                                 image: previewUrl,
                             }))
+                            setIsInfoOpen({
+                                info: "You have changed profile avatar",
+                                success: true,
+                            })
                             setLoading(false)
                         }
                     },
@@ -68,14 +75,21 @@ const ProfileImage = ({ setError }) => {
             if(typesTable.find(x => x.name === e.target.files[0].type)){
                 setImage(e.target.files[0])
             } else {
-                setError("Invalid image type")
+                setIsInfoOpen({
+                    info: "Invalid image type",
+                    success: false,
+                })
             }
         }
     }
 
     const imgPrewievHandler = (e) => {
         e.preventDefault()
-        setError(false)
+        if(isInfoOpen.info) setIsInfoOpen((state) => ({
+            ...state,
+            info: false,
+        }))
+        
         fileRef.current.click()
     }
 
@@ -100,7 +114,7 @@ const ProfileImage = ({ setError }) => {
                 
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg>
             </StylledButton>
-            <h2>Add Profile Photo</h2>
+            <h2>Change Avatar</h2>
 
             <br />
             <LoadingButton loading={loading} onClick={submitHandler} label="Save" />

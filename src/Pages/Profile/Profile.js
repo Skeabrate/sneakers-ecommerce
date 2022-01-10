@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
 import { useAuth } from "../../hooks/useAuth"
-import ErrorMessage from '../../Components/ErrorMessage/ErrorMessage';
 import { StyledLink } from '../../GlobalStyledComponents/StyledAccountButton';
 import AuthContext from "../../Context/authContext"
 import ProfileImage from './ProfileImage/ProfileImage';
@@ -21,7 +20,6 @@ import ConfirmModal from '../../Components/ConfirmModal/ConfirmModal';
 const Profile = () => {
     const { isAuthenticated } = useContext(AuthContext)
 
-    const [error, setError] = useState(false)
     const [toggle, setToggle] = useState(false)
     const [openConfirm, setOpenConfirm] = useState(false)
 
@@ -45,8 +43,7 @@ const Profile = () => {
                         </div>
                     </StyledAccountDetails>
 
-
-                    <ProfileImage setError={setError} />
+                    <ProfileImage />
 
                     <StyledLogout>
                         <StyledLink as="button" onClick={logOutHandler}>Logout</StyledLink>
@@ -57,7 +54,7 @@ const Profile = () => {
                     </StyledSwitch>
                 </StyledSettingsContent>
 
-                {error && <ErrorMessage label={error} setError={setError} />}
+                {/* {error && <ErrorMessage label={error} setError={setError} />} */}
 
                 {openConfirm && (
                     <ConfirmModal 

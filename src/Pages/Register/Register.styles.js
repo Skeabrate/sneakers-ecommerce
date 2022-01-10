@@ -10,7 +10,7 @@ export const StyledContent = styled.div`
     padding: 30px;
     background-color: ${({theme}) => theme.colors.black};
     color: ${({theme}) => theme.colors.white};
-    z-index: 999999;
+    z-index: 99999;
     box-shadow: 0px 0px 24px -5px rgba(0, 0, 0, 1);
 
     @media (max-width: ${({theme}) => theme.screenSize.medium}){

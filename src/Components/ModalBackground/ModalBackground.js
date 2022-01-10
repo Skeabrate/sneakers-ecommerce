@@ -9,7 +9,7 @@ const StyledBackground = styled.div`
    height: 100vh;
    background-color: black;
    cursor: pointer;
-   z-index: 999999;
+   z-index: 99999;
    opacity: ${({isModalOpen}) => isModalOpen ? 0.6 : 0};
    visibility: ${({isModalOpen}) => isModalOpen ? 'visible' : 'hidden'};
 
