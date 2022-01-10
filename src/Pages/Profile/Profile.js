@@ -1,12 +1,16 @@
 import React, { useState, useContext } from 'react';
 import { useAuth } from "../../hooks/useAuth"
-import {
-    Wrapper,
-} from "./Profile.styles"
 import ErrorMessage from '../../Components/ErrorMessage/ErrorMessage';
 import { StyledLink } from '../../GlobalStyledComponents/StyledAccountButton';
 import AuthContext from "../../Context/authContext"
 import ProfileImage from './ProfileImage/ProfileImage';
+
+import {
+    Wrapper,
+    StyledSettings,
+    StyledShopping,
+} from "./Profile.styles"
+import { StyledTitle } from '../../GlobalStyledComponents/StyledTitle';
 
 const Profile = () => {
     const { isAuthenticated } = useContext(AuthContext)
@@ -15,9 +19,12 @@ const Profile = () => {
     const { logOutHandler, resetPasswordHandler } = useAuth()
 
     return (
-        <section>
-            <Wrapper>
-                Profile Settings
+        <Wrapper>
+            <StyledSettings>
+                <StyledTitle>
+                    Profile Settings
+                </StyledTitle>
+
                 <br />
                 {isAuthenticated.email}
                 <br />
@@ -25,14 +32,21 @@ const Profile = () => {
                 <ProfileImage setError={setError} />
 
                 <br />
-                <StyledLink as="button" isLogin onClick={() => resetPasswordHandler(isAuthenticated.email)}>Reset Password</StyledLink>
+                <StyledLink as="button" onClick={() => resetPasswordHandler(isAuthenticated.email)}>Reset Password</StyledLink>
 
                 <br />
-                <StyledLink as="button" isLogin onClick={logOutHandler}>Logout</StyledLink>
+                <StyledLink as="button" onClick={logOutHandler}>Logout</StyledLink>
 
                 {error && <ErrorMessage label={error} setError={setError} />}
-            </Wrapper>
-        </section>
+            </StyledSettings>
+            
+            <StyledShopping>
+                <StyledTitle>
+                    Shopping History
+                </StyledTitle>
+
+            </StyledShopping>
+        </Wrapper>
     );
 };
 

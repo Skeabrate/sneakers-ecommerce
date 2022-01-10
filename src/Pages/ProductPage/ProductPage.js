@@ -9,7 +9,7 @@ import {
 } from './ProductPage.styles';
 
 const ProductPage = ({setIsProductPage}) => {
-   const [product, loading, error] = useProductID()
+   const [product, loading, error] = useProductID() // fetch product from context if it exists if not - fetch from CMS
 
    const wrapperBeginRef = useRef(null)
    const wrapperEndRef = useRef(null)

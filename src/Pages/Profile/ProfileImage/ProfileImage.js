@@ -1,10 +1,13 @@
 import React, { useRef, useState, useContext } from 'react';
 import LoadingButton from '../../../Components/LoadingButton/LoadingButton';
-import { StylledButton } from "./ProfileImage.styles"
 import { useImageReader } from "../../../hooks/useImageReader"
 import { storage } from "../../../firebase"
 import AuthContext from "../../../Context/authContext"
 import { useImgLoad } from '../../../hooks/useImgLoad';
+import { 
+    StylledButton,
+    Wrapper,
+} from "./ProfileImage.styles"
 
 const typesTable = [
     { name: 'image/jpg' },
@@ -77,7 +80,7 @@ const ProfileImage = ({ setError }) => {
     }
 
     return (
-        <article>
+        <Wrapper>
             <h3>Add Profile Photo</h3>
             <div >
                 <input
@@ -101,7 +104,7 @@ const ProfileImage = ({ setError }) => {
 
             <br />
             <LoadingButton loading={loading} onClick={submitHandler} label="Save" />
-        </article>
+        </Wrapper>
     );
 };
 

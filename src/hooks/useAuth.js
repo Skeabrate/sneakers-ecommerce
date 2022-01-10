@@ -29,10 +29,8 @@ export const useAuth = () => {
                 if(errorMessage === 'Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later.'){
                     setError("Account has been temporarily disabled due to many failed attempts. Try again later or reset password")
                 } 
-                else if(errorMessage === 'There is no user record corresponding to this identifier. The user may have been deleted.'){
-                    setError("Invalid email address or password")
-                }
-                else if(errorMessage === 'The password is invalid or the user does not have a password.'){
+                else if(errorMessage === 'There is no user record corresponding to this identifier. The user may have been deleted.' 
+                        || errorMessage === 'The password is invalid or the user does not have a password.'){
                     setError("Invalid email address or password")
                 }
                 else if(errorMessage === 'A network error (such as timeout, interrupted connection or unreachable host) has occurred.'){
