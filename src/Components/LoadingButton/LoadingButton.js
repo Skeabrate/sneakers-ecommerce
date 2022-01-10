@@ -6,11 +6,11 @@ const style ={
     position: 'absolute',
 }
 
-const LoadingButton = ({ loading, label, disabled, onClick }) => {
+const LoadingButton = ({ loading, label, disabled, onClick, isBlack }) => {
     return (
-        <StyledLink isLogin as="button" type="submit" disabled={disabled} onClick={onClick}>
+        <StyledLink isBlack={isBlack} as="button" type="submit" disabled={disabled} onClick={onClick}>
             {loading ? (
-                <div style={style}><ClipLoader color={'#1a1a1a'} /></div>
+                <div style={style}><ClipLoader color={isBlack ? '#1a1a1a' : '#fe7901'} /></div>
             ) : <>{label}</>}
         </StyledLink>
     );

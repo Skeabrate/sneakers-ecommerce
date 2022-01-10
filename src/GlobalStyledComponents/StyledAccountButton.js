@@ -8,7 +8,7 @@ export const StyledLink = styled(Link)`
    position: relative;
    width: fit-content;
    text-decoration: none;
-   color: ${({theme, isLogin}) => isLogin ? theme.colors.black : theme.colors.orange};
+   color: ${({theme, isBlack}) => isBlack ? theme.colors.black : theme.colors.orange};
    background-color: ${({theme}) => theme.colors.white};
    height: 60px;
    width: 150px;

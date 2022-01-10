@@ -19,6 +19,7 @@ import LoadingButton from '../../Components/LoadingButton/LoadingButton';
 import ErrorMessage from '../../Components/ErrorMessage/ErrorMessage';
 import Content from './Content';
 import { useAuth } from '../../hooks/useAuth';
+import ResetPasswordModal from '../../Components/ResetPasswordModal/ResetPasswordModal';
 
 const SignupSchema = Yup.object().shape({
    email: Yup.string().email('The email address is invalid.').required('The email address is required'),
@@ -31,6 +32,7 @@ const SignupSchema = Yup.object().shape({
 const Login = () => {
    const [isCheckboxFocused, setIsCheckboxFocused] = useState(false)
    const [checkboxValue, setCheckboxValue] = useState(false)
+   const [openConfirm, setOpenConfirm] = useState(false)
 
    const { isRegisterOpen, setIsRegisterOpen } = useContext(ModalsContext)
 
@@ -47,7 +49,7 @@ const Login = () => {
                <header>
                   <StyledTitle>
                      LOG IN
-                     <button>
+                     <button onClick={() => setOpenConfirm(true)}>
                         Forgot Your Password?
                      </button>
                      <button onClick={() => setIsRegisterOpen(true)}>
@@ -99,7 +101,7 @@ const Login = () => {
                            <label htmlFor="loggedIn">Keep me logged in.</label>
                         </StyledCheckbox>
    
-                        <LoadingButton disabled={error} loading={loading} label="Log In"/>
+                        <LoadingButton isBlack disabled={error} loading={loading} label="Log In"/>
 
                         <p style={{marginBlock: '20px'}}>OR</p>
 
@@ -121,6 +123,8 @@ const Login = () => {
                <StyledLink as="button" onClick={() => setIsRegisterOpen(true)}>Register</StyledLink>
             </StyledRegister>
          </article>
+         
+         {openConfirm && <ResetPasswordModal setOpenConfirm={setOpenConfirm}/>}
       </Wrapper>
    );
 };

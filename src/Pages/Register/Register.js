@@ -96,7 +96,7 @@ const Register = () => {
                   isCustom
                />
 
-               <LoadingButton disabled={error} loading={loading} label="Sign Up For Free" />
+               <LoadingButton isBlack disabled={error} loading={loading} label="Sign Up For Free" />
             </form>
 
             {error && <ErrorMessage label={error} setError={setError} />}

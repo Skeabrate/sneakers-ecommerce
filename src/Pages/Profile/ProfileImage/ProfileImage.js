@@ -81,14 +81,13 @@ const ProfileImage = ({ setError }) => {
 
     return (
         <Wrapper>
-            <h3>Add Profile Photo</h3>
             <div >
                 <input
                     style={{ display: 'none' }}
                     type="file"
                     onChange={imgChoseHandler}
                     ref={fileRef}
-                />
+                    />
             </div>
 
             <StylledButton onClick={imgPrewievHandler} image={isAuthenticated.image || previewUrl}>
@@ -97,10 +96,11 @@ const ProfileImage = ({ setError }) => {
                     src={previewUrl ? previewUrl : isAuthenticated.image}
                     ref={profileImgRef}
                     onLoad={handleLoadImg}
-                />
+                    />
                 
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg>
             </StylledButton>
+            <h2>Add Profile Photo</h2>
 
             <br />
             <LoadingButton loading={loading} onClick={submitHandler} label="Save" />

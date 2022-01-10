@@ -2,19 +2,19 @@ import styled from "styled-components"
 
 export const Wrapper = styled.div`
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
     row-gap: 10px;
+    padding: 3vw;
 `
 
 export const StylledButton = styled.button`
     position: relative;
     width: 300px;
     height: 300px;
-    background-color: #0f0f0f;
+    background-color: ${({theme}) => theme.colors.black};
     border-radius: 100%;
-    border: 2px solid ${({theme}) => theme.colors.white};
+    border: 3px solid ${({theme}) => theme.colors.white};
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -33,7 +33,7 @@ export const StylledButton = styled.button`
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        fill: ${({theme}) => theme.colors.black};
+        fill: #0f0f0f;
         opacity: ${({image}) => image ? 0 : 1};
         z-index: 2;
 

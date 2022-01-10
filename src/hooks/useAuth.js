@@ -77,16 +77,22 @@ export const useAuth = () => {
     }
 
     function resetPasswordHandler(email) {
+        setLoading(true)
         firebase.auth().sendPasswordResetEmail(email)
             .then(() => {
                 // Password reset email sent!
                 // ..
                 console.log('success')
+                setLoading(false)
             })
             .catch((error) => {
                 var errorCode = error.code;
                 var errorMessage = error.message;
                 console.log(errorMessage)
+                if(errorMessage === 'There is no user record corresponding to this identifier. The user may have been deleted.'){
+                    setError("Invalid email")
+                }
+                setLoading(false)
             });
     }
 
