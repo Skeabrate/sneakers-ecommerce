@@ -3,10 +3,23 @@ import firebase from "../firebase"
 import { useNavigate } from 'react-router-dom';
 import AuthContext from "../Context/authContext"
 import { ModalsContext } from '../Context/ModalsContext';
+import {
+    SIGNED_UP,
+    SENT_EMAIL,
+    BLOCKED_ACC,
+    BLOCKED_ACC_MINI,
+    INVALID_EMAIL,
+    INVALID_PASSWORD,
+    INVALID_ACC_RES,
+    CONNECTION_ERROR,
+    CONNECTION_ERROR_RES,
+    USER_DOESNT_EXIST,
+    USER_DOESNT_EXIST_RES,
+} from "../helpers/serverResponse.js"
 
 export const useAuth = () => {
     const  { setIsAuthenticated } = useContext(AuthContext)
-    const { setIsInfoOpen } = useContext(ModalsContext)
+    const { isInfoOpen, setIsInfoOpen } = useContext(ModalsContext)
 
     const [loading, setLoading] = useState(false)
 
@@ -25,24 +38,21 @@ export const useAuth = () => {
             .catch((error) => {
                 // var errorCode = error.code;
                 var errorMessage = error.message;
+                let message;
                 console.log(errorMessage)
-
-                let message = ""
                 
-                if(errorMessage === 'Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later.'){
-                    message = "Account has been temporarily disabled due to many failed attempts. Try again later or reset password"
-                } 
-                else if(errorMessage === 'There is no user record corresponding to this identifier. The user may have been deleted.' 
-                        || errorMessage === 'The password is invalid or the user does not have a password.'){
-                            message = "Invalid email address or password"
-                }
-                else if(errorMessage === 'A network error (such as timeout, interrupted connection or unreachable host) has occurred.'){
-                    message = "Session has expired"
-                }
-                else {
-                    message = errorMessage
-                }
+                if(errorMessage === BLOCKED_ACC) 
+                    message = BLOCKED_ACC_MINI
 
+                else if(errorMessage === INVALID_EMAIL || errorMessage === INVALID_PASSWORD) 
+                    message = INVALID_ACC_RES
+
+                else if(errorMessage === CONNECTION_ERROR) 
+                    message = CONNECTION_ERROR_RES
+
+                else 
+                    message = errorMessage
+                
                 setLoading(false)
                 setIsInfoOpen({
                     info: message,
@@ -59,6 +69,7 @@ export const useAuth = () => {
             if(window.localStorage.getItem("authToken")) window.localStorage.removeItem("authToken")
             setIsAuthenticated(false)
             navigate("/login")
+
         }).catch((error) => {
             // An error happened.
             console.log(error)
@@ -76,7 +87,7 @@ export const useAuth = () => {
 
             setLoading(false)
             setIsInfoOpen({
-                info: "You have succesfully signed up",
+                info: SIGNED_UP,
                 success: true,
             })
             navigate("/profile")
@@ -95,6 +106,10 @@ export const useAuth = () => {
     }
 
     function resetPasswordHandler(email) {
+        if(isInfoOpen.info) setIsInfoOpen({
+            info: false,
+            success: false,
+        })        
         setLoading(true)
         firebase.auth().sendPasswordResetEmail(email)
             .then(() => {
@@ -102,7 +117,7 @@ export const useAuth = () => {
                 // ..
                 setLoading(false)
                 setIsInfoOpen({
-                    info: "Email has been sent",
+                    info: SENT_EMAIL,
                     success: true,
                 })
             })
@@ -111,9 +126,9 @@ export const useAuth = () => {
                 var errorMessage = error.message;
                 console.log(errorMessage)
 
-                if(errorMessage === 'There is no user record corresponding to this identifier. The user may have been deleted.'){
+                if(errorMessage === USER_DOESNT_EXIST){
                     setIsInfoOpen({
-                        info: "Invalid email",
+                        info: USER_DOESNT_EXIST_RES,
                         success: false,
                     })
                 }
