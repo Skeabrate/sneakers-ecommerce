@@ -8,5 +8,5 @@ export const useStoreLength = (store = []) => {
       setLength(data.reduce((a, b) => a + b, 0))
    }, [store])
 
-   return length;
+   return length > 0 ? length : 0;
 };

@@ -25,7 +25,11 @@ const Cart = () => {
 
    useEffect(() => {
       let totalAmount = 0
-      for(const key in cart) totalAmount += cart[key].amount * cart[key].price
+
+      if(length) {
+         /* for(const key in cart) totalAmount += cart[key].amount * cart[key].price */
+         cart.map(({ amount, price }) => totalAmount += amount * price)
+      }
 
       setTotalAmount(totalAmount)
    }, [cart])

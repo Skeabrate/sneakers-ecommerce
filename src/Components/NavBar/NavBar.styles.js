@@ -208,9 +208,10 @@ export const StyledCartItem = styled.button`
    align-items: center;
    cursor: pointer;
    position: relative;
-   margin-right: 30px;
    background-color: transparent;
    border: none;
+   height: 50px;
+   width: 50px;
    
    svg{
       width: 22px;
@@ -224,8 +225,8 @@ export const StyledCartItem = styled.button`
       display: flex;
       justify-content: center;
       align-items: center;
-      top: -12px;
-      right: -12px;
+      top: 1px;
+      right: 1px;
       font-size: ${({theme}) => theme.fontSize.micro};
       color: ${({theme}) => theme.colors.white};
       font-weight: bold;
@@ -233,11 +234,6 @@ export const StyledCartItem = styled.button`
       border-radius: 100px;
       width: 21px;
       height: 21px;
-   }
-
-   @media (max-width: ${({theme}) => theme.screenSize.mobile}){
-      margin-right: 20px;
-      transform: scale(0.8);
    }
 `
 
@@ -250,9 +246,10 @@ export const StyledCartProfile = styled.div`
    position: relative;
    display: flex;
    justify-content: center;
-   align-items: ${({ profileImg }) => !profileImg && 'center'};;
+   align-items: ${({ profileImg }) => !profileImg && 'center'};
    place-content: center;
    background-color: ${({ profileImg, theme }) => profileImg && theme.colors.black};
+   margin-left: ${({ profileImg }) => profileImg ? '10px' : 0};
 
    img{
       font-size: 10px;
@@ -260,11 +257,13 @@ export const StyledCartProfile = styled.div`
    }
 
    svg{
+      width: 22px;
+      height: 22px;
       fill: ${({theme}) => theme.colors.white};
    }
 
    @media (max-width: ${({theme}) => theme.screenSize.mobile}){
-      height: 40px;
-      width: 40px;
+      width: ${({profileImg}) => profileImg ? '40px' : '50px'};
+      height: ${({profileImg}) => profileImg ? '40px' : '50px'};
    }
 `
