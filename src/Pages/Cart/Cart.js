@@ -11,6 +11,7 @@ import {
 } from "./Cart.styles"
 import StyledButton from '../../GlobalStyledComponents/StyledButton';
 import ModalBackground from '../../Components/ModalBackground/ModalBackground';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
    const [totalAmount, setTotalAmount] = useState(0)
@@ -19,6 +20,7 @@ const Cart = () => {
    const cart = useSelector((state) => state.cart)
    const dispatch = useDispatch()
    const length = useStoreLength(cart)
+
    const {isCartOpen, setIsCartOpen} = useContext(ModalsContext)
 
    useEffect(() => {
@@ -61,7 +63,7 @@ const Cart = () => {
                   <h3>Total : <span>[ {length} ]</span></h3>
                   <p>${totalAmount}</p>
                </div>
-               <StyledButton label="Check out" actionHandler={() => console.log('go to checkout')} isCheckout/>
+               <StyledButton as={Link} to="/cart" label="Check out" actionHandler={() => setIsCartOpen(false)} isCheckout />
             </StyledTotal>
          </StyledCart>
       </section>

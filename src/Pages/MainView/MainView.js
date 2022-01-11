@@ -22,6 +22,7 @@ import Profile from "../Profile/Profile"
 import AuthContext from '../../Context/authContext';
 import InfoModal from '../../Components/InfoModal/InfoModal'
 import { authStateChangedHandler } from "../../authStateChange"
+import CartPage from '../CartPage/CartPage';
 
 const MainView = () => {
    const [isProductPage, setIsProductPage] = useState(false)
@@ -110,6 +111,8 @@ const MainView = () => {
                               <Route path="/login" element={auth ? <Navigate to="/profile" /> : <Login />} />
 
                               <Route path="/profile" element={auth ? <Profile /> : <Navigate to="/login" />} />
+
+                              <Route path="/cart" element={<CartPage />} />
 
                               <Route path="/" element={<HeroPage />} />
 

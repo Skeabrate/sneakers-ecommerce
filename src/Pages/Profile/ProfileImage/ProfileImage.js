@@ -44,6 +44,7 @@ const ProfileImage = () => {
                         console.log(progress)
                         if(!progress) setLoading(true)
                         if(progress === 100) {
+                            window.localStorage.removeItem("authToken")
                             window.localStorage.setItem("authToken", JSON.stringify([
                                 { token: isAuthenticated.token },
                                 { email: isAuthenticated.email },
@@ -72,14 +73,21 @@ const ProfileImage = () => {
 
     const imgChoseHandler = e => {
         if(e.target.files[0]){
-            if(typesTable.find(x => x.name === e.target.files[0].type)){
-                setImage(e.target.files[0])
-            } else {
+            if(!typesTable.find(x => x.name === e.target.files[0].type)){
                 setIsInfoOpen({
                     info: "Invalid image type",
                     success: false,
                 })
+                return null
+            } 
+            if(e.target.files[0].size > 1000000) {
+                setIsInfoOpen({
+                    info: "File is too big",
+                    success: false,
+                })
+                return null
             }
+            else setImage(e.target.files[0])
         }
     }
 
