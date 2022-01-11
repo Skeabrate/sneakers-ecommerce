@@ -6,7 +6,7 @@ export const StyledContent = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
     width: 600px;
-    height: 70%;
+    height: fit-content;
     padding: 30px;
     background-color: ${({theme}) => theme.colors.black};
     color: ${({theme}) => theme.colors.white};
