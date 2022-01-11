@@ -52,7 +52,7 @@ const Wishlist = () => {
          <header>
             <StyledTitle>
                MY WISH LIST
-               <span ref={contentLengthRef}>[ {length} ]</span>
+               <span ref={contentLengthRef}>[ {length > 0 ? length : "0"} ]</span>
             </StyledTitle>
          </header>
 

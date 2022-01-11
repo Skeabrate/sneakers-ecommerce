@@ -23,7 +23,6 @@ export const Wrapper = styled.section`
     }
 `
 
-
 // Settings - left
 export const StyledSettings = styled.article`
     ${wrapperStyles};
@@ -92,7 +91,7 @@ export const StyledShopping = styled.article`
     position: absolute;
     left: 80vw;
     top: 80px; 
-    opacity: ${({toggle}) => toggle ? 1 : 0.1};
+    opacity: ${({toggle}) => toggle ? 1 : 0.3};
     transition: transform .3s ease-in-out,
                 opacity .4s ease-in-out;
 
