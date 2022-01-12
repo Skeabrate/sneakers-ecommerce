@@ -104,8 +104,8 @@ const AllProducts = ({ AllProducts }) => {
                <SearchBar ref={searchBarRef} />
             </StyledTitle>
             
-            <FiltersBar setError={setError} AllProducts={AllProducts} paginate={paginate}/>
          </header>
+            <FiltersBar setError={setError} AllProducts={AllProducts} paginate={paginate}/>
 
          <article>
             {loadingCtx ? (

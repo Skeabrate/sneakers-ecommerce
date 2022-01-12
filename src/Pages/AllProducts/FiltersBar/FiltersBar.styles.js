@@ -10,8 +10,11 @@ export const StyledFiltersBar = styled.div`
    justify-content: space-between;
    background-color: ${({isSticky, theme}) => isSticky ? `${theme.colors.black}` : 'black'};
    padding: ${({isSticky}) => isSticky ? '5px 0' : '5px 10px'};
-   border-top: ${({isSticky, theme}) => isSticky ? `1px solid ${theme.colors.grey}` : `none`};
-   border-bottom: ${({isSticky, theme}) => isSticky ? `1px solid ${theme.colors.grey}` : `none`};
+   border-top: 1px solid ${({theme}) => theme.colors.grey};
+   border-bottom: 1px solid ${({theme}) => theme.colors.grey};;
+
+   border-top-color: ${({isSticky, theme}) => isSticky ? theme.colors.grey : `transparent`};
+   border-bottom-color: ${({isSticky, theme}) => isSticky ? theme.colors.grey : `transparent`};
    z-index: 1;
    
 

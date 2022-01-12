@@ -17,10 +17,11 @@ export function addToCartReducer(state, action){
    })
 }
 
-export function changeAmountReducer(state, action){
+const valueHandler = (state, action, option) => {
    state.find(item => {
       if(item.id === action.payload.id && item.size === action.payload.size){
-         item.amount += action.payload.amount
+         if(option === "change") item.amount += action.payload.amount
+         if(option === "set") item.amount = action.payload.amount
       }
       return null
    })
@@ -28,10 +29,19 @@ export function changeAmountReducer(state, action){
    const updateItem = JSON.parse(localStorage.getItem('cart'))
    updateItem.find(item => {
       if(item.id === action.payload.id && item.size === action.payload.size){
-         item.amount += action.payload.amount
+         if(option === "change") item.amount += action.payload.amount
+         if(option === "set") item.amount = action.payload.amount
       }
       return null
    })
    
    localStorage.setItem('cart', JSON.stringify(updateItem))
+}
+
+export function changeAmountReducer(state, action){
+   valueHandler(state, action, "change")
+}
+
+export function setAmountReducer(state, action){
+   valueHandler(state, action, "set")
 }

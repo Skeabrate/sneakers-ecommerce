@@ -1,24 +1,21 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart, removeFromCart, changeAmount } from "../../Redux/addToCartSlice"
-import { ModalsContext } from '../../Context/ModalsContext';
 import StyledButton from '../../GlobalStyledComponents/StyledButton';
-import StyledInput from '../../GlobalStyledComponents/StyledInput';
 import AddToFavouriteButton from "../AddToFavouriteButton/AddToFavouriteButton"
 import { 
    StyledCart,
    StyledButtonContainer,
 } from "./AddingSection.styles"
+import AmountInput from "../AmountInput/AmountInput"
 
 const AddingSection = ({ loading, size, setError, isClicked, setIsClicked, product: {id, title, price, images = [{url: ""}]} }) => {
-   const [amount, setAmount] = useState(1)
+   const [inputValue, setInputValue] = useState(1)
 
    const cart = useSelector((state) => state.cart)
    const dispatch = useDispatch()
-   const { setIsCartOpen } = useContext(ModalsContext)
 
    const addToCartHandler = () => {
-      let check = false
       if(!size) {
          setError(true)
          setIsClicked(true)
@@ -27,13 +24,15 @@ const AddingSection = ({ loading, size, setError, isClicked, setIsClicked, produ
          }, 250)
       }
       else {
+         let check = false
+         
          cart.find(item => item.id === 0 && dispatch(removeFromCart({ id: 0 }))) 
          cart.find(item => {
             if(item.id === id && item.size === size) {
                dispatch(changeAmount({ 
                   id: item.id, 
                   size: size,
-                  amount
+                  amount: inputValue,
                }))
                check = true
             }
@@ -46,29 +45,20 @@ const AddingSection = ({ loading, size, setError, isClicked, setIsClicked, produ
                title: title, 
                price: price,
                image: images[0].url,
-               amount, 
+               amount: inputValue, 
                size
             }))
          }
-         setAmount(1)
-         setIsCartOpen(true)
+         setInputValue(1)
       }   
    }
 
-   React.useEffect(() =>{
-      if(amount > 10) setAmount(10)
-   }, [amount])
-
    return (
       <StyledCart>
-         <StyledInput
-            label="Amount:"
-            isCartPage
-            minusHandler={() => amount !== 1 ? setAmount(amount - 1) : null}
-            plusHandler={() => setAmount(amount + 1)}
-            value={amount}
-            setValue={(e) => setAmount(parseInt(e.currentTarget.value))}
-            setBlur={(e) => !parseInt(e.currentTarget.value) && setAmount(1)}
+         <AmountInput
+            label="Amount :"
+            inputValue={inputValue}
+            setInputValue={setInputValue}
          />
 
          <StyledButtonContainer>

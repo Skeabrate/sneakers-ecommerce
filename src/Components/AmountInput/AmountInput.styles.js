@@ -1,15 +1,14 @@
-import React from 'react';
 import styled from "styled-components"
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
    display: flex;
    border: 1px solid ${({theme}) => theme.colors.grey};
-   height: ${({isCart}) => isCart ? '46px' : 'unset'};
+   height: 46px;
    width: fit-content;
    margin: 15px 0 30px;
 
    input, div{
-      width: ${({isCart}) => isCart ? '50px' : '40px'};
+      width: 50px;
       text-align: center;
       background-color: transparent;
       border: none;
@@ -36,10 +35,10 @@ const Wrapper = styled.div`
    }
 `
 
-const StyledPlusMinusBtn = styled.button`
+export const StyledPlusMinusBtn = styled.button`
    background: transparent;
    border: none;
-   padding: ${({isCart}) => isCart ? '15px' : '11px'};
+   padding: 15px;
    display: flex;
    justify-content: center;
    align-items: center;
@@ -64,25 +63,3 @@ const StyledPlusMinusBtn = styled.button`
       outline: 1px solid ${({theme}) => theme.colors.white};
    }
 `
-
-const StyledInput = ({plusHandler, minusHandler, value, setValue ,setBlur, isCartPage, label }) => {
-   return (
-      <div>
-         {label ? <label style={{fontWeight: 'bold'}}>{label}</label> : null}
-         <Wrapper isCart={isCartPage}>
-            <StyledPlusMinusBtn isCart={isCartPage} onClick={minusHandler}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 10h24v4h-24z"/></svg></StyledPlusMinusBtn>
-            {isCartPage ? (
-               <input
-                  type="number"
-                  value={value} 
-                  onChange={setValue}
-                  onBlur={setBlur}
-               />
-            ) : <div>{value}</div> }
-            <StyledPlusMinusBtn isCart={isCartPage} onClick={plusHandler}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg></StyledPlusMinusBtn>
-         </Wrapper>
-      </div>
-   );
-};
-
-export default StyledInput;

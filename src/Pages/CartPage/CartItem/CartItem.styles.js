@@ -2,17 +2,9 @@ import styled from "styled-components"
 
 export const Wrapper = styled.div`
    display: flex;
-   margin-bottom: 20px;
-   border-bottom: 1px solid ${({theme}) => theme.colors.grey};
-   padding-bottom: 20px;
+   border-top: 1px solid ${({theme}) => theme.colors.grey};
+   padding-top: 20px;
    position: relative;
-   opacity: ${({isCartOpen}) => isCartOpen ? 1 : 0};
-   transform: ${({isCartOpen}) => isCartOpen ? 'translateY(0px)' : 'translateY(10px)'};
-
-   transition: opacity .4s .3s ease-in-out, 
-               transform .4s .3s ease-in-out;
-
-   ${({isCartOpen}) => !isCartOpen && 'transition-delay: 0'};
 
    h4{
       font-style: italic;
@@ -33,8 +25,8 @@ export const StyledRemoveButton = styled.button`
 
    svg{
       fill: ${({theme}) => theme.colors.lightGrey};
-      width: 10px;
-      height: 10px;
+      width: 16px;
+      height: 16px;
    }
 `
 

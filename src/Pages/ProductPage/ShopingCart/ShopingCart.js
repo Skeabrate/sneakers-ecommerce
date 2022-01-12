@@ -16,7 +16,7 @@ import {
    StyledError,
    StyledSizeAndError } from "./ShopingCart.styles"
 
-const ShopingCart = ({ isStickyBegin, isStickyEnd, product, loading, test }) => {
+const ShopingCart = ({ isStickyBegin, isStickyEnd, product, loading }) => {
    const [size, setSize] = useState(false)
    const [error, setError] = useState(false)
    const [isClicked, setIsClicked] = useState(false)
@@ -24,8 +24,6 @@ const ShopingCart = ({ isStickyBegin, isStickyEnd, product, loading, test }) => 
    const t1 = useRef(null)
    const productInfoRef = useRef(null)
    const shopRef = useRef(null)
-
-   
 
    useEffect(() => {
       t1.current = gsap.timeline({ paused: !loading })

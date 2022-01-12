@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useStoreLength } from '../../hooks/useStoreLength';
-import CartItem from "./CartItem/CartItem"
+import CartItem from "../CartPage/CartItem/CartItem"
 import { ModalsContext } from "../../Context/ModalsContext"
 import {
    StyledCart,
