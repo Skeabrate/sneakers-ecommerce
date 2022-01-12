@@ -31,14 +31,19 @@ const AmountInput = ({ label, item = false, inputValue, setInputValue = () => {}
                                 
     const blurHandler = (e) => {
         if(parseInt(e.currentTarget.value)) {
-            let validValue = parseInt(e.currentTarget.value.replace(/^0+/, ''))
+            let validValue = e.currentTarget.value.replace(/^0+/, '')
+
             setInputValue(validValue)
-            dispatchSetAmountHandler(validValue)
+            dispatchSetAmountHandler(Number(e.currentTarget.value))
         } else {
             setInputValue(1)
             dispatchSetAmountHandler(1)
         }
     }
+
+    React.useEffect(() => {
+        setInputValue(Number(inputValue))
+    }, [inputValue])
 
     return (
         <div>

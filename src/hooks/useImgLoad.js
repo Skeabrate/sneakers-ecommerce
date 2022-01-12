@@ -16,7 +16,7 @@ export const useImgLoad = (...img) => {
                 t1.current
                 .to(item, {
                     opacity: 1,
-                    duration: .5,
+                    duration: .6,
                 })
             })
         } 

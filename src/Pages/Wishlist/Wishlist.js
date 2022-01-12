@@ -34,11 +34,11 @@ const Wishlist = () => {
          tl.current
             .to(contentRef.current, {
                opacity: 1,
-               duration: 0.6,
+               duration: .6,
             }, "+=0.2s")
             .to(contentLengthRef.current, {
                opacity: 1,
-               duration: 0.6,
+               duration: .6,
             }, "-=0.6s")
       }
    }, [])

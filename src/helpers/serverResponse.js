@@ -2,6 +2,8 @@
 export const SIGNED_UP = 'You have succesfully signed up'
 export const SENT_EMAIL = 'Email has been sent'
 
+export const ADDED_TO_CART = 'You have added item to your bag'
+
 // ERRORS
 export const BLOCKED_ACC = 'Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later.'
 export const BLOCKED_ACC_MINI = 'Account has been temporarily disabled due to many failed attempts. Try again later or reset password'

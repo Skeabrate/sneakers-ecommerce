@@ -31,7 +31,6 @@ const MainView = () => {
    const [products, loading, setLoading] = useData()
    
    // Modals: Cart, Register, Info
-   const [isCartOpen, setIsCartOpen] = useState(false)
    const [isRegisterOpen, setIsRegisterOpen] = useState(false)
    const [isInfoOpen, setIsInfoOpen] = useState({
       info: false,
@@ -79,9 +78,6 @@ const MainView = () => {
                      setFilters: setFilters,
                   }}>
                      <ModalsContext.Provider value={{
-                        isCartOpen: isCartOpen,
-                        setIsCartOpen: setIsCartOpen,
-
                         isRegisterOpen: isRegisterOpen,
                         setIsRegisterOpen: setIsRegisterOpen,
 
