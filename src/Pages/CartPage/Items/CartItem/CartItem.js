@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom"
-import { removeFromCart } from "../../../Redux/addToCartSlice"
+import { removeFromCart } from "../../../../Redux/addToCartSlice"
 import { useDispatch } from 'react-redux';
 import {
    Wrapper,
@@ -10,7 +10,7 @@ import {
    StyledDetails,
    StyledMoveToWishBtn
 } from './CartItem.styles';
-import AmountInput from '../../../Components/AmountInput/AmountInput';
+import AmountInput from '../../../../Components/AmountInput/AmountInput';
 
 const CartItem = ({ item }) => {
    const [inputValue, setInputValue] = useState(item.amount)

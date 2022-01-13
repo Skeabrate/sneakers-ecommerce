@@ -3,10 +3,9 @@ import styled from "styled-components"
 export const Wrapper = styled.div`
    display: flex;
    border-top: 1px solid ${({theme}) => theme.colors.grey};
-   border-bottom: 1px solid ${({theme}) => theme.colors.grey};
-   padding: 15px 15px 15px 0;
+   padding: 20px 1vw 20px 0;
    position: relative;
-   margin-block: 15px; 
+
 
    h4{
       font-style: italic;
@@ -14,7 +13,7 @@ export const Wrapper = styled.div`
    }
 
    img{
-      width: 200px;
+      width: 180px;
    }
 `
 

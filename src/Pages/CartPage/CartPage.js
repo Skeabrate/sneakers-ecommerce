@@ -3,11 +3,12 @@ import { StyledTitle } from '../../GlobalStyledComponents/StyledTitle';
 import { Wrapper } from '../../GlobalStyledComponents/Wrapper';
 import { useSelector } from 'react-redux'
 import { useStoreLength } from "../../hooks/useStoreLength"
-import CartItem from "./CartItem/CartItem"
 import {
     StyledContent,
 } from "./CartPage.styles"
 import gsap from "gsap"
+import Items from "./Items/Items"
+import Summary from "./Summary/Summary"
 
 const CartPage = () => {
     const [totalAmount, setTotalAmount] = useState(0)
@@ -43,43 +44,30 @@ const CartPage = () => {
            /* for(const key in cart) totalAmount += cart[key].amount * cart[key].price */
            cart.map(({ amount, price }) => totalAmount += amount * price)
         }
-  
+
         setTotalAmount(totalAmount)
      }, [cart])
 
     return (
         <Wrapper>
-            <StyledTitle>
-                your bag
-                <span ref={contentLengthRef}>[ { length } ]</span>
-            </StyledTitle>
+            <header>
+                <StyledTitle>
+                    your bag
+                    <span ref={contentLengthRef}>[ { length } ]</span>
+                </StyledTitle>
+            </header>
 
             <StyledContent ref={contentRef}>
-                <div>
-                    {length ? (
-                        <>
-                            {cart.map((item, index) => (
-                                <CartItem 
-                                    item={item} 
-                                    key={index} 
-                                />
-                            ))}
-                            
-                            <h4>Add a note</h4>
-                            <textarea value={textareaValue} onChange={(e) => setTextareaValue(e.currentTarget.value)}/>
+                <Items 
+                    length={length}
+                    cart={cart}
+                />
 
-                            <div>
-                                Total : ${[ totalAmount ]}
-                            </div>
-                        </>
-                        
-                    ) : <h3>Your bag is empty</h3>}
-                    
-                </div>
-
-                <div>
-                    
-                </div>
+                <Summary 
+                    totalAmount={totalAmount}
+                    textareaValue={textareaValue}
+                    setTextareaValue={setTextareaValue}
+                />
             </StyledContent>
         </Wrapper>
     );
