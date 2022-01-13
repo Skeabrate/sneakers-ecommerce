@@ -11,7 +11,7 @@ import AmountInput from "../AmountInput/AmountInput"
 import { ModalsContext } from '../../Context/ModalsContext';
 import { ADDED_TO_CART } from "../../helpers/serverResponse"
 
-const AddingSection = ({ loading, size, setError, isClicked, setIsClicked, product: {id, title, price, images = [{url: ""}]} }) => {
+const AddingSection = ({ loading, size, setError, isClicked, setIsClicked, product: {id, title, gender, price, images = [{url: ""}]} }) => {
    const [inputValue, setInputValue] = useState(1)
 
    const { setIsInfoOpen } = useContext(ModalsContext)
@@ -50,7 +50,8 @@ const AddingSection = ({ loading, size, setError, isClicked, setIsClicked, produ
                price: price,
                image: images[0].url,
                amount: inputValue, 
-               size
+               size: size,
+               gender: gender,
             }))
          }
          setInputValue(1)

@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
    border: 1px solid ${({theme}) => theme.colors.grey};
    height: 46px;
    width: fit-content;
-   margin: 15px 0 30px;
+   margin: ${({label}) => label && '15px 0 30px'};
 
    input, div{
       width: 50px;

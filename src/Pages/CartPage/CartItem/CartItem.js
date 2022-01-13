@@ -7,6 +7,8 @@ import {
    StyledInfo,
    StyledAmount,
    StyledRemoveButton,
+   StyledDetails,
+   StyledMoveToWishBtn
 } from './CartItem.styles';
 import AmountInput from '../../../Components/AmountInput/AmountInput';
 
@@ -24,14 +26,17 @@ const CartItem = ({ item }) => {
                <Link to={`/product/${item.id}`}>
                   <img src={item.image} alt="shoeIcon" />
                </Link>
+
                <StyledInfo>
-                  <div>
-                     <h4>{item.title}</h4>
-                     <div style={{display: 'flex', columnGap: '50px'}}>
-                        <p>size: <strong>{item.size}</strong></p>
-                        <p>$<strong>{item.price * item.amount}</strong></p>
+                  <StyledDetails>
+                     <h3>{item.title}</h3>
+                     <div>
+                        <p>Gender : <span>{item.gender}</span></p>
+                        <p>Size : <span>{item.size}</span></p>
+                        <p>Item Price : <span>${item.price}</span></p>
                      </div>
-                  </div>
+                     <StyledMoveToWishBtn>Move to Wishlist</StyledMoveToWishBtn>
+                  </StyledDetails>
 
                   <StyledAmount>
                      <AmountInput
@@ -40,6 +45,8 @@ const CartItem = ({ item }) => {
                         item={item}
                      />
                   </StyledAmount>
+
+                  <p style={{display: 'flex', alignItems: 'center'}}><strong>${item.price * item.amount}</strong></p>
                </StyledInfo>
             </Wrapper>
          ) : null}

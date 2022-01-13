@@ -58,16 +58,27 @@ const CartPage = () => {
                 <div>
                     {length ? (
                         <>
-                        {cart.map((item, index) => (
-                            <CartItem 
-                                item={item} 
-                                key={index} 
-                            />
-                        ))}
-                        <h4>Add a note</h4>
-                        <textarea value={textareaValue} onChange={(e) => setTextareaValue(e.currentTarget.value)}/>
+                            {cart.map((item, index) => (
+                                <CartItem 
+                                    item={item} 
+                                    key={index} 
+                                />
+                            ))}
+                            
+                            <h4>Add a note</h4>
+                            <textarea value={textareaValue} onChange={(e) => setTextareaValue(e.currentTarget.value)}/>
+
+                            <div>
+                                Total : ${[ totalAmount ]}
+                            </div>
                         </>
+                        
                     ) : <h3>Your bag is empty</h3>}
+                    
+                </div>
+
+                <div>
+                    
                 </div>
             </StyledContent>
         </Wrapper>

@@ -33,7 +33,7 @@ const Login = () => {
    const [checkboxValue, setCheckboxValue] = useState(false)
    const [openConfirm, setOpenConfirm] = useState(false)
 
-   const { isRegisterOpen, setIsRegisterOpen, isInfoOpen ,setIsInfoOpen } = useContext(ModalsContext)
+   const { setIsRegisterOpen, isInfoOpen ,setIsInfoOpen } = useContext(ModalsContext)
 
    const { loading, logInHandler } = useAuth()
 
@@ -41,10 +41,6 @@ const Login = () => {
       ...state,
       info: false,
    }))
-
-   React.useEffect(() => {
-      return () => isRegisterOpen && setIsRegisterOpen(false) // close register modal on unmount - kinda bad way -> to change
-   }, [isRegisterOpen])
 
    return (
       <Wrapper>

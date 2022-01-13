@@ -5,14 +5,17 @@ import {
     StyledLoadingBar,
 } from "./InfoModal.styles"
 import { ModalsContext } from '../../Context/ModalsContext';
+import { usePathChange } from "../../hooks/usePathChange"
 
 const InfoModal = () => {
-    const { isInfoOpen, setIsInfoOpen } =useContext(ModalsContext)
-
+    const { isInfoOpen, setIsInfoOpen } = useContext(ModalsContext)
+    
     const handleSetInfo = () => setIsInfoOpen((state) => ({
         ...state,
         info: false,
     }))
+    
+    usePathChange(handleSetInfo)
 
     useEffect(() => {
         let timeout = setTimeout(() => {

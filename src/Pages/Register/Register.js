@@ -11,6 +11,7 @@ import { registerReducer } from "./Reducer/registerReducer"
 import { initialState } from "./Reducer/initialState"
 import LoadingButton from '../../Components/LoadingButton/LoadingButton';
 import { useAuth } from '../../hooks/useAuth';
+import { usePathChange } from '../../hooks/usePathChange';
 
 const Register = () => {
    const [state, dispatch] = useReducer(registerReducer, initialState)
@@ -19,6 +20,8 @@ const Register = () => {
    const { isInfoOpen, setIsInfoOpen } = useContext(ModalsContext)
 
    const { loading, registerHandler } = useAuth()
+
+   usePathChange(() => setIsRegisterOpen(false))
 
    const reducerActionHandler = (type, field, value) => dispatch({ type: type, field: field, value: value, })
 
