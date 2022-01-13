@@ -13,7 +13,6 @@ import FiltersContext from '../../Context/filtersContext';
 import { store } from '../../Redux/store'
 import { Provider } from "react-redux"
 import Error from '../404/Error';
-import Cart from "../Cart/Cart"
 import { ModalsContext } from '../../Context/ModalsContext';
 import Wishlist from "../Wishlist/Wishlist"
 import Login from '../Login/Login';
@@ -86,8 +85,6 @@ const MainView = () => {
                      }}>
                         <div>
                            <NavBar isProductPage={isProductPage} />
-
-                           <Cart />
 
                            {isRegisterOpen && <Register />}
 
