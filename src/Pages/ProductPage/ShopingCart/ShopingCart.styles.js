@@ -1,33 +1,34 @@
 import styled, {keyframes, css} from "styled-components"
 
 export const StyledShopp = styled.div`
-   position: ${({isStickyBegin, isStickyEnd}) => {
-      if(!isStickyBegin) {
-         if(isStickyEnd) return 'absolute'
-         return 'fixed'
-      }
-      else return 'absolute'
+   display: ${({isMobile, isDesktop}) => {
+      if(isMobile) return 'none'
+      if(isDesktop) return 'block'
    }};
-   width: 27.5%;
-   top: ${({isStickyEnd}) => isStickyEnd ? 'unset' : '0'};
-   bottom: ${({isStickyEnd}) => isStickyEnd ? '0' : 'unset'};
-   right: 0;
+   position: sticky;
+   top: ${({position}) => `${(-1) * position}px`};
    z-index: 1;
-   height: 100vh;
-   padding: 2.5vw;
+   height: fit-content;
+   min-height: 100vh;
    color: ${({theme}) => theme.colors.white};
    background-color: ${({theme}) => theme.colors.black};
-   overflow: hidden;
+
+   transition: top .3s ease-in-out;
 
    ::-webkit-scrollbar{
       display: none;
    }
 
    @media (max-width:  ${({theme}) => theme.screenSize.medium}){
+      display: ${({isMobile, isDesktop}) => {
+      if(isMobile) return 'block'
+      if(isDesktop) return 'none'
+   }};
       position: relative;
       width: 100%;
       overflow: unset;
       height: fit-content;
+      min-height: unset;
    }
 `
 

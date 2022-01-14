@@ -15,7 +15,7 @@ import {
    StickyPointer,
    StickyPlaceholder } from "./Content.styles"
 
-const Content = ({ product, loading, isStickyBegin, isStickyEnd }) => {
+const Content = ({ product, loading,  }) => {
    const [cheatActive, setCheatActive] = useState(false)
    const navRef = useRef(null)
 
@@ -27,7 +27,7 @@ const Content = ({ product, loading, isStickyBegin, isStickyEnd }) => {
             <ImageSlider product={product} loading={loading}/>
          </Element>
 
-         <ShopingCart product={product} loading={loading} isStickyBegin={isStickyBegin} isStickyEnd={isStickyEnd} />
+         <ShopingCart product={product} loading={loading} isMobile />
 
          <div>
             <nav>
