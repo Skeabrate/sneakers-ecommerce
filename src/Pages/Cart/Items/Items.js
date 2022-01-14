@@ -12,7 +12,7 @@ const Items = ({ cart }) => {
                     <tr>
                         <td><h2 style={{ fontStyle: 'italic' }}>Item</h2></td>
                         <td><h2 style={{ fontStyle: 'italic' }}>Quantity</h2></td>
-                        <td><h2 style={{ fontStyle: 'italic' }}>Price</h2></td>
+                        <td><h2 style={{ fontStyle: 'italic' }}>Subtotal</h2></td>
                     </tr>
                 </thead>
 
