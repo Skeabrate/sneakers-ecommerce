@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import { StyledSlider, StyledButton, StyledLegend, StyledImage, StyledBtnNext, StyledBtnPrev } from "./ImageSlider.styles"
 import { useImgLoad } from "../../hooks/useImgLoad"
 
-const ImageSlider = ({product, loading, isQuickView}) => {
+const ImageSlider = ({product, loading, }) => {
    const [current, setCurrent] = useState(0)
    const [isHovered, setIsHovered] = useState(true)
 
@@ -14,7 +14,6 @@ const ImageSlider = ({product, loading, isQuickView}) => {
 
    const nextImage = () => setCurrent(current === product.images.length - 1 ? 0 : current + 1) 
    const prevImage = () => setCurrent(current === 0 ? product.images.length - 1 : current - 1)
-
 
    useEffect(() => {
       newCurrent.current = current
@@ -47,13 +46,12 @@ const ImageSlider = ({product, loading, isQuickView}) => {
 
    return (
       <StyledSlider 
-         isQuickView={isQuickView}
          onMouseEnter={() => setIsHovered(true)} 
          onMouseLeave={() => setIsHovered(false)}
       >
          <div style={{ opacity: 0 }} ref={imagesRef}>
             {loading ? (
-               <StyledImage current={current} isQuickView={isQuickView}>
+               <StyledImage current={current}>
                   {product.images.map((img, index) => (
                      <img
                         key={index} 
@@ -99,4 +97,4 @@ const ImageSlider = ({product, loading, isQuickView}) => {
    );
 };
 
-export default ImageSlider;
+export default React.memo(ImageSlider);

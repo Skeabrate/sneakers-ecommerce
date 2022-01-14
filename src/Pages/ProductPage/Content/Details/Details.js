@@ -14,7 +14,7 @@ const StyledList = styled.ul`
    }
 `
 
-const Details = () => {
+const Details = ({ loading }) => {
    const wrapperRef = useRef(null)
    useAnimation(wrapperRef.current)
 
@@ -36,4 +36,4 @@ const Details = () => {
    );
 };
 
-export default Details;
+export default React.memo(Details);

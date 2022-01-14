@@ -2,10 +2,10 @@ import React, { useRef } from 'react';
 import { Wrapper, StyledTitle, StyledContent } from "../GlobalStyles.styles"
 import { useAnimation } from '../../../../hooks/useAnimation';
 
-const Description = ({ product: { title, description, images }, loading }) => {
+function Description({ product: { title, description, images }, loading }) {
    const wrapperRef = useRef(null)
    useAnimation(wrapperRef.current)
-
+   
    return (
       <Wrapper ref={wrapperRef}>
          {loading ? (
@@ -27,4 +27,4 @@ const Description = ({ product: { title, description, images }, loading }) => {
    );
 };
 
-export default Description;
+export default React.memo(Description);

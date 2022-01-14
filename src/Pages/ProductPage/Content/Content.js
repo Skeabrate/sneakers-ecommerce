@@ -13,7 +13,8 @@ import {
    StyledLink, 
    StyledContentWrapper, 
    StickyPointer,
-   StickyPlaceholder } from "./Content.styles"
+   StickyPlaceholder 
+} from "./Content.styles"
 
 const Content = ({ product, loading,  }) => {
    const [cheatActive, setCheatActive] = useState(false)
@@ -96,15 +97,15 @@ const Content = ({ product, loading,  }) => {
          <StyledContent>
             <Element name="highlights" style={{ position: 'relative' }}>
                <StickyPointer ref={navRef} />
-               <Highlights />
+               <Highlights loading={loading} />
             </Element>
 
             <Element name="description">
-               <Description product={product} loading={loading}/>
+               <Description product={product} loading={loading} />
             </Element>
 
             <Element name="details">
-               <Details />
+               <Details loading={loading} />
             </Element>
          </StyledContent>
       </StyledContentWrapper>

@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { Wrapper, StyledTitle, StyledContent } from "../GlobalStyles.styles"
 import { useAnimation } from '../../../../hooks/useAnimation';
 
-const Highlights = () => {
+const Highlights = ({ loading }) => {
    const wrapperRef = useRef(null)
    useAnimation(wrapperRef.current)
 
@@ -37,4 +37,4 @@ const Highlights = () => {
    );
 };
 
-export default Highlights;
+export default React.memo(Highlights);

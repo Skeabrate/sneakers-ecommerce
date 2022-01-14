@@ -8,7 +8,7 @@ import {
 } from './ProductPage.styles';
 import ShopingCart from './ShopingCart/ShopingCart';
 
-const ProductPage = ({setIsProductPage}) => {
+const ProductPage = ({ setIsProductPage }) => {
    const [product, loading, error] = useProductID() // fetch product from context if it exists if not - fetch from CMS
 
    useEffect(() => {

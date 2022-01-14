@@ -8,7 +8,7 @@ export const useAnimation = (ref) => {
 
    const callbackFunction = (entries) => {
       const [entry] = entries
-      setIsPaused(entry.isIntersecting)
+      if(entry.isIntersecting) setIsPaused(true)
    }
 
    const options = useMemo(() => {
