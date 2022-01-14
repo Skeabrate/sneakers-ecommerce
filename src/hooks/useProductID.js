@@ -24,15 +24,15 @@ export const useProductID = () => {
                query: `
                {
                   allProducts(filter: {id: {eq: ${id}}}){
-                    id
-                    title
-                    category
-                    gender
-                    price
-                    description
-                    images {
-                      url
-                    }
+                     id
+                     title
+                     category
+                     gender
+                     price
+                     description
+                     images {
+                        url
+                     }
                   }
                }`,
             }, {

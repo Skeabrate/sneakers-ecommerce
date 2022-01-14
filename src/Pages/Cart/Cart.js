@@ -5,12 +5,12 @@ import { useSelector } from 'react-redux'
 import { useStoreLength } from "../../hooks/useStoreLength"
 import {
     StyledContent,
-} from "./CartPage.styles"
+} from "./Cart.styles"
 import gsap from "gsap"
 import Items from "./Items/Items"
 import Summary from "./Summary/Summary"
 
-const CartPage = () => {
+const Cart = () => {
     const [totalAmount, setTotalAmount] = useState(0)
     const [textareaValue, setTextareaValue] = useState('')
 
@@ -58,19 +58,20 @@ const CartPage = () => {
             </header>
 
             <StyledContent ref={contentRef}>
-                <Items 
-                    length={length}
-                    cart={cart}
-                />
-
-                <Summary 
-                    totalAmount={totalAmount}
-                    textareaValue={textareaValue}
-                    setTextareaValue={setTextareaValue}
-                />
+                {length ? (
+                    <>
+                        <Items cart={cart} />
+        
+                        <Summary 
+                            totalAmount={totalAmount}
+                            textareaValue={textareaValue}
+                            setTextareaValue={setTextareaValue}
+                        />
+                    </>
+                ) : <h3>Your bag is empty</h3>}
             </StyledContent>
         </Wrapper>
     );
 };
 
-export default CartPage;
+export default Cart;

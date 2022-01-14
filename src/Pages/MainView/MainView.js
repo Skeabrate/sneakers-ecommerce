@@ -21,7 +21,7 @@ import Profile from "../Profile/Profile"
 import AuthContext from '../../Context/authContext';
 import InfoModal from '../../Components/InfoModal/InfoModal'
 import { authStateChangedHandler } from "../../authStateChange"
-import CartPage from '../CartPage/CartPage';
+import Cart from '../Cart/Cart';
 
 const MainView = () => {
    const [isProductPage, setIsProductPage] = useState(false)
@@ -29,7 +29,7 @@ const MainView = () => {
    const [productsCtx, setProductsCtx] = useState([])
    const [products, loading, setLoading] = useData()
    
-   // Modals: Cart, Register, Info
+   // Modals: Register, Info
    const [isRegisterOpen, setIsRegisterOpen] = useState(false)
    const [isInfoOpen, setIsInfoOpen] = useState({
       info: false,
@@ -105,7 +105,7 @@ const MainView = () => {
 
                               <Route path="/profile" element={auth ? <Profile /> : <Navigate to="/login" />} />
 
-                              <Route path="/cart" element={<CartPage />} />
+                              <Route path="/cart" element={<Cart />} />
 
                               <Route path="/" element={<HeroPage />} />
 
