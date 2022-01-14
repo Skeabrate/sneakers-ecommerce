@@ -96,7 +96,7 @@ const AllProducts = ({ AllProducts }) => {
                   {loadingCtx ? (
                      <StyledTitleInfo ref={contentLengthRef}>
                         <span>[ {error ? '0' : productsCtx.length} ]</span> 
-                        <div>Page : <p>{currentPage}</p></div>
+                        <div>Page : <p>{currentPage} / {Math.ceil(productsCtx.length / postPerPage)}</p></div>
                      </StyledTitleInfo>
                   ) : null}
                </StyledTitleWrapper>

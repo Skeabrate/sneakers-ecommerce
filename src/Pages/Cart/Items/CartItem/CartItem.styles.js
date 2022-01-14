@@ -1,11 +1,8 @@
 import styled from "styled-components"
 
-export const Wrapper = styled.div`
-   display: flex;
+export const Wrapper = styled.tr`
    border-top: 1px solid ${({theme}) => theme.colors.grey};
-   padding: 20px 1vw 20px 0;
    position: relative;
-
 
    h4{
       font-style: italic;
@@ -32,15 +29,7 @@ export const StyledRemoveButton = styled.button`
 `
 
 export const StyledInfo = styled.div`
-   display: grid;
-   grid-template-columns: 50% 40% 10%;
-   
-   padding: 16px;
-   width: 100%;
-
-   @media (max-width: ${({theme}) => theme.screenSize.mobile}){
-      padding: 10px;
-   }
+   display: flex;
 `
 
 export const StyledDetails = styled.div`
@@ -48,13 +37,14 @@ export const StyledDetails = styled.div`
    flex-direction: column;
    align-content: space-between;
    justify-content: space-between;
+   padding: 10px;
 
    p{
-      margin-block: 8px;
+      margin-block: 5px;
       font-style: italic;
 
       span{
-         margin-left: 8px;
+         margin-left: 5px;
          font-weight: bold;
          font-style: normal;
       }
@@ -71,7 +61,5 @@ export const StyledMoveToWishBtn = styled.button`
 `
 
 export const StyledAmount = styled.div`
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
+   
 `

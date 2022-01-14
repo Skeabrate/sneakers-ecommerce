@@ -70,6 +70,6 @@ export const StyledLoadingBar = styled.div`
         transform-origin: left;
         transform: translateX(-50%) scaleX(0);
 
-        animation: 6s ease-in forwards ${timeout};
+        animation: 4s ease-in forwards ${timeout};
     }
 `

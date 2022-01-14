@@ -2,7 +2,11 @@
 export const SIGNED_UP = 'You have succesfully signed up'
 export const SENT_EMAIL = 'Email has been sent'
 
-export const ADDED_TO_CART = 'You have added item to your bag'
+export const ADDED_TO_CART = 'Added to your bag'
+
+// WISHLIST
+export const ADDED_TO_WISHLIST="Added to wishlist"
+export const ALREADY_IN_WISHLIST="Already in your wishlist"
 
 // ERRORS
 export const BLOCKED_ACC = 'Access to this account has been temporarily disabled due to many failed login attempts. You can immediately restore it by resetting your password or you can try again later.'

@@ -46,7 +46,7 @@ const Cart = () => {
         }
 
         setTotalAmount(totalAmount)
-     }, [cart])
+    }, [length])
 
     return (
         <Wrapper>

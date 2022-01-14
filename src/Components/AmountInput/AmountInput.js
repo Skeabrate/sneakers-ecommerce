@@ -30,7 +30,7 @@ const AmountInput = ({ label, item = false, inputValue, setInputValue = () => {}
     const changeValueHandler = (e) => e.currentTarget.value > 10 ? setInputValue(10) : setInputValue(parseInt(e.currentTarget.value))
                                 
     const blurHandler = (e) => {
-        if(parseInt(e.currentTarget.value)) {
+        if(parseInt(e.currentTarget.value) && parseInt(e.currentTarget.value) > 0) {
             let validValue = e.currentTarget.value.replace(/^0+/, '')
 
             setInputValue(validValue)

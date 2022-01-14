@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart, removeFromCart, changeAmount } from "../../Redux/addToCartSlice"
 import StyledButton from '../../GlobalStyledComponents/StyledButton';
@@ -8,13 +8,13 @@ import {
    StyledButtonContainer,
 } from "./AddingSection.styles"
 import AmountInput from "../AmountInput/AmountInput"
-import { ModalsContext } from '../../Context/ModalsContext';
 import { ADDED_TO_CART } from "../../helpers/serverResponse"
+import { useInfoOpen } from '../../hooks/useInfoOpen';
 
 const AddingSection = ({ loading, size, setError, isClicked, setIsClicked, product: {id, title, gender, price, images = [{url: ""}]} }) => {
    const [inputValue, setInputValue] = useState(1)
 
-   const { setIsInfoOpen } = useContext(ModalsContext)
+   const resolveInfoOpen = useInfoOpen()
 
    const cart = useSelector((state) => state.cart)
    const dispatch = useDispatch()
@@ -55,10 +55,7 @@ const AddingSection = ({ loading, size, setError, isClicked, setIsClicked, produ
             }))
          }
          setInputValue(1)
-         setIsInfoOpen({
-            info: ADDED_TO_CART,
-            success: true,
-         })
+         resolveInfoOpen(ADDED_TO_CART, true)
       }   
    }
 

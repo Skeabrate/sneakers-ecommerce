@@ -20,7 +20,7 @@ const InfoModal = () => {
     useEffect(() => {
         let timeout = setTimeout(() => {
             handleSetInfo()
-        }, 6200)
+        }, 4200)
 
         return () => clearTimeout(timeout)
     }, [])

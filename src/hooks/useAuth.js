@@ -16,12 +16,13 @@ import {
     USER_DOESNT_EXIST,
     USER_DOESNT_EXIST_RES,
 } from "../helpers/serverResponse.js"
+import { useInfoOpen } from "./useInfoOpen"
 
 export const useAuth = () => {
-    const  { setIsAuthenticated } = useContext(AuthContext)
-    const { isInfoOpen, setIsInfoOpen } = useContext(ModalsContext)
-
     const [loading, setLoading] = useState(false)
+
+    const  { setIsAuthenticated } = useContext(AuthContext)
+    const resolveInfoOpen = useInfoOpen()
 
     const navigate = useNavigate()
     
@@ -54,10 +55,7 @@ export const useAuth = () => {
                     message = errorMessage
                 
                 setLoading(false)
-                setIsInfoOpen({
-                    info: message,
-                    success: false,
-                })
+                resolveInfoOpen(message, false)
 
                 return message
             });
@@ -86,10 +84,7 @@ export const useAuth = () => {
             console.log(user) */
 
             setLoading(false)
-            setIsInfoOpen({
-                info: SIGNED_UP,
-                success: true,
-            })
+            resolveInfoOpen(SIGNED_UP, true)
             navigate("/profile")
         })
         .catch((error) => {
@@ -98,40 +93,26 @@ export const useAuth = () => {
             console.log(errorCode)
 
             setLoading(false)
-            setIsInfoOpen({
-                info: errorMessage,
-                success: false,
-            })
+            resolveInfoOpen(errorMessage, false)
         });
     }
 
-    function resetPasswordHandler(email) {
-        if(isInfoOpen.info) setIsInfoOpen({
-            info: false,
-            success: false,
-        })        
+    function resetPasswordHandler(email) {       
         setLoading(true)
         firebase.auth().sendPasswordResetEmail(email)
             .then(() => {
                 // Password reset email sent!
                 // ..
                 setLoading(false)
-                setIsInfoOpen({
-                    info: SENT_EMAIL,
-                    success: true,
-                })
+                resolveInfoOpen(SENT_EMAIL, true)
             })
             .catch((error) => {
                 // var errorCode = error.code;
                 var errorMessage = error.message;
                 console.log(errorMessage)
 
-                if(errorMessage === USER_DOESNT_EXIST){
-                    setIsInfoOpen({
-                        info: USER_DOESNT_EXIST_RES,
-                        success: false,
-                    })
-                }
+                if(errorMessage === USER_DOESNT_EXIST) resolveInfoOpen(USER_DOESNT_EXIST_RES, false)
+                
                 setLoading(false)
             });
     }
