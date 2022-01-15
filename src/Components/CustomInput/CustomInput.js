@@ -7,7 +7,7 @@ import {
    StyledError
 } from "../../GlobalStyledComponents/LoginInputsStyles"
 
-const CustomInput = ({name, isCustom, autoComplete, value, onChange, activeError, setActiveError, invalidError, setLoadingError }) => {
+const CustomInput = ({name, isRegister, autoComplete, value, onChange, activeError, setActiveError, invalidError, setLoadingError }) => {
 
     const [isFocused, setIsFocused] = React.useState(false)
 
@@ -25,7 +25,7 @@ const CustomInput = ({name, isCustom, autoComplete, value, onChange, activeError
                 name={name} 
                 type={name.split(" ")[0]}
                 autoComplete={autoComplete}
-                isCustom={isCustom}
+                isRegister={isRegister}
                 value={value}
                 onChange={onChange}
                 onFocus={() => setIsFocused(true)}

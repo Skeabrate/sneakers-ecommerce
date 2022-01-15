@@ -1,17 +1,12 @@
 import React, { useContext, useReducer } from 'react';
-import ModalBackground from '../../Components/ModalBackground/ModalBackground';
 import { ModalsContext } from "../../Context/ModalsContext"
-import { StyledTitle } from '../../GlobalStyledComponents/StyledTitle';
-import {
-   StyledContent,
-   StyledCloseButton
-} from "./Register.styles"
 import CustomInput from "../../Components/CustomInput/CustomInput"
 import { registerReducer } from "./Reducer/registerReducer"
 import { initialState } from "./Reducer/initialState"
 import LoadingButton from '../../Components/LoadingButton/LoadingButton';
 import { useAuth } from '../../hooks/useAuth';
 import { usePathChange } from '../../hooks/usePathChange';
+import ModalTemplate from '../ModalTemplate/ModalTemplate'
 
 const Register = () => {
    const [state, dispatch] = useReducer(registerReducer, initialState)
@@ -47,67 +42,61 @@ const Register = () => {
    }
 
    return (
-      <aside>
-         <ModalBackground isModalOpen={isRegisterOpen} setIsModalOpen={() => setIsRegisterOpen(false)} />
+      <ModalTemplate 
+         label="sign up" 
+         isModalOpen={isRegisterOpen} 
+         setIsModalOpen={() => setIsRegisterOpen(false)}
+      >
 
-         <StyledContent>
-            <StyledCloseButton onClick={() => setIsRegisterOpen(false)}>
-               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"/></svg>
-            </StyledCloseButton>
+         <form onSubmit={(e) => handleSubmit(e)}>
+            <CustomInput 
+               name="email"
+               autoComplete="username"
+               value={state.email.value}
+               onChange={(e) => {
+                  reducerActionHandler("setValue", "email", e.currentTarget.value)
+                  reducerActionHandler("setIsInvalid", "email")
+               }}
+               setActiveError={() => !state.email.isActive && reducerActionHandler("setIsActive", "email")}
+               activeError={state.email.isActive}
+               invalidError={state.email.isInvalid}
+               setLoadingError={loadingErrorHandler}
+               isRegister
+            />
 
-            <StyledTitle>Sign up</StyledTitle>
+            <CustomInput 
+               name="password"
+               autoComplete="current-password"
+               value={state.password.value}
+               onChange={(e) => {
+                  reducerActionHandler("setValue", "password", e.currentTarget.value)
+                  reducerActionHandler("setIsInvalid", "password")
+               }}
+               setActiveError={() => !state.password.isActive && reducerActionHandler("setIsActive", "password")}
+               activeError={state.password.isActive}
+               invalidError={state.password.isInvalid}
+               setLoadingError={loadingErrorHandler}
+               isRegister
+            />
 
-            <form onSubmit={(e) => handleSubmit(e)}>
+            <CustomInput 
+               name="password confirmation"
+               autoComplete="current-password"
+               value={state.passwordConfirmation.value}
+               onChange={(e) => {
+                  reducerActionHandler("setValue", "passwordConfirmation", e.currentTarget.value)
+                  reducerActionHandler("setIsInvalid", "passwordConfirmation")
+               }}
+               setActiveError={() => !state.passwordConfirmation.isActive && reducerActionHandler("setIsActive", "passwordConfirmation")}
+               activeError={state.passwordConfirmation.isActive}
+               invalidError={state.passwordConfirmation.isInvalid}
+               setLoadingError={loadingErrorHandler}
+               isRegister
+            />
 
-               <CustomInput 
-                  name="email"
-                  autoComplete="username"
-                  value={state.email.value}
-                  onChange={(e) => {
-                     reducerActionHandler("setValue", "email", e.currentTarget.value)
-                     reducerActionHandler("setIsInvalid", "email")
-                  }}
-                  setActiveError={() => !state.email.isActive && reducerActionHandler("setIsActive", "email")}
-                  activeError={state.email.isActive}
-                  invalidError={state.email.isInvalid}
-                  setLoadingError={loadingErrorHandler}
-                  isCustom
-               />
-
-               <CustomInput 
-                  name="password"
-                  autoComplete="current-password"
-                  value={state.password.value}
-                  onChange={(e) => {
-                     reducerActionHandler("setValue", "password", e.currentTarget.value)
-                     reducerActionHandler("setIsInvalid", "password")
-                  }}
-                  setActiveError={() => !state.password.isActive && reducerActionHandler("setIsActive", "password")}
-                  activeError={state.password.isActive}
-                  invalidError={state.password.isInvalid}
-                  setLoadingError={loadingErrorHandler}
-                  isCustom
-               />
-
-               <CustomInput 
-                  name="password confirmation"
-                  autoComplete="current-password"
-                  value={state.passwordConfirmation.value}
-                  onChange={(e) => {
-                     reducerActionHandler("setValue", "passwordConfirmation", e.currentTarget.value)
-                     reducerActionHandler("setIsInvalid", "passwordConfirmation")
-                  }}
-                  setActiveError={() => !state.passwordConfirmation.isActive && reducerActionHandler("setIsActive", "passwordConfirmation")}
-                  activeError={state.passwordConfirmation.isActive}
-                  invalidError={state.passwordConfirmation.isInvalid}
-                  setLoadingError={loadingErrorHandler}
-                  isCustom
-               />
-
-               <LoadingButton isBlack disabled={isInfoOpen.info} loading={loading} label="Sign Up For Free" />
-            </form>
-         </StyledContent>
-      </aside>
+            <LoadingButton isBlack disabled={isInfoOpen.info} loading={loading} label="Sign Up For Free" />
+         </form>
+      </ModalTemplate>
    ); 
 };
 

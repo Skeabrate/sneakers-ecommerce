@@ -1,5 +1,13 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const appear = keyframes`
+    from{
+        opacity: 0;
+    } to {
+        opacity: 0.6;
+    }
+`
 
 const StyledBackground = styled.div`
    position: fixed;
@@ -10,11 +18,7 @@ const StyledBackground = styled.div`
    background-color: black;
    cursor: pointer;
    z-index: 99999;
-   opacity: ${({isModalOpen}) => isModalOpen ? 0.6 : 0};
-   visibility: ${({isModalOpen}) => isModalOpen ? 'visible' : 'hidden'};
-
-   transition: all .5s ease-in-out;
-   transition-duration: ${({isModalOpen}) => !isModalOpen && '.3s'};
+   animation: .2s forwards ${appear};
 `
 
 const ModalBackground = ({ isModalOpen, setIsModalOpen }) => {

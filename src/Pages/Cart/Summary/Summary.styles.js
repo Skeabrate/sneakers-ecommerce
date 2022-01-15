@@ -14,7 +14,7 @@ const inputStyles = css`
     }
 `
 
-export const Wrapper = styled.aside`
+export const Wrapper = styled.section`
     width: 100%;
     position: sticky;
     top: 100px;
@@ -29,7 +29,7 @@ export const Wrapper = styled.aside`
     flex-direction: column;
     justify-content: space-between;
 
-    section{ margin-block: 20px 30px }
+    article{ margin-block: 20px 30px }
 
     details{
         summary{

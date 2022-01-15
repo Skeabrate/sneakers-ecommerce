@@ -47,7 +47,11 @@ export const StyledField = styled(Field)`
    }
 
    @media (max-width: ${({theme}) => theme.screenSize.medium}) {
-      width: ${({isCustom}) => isCustom ? 'calc(95vw - 60px)' : 'calc(100vw - 6vw - 8px)'};
+      width: ${({isRegister}) => !isRegister && 'calc(100vw - 6vw - 8px)'};
+   }
+
+   @media (max-width: ${({theme}) => theme.screenSize.mobile}) {
+      width: ${({isRegister}) => isRegister && 'calc(95vw - 60px)'};
    }
 `
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import StyledButton from '../../../GlobalStyledComponents/StyledButton';
 import {
     Wrapper,
@@ -9,12 +9,14 @@ import {
 } from "./Summary.styles"
 import { useInfoOpen } from "../../../hooks/useInfoOpen"
 import { ADD_DISCOUNT } from '../../../helpers/serverResponse';
+import { ModalsContext } from '../../../Context/ModalsContext';
 
 const Summary = ({ totalAmount }) => {
     const [giftCode, setGiftCode] = useState("")
     const [comment, setComment] = useState("")
-
     const [codeValue, setCodeValue] = useState(0)
+
+    const { setIsPaymentOpen } = useContext(ModalsContext)
 
     const handleSetInfo = useInfoOpen()
 
@@ -76,22 +78,22 @@ const Summary = ({ totalAmount }) => {
                 </div>
             </details>
 
-            <section>
+            <article>
                 <StyledSectionItem>
                     <p style={{ fontStyle: 'italic' }}>Subtotal</p>
                     <p>$<strong>{totalAmount}</strong></p>
                 </StyledSectionItem>
 
                 <StyledSectionItem>
-                    <p style={{ fontStyle: 'italic' }}>*Estimated Delivery</p>
+                    <p style={{ fontStyle: 'italic' }}>Estimated Delivery</p>
                     <p><strong>${delivery}</strong></p>
                 </StyledSectionItem>
 
                 <StyledSectionItem>
-                    <p style={{ fontStyle: 'italic' }}>Gift Code</p>
+                    <p style={{ fontStyle: 'italic' }}>*Gift Code</p>
                     <StyledGiftCode><strong>{codeValue ? `${codeValue}%` : '-'}</strong></StyledGiftCode>
                 </StyledSectionItem>    
-            </section>
+            </article>
 
             <footer>
                 <StyledTotal>
@@ -102,7 +104,7 @@ const Summary = ({ totalAmount }) => {
                 <StyledButton 
                     label="Checkout" 
                     isCheckout 
-                    actionHandler={() => console.log(giftCode, comment)}
+                    actionHandler={() => setIsPaymentOpen(true)}
                 />
             </footer>
         </Wrapper>
