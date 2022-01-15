@@ -16,12 +16,13 @@ import Error from '../404/Error';
 import { ModalsContext } from '../../Context/ModalsContext';
 import Wishlist from "../Wishlist/Wishlist"
 import Login from '../Login/Login';
-import Register from '../Register/Register'
+import Register from '../../Modals/Register/Register'
 import Profile from "../Profile/Profile"
 import AuthContext from '../../Context/authContext';
-import InfoModal from '../../Components/InfoModal/InfoModal'
+import InfoModal from '../../Modals/InfoModal/InfoModal'
 import { authStateChangedHandler } from "../../authStateChange"
 import Cart from '../Cart/Cart';
+import Payment from '../../Modals/Payment/Payment';
 
 const MainView = () => {
    const [isProductPage, setIsProductPage] = useState(false)
@@ -31,6 +32,7 @@ const MainView = () => {
    
    // Modals: Register, Info
    const [isRegisterOpen, setIsRegisterOpen] = useState(false)
+   const [isPaymentOpen, setIsPaymentOpen] = useState(false)
    const [isInfoOpen, setIsInfoOpen] = useState({
       info: false,
       success: false,
@@ -80,6 +82,9 @@ const MainView = () => {
                         isRegisterOpen: isRegisterOpen,
                         setIsRegisterOpen: setIsRegisterOpen,
 
+                        isPaymentOpen: isPaymentOpen,
+                        setIsPaymentOpen: setIsPaymentOpen,
+
                         isInfoOpen: isInfoOpen,
                         setIsInfoOpen: setIsInfoOpen,
                      }}>
@@ -89,6 +94,8 @@ const MainView = () => {
                            {isRegisterOpen && <Register />}
 
                            {isInfoOpen.info && <InfoModal />}
+
+                           {isPaymentOpen && <Payment />}
                            
                            <Routes>
                               <Route path="/contact" element={<Contact />} />

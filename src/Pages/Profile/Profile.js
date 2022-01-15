@@ -15,7 +15,7 @@ import {
     StyledAccountDetails,
     StyledSettingsContent
 } from "./Profile.styles"
-import ConfirmModal from '../../Components/ConfirmModal/ConfirmModal';
+import ConfirmModal from '../../Modals/ConfirmModal/ConfirmModal';
 
 const Profile = () => {
     const { isAuthenticated } = useContext(AuthContext)
