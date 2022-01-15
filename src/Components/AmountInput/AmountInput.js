@@ -6,6 +6,8 @@ import {
     StyledPlusMinusBtn
 } from "./AmountInput.styles"
 
+const MAX_VALUE = 20
+
 const AmountInput = ({ label, item = false, inputValue, setInputValue = () => {} }) => {
     const dispatch = useDispatch()
 
@@ -21,13 +23,13 @@ const AmountInput = ({ label, item = false, inputValue, setInputValue = () => {}
     }
 
     const plusHandler = () => {
-        if(inputValue < 10) {
+        if(inputValue < MAX_VALUE) {
             setInputValue(inputValue + 1)
             dispatchChangeAmountHandler(1)
         }
     }
 
-    const changeValueHandler = (e) => e.currentTarget.value > 10 ? setInputValue(10) : setInputValue(parseInt(e.currentTarget.value))
+    const changeValueHandler = (e) => e.currentTarget.value > MAX_VALUE ? setInputValue(MAX_VALUE) : setInputValue(parseInt(e.currentTarget.value))
                                 
     const blurHandler = (e) => {
         if(parseInt(e.currentTarget.value) && parseInt(e.currentTarget.value) > 0) {

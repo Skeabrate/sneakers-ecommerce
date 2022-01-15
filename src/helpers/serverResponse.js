@@ -4,6 +4,8 @@ export const SENT_EMAIL = 'Email has been sent'
 
 export const ADDED_TO_CART = 'Added to your bag'
 
+export const ADD_DISCOUNT = 'Added 10% discount :)'
+
 // WISHLIST
 export const ADDED_TO_WISHLIST="Added to wishlist"
 export const ALREADY_IN_WISHLIST="Already in your wishlist"
