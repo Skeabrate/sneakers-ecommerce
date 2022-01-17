@@ -1,3 +1,25 @@
+import { 
+    formatCreditCardNumber,
+    formatCVC,
+    formatExpirationDate,
+} from "../../../helpers/paymentUtils"
+
+const validate = (val, field) => {
+    switch (field) {
+        case "card" :
+            return formatCreditCardNumber(val)
+
+        case "expiration" :
+            return formatExpirationDate(val)
+
+        case "code" :
+            return formatCVC(val)
+
+        default: 
+            return val
+    }
+}
+
 export function reducer(state, action) {
     switch (action.type) {
         case "setValue":
@@ -5,7 +27,7 @@ export function reducer(state, action) {
                 ...state,
                 [action.field]: {
                     ...state[action.field],
-                    value: action.value,
+                    value: validate(action.value, action.field),
                 }
             }
 

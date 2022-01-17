@@ -10,11 +10,6 @@ import LoadingButton from "../../Components/LoadingButton/LoadingButton"
 import {
     StyledCardInfo,
 } from "./Payment.styles"
-import { 
-    formatCreditCardNumber,
-    formatCVC,
-    formatExpirationDate,
-} from "../../helpers/paymentUtils"
 
 const Payment = () => {
     const [state, dispatch] = useReducer(reducer, initialState)
@@ -25,14 +20,6 @@ const Payment = () => {
     usePathChange(() => setIsPaymentOpen(false))
 
     const reducerActionHandler = (type, field, value) => dispatch({ type: type, field: field, value: value, })
-
-    const handleInputChange = (type, value) => {
-        if(type === "card") value = formatCreditCardNumber(value)
-        else if (type === 'expiration') value = formatExpirationDate(value);
-        else if (type === 'code') value = formatCVC(value);
-
-        reducerActionHandler("setValue", type, value)
-    }
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -61,9 +48,9 @@ const Payment = () => {
             <form onSubmit={(e) => handleSubmit(e)}>
                 <CustomInput
                     name="name"
-                    maxLength="20"
+                    maxLength="50"
                     value={state.name.value}
-                    onChange={(e) => handleInputChange("name", e.currentTarget.value)}
+                    onChange={(e) => reducerActionHandler("setValue", "name", e.currentTarget.value)}
                     setActiveError={() => !state.name.isActive && reducerActionHandler("setIsActive", "name")}   
                     activeError={state.name.isActive}
                     isRegister
@@ -74,7 +61,7 @@ const Payment = () => {
                     value={state.card.value}
                     type="tel"
                     pattern="[\d| ]{16,22}"
-                    onChange={(e) => handleInputChange("card", e.currentTarget.value)}
+                    onChange={(e) => reducerActionHandler("setValue", "card", e.currentTarget.value)}
                     setActiveError={() => !state.card.isActive && reducerActionHandler("setIsActive", "card")}
                     activeError={state.card.isActive}
                     isRegister
@@ -86,7 +73,7 @@ const Payment = () => {
                         value={state.expiration.value}
                         type="text"
                         pattern="\d\d/\d\d"
-                        onChange={(e) => handleInputChange("expiration", e.currentTarget.value)}
+                        onChange={(e) => reducerActionHandler("setValue", "expiration", e.currentTarget.value)}
                         setActiveError={() => !state.expiration.isActive && reducerActionHandler("setIsActive", "expiration")}
                         activeError={state.expiration.isActive}
                         isRegister
@@ -97,7 +84,7 @@ const Payment = () => {
                         value={state.code.value}
                         type="text"
                         pattern="\d{3,4}"
-                        onChange={(e) => handleInputChange("code", e.currentTarget.value)}
+                        onChange={(e) => reducerActionHandler("setValue", "code", e.currentTarget.value)}
                         setActiveError={() => !state.code.isActive && reducerActionHandler("setIsActive", "code")}
                         activeError={state.code.isActive}
                         isRegister
