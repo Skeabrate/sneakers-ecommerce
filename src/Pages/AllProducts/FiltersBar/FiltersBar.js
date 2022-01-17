@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useRef } from 'react';
 import ComboBox from '../../../Components/ComboBox/ComboBox';
-import ProductsContext from '../../../Context/productsContext';
 import { sortData } from '../../../helpers/sortData';
 import { genderItems, categoryItems, priceItems } from "../../../data/filters"
 import StyledPhrase from './StyledPhrase';
-import FiltersContext from '../../../Context/filtersContext';
+import ProductsContext from '../../../Context/ProductsContext';
+import FiltersContext from '../../../Context/FiltersContext';
 import { useSticky } from "../../../hooks/useSticky"
 import { 
    StyledActiveFilters, 

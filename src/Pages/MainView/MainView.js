@@ -8,17 +8,17 @@ import NavBar from '../../Components/NavBar/NavBar';
 import ProductPage from '../ProductPage/ProductPage';
 import Footer from '../../Components/Footer/Footer';
 import { useData } from '../../hooks/useData';
-import ProductsContext from '../../Context/productsContext';
-import FiltersContext from '../../Context/filtersContext';
+import ProductsContext from '../../Context/ProductsContext';
+import FiltersContext from '../../Context/FiltersContext';
+import ModalsContext from '../../Context/ModalsContext';
+import AuthContext from '../../Context/AuthContext';
 import { store } from '../../Redux/store'
 import { Provider } from "react-redux"
 import Error from '../404/Error';
-import { ModalsContext } from '../../Context/ModalsContext';
 import Wishlist from "../Wishlist/Wishlist"
 import Login from '../Login/Login';
 import Register from '../../Modals/Register/Register'
 import Profile from "../Profile/Profile"
-import AuthContext from '../../Context/authContext';
 import InfoModal from '../../Modals/InfoModal/InfoModal'
 import { authStateChangedHandler } from "../../authStateChange"
 import Cart from '../Cart/Cart';

@@ -13,8 +13,8 @@ import { Wrapper } from '../../GlobalStyledComponents/Wrapper';
 import { StyledContent } from "../../GlobalStyledComponents/StyledContent"
 import { StyledTitle } from "../../GlobalStyledComponents/StyledTitle"
 import { StyledLink } from "../../GlobalStyledComponents/StyledAccountButton"
-import { ModalsContext } from '../../Context/ModalsContext';
-import AuthContext from "../../Context/authContext"
+import ModalsContext from '../../Context/ModalsContext';
+import AuthContext from "../../Context/AuthContext"
 
 const Wishlist = () => {
    const favorite = useSelector((state) => state.favorite)

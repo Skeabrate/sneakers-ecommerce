@@ -1,8 +1,7 @@
 import { useState, useContext } from 'react';
 import firebase from "../firebase"
 import { useNavigate } from 'react-router-dom';
-import AuthContext from "../Context/authContext"
-import { ModalsContext } from '../Context/ModalsContext';
+import AuthContext from "../Context/AuthContext"
 import {
     SIGNED_UP,
     SENT_EMAIL,

@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { ModalsContext } from "../Context/ModalsContext"
+import ModalsContext from "../Context/ModalsContext"
 
 export const useInfoOpen = () => {
     const { setIsInfoOpen } = useContext(ModalsContext)

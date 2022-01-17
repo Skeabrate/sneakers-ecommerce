@@ -9,7 +9,7 @@ import {
 } from "./Summary.styles"
 import { useInfoOpen } from "../../../hooks/useInfoOpen"
 import { ADD_DISCOUNT } from '../../../helpers/serverResponse';
-import { ModalsContext } from '../../../Context/ModalsContext';
+import ModalsContext from '../../../Context/ModalsContext';
 
 const Summary = ({ totalAmount }) => {
     const [giftCode, setGiftCode] = useState("")

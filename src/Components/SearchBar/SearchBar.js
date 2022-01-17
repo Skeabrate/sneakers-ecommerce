@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Wrapper, StyledInput, StyledSearchBtn, StyledAnimation } from "./SearchBar.styles"
-import FiltersContext from "../../Context/filtersContext"
+import FiltersContext from "../../Context/FiltersContext"
 
 const SearchBar = React.forwardRef((props, searchBarRef) => {
    const [searchPhrase, setSearchPhrase] = useState('')

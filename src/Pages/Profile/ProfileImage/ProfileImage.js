@@ -2,9 +2,9 @@ import React, { useRef, useState, useContext } from 'react';
 import LoadingButton from '../../../Components/LoadingButton/LoadingButton';
 import { useImageReader } from "../../../hooks/useImageReader"
 import { storage } from "../../../firebase"
-import AuthContext from "../../../Context/authContext"
 import { useImgLoad } from '../../../hooks/useImgLoad';
-import { ModalsContext } from "../../../Context/ModalsContext"
+import AuthContext from "../../../Context/AuthContext"
+import ModalsContext from "../../../Context/ModalsContext"
 import { 
     StylledButton,
     Wrapper,

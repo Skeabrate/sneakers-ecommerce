@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { useStoreLength } from '../../hooks/useStoreLength';
-import { ModalsContext } from '../../Context/ModalsContext';
+import ModalsContext from '../../Context/ModalsContext';
 import { Link, useLocation  } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { 
@@ -20,7 +20,7 @@ import {
    StyledCartProfile,
    StyledBackButton
 } from "./NavBar.styles"
-import AuthContext from "../../Context/authContext"
+import AuthContext from "../../Context/AuthContext"
 
 const NavBar = ({ isProductPage }) => {
    const [toggle, setToggle] = useState(false)

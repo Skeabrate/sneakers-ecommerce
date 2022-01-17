@@ -3,7 +3,7 @@ import gsap from 'gsap';
 import LoadingScreen from '../../Components/LoadingScreen/LoadingScreen';
 import FiltersBar from './FiltersBar/FiltersBar';
 import SearchBar from '../../Components/SearchBar/SearchBar';
-import ProductsContext from '../../Context/productsContext';
+import ProductsContext from '../../Context/ProductsContext';
 import { 
    StyledLoading, 
    StyledError, 

@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useAuth } from "../../hooks/useAuth"
 import { StyledLink } from '../../GlobalStyledComponents/StyledAccountButton';
-import AuthContext from "../../Context/authContext"
+import AuthContext from "../../Context/AuthContext"
 import ProfileImage from './ProfileImage/ProfileImage';
 import { StyledTitle } from '../../GlobalStyledComponents/StyledTitle';
 import LoadingButton from '../../Components/LoadingButton/LoadingButton';

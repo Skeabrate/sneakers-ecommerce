@@ -4,7 +4,7 @@ import {
     StyledBtn,
     StyledLoadingBar,
 } from "./InfoModal.styles"
-import { ModalsContext } from '../../Context/ModalsContext';
+import ModalsContext from '../../Context/ModalsContext';
 import { usePathChange } from "../../hooks/usePathChange"
 
 const InfoModal = () => {

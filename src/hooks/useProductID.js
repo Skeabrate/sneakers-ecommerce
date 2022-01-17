@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useContext, useMemo } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
-import ProductsContext from "../Context/productsContext"
+import ProductsContext from "../Context/ProductsContext"
 
 export const useProductID = () => {
    const [product, setProduct] = useState([])

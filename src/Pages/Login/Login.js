@@ -14,7 +14,7 @@ import { StyledLink } from "../../GlobalStyledComponents/StyledAccountButton"
 import { Formik } from "formik"
 import * as Yup from "yup"
 import FormikInput from '../../Components/FormikInput/FormikInput';
-import { ModalsContext } from "../../Context/ModalsContext"
+import ModalsContext from "../../Context/ModalsContext"
 import LoadingButton from '../../Components/LoadingButton/LoadingButton';
 import Content from './Content';
 import { useAuth } from '../../hooks/useAuth';

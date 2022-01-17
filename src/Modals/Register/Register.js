@@ -1,5 +1,5 @@
 import React, { useContext, useReducer } from 'react';
-import { ModalsContext } from "../../Context/ModalsContext"
+import ModalsContext from "../../Context/ModalsContext"
 import CustomInput from "../../Components/CustomInput/CustomInput"
 import { registerReducer } from "./Reducer/registerReducer"
 import { initialState } from "./Reducer/initialState"
