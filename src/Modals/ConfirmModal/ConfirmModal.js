@@ -3,10 +3,10 @@ import styled, { keyframes } from "styled-components"
 
 const appear = keyframes`
     from{
-        transform: translateY( 10px);
+        
         opacity: 0;
     } to {
-        transform: translateY(0);
+        
         opacity: 1;
     }
 `
@@ -15,6 +15,7 @@ const Wrapper = styled.div`
     position: fixed;
     top: 50%;
     left: 50%;
+    transform: translate(-50%, -50%);
     background-color: ${({theme}) => theme.colors.black};
     display: flex;
     flex-direction: column;
@@ -23,6 +24,7 @@ const Wrapper = styled.div`
     padding: 3vw;
     box-shadow: 0px 0px 39px -6px rgba(0, 0, 0, 1);
     z-index: 100;
+    color: ${({theme}) => theme.colors.white};
 
     animation: .2s ease-in forwards ${appear};
 
@@ -38,7 +40,7 @@ const Wrapper = styled.div`
 const ConfirmModal = ({ label, yesHandler, noHandler }) => {
     return (
         <Wrapper>
-            {label}
+            <h3>{label}</h3>
             <div>
                 <button onClick={yesHandler}>Yes</button>
                 <button onClick={noHandler}>No</button>

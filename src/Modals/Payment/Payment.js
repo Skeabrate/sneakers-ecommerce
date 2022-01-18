@@ -1,6 +1,5 @@
-import React, { useContext, useReducer } from 'react';
+import React, { useContext, useReducer, useState } from 'react';
 import ModalsContext from '../../Context/ModalsContext';
-import AuthContext from "../../Context/AuthContext"
 import ModalTemplate from "../ModalTemplate/ModalTemplate"
 import { reducer } from './Reducer/reducer';
 import { initialState } from "./Reducer/initialState"
@@ -10,14 +9,17 @@ import LoadingButton from "../../Components/LoadingButton/LoadingButton"
 import {
     StyledCardInfo,
 } from "./Payment.styles"
+import { usePayment } from '../../hooks/usePayment';
+import SuccesfulPayment from "./SuccesfulPayment/SuccesfulPayment"
 
 const Payment = () => {
+    const [succesful, setSuccesful] = useState(false)
     const [state, dispatch] = useReducer(reducer, initialState)
 
     const { isPaymentOpen, setIsPaymentOpen } = useContext(ModalsContext)
-    const { isAuthenticated } = useContext(AuthContext)
 
     usePathChange(() => setIsPaymentOpen(false))
+    const {paymentId, loading, handlePayment} = usePayment(setSuccesful)
 
     const reducerActionHandler = (type, field, value) => dispatch({ type: type, field: field, value: value, })
 
@@ -31,21 +33,17 @@ const Payment = () => {
             if (!state.expiration.value) reducerActionHandler("setIsActive", "expiration")
             if (!state.code.value) reducerActionHandler("setIsActive", "code")
         }
-        else {
-            if(isAuthenticated) console.log(isAuthenticated.token)
-            else {
-                console.log('bez bazy danych')
-            }
-        }
+        else handlePayment()
     }
 
     return (
         <ModalTemplate
-            label="add payment method"
+            label={!succesful && `add payment method`}
             isModalOpen={isPaymentOpen}
             setIsModalOpen={() => setIsPaymentOpen(false)}
         >
-            <form onSubmit={(e) => handleSubmit(e)}>
+            {succesful ? <SuccesfulPayment id={paymentId} /> : (
+                <form onSubmit={(e) => handleSubmit(e)}>
                 <CustomInput
                     name="name"
                     maxLength="50"
@@ -94,10 +92,12 @@ const Payment = () => {
                 <LoadingButton
                     isBlack
                     /* disabled={isInfoOpen.info} */
-                    loading={false}
+                    loading={loading}
                     label="Pay Now"
                 />
             </form>
+            )}
+            
         </ModalTemplate>
     );
 };

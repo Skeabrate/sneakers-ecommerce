@@ -28,6 +28,7 @@ export const Wrapper = styled.section`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    border-radius: 5px;
 
     article{ margin-block: 20px 30px }
 

@@ -1,20 +1,48 @@
 import styled from "styled-components"
 
 export const Wrapper = styled.div`
+    background-color: ${({theme}) => theme.colors.black};
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+
+    h1{
+        font-size: ${({theme}) => theme.fontSize.l};
+        font-style: italic;
+        text-transform: uppercase;
+        position: relative;
+        width: fit-content;
+
+        &::after{
+            content: "";
+            position: absolute;
+            bottom: -7px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            border-radius: 100%;
+            background-color: ${({ theme }) => theme.colors.orange};
+        }
+    }
+`
+
+export const StyledContent = styled.div`
+    margin-top: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    row-gap: 10px;
-    padding: 3vw;
 `
 
 export const StylledButton = styled.button`
     position: relative;
-    width: 300px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
     background-color: ${({theme}) => theme.colors.black};
-    border-radius: 100%;
-    border: 3px solid ${({theme}) => theme.colors.white};
+    border-radius: 300px;
+    border: 4px solid ${({theme}) => theme.colors.white};
     overflow: hidden;
     display: flex;
     justify-content: center;

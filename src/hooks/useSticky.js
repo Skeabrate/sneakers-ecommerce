@@ -1,17 +1,11 @@
 import { useState, useEffect, useMemo } from 'react';
 
-export const useSticky = (ref, refEnd) => {
+export const useSticky = (ref) => {
    const [isSticky, setIsSticky] = useState(true)
-   const [isStickyEnd, setIsStickyEnd] = useState(false)
 
    const callbackFunction = (entries) => {
       const [entry] = entries
       setIsSticky(entry.isIntersecting)
-   }
-
-   const callbackFunctionEnd = (entries) => {
-      const [entry] = entries
-      setIsStickyEnd(entry.isIntersecting)
    }
 
    const options = useMemo(() => {
@@ -24,17 +18,10 @@ export const useSticky = (ref, refEnd) => {
 
    useEffect(() => {
       const observer = new IntersectionObserver(callbackFunction, options)
-      if(ref) observer.observe(ref)
+      if(ref?.current) observer.observe(ref.current)
 
-      return () => ref && observer.unobserve(ref)
+      return () => ref?.current && observer.unobserve(ref.current)
    }, [ref, options])
 
-   useEffect(() => {
-      const observer = new IntersectionObserver(callbackFunctionEnd, options)
-      if(refEnd) observer.observe(refEnd)
-
-      return () => refEnd && observer.unobserve(refEnd)
-   }, [refEnd, options])
-
-   return { isSticky, isStickyEnd }
+   return { isSticky }
 };

@@ -8,6 +8,7 @@ import ModalsContext from "../../../Context/ModalsContext"
 import { 
     StylledButton,
     Wrapper,
+    StyledContent
 } from "./ProfileImage.styles"
 
 const typesTable = [
@@ -103,29 +104,33 @@ const ProfileImage = () => {
 
     return (
         <Wrapper>
-            <div >
-                <input
-                    style={{ display: 'none' }}
-                    type="file"
-                    onChange={imgChoseHandler}
-                    ref={fileRef}
-                    />
-            </div>
+            <h1>Change Avatar</h1>
 
-            <StylledButton onClick={imgPrewievHandler} image={isAuthenticated.image || previewUrl}>
-                <img 
-                    alt={isAuthenticated.image || previewUrl ? isAuthenticated.email : ""} 
-                    src={previewUrl ? previewUrl : isAuthenticated.image}
-                    ref={profileImgRef}
-                    onLoad={handleLoadImg}
-                    />
+            <StyledContent>
+                <div >
+                    <input
+                        style={{ display: 'none' }}
+                        type="file"
+                        onChange={imgChoseHandler}
+                        ref={fileRef}
+                        />
+                </div>
+
+                <StylledButton onClick={imgPrewievHandler} image={isAuthenticated.image || previewUrl}>
+                    <img 
+                        alt={isAuthenticated.image || previewUrl ? isAuthenticated.email : ""} 
+                        src={previewUrl ? previewUrl : isAuthenticated.image}
+                        ref={profileImgRef}
+                        onLoad={handleLoadImg}
+                        />
+                    
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg>
+                </StylledButton>
                 
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg>
-            </StylledButton>
-            <h2>Change Avatar</h2>
 
-            <br />
-            <LoadingButton loading={loading} onClick={submitHandler} label="Save" />
+                <br />
+                <LoadingButton isBlack loading={loading} onClick={submitHandler} label="Save" />
+            </StyledContent>
         </Wrapper>
     );
 };

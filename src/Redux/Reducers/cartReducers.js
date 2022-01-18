@@ -45,3 +45,8 @@ export function changeAmountReducer(state, action){
 export function setAmountReducer(state, action){
    valueHandler(state, action, "set")
 }
+
+export function resetCartReducer() {
+   localStorage.setItem("cart", JSON.stringify([]))
+   return []
+}

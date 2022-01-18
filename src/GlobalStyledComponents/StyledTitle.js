@@ -8,6 +8,14 @@ export const StyledTitle = styled.h1`
    text-transform: uppercase;
    position: relative;
    z-index: 1;
+   color: ${({ color, theme }) => {
+      if(color){
+         switch(color) {
+            case "green":
+               return theme.colors.green
+         }
+      }
+   }};
 
    span{
       font-size: ${({theme}) => theme.fontSize.s};
