@@ -25,7 +25,7 @@ export const Wrapper = styled.div`
    height: 80px;
    font-size: ${({theme}) => theme.fontSize.xxs};
    z-index: 99999;
-
+   box-shadow: 0px 0px 13px -1px rgba(0, 0, 0, 1);
    
    transition: transform .3s .2s ease-in-out,
                opacity .3s .2s ease-in-out;

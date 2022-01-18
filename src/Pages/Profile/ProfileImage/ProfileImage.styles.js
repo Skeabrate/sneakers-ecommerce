@@ -54,8 +54,8 @@ export const StylledButton = styled.button`
     }
 
     svg{
-        height: 120px;
-        width: 120px;
+        height: 50px;
+        width: 50px;
         position: absolute;
         top: 50%;
         left: 50%;

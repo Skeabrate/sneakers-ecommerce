@@ -1,10 +1,14 @@
 import styled from "styled-components"
 
-export const Wrapper = styled.section`
+export const Wrapper = styled.div`
     position: relative;
     margin-top: 80px;
     color: ${({theme}) => theme.colors.white};
     display: flex;
+
+    h2, h3{
+        font-style: italic;
+    }
 
     @media(max-width: ${({theme}) => theme.screenSize.medium}){
         flex-direction: column;
@@ -16,12 +20,9 @@ export const Wrapper = styled.section`
 `
 
 // Settings - left
-export const StyledSettings = styled.article`
+export const StyledSettings = styled.section`
     background-color: ${({theme}) => theme.colors.orange};
     padding: 3vw;
-`
-
-export const StyledSettingsContent = styled.div`
 `
 
 export const StyledAccountDetails = styled.div`
@@ -35,15 +36,15 @@ export const StyledAccountDetails = styled.div`
 export const StyledSpan = styled.span`
     font-weight: normal;
     font-style: normal;
-    margin-left: 15px;
+    margin-left: 10px;
 `
 
 export const StyledDetailTitle = styled.h3`
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     position: relative;
     width: fit-content;
     text-transform: uppercase;
-    font-style: italic; 
+    font-style: italic;
 
     &::after{
         content: "";
@@ -57,8 +58,8 @@ export const StyledDetailTitle = styled.h3`
     }
 `
 
-export const StyledOption = styled.h3`
-    margin-bottom: 10px;
+export const StyledOption = styled.h4`
+    margin-bottom: 5px;
 `
 
 export const StyledOrnament = styled.div`

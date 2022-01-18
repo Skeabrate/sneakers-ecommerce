@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import AuthContext from "../Context/AuthContext"
 import { useSelector, useDispatch } from "react-redux"
 import { resetCart } from '../Redux/addToCartSlice';
@@ -13,12 +13,20 @@ export const usePayment = (setSuccesful = () => {}) => {
 
     const dispatch = useDispatch()
 
-    const handlePayment = () => {
+    const handlePayment = async () => {
         const id = uuid()
         setPaymentId(id)
 
         if(isAuthenticated) {
-            console.log(isAuthenticated.token, cart)
+            try{
+                const res = await axios.post(`https://sneakers-b80b7-default-rtdb.firebaseio.com`, {
+                    test: 'test'
+                })
+                console.log(res)
+            } catch(ex) {
+                console.log(ex.response)
+            }
+
             dispatch(resetCart())
             setSuccesful(true)
         }

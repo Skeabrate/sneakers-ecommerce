@@ -1,20 +1,79 @@
-import React from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { StyledTitle } from "../../../GlobalStyledComponents/StyledTitle"
 import { StyledOrnament } from "../Profile.styles"
 import {
     Wrapper,
+    StyledUnderline
 } from "./ShoppingHistory.styles"
-import { StyledDetailTitle } from "../Profile.styles"
+import { 
+    StyledSpan
+} from "../Profile.styles"
+import axios from "axios"
+import AuthContext from '../../../Context/AuthContext';
 
 const ShoppingHistory = () => {
+    const [data, setData] = useState([])
+    const [loading, setLoading] = useState(false)
+
+    const { isAuthenticated } = useContext(AuthContext)
+
+    const fetchProducts = async () => {
+        try{
+            const res = await axios.get(`https://sneakers-b80b7-default-rtdb.firebaseio.com/${isAuthenticated?.token}.json`)
+            console.log(res)
+        } catch(ex) {
+            console.log(ex.response)
+        }
+    }
+
+    useEffect(() => {
+        fetchProducts()
+    }, [])
+
     return (
         <Wrapper>
-            <StyledTitle>
-                Shopping History
-                <StyledOrnament isOrange/>
-            </StyledTitle>
+            <header>
+                <StyledTitle>
+                    Shopping History
+                    <StyledOrnament isOrange/>
+                </StyledTitle>
+            </header>
 
-            <table>
+            <div>
+                <adricle>
+                    <header>
+                        <h2>
+                            <StyledUnderline>ORDER NUMBER :</StyledUnderline> <StyledSpan>123123123-12312-1231-123</StyledSpan>
+                        </h2>
+                    </header>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <td><h4>DATE</h4></td>
+                                <td><h4>ITEMS</h4></td>
+                                <td><h4>PRICE</h4></td>
+                                <td><h4>STATUS</h4></td>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td><h4>20.11.2021</h4></td>
+                                <td><h4>9</h4></td>
+                                <td><h4>$535</h4></td>
+                                <td><h4>Send</h4></td>
+                            </tr>
+
+                            <tr>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </adricle>
+            </div>
+
+            {/* <table>
                 <thead>
                     <tr>
                         <td></td>
@@ -36,7 +95,8 @@ const ShoppingHistory = () => {
                         <td>Send</td>
                     </tr>
                 </tbody>
-            </table>
+            </table> */}
+
         </Wrapper>
     );
 };

@@ -9,7 +9,6 @@ import {
     StyledOrnament,
     StyledLogout,
     StyledAccountDetails,
-    StyledSettingsContent,
     StyledSpan,
     StyledDetailTitle,
     StyledOption,
@@ -33,23 +32,25 @@ const Profile = () => {
         <>
             <Wrapper>
                 <StyledSettings>
-                    <StyledTitle>
-                        Profile Settings
-                        <StyledOrnament />
-                    </StyledTitle>
+                    <header>
+                        <StyledTitle>
+                            Profile Settings
+                            <StyledOrnament />
+                        </StyledTitle>
+                    </header>
 
-                    <StyledSettingsContent>
+                    <article>
                         <StyledAccountDetails>
                             <ProfileImage />
 
-                            <div style={{ marginTop: '60px' }}>
+                            <div style={{ marginTop: '40px' }}>
                                 <StyledDetailTitle>Profile Information</StyledDetailTitle>
                                 <StyledOption>User ID : <StyledSpan>{isAuthenticated.token}</StyledSpan></StyledOption>
                                 <StyledOption>Email : <StyledSpan>{isAuthenticated.email}</StyledSpan></StyledOption>
                                 <StyledOption>Phone Number : <StyledSpan>+48 123 456 789</StyledSpan></StyledOption>
                             </div>
 
-                            <div style={{ marginBlock: '60px' }}>
+                            <div style={{ marginBlock: '40px' }}>
                                 <StyledDetailTitle>Address Information</StyledDetailTitle>
                                 <StyledOption>Country : <StyledSpan>United States</StyledSpan></StyledOption>
                                 <StyledOption>Region / State : <StyledSpan>California</StyledSpan></StyledOption>
@@ -73,7 +74,7 @@ const Profile = () => {
                                 </StyledLogout> 
                             </div>
                         </StyledAccountDetails>
-                    </StyledSettingsContent>
+                    </article>
                 </StyledSettings>
 
                 <ShoppingHistory />               
