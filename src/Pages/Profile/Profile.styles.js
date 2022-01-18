@@ -19,10 +19,6 @@ export const Wrapper = styled.section`
 export const StyledSettings = styled.article`
     background-color: ${({theme}) => theme.colors.orange};
     padding: 3vw;
-
-    h2, h3 {
-        font-style: italic;
-    }
 `
 
 export const StyledSettingsContent = styled.div`
@@ -42,11 +38,12 @@ export const StyledSpan = styled.span`
     margin-left: 15px;
 `
 
-export const StyledDetailTitle = styled.h2`
+export const StyledDetailTitle = styled.h3`
     margin-bottom: 30px;
     position: relative;
     width: fit-content;
     text-transform: uppercase;
+    font-style: italic; 
 
     &::after{
         content: "";
@@ -56,7 +53,7 @@ export const StyledDetailTitle = styled.h2`
         width: 100%;
         height: 3px;
         border-radius: 100%;
-        background-color: ${({ theme }) => theme.colors.white};
+        background-color: ${({ theme, isOrange }) => isOrange ? theme.colors.orange : theme.colors.white};
     }
 `
 

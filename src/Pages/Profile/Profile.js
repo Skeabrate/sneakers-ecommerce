@@ -55,7 +55,7 @@ const Profile = () => {
                                 <StyledOption>Region / State : <StyledSpan>California</StyledSpan></StyledOption>
                                 <StyledOption>Street : <StyledSpan>RandomStreet 1234</StyledSpan></StyledOption>
                                 <StyledOption>City : <StyledSpan>Anytown</StyledSpan></StyledOption>
-                                <StyledOption>ZIP / Postal Code : <StyledSpan>234-56</StyledSpan></StyledOption>
+                                <StyledOption>ZIP / Postal Code : <StyledSpan>34-563</StyledSpan></StyledOption>
 
                                 <div style={{ marginTop: '30px' }}>
                                     <LoadingButton onClick={() => console.log('change address')} label="Update Address" />
