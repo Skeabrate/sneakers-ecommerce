@@ -90,7 +90,7 @@ const Summary = ({ totalAmount }) => {
                 </StyledSectionItem>
 
                 <StyledSectionItem>
-                    <p style={{ fontStyle: 'italic' }}>*Gift Code</p>
+                    <p style={{ fontStyle: 'italic' }}>Promo Discount</p>
                     <StyledGiftCode><strong>{codeValue ? `${codeValue}%` : '-'}</strong></StyledGiftCode>
                 </StyledSectionItem>    
             </article>

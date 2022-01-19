@@ -57,7 +57,7 @@ const CartItem = ({ item }) => {
                         <div>
                            <p>Gender : <span>{item.gender}</span></p>
                            <p>Size : <span>{item.size}</span></p>
-                           <p>Item Price : <span>${item.price}</span></p>
+                           <p>Price : <span>${item.price}</span></p>
                         </div>
                         <StyledMoveToWishBtn onClick={handleMoveToWishlist}>Add to Wishlist</StyledMoveToWishBtn>
                      </StyledDetails>

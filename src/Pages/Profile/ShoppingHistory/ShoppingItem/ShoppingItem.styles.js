@@ -35,19 +35,19 @@ export const StyledImage = styled.div`
         position: ${({isLoaded}) => isLoaded ? 'relative' : 'absolute'};
     }
 
-   div{
+    div{
         font-size: ${({theme}) => theme.fontSize.xs};
         padding: 8px 10px;
         position: absolute;
-        bottom: 0;
-        left: 0px;
         display: flex;
+        bottom: 0;
+        left: 0;
 
         p{
             position: relative;
             width: max-content;
             padding: 3px 6px;
-            margin-right: 6px;
+            margin-right: 3px;
             z-index: 1;
 
             &::after{
@@ -66,9 +66,9 @@ export const StyledImage = styled.div`
 
    @media (max-width: ${({theme}) => theme.screenSize.medium}){
         div{
-            padding: 4px 10px;
-            width: 45px;
             font-size: ${({theme}) => theme.fontSize.s};
+            bottom: -5px;
+            left: -5px;
         }
    }
 `
