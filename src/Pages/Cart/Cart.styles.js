@@ -6,7 +6,7 @@ export const StyledContent = styled.div`
     opacity: 0;
     column-gap: 30px;
 
-    @media(max-width: ${({theme}) => theme.screenSize.medium}){
+    @media(max-width: 1250px){
         grid-template-columns: 1fr;
     }
 `

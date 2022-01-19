@@ -34,7 +34,7 @@ const Profile = () => {
                 <StyledSettings>
                     <header>
                         <StyledTitle>
-                            Profile Settings
+                            profile
                             <StyledOrnament />
                         </StyledTitle>
                     </header>

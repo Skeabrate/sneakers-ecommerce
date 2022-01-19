@@ -104,7 +104,7 @@ const ProfileImage = () => {
 
     return (
         <Wrapper>
-            <h2>Change Avatar</h2>
+            <h3>Change Avatar</h3>
 
             <StyledContent>
                 <div >

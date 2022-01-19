@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
     align-items: center;
     border-radius: 5px;
 
-    h2{
+    h3{
         font-style: italic;
         text-transform: uppercase;
         position: relative;

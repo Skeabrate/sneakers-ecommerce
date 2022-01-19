@@ -4,14 +4,15 @@ export const Wrapper = styled.div`
     position: relative;
     margin-top: 80px;
     color: ${({theme}) => theme.colors.white};
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr;
 
     h2, h3{
         font-style: italic;
     }
 
     @media(max-width: ${({theme}) => theme.screenSize.medium}){
-        flex-direction: column;
+        grid-template-columns: 1fr;
     }
 
     @media(max-width: ${({theme}) => theme.screenSize.mobile}){
@@ -44,7 +45,6 @@ export const StyledDetailTitle = styled.h3`
     position: relative;
     width: fit-content;
     text-transform: uppercase;
-    font-style: italic;
 
     &::after{
         content: "";

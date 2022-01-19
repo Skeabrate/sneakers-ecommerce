@@ -2,10 +2,9 @@ import { useContext, useState } from 'react';
 import AuthContext from "../Context/AuthContext"
 import { useSelector, useDispatch } from "react-redux"
 import { resetCart } from '../Redux/addToCartSlice';
-import { v4 as uuid } from "uuid"
+import { db } from "../firebase"
 
 export const usePayment = (setSuccesful = () => {}) => {
-    const [paymentId, setPaymentId] = useState(0)
     const [loading, setLoading] = useState(false)
 
     const cart = useSelector((state) => state.cart)
@@ -13,35 +12,41 @@ export const usePayment = (setSuccesful = () => {}) => {
 
     const dispatch = useDispatch()
 
+    const handleEndLoading = () => {
+        setLoading(false)
+        dispatch(resetCart())
+        setSuccesful(true)
+    }
+
     const handlePayment = async () => {
-        const id = uuid()
-        setPaymentId(id)
-
         if(isAuthenticated) {
-            try{
-                const res = await axios.post(`https://sneakers-b80b7-default-rtdb.firebaseio.com`, {
-                    test: 'test'
-                })
-                console.log(res)
-            } catch(ex) {
-                console.log(ex.response)
-            }
+            setLoading(true)
 
-            dispatch(resetCart())
-            setSuccesful(true)
+            const d = new Date()
+            let date = d.getDate() < 10 ? `0${d.getDate()}` : d.getDate()
+            let month = d.getMonth() + 1 < 10 ? `0${d.getMonth() + 1}` : d.getMonth() + 1
+
+            db.collection(isAuthenticated.token).add({
+                date: `${date}.${month}.${d.getFullYear()}`,
+                products : [
+                    ...cart
+                ]
+            })
+            .then(() => handleEndLoading())
+            .catch((err) => {
+                console.log(err.response)
+                handleEndLoading()
+            })
         }
         else {
             setLoading(true)
             setTimeout(() => {
-                dispatch(resetCart())
-                setSuccesful(true)
-                setLoading(false)
+                handleEndLoading()
             }, 1500)
         }
     }
 
     return {
-        paymentId,
         loading,
         handlePayment,
     };
