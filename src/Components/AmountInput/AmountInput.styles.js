@@ -27,11 +27,15 @@ export const Wrapper = styled.div`
       ::-webkit-outer-spin-button{
          -webkit-appearance: none; 
          margin: 0; 
-      }  
+      }
 
       &:focus{
          outline: 1px solid ${({theme}) => theme.colors.white};
       }
+   }
+
+   input[type=number] {
+      -moz-appearance: textfield;
    }
 `
 
