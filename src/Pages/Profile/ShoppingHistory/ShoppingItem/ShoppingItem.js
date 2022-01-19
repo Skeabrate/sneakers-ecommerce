@@ -8,7 +8,7 @@ import {
     StyledImage
 } from "./ShoppingItem.styles"
 
-const ShoppingItem = ({ item: {id, title, image, price, size} }) => {
+const ShoppingItem = ({ item: { id, title, image, price, size } }) => {
     const [isLoaded, setIsLoaded] = useState(false)
     /* console.log(item) */
 

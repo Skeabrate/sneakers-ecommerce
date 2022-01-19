@@ -28,7 +28,7 @@ const ShopingCart = ({ product, loading, isDesktop, isMobile }) => {
    const shopRef = useRef(null)
    const end = useRef(null)
 
-   const position = useStickyTwo(shopRef, end, isDesktop)
+   const position = useStickyTwo(shopRef, end)
 
    useEffect(() => {
       t1.current = gsap.timeline({ paused: !loading })

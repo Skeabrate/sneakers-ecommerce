@@ -7,7 +7,8 @@ import {
     Wrapper,
     StyledUnderline,
     StyledImages,
-    StyledShoppingItem
+    StyledShoppingItem,
+    StyledOrderTitle
 } from "./ShoppingHistory.styles"
 import { 
     StyledSpan
@@ -41,6 +42,7 @@ const ShoppingHistory = () => {
         setLoading(true)
 
         db.collection(token)
+        .orderBy("dateId", "desc")
         .onSnapshot((snapshot) => {
             setData(
                 snapshot.docs.map(item => ({
@@ -51,7 +53,7 @@ const ShoppingHistory = () => {
             )
             setLoading(false) 
         })
-
+        
     }, [])
 
     useEffect(() => {
@@ -69,11 +71,11 @@ const ShoppingHistory = () => {
 
             {loading ? <h1>Loading...</h1> : (
                 <>
-                    {data.map(item => (
-                        <StyledShoppingItem key={item.id}>
-                            <h3 style={{textTransform: 'uppercase'}}>
-                                <StyledUnderline>ORDER # </StyledUnderline> <StyledSpan>{item.id}</StyledSpan>
-                            </h3>
+                    {data.map(({ id, date, products }, index) => (
+                        <StyledShoppingItem key={id} isLast={index === data.length - 1}>
+                            <StyledOrderTitle>
+                                <StyledUnderline>ORDER # </StyledUnderline> <StyledSpan>{id}</StyledSpan>
+                            </StyledOrderTitle>
 
                             <table>
                                 <thead>
@@ -87,17 +89,17 @@ const ShoppingHistory = () => {
 
                                 <tbody>
                                     <tr>
-                                        <td><h5 style={{ fontWeight: "normal", }}>{item.date}</h5></td>
-                                        <td><h5 style={{ fontWeight: "normal", }}>{getValue(item.products, "quantity")}</h5></td>
-                                        <td><h5 style={{ fontWeight: "normal", }}>${getValue(item.products, "price")}</h5></td>
+                                        <td><h5 style={{ fontWeight: "normal", }}>{date}</h5></td>
+                                        <td><h5 style={{ fontWeight: "normal", }}>{getValue(products, "quantity")}</h5></td>
+                                        <td><h5 style={{ fontWeight: "normal", }}>${getValue(products, "price")}</h5></td>
                                         <td><h5 style={{ fontWeight: "normal", }}>Send</h5></td>
                                     </tr>
                                 </tbody>
                             </table>
                             
                             <StyledImages>
-                                {item.products.map((item, i) => (
-                                    <ShoppingItem item={item} key={i}/>
+                                {products.map((item, i) => (
+                                    <ShoppingItem item={item} key={i} />
                                 ))}
                             </StyledImages>
                         </StyledShoppingItem>
