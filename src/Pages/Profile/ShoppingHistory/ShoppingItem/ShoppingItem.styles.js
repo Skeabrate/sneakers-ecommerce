@@ -28,47 +28,48 @@ export const StyledImage = styled.div`
    border-left: 5px solid ${({theme}) => theme.colors.orange};
    margin-bottom: 15px;
    position: relative;
-   
-   transition: opacity .4s;
 
    img{
-      width: 100%;
-      height: 100%;
-      transition: transform 0.2s ease-in-out;
-      position: ${({isLoaded}) => isLoaded ? 'relative' : 'absolute'};
-   }
+        width: 100%;
+        height: 100%;
+        position: ${({isLoaded}) => isLoaded ? 'relative' : 'absolute'};
+    }
 
    div{
-      font-size: ${({theme}) => theme.fontSize.xs};
-      padding: 8px 10px;
-      position: absolute;
-      background-color: ${({theme}) => theme.colors.black};
-      bottom: 0;
-      left: 10px;
-      width: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+        font-size: ${({theme}) => theme.fontSize.xs};
+        padding: 8px 10px;
+        position: absolute;
+        bottom: 0;
+        left: 0px;
+        display: flex;
 
-      transition: transform .3s ease-in-out;
-   }
+        p{
+            position: relative;
+            width: max-content;
+            padding: 3px 6px;
+            margin-right: 6px;
+            z-index: 1;
+
+            &::after{
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: -1;
+                background-color: black;
+                opacity: 0.5;
+            }
+        }
+    }
 
    @media (max-width: ${({theme}) => theme.screenSize.medium}){
-      div{
-         padding: 4px 10px;
-         width: 45px;
-         font-size: ${({theme}) => theme.fontSize.s};
-      }
-   }
-
-   @media (min-width: ${({theme}) => theme.screenSize.mobile}) {
-      &:hover div{
-         transform: translateY(-10px);
-      } 
-
-      &:hover img{
-         transform: scale(1.1);
-      }
+        div{
+            padding: 4px 10px;
+            width: 45px;
+            font-size: ${({theme}) => theme.fontSize.s};
+        }
    }
 `
 
@@ -77,15 +78,5 @@ export const StyledItemTitle = styled.h2`
 
    @media (max-width: ${({theme}) => theme.screenSize.medium}){
       font-size: ${({theme}) => theme.fontSize.xs};
-   }
-`
-
-export const StyledCategory = styled.h3`
-   color: ${({theme}) => theme.colors.lightGrey};
-   font-size: ${({theme}) => theme.fontSize.xs};
-   font-style: italic;
-
-   @media (max-width: ${({theme}) => theme.screenSize.medium}){
-      font-size: ${({theme}) => theme.fontSize.s};
    }
 `

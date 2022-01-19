@@ -65,12 +65,14 @@ const ShoppingHistory = () => {
             <header>
                 <StyledTitle>
                     Shopping History
-                    <StyledOrnament isOrange/>
+                    <StyledOrnament isOrange />
                 </StyledTitle>
             </header>
 
             {loading ? <h1>Loading...</h1> : (
                 <>
+                {data.length ? (
+                    <>
                     {data.map(({ id, date, products }, index) => (
                         <StyledShoppingItem key={id} isLast={index === data.length - 1}>
                             <StyledOrderTitle>
@@ -96,7 +98,7 @@ const ShoppingHistory = () => {
                                     </tr>
                                 </tbody>
                             </table>
-                            
+
                             <StyledImages>
                                 {products.map((item, i) => (
                                     <ShoppingItem item={item} key={i} />
@@ -104,6 +106,10 @@ const ShoppingHistory = () => {
                             </StyledImages>
                         </StyledShoppingItem>
                     ))}
+                    </>
+                ) : (
+                    <h1>You don't have shopping history yet</h1>
+                )}
                 </>
             )}
         </Wrapper>

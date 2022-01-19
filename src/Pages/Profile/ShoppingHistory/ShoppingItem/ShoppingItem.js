@@ -8,7 +8,7 @@ import {
     StyledImage
 } from "./ShoppingItem.styles"
 
-const ShoppingItem = ({ item: { id, title, image, price, size } }) => {
+const ShoppingItem = ({ item: { id, title, image, price, size, amount } }) => {
     const [isLoaded, setIsLoaded] = useState(false)
     /* console.log(item) */
 
@@ -30,7 +30,11 @@ const ShoppingItem = ({ item: { id, title, image, price, size } }) => {
                         height="840"
                         onLoad={() => setIsLoaded(true)}
                     />
-                    <div>${price}</div>
+                    <div>
+                        <p>{amount}x</p>
+                        <p>${price}</p>
+                        <p>size: {size}</p>
+                    </div>
                 </StyledImage>
             </StyledLink>
 

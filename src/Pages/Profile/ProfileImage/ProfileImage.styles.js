@@ -91,4 +91,9 @@ export const StylledButton = styled.button`
             opacity: 0.3;
         }
     }
+
+    @media(max-width: ${({theme}) => theme.screenSize.mobile}){
+        width: 150px;
+        height: 150px;
+    }
 `
