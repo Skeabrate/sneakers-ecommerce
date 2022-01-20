@@ -85,3 +85,11 @@ export const StyledImages = styled.div`
         grid-template-columns: 1fr 1fr;
     }
 `
+
+export const LoadingConteiner = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: calc(100vh - 80px - 52px - 3vw);
+`

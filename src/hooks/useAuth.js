@@ -33,8 +33,8 @@ export const useAuth = () => {
                 // Signed in
                 // var user = userCredential.user;
                 console.log('logIn')
-                navigate("/profile")
-                /* window.location.reload(true); */
+                /* navigate("/AllProducts") */
+                window.location.reload(true);
             })
             .catch((error) => {
                 // var errorCode = error.code;

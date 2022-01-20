@@ -63,7 +63,6 @@ const NavBar = ({ isProductPage }) => {
    return (
       <Wrapper isProductPage={isProductPage} hideNav={hideNav}>
          <StyledTitleWrapper>
-
             <StyledTitle>
                <StyledHamburger onClick={toggleMenu}>
                   <StyledHamburgerWrapper>
@@ -76,25 +75,24 @@ const NavBar = ({ isProductPage }) => {
                </header>
             </StyledTitle>
 
-            <nav>
-               <StyledNav isToggled={toggle}>
-                  <li>
-                     <StyledNavItem isFirst isToggled={toggle} exact to="/AllProducts" onClick={toggleMenu}>Home</StyledNavItem>
-                  </li>
+            <StyledNav isToggled={toggle}>
+               <li>
+                  <StyledNavItem isFirst isToggled={toggle} to="/AllProducts" onClick={toggleMenu}>Home</StyledNavItem>
+               </li>
 
-                  <li>
-                     <StyledNavItem isSecond isToggled={toggle} to="/about" onClick={toggleMenu}>About</StyledNavItem>
-                  </li>
+               <li>
+                  <StyledNavItem isSecond isToggled={toggle} to="/about" onClick={toggleMenu}>About</StyledNavItem>
+               </li>
 
-                  <li>
-                     <StyledNavItem isToggled={toggle} to="/contact" onClick={toggleMenu}>Contact</StyledNavItem>
-                  </li>
+               <li>
+                  <StyledNavItem isToggled={toggle} to="/contact" onClick={toggleMenu}>Contact</StyledNavItem>
+               </li>
 
-                  <li>
-                     <StyledBackButton onClick={toggleMenu}></StyledBackButton>
-                  </li>
-               </StyledNav>
-            </nav>
+               <li>
+                  <StyledBackButton onClick={toggleMenu}></StyledBackButton>
+               </li>
+            </StyledNav>
+            
          </StyledTitleWrapper>
 
          <StyledCart>

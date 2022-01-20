@@ -1,7 +1,7 @@
 import { Link, NavLink } from "react-router-dom"
 import styled from "styled-components"
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.nav`
    position: ${({isProductPage}) => isProductPage ? 'unset' : 'fixed'};
    top: 0;
    left: 0;
