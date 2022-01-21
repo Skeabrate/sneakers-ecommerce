@@ -8,7 +8,7 @@ const center = css`
 `
 
 export const StyledContentWrapper = styled.div`
-   background-color: white;
+   background-color: ${({theme}) => theme.colors.shoeBckgrnd};
    max-width: 100%;
 `
 

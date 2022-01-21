@@ -15,6 +15,7 @@ import { StyledTitle } from "../../GlobalStyledComponents/StyledTitle"
 import { StyledLink } from "../../GlobalStyledComponents/StyledAccountButton"
 import ModalsContext from '../../Context/ModalsContext';
 import AuthContext from "../../Context/AuthContext"
+import { StyledLinkToHome } from '../../GlobalStyledComponents/StyledLinkToHome';
 
 const Wishlist = () => {
    const favorite = useSelector((state) => state.favorite)
@@ -49,6 +50,7 @@ const Wishlist = () => {
             <StyledTitle>
                MY WISH LIST
                <span ref={contentLengthRef}>[ {length} ]</span>
+               <StyledLinkToHome label="GO BACK SHOPPING" title="all products" path="AllProducts" isHeader isWhite />
             </StyledTitle>
          </header>
 

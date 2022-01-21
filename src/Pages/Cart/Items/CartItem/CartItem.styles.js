@@ -1,8 +1,8 @@
 import styled from "styled-components"
 
-export const Wrapper = styled.tr`
-   border-top: 1px solid ${({theme}) => theme.colors.grey};
+export const Wrapper = styled.article`
    position: relative;
+   
 
    h4{
       font-style: italic;
@@ -54,7 +54,6 @@ export const StyledDetails = styled.div`
 export const StyledMoveToWishBtn = styled.button`
    width: fit-content;
    background: none;
-   color: ${({theme}) => theme.colors.white};
    text-decoration: underline;
    border: none;
    font-size: ${({theme}) => theme.fontSize.xs};;

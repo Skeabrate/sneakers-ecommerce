@@ -21,12 +21,18 @@ const before = css`
         content: "";
         position: absolute;
         left: 0;
-        top: 0;
+        top: -30px;
         height: 5px;
         width: 100%;
         background-color: ${({ theme }) => theme.colors.grey};
         border-bottom: 2px solid black;
         border-radius: 100%;
+    }
+
+    @media(max-width: ${({theme}) => theme.screenSize.medium}){
+        &::before{
+            top: -20px;
+        }
     }
 `
 
@@ -40,6 +46,9 @@ export const Wrapper = styled.section`
     height: fit-content;
     min-height: calc(100vh - 80px);
     text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    row-gap: 60px;
 
     header{
         padding: 1.25vw 1.25vw 0;
@@ -52,6 +61,8 @@ export const Wrapper = styled.section`
     @media(max-width: ${({theme}) => theme.screenSize.medium}){
         height: fit-content;
         min-height: unset;
+        padding: 0 1.25vw 1.25vw;
+        row-gap: 40px;
 
         h3{
             font-size: ${({theme}) => theme.fontSize.xs}
@@ -68,11 +79,7 @@ export const StyledDetailsConteiner = styled.div`
     flex-direction: column;
     row-gap: 15px;
     ${before};
-    padding: 20px 1.25vw 30px;
-
-    &::before{
-        top: -10px;
-    }
+    padding: 0 1.25vw;
 
     details{
         summary{
@@ -106,6 +113,10 @@ export const StyledDetailsConteiner = styled.div`
             ${inputStyles};
         }
     }
+
+    @media(max-width: ${({theme}) => theme.screenSize.medium}){
+        row-gap: 5px;
+    }
 `
 
 export const StyledSVG = styled.svg`
@@ -116,8 +127,12 @@ export const StyledArticle = styled.article`
     display: flex;
     flex-direction: column;
     row-gap: 15px;
-    padding: 30px 1.25vw; 
+    padding: 0 1.25vw; 
     ${before};
+
+    @media(max-width: ${({theme}) => theme.screenSize.medium}){
+        row-gap: 10px;
+    }
 `
 
 export const StyledArticleItem = styled.div`
@@ -128,22 +143,15 @@ export const StyledArticleItem = styled.div`
 export const StyledTotal = styled.div`
     display: flex;
     justify-content: space-between;
-    padding: 30px 1.25vw 60px;
+    padding: 0 1.25vw;
     ${before};
-
-    &::after{
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: 28px;
-        height: 5px;
-        width: 100%;
-        background-color: ${({ theme }) => theme.colors.grey};
-        border-bottom: 2px solid black;
-        border-radius: 100%;
-    }
 `
 
 export const StyledGiftCode = styled.p`
     color: ${({theme}) => theme.colors.orange};
+`
+
+export const StyledCheckout = styled.div`
+    padding: 0 1.25vw;
+    ${before};
 `

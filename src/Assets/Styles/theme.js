@@ -7,6 +7,7 @@ export const theme = {
       orange: '#fe7901',
       red: '#e32b2b',
       green: '#00aa55',
+      shoeBckgrnd: '#EBEEEF',
    },
 
    fontSize: {

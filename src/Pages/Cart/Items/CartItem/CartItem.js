@@ -44,40 +44,33 @@ const CartItem = ({ item }) => {
       <>
          {item ? (
             <Wrapper>
-               <td style={{ width: '50%' }}>
-                  <StyledInfo>
-                     <StyledRemoveButton onClick={removeHandler}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"/></svg></StyledRemoveButton>
-                     <Link to={`/product/${item.id}`}>
-                        <img src={item.image} alt="shoeIcon" />
-                     </Link>
+               <StyledInfo>
+                  <StyledRemoveButton onClick={removeHandler}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"/></svg></StyledRemoveButton>
+                  <Link to={`/product/${item.id}`}>
+                     <img src={item.image} alt="shoeIcon" />
+                  </Link>
 
-                     
-                     <StyledDetails>
-                        <h3>{item.title}</h3>
-                        <div>
-                           <p>Gender : <span>{item.gender}</span></p>
-                           <p>Size : <span>{item.size}</span></p>
-                           <p>Price : <span>${item.price}</span></p>
-                        </div>
-                        <StyledMoveToWishBtn onClick={handleMoveToWishlist}>Add to Wishlist</StyledMoveToWishBtn>
-                     </StyledDetails>
-                  </StyledInfo>
-               </td> 
-
-               <td style={{ width: '30%' }}>
-                  <StyledAmount>
-                     <AmountInput
-                        inputValue={inputValue}
-                        setInputValue={setInputValue}
-                        item={item}
-                     />
-                  </StyledAmount>
-               </td>
-
-               <td style={{ width: '5%' }}>
-                  <p><strong>${item.price * item.amount}</strong></p>
-               </td>
+                  
+                  <StyledDetails>
+                     <h3>{item.title}</h3>
+                     <div>
+                        <p>Gender : <span>{item.gender}</span></p>
+                        <p>Size : <span>{item.size}</span></p>
+                        <p>Price : <span>${item.price}</span></p>
+                     </div>
+                     <StyledMoveToWishBtn onClick={handleMoveToWishlist}>Add to Wishlist</StyledMoveToWishBtn>
+                  </StyledDetails>
+               </StyledInfo>
+                
+               <StyledAmount>
+                  <AmountInput
+                     inputValue={inputValue}
+                     setInputValue={setInputValue}
+                     item={item}
+                  />
+               </StyledAmount>
                
+               <p><strong>${item.price * item.amount}</strong></p>
             </Wrapper>
          ) : null}
       </>

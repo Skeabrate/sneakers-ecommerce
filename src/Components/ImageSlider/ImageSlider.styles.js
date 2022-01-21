@@ -2,7 +2,7 @@ import styled from "styled-components"
 import { css } from "styled-components"
 
 export const StyledSlider = styled.div`
-   background-color: #EBEEEF;
+   background-color: ${({theme}) => theme.colors.shoeBckgrnd};
    height: 700px;
    position: relative;
    overflow: hidden;

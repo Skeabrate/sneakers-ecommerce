@@ -9,6 +9,10 @@ export const Wrapper = styled.div`
     align-items: center;
     border-radius: 5px;
 
+    *::selection{
+        background-color: ${({theme}) => theme.colors.orange} !important;
+    }
+
     h3{
         font-style: italic;
         text-transform: uppercase;

@@ -129,6 +129,10 @@ export const StyledRegister = styled.div`
    align-items: flex-start;
    column-gap: 40px;
    padding: 50px 20px;
+
+   *::selection{
+      background-color: ${({theme}) => theme.colors.black};
+   }
 `
 
 export const StyledRegisterTitle = styled.h2`

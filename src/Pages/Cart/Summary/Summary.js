@@ -7,7 +7,8 @@ import {
     StyledTotal,
     StyledGiftCode,
     StyledArticle,
-    StyledDetailsConteiner
+    StyledDetailsConteiner,
+    StyledCheckout
 } from "./Summary.styles"
 import { useInfoOpen } from "../../../hooks/useInfoOpen"
 import { ADD_DISCOUNT } from '../../../helpers/serverResponse';
@@ -20,7 +21,6 @@ const Summary = ({ totalAmount }) => {
     const [codeValue, setCodeValue] = useState(0)
 
     const { setIsPaymentOpen } = useContext(ModalsContext)
-
     const handleSetInfo = useInfoOpen()
 
     const checkGiftCode = () => {
@@ -31,7 +31,6 @@ const Summary = ({ totalAmount }) => {
     }
 
     let delivery = 20
-
     let noDiscountValue = totalAmount + delivery
     let discountValue = (totalAmount + delivery) * (100 - codeValue) / 100
 
@@ -105,20 +104,18 @@ const Summary = ({ totalAmount }) => {
                 </StyledArticleItem>    
             </StyledArticle>
 
-            <footer>
-                <StyledTotal>
-                    <h3>Order Total</h3>
-                    <h3>${codeValue ? discountValue : noDiscountValue }</h3>
-                </StyledTotal>
+            <StyledTotal>
+                <h3>Order Total</h3>
+                <h3>${codeValue ? discountValue : noDiscountValue }</h3>
+            </StyledTotal>
 
-                <div style={{ padding: '0 1.25vw 30px' }}>
-                    <StyledButton 
-                        label="Checkout" 
-                        isCheckout 
-                        actionHandler={() => setIsPaymentOpen(true)}
-                    />
-                </div>
-            </footer>
+            <StyledCheckout>
+                <StyledButton 
+                    label="Checkout" 
+                    isCheckout 
+                    actionHandler={() => setIsPaymentOpen(true)}
+                />
+            </StyledCheckout>
         </Wrapper>
     );
 };
