@@ -1,10 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { StyledTitle } from '../../GlobalStyledComponents/StyledTitle';
-import { Wrapper } from '../../GlobalStyledComponents/Wrapper';
 import { useSelector } from 'react-redux'
 import { useStoreLength } from "../../hooks/useStoreLength"
 import {
-    StyledContent,
+    Wrapper
 } from "./Cart.styles"
 import gsap from "gsap"
 import Items from "./Items/Items"
@@ -49,27 +48,22 @@ const Cart = () => {
     }, [length])
 
     return (
-        <Wrapper>
+        <Wrapper ref={contentRef}>
+            <div>
             <header>
-                <StyledTitle>
-                    your bag
-                    <span ref={contentLengthRef}>[ { length } ]</span>
-                </StyledTitle>
-            </header>
-
-            <StyledContent ref={contentRef}>
-                {length ? (
-                    <>
-                        <Items cart={cart} />
-        
-                        <Summary 
-                            totalAmount={totalAmount}
-                            textareaValue={textareaValue}
-                            setTextareaValue={setTextareaValue}
-                        />
-                    </>
-                ) : <h3>Your bag is empty</h3>}
-            </StyledContent>
+                            <StyledTitle>
+                                your bag
+                                <span ref={contentLengthRef}>[ { length } ]</span>
+                            </StyledTitle>
+                        </header>
+                    <Items cart={cart} length={length} />
+            </div>
+    
+                    <Summary 
+                        totalAmount={totalAmount}
+                        textareaValue={textareaValue}
+                        setTextareaValue={setTextareaValue}
+                    />
         </Wrapper>
     );
 };

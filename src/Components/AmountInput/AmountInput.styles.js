@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
    display: flex;
    border: 1px solid ${({theme}) => theme.colors.grey};
    height: 46px;
-   width: fit-content;
+   width: fit-content !important;
    margin: ${({label}) => label && '15px 0 30px'};
 
    input, div{

@@ -30,14 +30,14 @@ const Profile = () => {
     const { logOutHandler, resetPasswordHandler, loading } = useAuth()
 
     const stickyRef = useRef(null)
-    const { isSticky } = useSticky(stickyRef)
+    const { isSticky } = useSticky(stickyRef.current)
 
     const settingsRef = useRef(null)
     const end = useRef(null)
     const position = useStickyTwo(settingsRef, end)
 
     return (
-        <>
+        <div>
             <Wrapper>
                 <StyledSettings ref={settingsRef} position={position}>
                     <header>
@@ -107,7 +107,7 @@ const Profile = () => {
             )}
             
             <div ref={stickyRef} style={{position: 'aboslute', bottom: 0 }}/>
-        </>
+        </div>
     );
 };
 

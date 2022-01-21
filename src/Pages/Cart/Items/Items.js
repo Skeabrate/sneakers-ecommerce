@@ -1,32 +1,24 @@
 import React from 'react';
 import {
     StyledTable,
+    Wrapper
 } from "./Items.styles"
 import CartItem from "./CartItem/CartItem"
 
-const Items = ({ cart }) => {
+const Items = ({ cart, length }) => {
     return (
-        <article>
-            <StyledTable>
-                <thead>
-                    <tr>
-                        <td><h2 style={{ fontStyle: 'italic' }}>Item</h2></td>
-                        <td><h2 style={{ fontStyle: 'italic' }}>Quantity</h2></td>
-                        <td><h2 style={{ fontStyle: 'italic' }}>Subtotal</h2></td>
-                    </tr>
-                </thead>
-
-                <tbody>
+        <Wrapper>
+            {length ? (
+                <div>
                     {cart.map((item, index) => (
                         <CartItem 
                             item={item} 
                             key={index} 
                         />
                     ))}
-                </tbody>
-
-            </StyledTable>           
-        </article>
+                </div>         
+            ) : <h3>Your bag is empty</h3>}
+        </Wrapper>
     );
 };
 

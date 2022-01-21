@@ -1,5 +1,9 @@
 import styled from "styled-components"
 
+export const Wrapper = styled.article`
+    background-color: #EBEEEF;
+`
+
 export const StyledTable = styled.table`
     border-collapse: collapse;
     width: 100%;

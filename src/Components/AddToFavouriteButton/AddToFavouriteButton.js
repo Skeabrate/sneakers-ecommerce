@@ -9,7 +9,7 @@ export const StyledButton = styled.button`
    right: ${({isCart}) => isCart ? 'unset' : '10px'};
    border: none;
    background: ${({isCart, theme}) => isCart ? theme.colors.white : 'transparent'};
-   width: ${({isCart}) => isCart ? '46px' : 'unset'};
+   padding: ${({isCart}) => isCart ? "0 15px" : "0"};
    
    p{
       display: flex;

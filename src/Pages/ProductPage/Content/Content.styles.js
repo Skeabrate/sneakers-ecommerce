@@ -12,7 +12,7 @@ export const StyledContentWrapper = styled.div`
    max-width: 100%;
 `
 
-export const StyledContent = styled.section`
+export const StyledContent = styled.div`
    margin: auto;
    max-width: 1200px;
    padding-bottom: 250px;

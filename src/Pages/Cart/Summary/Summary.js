@@ -3,12 +3,15 @@ import StyledButton from '../../../GlobalStyledComponents/StyledButton';
 import {
     Wrapper,
     StyledSVG,
-    StyledSectionItem,
+    StyledArticleItem,
     StyledTotal,
-    StyledGiftCode
+    StyledGiftCode,
+    StyledArticle,
+    StyledDetailsConteiner
 } from "./Summary.styles"
 import { useInfoOpen } from "../../../hooks/useInfoOpen"
 import { ADD_DISCOUNT } from '../../../helpers/serverResponse';
+import { StyledTitle } from "../../../GlobalStyledComponents/StyledTitle"
 import ModalsContext from '../../../Context/ModalsContext';
 
 const Summary = ({ totalAmount }) => {
@@ -35,77 +38,86 @@ const Summary = ({ totalAmount }) => {
     return (
         <Wrapper>
             <header>
-                <h2 style={{marginBottom: '30px', fontStyle: 'italic'}}>SUMMARY</h2>
+                <StyledTitle>SUMMARY</StyledTitle>
             </header>
 
-            <details>
-                <summary>
-                    <h3>
-                        Do you have a promo code?
-                        <StyledSVG xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm7 14h-5v5h-4v-5h-5v-4h5v-5h4v5h5v4z"/></StyledSVG>
+            <StyledDetailsConteiner>
+                <details>
+                    <summary>
+                        <h3>
+                            Do you have a promo code?
+                            <StyledSVG xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm7 14h-5v5h-4v-5h-5v-4h5v-5h4v5h5v4z"/></StyledSVG>
+                        </h3>
+                    </summary>
+                    <div>
+                        <input 
+                            id="giftCode"
+                            name="giftCode"
+                            type="text"
+                            maxLength="20"
+                            value={giftCode}
+                            onChange={(e) => setGiftCode(e.currentTarget.value)}
+                            onBlur={checkGiftCode}
+                        />
+                    </div>
+                </details>
+
+                <details>
+                    <summary>
+                        <h3>
+                            Add a note
+                            <StyledSVG xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm7 14h-5v5h-4v-5h-5v-4h5v-5h4v5h5v4z"/></StyledSVG>
+                        </h3>
+                    </summary>
+
+                    <div>
+                        <textarea 
+                            id="comment"
+                            name="comment"
+                            type="text"
+                            maxLength="200"
+                            value={comment}
+                            onChange={(e) => setComment(e.currentTarget.value)}
+                        />
+                    </div>
+                </details>
+            </StyledDetailsConteiner>
+
+
+            <StyledArticle>
+                <StyledArticleItem>
+                    <h3 style={{ fontWeight: "normal" }}>Subtotal</h3>
+                    <h3><strong>${totalAmount}</strong></h3>
+                </StyledArticleItem>
+
+                <StyledArticleItem>
+                    <h3 style={{ fontWeight: "normal" }}>
+                        Estimated Delivery
+                        <br />
+                        25 - 30 Days
                     </h3>
-                </summary>
-                <div>
-                    <input 
-                        id="giftCode"
-                        name="giftCode"
-                        type="text"
-                        maxLength="20"
-                        value={giftCode}
-                        onChange={(e) => setGiftCode(e.currentTarget.value)}
-                        onBlur={checkGiftCode}
-                    />
-                </div>
-            </details>
+                    <h3><strong>${delivery}</strong></h3>
+                </StyledArticleItem>
 
-            <details>
-                <summary>
-                    <h3>
-                        Add a note
-                        <StyledSVG xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm7 14h-5v5h-4v-5h-5v-4h5v-5h4v5h5v4z"/></StyledSVG>
-                    </h3>
-                </summary>
-
-                <div>
-                    <textarea 
-                        id="comment"
-                        name="comment"
-                        type="text"
-                        maxLength="200"
-                        value={comment}
-                        onChange={(e) => setComment(e.currentTarget.value)}
-                    />
-                </div>
-            </details>
-
-            <article>
-                <StyledSectionItem>
-                    <p style={{ fontStyle: 'italic' }}>Subtotal</p>
-                    <p>$<strong>{totalAmount}</strong></p>
-                </StyledSectionItem>
-
-                <StyledSectionItem>
-                    <p style={{ fontStyle: 'italic' }}>Estimated Delivery</p>
-                    <p><strong>${delivery}</strong></p>
-                </StyledSectionItem>
-
-                <StyledSectionItem>
-                    <p style={{ fontStyle: 'italic' }}>Promo Discount</p>
+                <StyledArticleItem>
+                    <h3 style={{ fontWeight: "normal" }}>Promo Discount</h3>
                     <StyledGiftCode><strong>{codeValue ? `${codeValue}%` : '-'}</strong></StyledGiftCode>
-                </StyledSectionItem>    
-            </article>
+                </StyledArticleItem>    
+            </StyledArticle>
 
             <footer>
                 <StyledTotal>
-                    <h2 style={{ fontStyle: 'italic' }}>Order Total</h2>
-                    <h2>${codeValue ? discountValue : noDiscountValue }</h2>
+                    <h3>Order Total</h3>
+                    <h3>${codeValue ? discountValue : noDiscountValue }</h3>
                 </StyledTotal>
 
-                <StyledButton 
-                    label="Checkout" 
-                    isCheckout 
-                    actionHandler={() => setIsPaymentOpen(true)}
-                />
+                <div style={{ padding: '0 1.25vw 30px' }}>
+                    <StyledButton 
+                        label="Checkout" 
+                        isCheckout 
+                        actionHandler={() => setIsPaymentOpen(true)}
+                    />
+                </div>
             </footer>
         </Wrapper>
     );

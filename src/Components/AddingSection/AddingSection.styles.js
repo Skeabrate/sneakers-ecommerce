@@ -8,6 +8,10 @@ export const StyledCart = styled.div`
    @media (max-width: ${({theme}) => theme.screenSize.medium}){
       flex-direction: row;
       align-items: center;
+
+      div{
+         width: 100%;
+      }
    }
 
    @media (max-width: ${({theme}) => theme.screenSize.mobile}){

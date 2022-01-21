@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components"
 
 const inputStyles = css`
-    background-color: ${({theme}) => theme.colors.black};
+    background-color: black;
     border: 1px solid ${({theme}) => theme.colors.grey};
     color: ${({theme}) => theme.colors.white};
     font-size: 16px;
@@ -14,23 +14,65 @@ const inputStyles = css`
     }
 `
 
+const before = css`
+    position: relative;
+
+    &::before{
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 5px;
+        width: 100%;
+        background-color: ${({ theme }) => theme.colors.grey};
+        border-bottom: 2px solid black;
+        border-radius: 100%;
+    }
+`
+
 export const Wrapper = styled.section`
-    width: 100%;
     position: sticky;
-    top: 100px;
-    background-color: black;
+    top: 80px;
+    background-color: ${({theme}) => theme.colors.black};
+    color: ${({theme}) => theme.colors.white};
     overflow-y: auto;
+    padding: 1.25vw;
     height: fit-content;
-    padding: 2vw;
-    height: fit-content;
-    max-width: 500px;
-    margin: 0 auto;
+    min-height: calc(100vh - 80px);
+    text-transform: uppercase;
+
+    header{
+        padding: 1.25vw 1.25vw 0;
+    }
+
+    h3{
+        font-size: ${({theme}) => theme.fontSize.xxs};
+    }
+
+    @media(max-width: ${({theme}) => theme.screenSize.medium}){
+        height: fit-content;
+        min-height: unset;
+
+        h3{
+            font-size: ${({theme}) => theme.fontSize.xs}
+        }
+        
+        header{
+            padding: 0 1.25vw;
+        }
+    }
+`
+
+export const StyledDetailsConteiner = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    border-radius: 5px;
+    row-gap: 15px;
+    ${before};
+    padding: 20px 1.25vw 30px;
 
-    article{ margin-block: 20px 30px }
+    &::before{
+        top: -10px;
+    }
 
     details{
         summary{
@@ -40,16 +82,15 @@ export const Wrapper = styled.section`
 
             h3{
                 text-decoration: underline;
-                font-style: italic;
                 display: flex;
                 align-items: center;
                 column-gap: 15px;
-                margin-bottom: 10px;
-                
             }
         }
 
-        div{ padding-bottom: 20px }
+        div{ 
+            padding-top: 10px 
+        }
 
         input{
             width: 50%;
@@ -71,16 +112,36 @@ export const StyledSVG = styled.svg`
     fill: ${({theme}) => theme.colors.orange};
 `
 
-export const StyledSectionItem = styled.div`
+export const StyledArticle = styled.article`
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    padding: 30px 1.25vw; 
+    ${before};
+`
+
+export const StyledArticleItem = styled.div`
     display: flex;  
     justify-content: space-between;
-    padding-block: 5px;
 `
 
 export const StyledTotal = styled.div`
     display: flex;
     justify-content: space-between;
-    padding-bottom: 10px;
+    padding: 30px 1.25vw 60px;
+    ${before};
+
+    &::after{
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 28px;
+        height: 5px;
+        width: 100%;
+        background-color: ${({ theme }) => theme.colors.grey};
+        border-bottom: 2px solid black;
+        border-radius: 100%;
+    }
 `
 
 export const StyledGiftCode = styled.p`

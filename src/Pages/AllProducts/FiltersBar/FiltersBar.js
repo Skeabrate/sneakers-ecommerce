@@ -17,7 +17,7 @@ const FiltersBar = ({ AllProducts, paginate }) => {
    const { filters, setFilters } = useContext(FiltersContext)
    
    const filtersRef = useRef(null)
-   const { isSticky } = useSticky(filtersRef)
+   const { isSticky } = useSticky(filtersRef.current)
 
    const handleSetFilters = (fieldName, option) => {
       setFilters((state) => {

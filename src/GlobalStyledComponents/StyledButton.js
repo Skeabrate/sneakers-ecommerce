@@ -14,7 +14,8 @@ const StyledAddBtn = styled.button`
    border: none; 
    transition: all .3s ease-in-out;
    text-decoration: none;
-   font-size: ${({isCheckout}) => isCheckout && '1rem'};
+   font-size: 1rem;
+   width: 100%;
 
    svg{
       opacity: 0;
