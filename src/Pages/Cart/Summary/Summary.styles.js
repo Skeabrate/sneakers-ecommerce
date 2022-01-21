@@ -61,7 +61,7 @@ export const Wrapper = styled.section`
     @media(max-width: ${({theme}) => theme.screenSize.medium}){
         height: fit-content;
         min-height: unset;
-        padding: 0 1.25vw 1.25vw;
+        padding: 0 1.25vw 30px;
         row-gap: 40px;
 
         h3{

@@ -40,10 +40,8 @@ export const Wrapper = styled.nav`
       position: fixed;
       font-size: 18px;
       height: 60px;
-
-      transform: ${({hideNav}) => hideNav ? 'translateY(-100%)' : 'translateY(0)'};
-      opacity: ${({hideNav}) => hideNav ? '0' : '1'};
-      
+      transform: translateY(0);
+      opacity: 1;
    }
 `
 

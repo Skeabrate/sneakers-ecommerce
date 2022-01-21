@@ -2,7 +2,11 @@ import styled from "styled-components"
 
 export const Wrapper = styled.article`
    position: relative;
-   
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   border-top: 2px solid ${({theme}) => theme.colors.lightGrey};
+   padding-block: 20px;
 
    h4{
       font-style: italic;
@@ -18,8 +22,8 @@ export const StyledRemoveButton = styled.button`
    border: none;
    background: transparent;
    position: absolute;
-   top: 20px;
-   right: 0px;
+   top: 10px;
+   right: 10px;
 
    svg{
       fill: ${({theme}) => theme.colors.lightGrey};
@@ -60,5 +64,20 @@ export const StyledMoveToWishBtn = styled.button`
 `
 
 export const StyledAmount = styled.div`
-   
+   display: flex;
+   align-items: center;
+   column-gap: 50px;
+   padding: 0 50px;
+
+   div{
+      border-color: ${({theme}) => theme.colors.lightGrey};
+   }
+
+   input {
+      color: black;
+   }
+
+   input:focus{
+      outline: 2px solid black;
+   }
 `

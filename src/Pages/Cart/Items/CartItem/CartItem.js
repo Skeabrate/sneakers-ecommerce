@@ -68,9 +68,9 @@ const CartItem = ({ item }) => {
                      setInputValue={setInputValue}
                      item={item}
                   />
+                  <p><strong>${item.price * item.amount}</strong></p>
                </StyledAmount>
                
-               <p><strong>${item.price * item.amount}</strong></p>
             </Wrapper>
          ) : null}
       </>
