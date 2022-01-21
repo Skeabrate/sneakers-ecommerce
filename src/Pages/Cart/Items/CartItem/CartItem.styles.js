@@ -5,8 +5,8 @@ export const Wrapper = styled.article`
    display: flex;
    align-items: center;
    justify-content: space-between;
-   border-top: 2px solid ${({theme}) => theme.colors.lightGrey};
-   padding-block: 20px;
+   border-top: 1px solid ${({theme}) => theme.colors.lightGrey};
+   padding: 20px 3vw;
 
    h4{
       font-style: italic;
@@ -15,6 +15,12 @@ export const Wrapper = styled.article`
 
    img{
       width: 180px;
+   }
+
+   @media(max-width: 700px){
+      flex-direction: column;
+      align-items: flex-start;
+      row-gap: 10px;
    }
 `
 
@@ -55,19 +61,27 @@ export const StyledDetails = styled.div`
    }
 `
 
-export const StyledMoveToWishBtn = styled.button`
-   width: fit-content;
-   background: none;
-   text-decoration: underline;
-   border: none;
-   font-size: ${({theme}) => theme.fontSize.xs};;
+export const StyledActionButtons = styled.div`
+
+   button{
+      width: fit-content;
+      background: none;
+      text-decoration: underline;
+      border: none;
+      font-size: ${({theme}) => theme.fontSize.xs};;
+      font-style: italic;
+      margin-right: 20px;
+   }
 `
 
 export const StyledAmount = styled.div`
    display: flex;
    align-items: center;
    column-gap: 50px;
-   padding: 0 50px;
+
+   p{
+      color: ${({theme}) => theme.colors.orange};
+   }
 
    div{
       border-color: ${({theme}) => theme.colors.lightGrey};
