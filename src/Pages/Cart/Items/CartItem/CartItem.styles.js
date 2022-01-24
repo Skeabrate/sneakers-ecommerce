@@ -81,7 +81,7 @@ export const StyledAmount = styled.div`
    }
 `
 
-export const StyledTotal = styled.p`
+export const StyledTotal = styled.div`
    color: ${({theme}) => theme.colors.orange};
    width: 80px;
    text-align: right;
