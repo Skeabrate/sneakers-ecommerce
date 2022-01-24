@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import AllProducts from '../AllProducts/AllProducts';
 import Contact from '../Contact/Contact';
 import About from "../About/About"
+import HeroPage from '../HeroPage/HeroPage';
 import NavBar from '../../Components/NavBar/NavBar';
 import ProductPage from '../ProductPage/ProductPage';
 import Footer from '../../Components/Footer/Footer';
@@ -101,6 +102,8 @@ const MainView = () => {
 
                               <Route path="/about" element={<About />}/>
 
+                              <Route path="/AllProducts" element={<AllProducts AllProducts={products}/>}/>
+
                               <Route path="/product/:id" element={<ProductPage setIsProductPage={setIsProductPage} />} />
 
                               <Route path="/wishlist" element={<Wishlist />} />
@@ -111,7 +114,7 @@ const MainView = () => {
 
                               <Route path="/cart" element={<Cart />} />
 
-                              <Route path="/" element={<AllProducts AllProducts={products}/>} />
+                              <Route path="/" element={<HeroPage />} />
 
                               <Route path='*' element={<div style={{marginTop: '80px'}}><Error /></div>} />
                            </Routes>

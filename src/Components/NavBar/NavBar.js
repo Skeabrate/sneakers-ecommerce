@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
 import { useStoreLength } from '../../hooks/useStoreLength';
-import ModalsContext from '../../Context/ModalsContext';
 import { Link, useLocation  } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { 
@@ -57,6 +56,8 @@ const NavBar = ({ isProductPage }) => {
       return () => abortController.abort()
    }, [])
 
+   if(location.pathname === `/`) return null
+
    return (
       <Wrapper isProductPage={isProductPage} hideNav={hideNav}>
          <StyledTitleWrapper>
@@ -74,7 +75,7 @@ const NavBar = ({ isProductPage }) => {
 
             <StyledNav isToggled={toggle}>
                <li>
-                  <StyledNavItem isFirst isToggled={toggle} to="/" onClick={toggleMenu}>Home</StyledNavItem>
+                  <StyledNavItem isFirst isToggled={toggle} to="/AllProducts" onClick={toggleMenu}>Home</StyledNavItem>
                </li>
 
                <li>
