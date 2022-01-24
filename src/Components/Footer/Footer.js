@@ -1,11 +1,7 @@
 import React from 'react';
 import { StyledFooter } from "./Footer.styles"
-import { useLocation  } from "react-router-dom"
 
 const Footer = () => {
-   const location = useLocation()
-   if(location.pathname === `/`) return null
-
    return (
       <StyledFooter>
          <h1 onClick={() => window.scrollTo({top: 0, left: 0, behavior: 'smooth'})}>sneakers</h1>
@@ -31,7 +27,13 @@ const Footer = () => {
             </li>
          </ul>
 
-         <p>&copy; {(new Date().getFullYear())} Sebastian Świeczkowski All rights reserved</p>
+         <ul style={{ display: 'block', textAlign: 'center' }}>
+            <li style={{ marginBottom: '10px' }}>&copy; {(new Date().getFullYear())} All rights reserved</li>
+            <li style={{ marginBottom: '3px' }}>Sebastian Świeczkowski 31590</li>
+            <li style={{ marginBottom: '3px' }}>Damian Pabich 31588</li>
+            <li style={{ marginBottom: '3px' }}>Filip Koper 31581</li>
+            <li style={{ marginBottom: '3px' }}>Wojtek Zaguła 31594</li>
+         </ul>
       </StyledFooter>
    );
 };
