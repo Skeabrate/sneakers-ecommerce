@@ -32,7 +32,6 @@ const NavBar = ({ isProductPage }) => {
    const cartLength = useStoreLength(cart)
    const favoriteLength = useStoreLength(favorite)
 
-   const { setIsCartOpen } = useContext(ModalsContext)
    const { isAuthenticated } = useContext(AuthContext)
 
    const location = useLocation()
@@ -58,8 +57,6 @@ const NavBar = ({ isProductPage }) => {
       return () => abortController.abort()
    }, [])
 
-   if(location.pathname === `/`) return null
-
    return (
       <Wrapper isProductPage={isProductPage} hideNav={hideNav}>
          <StyledTitleWrapper>
@@ -77,7 +74,7 @@ const NavBar = ({ isProductPage }) => {
 
             <StyledNav isToggled={toggle}>
                <li>
-                  <StyledNavItem isFirst isToggled={toggle} to="/AllProducts" onClick={toggleMenu}>Home</StyledNavItem>
+                  <StyledNavItem isFirst isToggled={toggle} to="/" onClick={toggleMenu}>Home</StyledNavItem>
                </li>
 
                <li>
