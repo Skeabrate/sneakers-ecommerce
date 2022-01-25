@@ -26,8 +26,12 @@ export const Wrapper = styled.article`
       width: 180px;
    }
 
+   h3{
+      line-height: 1;
+   }
+
    @media(max-width: ${({theme}) => theme.screenSize.mobile}){
-      padding: 10px 20px 60px 5px;
+      padding: 15px 25px 65px 5px;
 
       h3{
          font-size: ${({ theme }) => theme.fontSize.xs};
@@ -50,6 +54,9 @@ export const StyledRemoveButton = styled.button`
    top: 50%;
    left: 0;
    transform: translateY(-50%);
+   width: 40px;
+   height: 40px;
+   display: flex;
 
    svg{
       fill: ${({theme}) => theme.colors.grey};
@@ -58,8 +65,8 @@ export const StyledRemoveButton = styled.button`
    }
 
    @media(max-width: ${({theme}) => theme.screenSize.mobile}){
-      top: 18px;
-      right: 5px;
+      top: 35px;
+      right: -20px;
       left: unset;
 
       svg{
@@ -137,9 +144,8 @@ export const StyledAmount = styled.div`
 
    @media(max-width: ${({theme}) => theme.screenSize.mobile}){
       position: absolute;
-      bottom: 10px;
-      left: 40%;
-      transform: translateX(-50%);
+      bottom: 15px;
+      left: 5px;
    }
 `
 
@@ -147,6 +153,7 @@ export const StyledTotal = styled.div`
    color: ${({theme}) => theme.colors.orange};
    width: 80px;
    text-align: right;
+   position: relative;
 
    @media(max-width: 1200px){
       position: absolute;
@@ -156,9 +163,8 @@ export const StyledTotal = styled.div`
 
    @media(max-width: ${({theme}) => theme.screenSize.mobile}){
       top: unset;
-      bottom: 24px;
-      left: 70%;
-      transform: translateX(-50%);
+      bottom: 15px;
+      right: 5px;
    }
 `
 

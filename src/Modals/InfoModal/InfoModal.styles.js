@@ -29,9 +29,14 @@ export const StyledError = styled.div`
     font-size: ${({theme}) => theme.fontSize.xs};
     text-align: center;
     padding: 20px 30px 25px;
-    border-radius: 5px;
+    border-radius: 0px;
 
     animation: .2s ease-in forwards ${appear};
+
+    @media (max-width: ${({theme}) => theme.screenSize.mobile}) {
+        padding: 20px 15px 25px;
+        font-size: ${({theme}) => theme.fontSize.s};
+    }
 `
 
 export const StyledBtn = styled.button`
