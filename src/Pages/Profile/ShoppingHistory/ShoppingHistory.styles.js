@@ -15,12 +15,22 @@ export const Wrapper = styled.section`
 
     @media(max-width: ${({theme}) => theme.screenSize.mobile}){
         table{
-            margin-block: 5px 15px;
+            margin-block: 10px 15px;
             border-collapse: collapse;
         }
 
         td{
             padding: 0px 20px 0 0;
+        }
+    }
+
+    @media(max-width: ${({theme}) => theme.screenSize.mobile}){
+        h3{
+            font-size: ${({ theme }) => theme.fontSize.xs};
+        }
+
+        h5{
+            font-size: ${({ theme }) => theme.fontSize.micro};
         }
     }
 `

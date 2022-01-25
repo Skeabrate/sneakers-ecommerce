@@ -7,6 +7,10 @@ export const StyledMoveToWishBtn = styled.button`
    border: none;
    font-size: ${({theme}) => theme.fontSize.xs};
    font-style: italic;
+
+   @media(max-width: ${({theme}) => theme.screenSize.mobile}){
+      font-size: ${({theme}) => theme.fontSize.s};
+   }
 `
 
 export const Wrapper = styled.article`
@@ -15,10 +19,27 @@ export const Wrapper = styled.article`
    align-items: center;
    justify-content: space-between;
    border-top: 1px solid ${({theme}) => theme.colors.grey};
+   border-bottom: ${({last, theme}) => last && `1px solid ${theme.colors.grey}`};
    padding: 20px 0 20px 30px;
 
    img{
       width: 180px;
+   }
+
+   @media(max-width: ${({theme}) => theme.screenSize.mobile}){
+      padding: 10px 20px 60px 5px;
+
+      h3{
+         font-size: ${({ theme }) => theme.fontSize.xs};
+      }
+
+      h4{
+         font-size: ${({ theme }) => theme.fontSize.s};
+      }
+
+      img{
+         width: 100px;
+      }
    }
 `
 
@@ -35,11 +56,30 @@ export const StyledRemoveButton = styled.button`
       width: 16px;
       height: 16px;
    }
+
+   @media(max-width: ${({theme}) => theme.screenSize.mobile}){
+      top: 18px;
+      right: 5px;
+      left: unset;
+
+      svg{
+         width: 14px;
+         height: 14px;
+      }
+   }
 `
 
 export const StyledInfo = styled.div`
    display: flex;
    width: 480px;
+
+   @media(max-width: 700px){
+      width: 350px;
+   }
+
+   @media(max-width: ${({theme}) => theme.screenSize.mobile}){
+      width: fit-content;
+   }
 `
 
 export const StyledDetails = styled.div`
@@ -49,14 +89,29 @@ export const StyledDetails = styled.div`
    justify-content: space-between;
    padding: 10px;
 
-   p{
+   h4{
       margin-block: 5px;
       font-style: italic;
+      font-weight: normal;
 
       span{
          margin-left: 5px;
          font-weight: bold;
          font-style: normal;
+      }
+   }
+
+   @media(max-width: ${({theme}) => theme.screenSize.mobile}){
+      padding: 0 0 5px 5px;
+
+      h4{
+         margin-block: 0px;
+
+         span{
+            margin-left: 5px;
+            font-weight: bold;
+            font-style: normal;
+         }
       }
    }
 `
@@ -79,6 +134,13 @@ export const StyledAmount = styled.div`
          outline: 2px solid ${({theme}) => theme.colors.orange};
       }
    }
+
+   @media(max-width: ${({theme}) => theme.screenSize.mobile}){
+      position: absolute;
+      bottom: 10px;
+      left: 40%;
+      transform: translateX(-50%);
+   }
 `
 
 export const StyledTotal = styled.div`
@@ -90,6 +152,13 @@ export const StyledTotal = styled.div`
       position: absolute;
       top: 30px;
       right: 0;
+   }
+
+   @media(max-width: ${({theme}) => theme.screenSize.mobile}){
+      top: unset;
+      bottom: 24px;
+      left: 70%;
+      transform: translateX(-50%);
    }
 `
 

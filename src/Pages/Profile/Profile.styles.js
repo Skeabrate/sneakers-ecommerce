@@ -42,6 +42,10 @@ export const StyledSettings = styled.section`
 
 export const StyledAccountDetails = styled.div`
     position: relative;
+
+    @media(max-width: ${({theme}) => theme.screenSize.mobile}){
+        font-size: ${({ theme }) => theme.fontSize.xs};
+    }
 `
 
 export const StyledProfileInfo = styled.div`
@@ -61,6 +65,10 @@ export const StyledSpan = styled.span`
     font-weight: normal;
     font-style: normal;
     margin-left: 10px;
+
+    @media(max-width: ${({theme}) => theme.screenSize.mobile}){
+        margin-left: 5px;
+    }
 `
 
 export const StyledDetailTitle = styled.h3`
@@ -78,6 +86,10 @@ export const StyledDetailTitle = styled.h3`
         height: 3px;
         border-radius: 100%;
         background-color: ${({ theme, isOrange }) => isOrange ? theme.colors.orange : theme.colors.white};
+    }
+
+    @media(max-width: ${({theme}) => theme.screenSize.mobile}){
+        font-size: ${({ theme }) => theme.fontSize.xs};
     }
 `
 
@@ -99,6 +111,12 @@ export const StyledOrnament = styled.div`
     border-top: 60px solid transparent;
     border-bottom: none;
     border-left: 100px solid ${({ theme, isOrange }) => isOrange ? theme.colors.orange : theme.colors.black};
+
+    @media(max-width: 750px){
+        left: -5px;
+        border-top: 40px solid transparent;
+        border-left: 70px solid ${({ theme, isOrange }) => isOrange ? theme.colors.orange : theme.colors.black};
+    }
 `
 
 export const StyledForgotPassword = styled.div`

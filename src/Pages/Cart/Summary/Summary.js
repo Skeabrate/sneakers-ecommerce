@@ -15,9 +15,8 @@ import { ADD_DISCOUNT } from '../../../helpers/serverResponse';
 import { StyledTitle } from "../../../GlobalStyledComponents/StyledTitle"
 import ModalsContext from '../../../Context/ModalsContext';
 
-const Summary = ({ totalAmount }) => {
+const Summary = ({ totalAmount, textareaValue, setTextareaValue, length }) => {
     const [giftCode, setGiftCode] = useState("")
-    const [comment, setComment] = useState("")
     const [codeValue, setCodeValue] = useState(0)
 
     const { setIsPaymentOpen } = useContext(ModalsContext)
@@ -75,8 +74,8 @@ const Summary = ({ totalAmount }) => {
                             name="comment"
                             type="text"
                             maxLength="200"
-                            value={comment}
-                            onChange={(e) => setComment(e.currentTarget.value)}
+                            value={textareaValue}
+                            onChange={(e) => setTextareaValue(e.currentTarget.value)}
                         />
                     </div>
                 </details>
@@ -114,6 +113,7 @@ const Summary = ({ totalAmount }) => {
                     label="Checkout" 
                     isCheckout 
                     actionHandler={() => setIsPaymentOpen(true)}
+                    isClicked={!length}
                 />
             </StyledCheckout>
         </Wrapper>

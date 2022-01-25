@@ -33,6 +33,7 @@ const Cart = () => {
                 totalAmount={totalAmount}
                 textareaValue={textareaValue}
                 setTextareaValue={setTextareaValue}
+                length={length}
             />
         </Wrapper>
     );

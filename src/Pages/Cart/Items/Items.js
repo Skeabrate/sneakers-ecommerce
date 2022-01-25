@@ -43,7 +43,8 @@ const Items = ({ cart, length }) => {
                 {length ? (
                     <div>
                         {cart.map((item, index) => (
-                            <CartItem 
+                            <CartItem
+                                last={index === cart.length - 1}
                                 item={item} 
                                 key={index} 
                             />
