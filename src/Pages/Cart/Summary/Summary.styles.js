@@ -83,9 +83,14 @@ export const StyledDetailsConteiner = styled.div`
 
     details{
         summary{
-            list-style: none;
             cursor: pointer;
             width: fit-content;
+            list-style: none;
+            list-style-type: none;
+            
+            &::-webkit-details-marker {
+                display: none;
+            }
 
             h3{
                 text-decoration: underline;
@@ -112,6 +117,8 @@ export const StyledDetailsConteiner = styled.div`
             max-height: 100px;
             ${inputStyles};
         }
+
+        
     }
 
     @media(max-width: ${({theme}) => theme.screenSize.medium}){
