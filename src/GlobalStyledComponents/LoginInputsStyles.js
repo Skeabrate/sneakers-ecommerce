@@ -5,6 +5,10 @@ export const StyledFieldWrapper = styled.div`
    position: relative;
    margin-bottom: 50px;
    width: fit-content;
+
+   @media (max-width: ${({theme}) => theme.screenSize.mobile}) {
+      margin-bottom: 20px;
+   }
 `
 
 export const StyledLabel = styled.label`
