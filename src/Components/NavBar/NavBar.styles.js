@@ -244,14 +244,12 @@ export const StyledCartProfile = styled.div`
    position: relative;
    display: flex;
    justify-content: center;
-   align-items: ${({ profileImg }) => !profileImg && 'center'};
-   place-content: center;
+   align-items: center;
    background-color: ${({ profileImg, theme }) => profileImg && theme.colors.black};
    margin-left: ${({ profileImg }) => profileImg ? '10px' : 0};
 
    img{
-      font-size: 10px;
-      height: 100%;
+      height: 50px;
    }
 
    svg{
@@ -263,5 +261,9 @@ export const StyledCartProfile = styled.div`
    @media (max-width: ${({theme}) => theme.screenSize.mobile}){
       width: ${({profileImg}) => profileImg ? '40px' : '50px'};
       height: ${({profileImg}) => profileImg ? '40px' : '50px'};
+
+      img{
+         height: 40px;
+      }
    }
 `
