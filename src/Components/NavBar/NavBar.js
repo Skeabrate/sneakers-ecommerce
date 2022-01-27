@@ -46,7 +46,7 @@ const NavBar = ({ isProductPage }) => {
       window.addEventListener("scroll", function(){ 
          var st = window.pageYOffset || document.documentElement.scrollTop; 
          if (st > lastScrollTop){
-            setHideNav(true)
+            if(lastScrollTop > 40) setHideNav(true)
          } else {
             setHideNav(false)
          }
