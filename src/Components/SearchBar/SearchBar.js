@@ -11,7 +11,8 @@ const SearchBar = React.forwardRef((props, searchBarRef) => {
    const handleSubmit = () => {
       if(searchPhrase !== '' && searchPhrase !== ' '){
          setFilters((state) => ({
-            ...state, 
+            ...state,
+            isActive: true, 
             title: searchPhrase,
          }))
       }
