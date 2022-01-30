@@ -15,6 +15,7 @@ const ComboBox = ({ label, items = [], isPrice, option, filter, setFilters }) =>
 
    useEffect(() => {
       if(selectedItem){
+         setFilters("isActive", true)
          setFilters(option, selectedItem)
       }
    }, [selectedItem]) // eslint-disable-line react-hooks/exhaustive-deps

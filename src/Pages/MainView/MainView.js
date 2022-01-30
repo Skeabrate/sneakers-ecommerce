@@ -47,6 +47,7 @@ const MainView = () => {
 
    // Filters
    const [filters, setFilters] = useState({
+      isActive: false,
       title: '',
       gender: '',
       category: '',
