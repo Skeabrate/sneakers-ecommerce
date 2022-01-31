@@ -15,6 +15,7 @@ import { Wrapper } from "../../GlobalStyledComponents/Wrapper"
 import { StyledContent } from "../../GlobalStyledComponents/StyledContent"
 import ProductItem from '../../Components/ProductItem/ProductItem';
 import Pagination from '../../Components/Pagination/Pagination';
+import { StyledTitleOrnament } from "../../GlobalStyledComponents/StyledTitleOrnament"
 
 const AllProducts = ({ AllProducts }) => {
    const { productsCtx, loadingCtx, setLoadingCtx } = useContext(ProductsContext)
@@ -99,6 +100,7 @@ const AllProducts = ({ AllProducts }) => {
                         <div>Page : <p>{currentPage} / {Math.ceil(productsCtx.length / postPerPage)}</p></div>
                      </StyledTitleInfo>
                   ) : null}
+                  <StyledTitleOrnament />
                </StyledTitleWrapper>
 
                <SearchBar ref={searchBarRef} />

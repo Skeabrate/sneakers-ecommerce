@@ -39,6 +39,7 @@ export const Wrapper = styled.nav`
    @media (max-width: ${({theme}) => theme.screenSize.mobile}){
       position: fixed;
       font-size: 18px;
+      padding: 0 1vw;
       height: 60px;
       transform: translateY(0);
       opacity: 1;

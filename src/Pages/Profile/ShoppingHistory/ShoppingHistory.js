@@ -17,6 +17,7 @@ import {
 import ShoppingItem from "./ShoppingItem/ShoppingItem"
 import LoadingScreen from '../../../Components/LoadingScreen/LoadingScreen';
 import gsap from "gsap"
+import { StyledTitleOrnament } from '../../../GlobalStyledComponents/StyledTitleOrnament';
 
 const ShoppingHistory = () => {
     const [data, setData] = useState([])
@@ -81,7 +82,7 @@ const ShoppingHistory = () => {
             <header>
                 <StyledTitle>
                     Shopping History
-                    <StyledOrnament isOrange />
+                    <StyledTitleOrnament />
                 </StyledTitle>
             </header>
 

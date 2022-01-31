@@ -8,9 +8,9 @@ const StyledLink = styled(Link)`
     align-items: center;
     position: absolute;
     top: ${({ isHeader }) => isHeader ? '-20px' : '20px'}; 
-    left: ${({ isHeader }) => isHeader ? '5px' : '30px'};
+    left: ${({ isHeader }) => isHeader ? '30px' : '30px'};
     z-index: 100;
-    color: ${({ isWhite, theme }) => isWhite ? theme.colors.white : 'black'};
+    color: ${({ isWhite, theme }) => isWhite ? theme.colors.white : theme.colors.black};
     font-weight: bold;
     font-size: ${({theme}) => theme.fontSize.xs};
     letter-spacing: 2px;
@@ -23,7 +23,7 @@ const StyledLink = styled(Link)`
     }
 
     @media(max-width: ${({theme}) => theme.screenSize.medium}){
-        font-size: ${({theme}) => theme.fontSize.s};
+        font-size: ${({theme}) => theme.fontSize.micro};
 
         svg{
             width: 12px;

@@ -6,7 +6,6 @@ import { StyledTitle } from '../../GlobalStyledComponents/StyledTitle';
 import LoadingButton from '../../Components/LoadingButton/LoadingButton';
 import {
     StyledSettings,
-    StyledOrnament,
     StyledLogoutDesktop,
     StyledLogoutMobile,
     StyledAccountDetails,
@@ -21,6 +20,7 @@ import ConfirmModal from '../../Modals/ConfirmModal/ConfirmModal';
 import { useSticky } from "../../hooks/useSticky"
 import ShoppingHistory from './ShoppingHistory/ShoppingHistory';
 import { useStickyTwo } from '../../hooks/useStickyTwo';
+import { StyledTitleOrnament } from '../../GlobalStyledComponents/StyledTitleOrnament';
 
 const Profile = () => {
     const [openConfirm, setOpenConfirm] = useState(false)
@@ -43,7 +43,7 @@ const Profile = () => {
                     <header>
                         <StyledTitle>
                             profile
-                            <StyledOrnament />
+                            <StyledTitleOrnament isBlack />
                         </StyledTitle>
                     </header>
 
