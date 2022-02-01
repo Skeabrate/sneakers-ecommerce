@@ -3,7 +3,7 @@ import { Field } from "formik"
 
 export const StyledFieldWrapper = styled.div`
    position: relative;
-   margin-bottom: 50px;
+   margin-bottom: 40px;
    width: fit-content;
 
    @media (max-width: ${({theme}) => theme.screenSize.mobile}) {

@@ -1,51 +1,15 @@
-import { useContext, useReducer, useState } from 'react';
 import { Wrapper }  from "../../GlobalStyledComponents/Wrapper"
 import { StyledTitle } from '../../GlobalStyledComponents/StyledTitle'
 import { StyledTitleOrnament } from '../../GlobalStyledComponents/StyledTitleOrnament';
+import imgSrc from "../../Assets/Images/Contact2.png"
 import {
    StyledContact,
    StyledImg,
    StyledDetails,
-   StyledTextarea,
-   StyledLabel
 } from "./Contact.styles"
-import ModalsContext from "../../Context/ModalsContext"
-import imgSrc from "../../Assets/Images/Contact2.png"
-import CustomInput from '../../Components/CustomInput/CustomInput';
-import LoadingButton from "../../Components/LoadingButton/LoadingButton"
-import { reducer } from "./Reducer/reducer"
-import { initialState } from "./Reducer/initialState"
+import ContactForm from './ContactForm/ContactForm';
 
 const Contact = () => {
-   const [state, dispatch] = useReducer(reducer, initialState)
-   const [loading, setLoading] = useState(false)
-
-   const { isInfoOpen, setIsInfoOpen } = useContext(ModalsContext)
-
-   const reducerActionHandler = (type, field, value) => dispatch({ type: type, field: field, value: value, })
-
-   const loadingErrorHandler = () => isInfoOpen.info && setIsInfoOpen((state) => ({
-      ...state,
-      info: false,
-   }))
-
-   const handleSubmit = (e) => {
-      e.preventDefault()
-
-      let rules = state.name.isInvalid || !state.name.value 
-               || state.email.isInvalid || !state.email.value 
-               || state.message.isInvalid || !state.message.value
-
-      if(rules) {
-         if(!state.name.value) reducerActionHandler("setIsActive", "name")
-         if (!state.email.value) reducerActionHandler("setIsActive", "email")
-         if (!state.message.value) reducerActionHandler("setIsActive", "message")
-      }
-      else {
-         console.log(state.name.value, state.email.value, state.message.value)
-      }
-   }
-
    return (
       <Wrapper>
          <StyledContact>
@@ -59,52 +23,7 @@ const Contact = () => {
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde et quam eveniet saepe amet facere magnam, dignissimos ex pariatur!
                </p>
 
-               <form onSubmit={(e) => handleSubmit(e)}>
-                  <CustomInput 
-                     name="name"
-                     value={state.name.value}
-                     onChange={(e) => {
-                        reducerActionHandler("setValue", "name", e.currentTarget.value)
-                        reducerActionHandler("setIsInvalid", "name")
-                     }}
-                     setActiveError={() => !state.name.isActive && reducerActionHandler("setIsActive", "name")}
-                     activeError={state.name.isActive}
-                     invalidError={state.name.isInvalid}
-                     setLoadingError={loadingErrorHandler}
-                     isRegister
-                  />
-
-                  <CustomInput 
-                     name="email"
-                     autoComplete="email"
-                     value={state.email.value}
-                     onChange={(e) => {
-                        reducerActionHandler("setValue", "email", e.currentTarget.value)
-                        reducerActionHandler("setIsInvalid", "email")
-                     }}
-                     setActiveError={() => !state.email.isActive && reducerActionHandler("setIsActive", "email")}
-                     activeError={state.email.isActive}
-                     invalidError={state.email.isInvalid}
-                     setLoadingError={loadingErrorHandler}
-                     isRegister
-                  />
-
-                  <StyledTextarea>
-                     <StyledLabel isFocused={state.message.isFocused}>Message *</StyledLabel>
-                     <textarea
-                        value={state.message.value}
-                        onChange={(e) => {
-                           reducerActionHandler("setValue", "message", e.currentTarget.value)
-                           reducerActionHandler("setIsInvalid", "message")
-                        }}
-                        maxLength="1000"
-                        onFocus={() => reducerActionHandler("setIsMsgFocused", "message", true)}
-                        onBlur={() => reducerActionHandler("setIsMsgFocused", "message", false)}
-                     />
-                  </StyledTextarea>
-
-                  <LoadingButton isBlack disabled={isInfoOpen.info} loading={loading} label="Sign Up For Free" />
-               </form>
+               <ContactForm />
                
             </article>
 
@@ -141,6 +60,7 @@ const Contact = () => {
          <footer>
             <StyledTitle>
                Find Us on Google Maps
+               <StyledTitleOrnament />
             </StyledTitle>
          </footer>
       </Wrapper>

@@ -2,23 +2,27 @@ import styled from "styled-components"
 
 export const StyledContact = styled.div`
     display: grid;
-    grid-template-columns: 450px 700px;
-    column-gap: 6vw;
+    grid-template-columns: 450px 500px;
+    column-gap: 5vw;
     justify-items: center;
+    align-items: center;
     margin: 0 auto;
     width: fit-content;
+
+    @media(max-width: ${({theme}) => theme.screenSize.medium}){
+        grid-template-columns: 1fr;
+    }
 `
 
 export const StyledImg = styled.div`
     position: relative;
     display: flex;
-    
 
     &::after{
         content: "";
         position: absolute;
-        bottom: -40px;
-        left: -40px;
+        bottom: -30px;
+        right: -30px;
         height: 20px;
         width: 120px;
         background-color: ${({theme}) => theme.colors.orange};
@@ -27,8 +31,8 @@ export const StyledImg = styled.div`
     &::before{
         content: "";
         position: absolute;
-        bottom: -40px;
-        left: -40px;
+        bottom: -30px;
+        right: -30px;
         height: 120px;
         width: 20px;
         background-color: ${({theme}) => theme.colors.orange};
@@ -37,48 +41,11 @@ export const StyledImg = styled.div`
     img{
         width: 100%;
     }
-`
 
-export const StyledLabel = styled.label`
-    position: absolute;
-    left: 15px;
-    top: 25px;
-    transform: translateY(-50%);
-    color: ${({theme}) => theme.colors.white};
-    font-size: ${({theme}) => theme.fontSize.xxs};
-    background-color: ${({theme}) => theme.colors.black};
-    padding: 0 8px;
-    z-index: ${({isFocused}) => isFocused ? 1 : -1};
-    transform: ${({isFocused}) => isFocused ? 'translateY(-33px) scale(0.85)' : 'translateY(-50%)'};
-    text-transform: capitalize;
-
-    transition: all .2s ease-in-out;
-`
-
-export const StyledTextarea = styled.div`
-    position: relative;
-    margin-bottom: 20px;
-    width: fit-content;
-
-    textarea{
-        max-width: 450px;
-        min-width: 450px;
-        min-height: 30vh;
-        max-height: 30vh;
-        background-color: transparent;
-        border: 2px solid ${({theme}) => theme.colors.white};
-        padding: 20px;
-        color: ${({theme}) => theme.colors.white};
-        border-radius: 0;
-        border-color: ${({theme, error}) => error ? theme.colors.red : null};
-    
-        &:focus{
-            outline: none;
+    @media (max-width: ${({theme}) => theme.screenSize.medium}) {
+        img{
+            width: 80%;
         }
-    }
-
-    @media (max-width: ${({theme}) => theme.screenSize.mobile}) {
-        margin-bottom: 20px;
     }
 `
 

@@ -30,7 +30,7 @@ export function reducer(state, action) {
                 ...state,
                 [action.field]: {
                     ...state[action.field],
-                    isActive: true,
+                    isActive: action.value,
                 }
             }
 
