@@ -86,7 +86,7 @@ const ContactForm = () => {
                     onFocus={() => reducerActionHandler("setIsMsgFocused", "message", true)}
                     onBlur={() => {
                         reducerActionHandler("setIsMsgFocused", "message", false)
-                        if (!state.email.isActive) {
+                        if (!state.message.isActive) {
                             reducerActionHandler("setIsActive", "message", true)
                         }
                     }}

@@ -7,7 +7,7 @@ export const StyledFieldWrapper = styled.div`
    width: fit-content;
 
    @media (max-width: ${({theme}) => theme.screenSize.mobile}) {
-      margin-bottom: 20px;
+      margin-bottom: 30px;
    }
 `
 

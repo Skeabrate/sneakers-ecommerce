@@ -22,7 +22,7 @@ export const StyledTextareaWrapper = styled.div`
     width: fit-content;
 
     @media (max-width: ${({theme}) => theme.screenSize.mobile}) {
-        margin-bottom: 20px;
+        margin-bottom: 30px;
     }
 `
 
@@ -62,7 +62,7 @@ export const StyledErrorSvg = styled.div`
 
 export const StyledError = styled.div`
     position: absolute;
-    bottom: -20px;
+    bottom: -15px;
     font-size: ${({theme}) => theme.fontSize.s};
     color: ${({theme}) => theme.colors.red};
 `

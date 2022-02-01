@@ -1,3 +1,4 @@
+import { useRef } from "react"
 import { Wrapper }  from "../../GlobalStyledComponents/Wrapper"
 import { StyledTitle } from '../../GlobalStyledComponents/StyledTitle'
 import { StyledTitleOrnament } from '../../GlobalStyledComponents/StyledTitleOrnament';
@@ -6,10 +7,17 @@ import {
    StyledContact,
    StyledImg,
    StyledDetails,
+   StyledDescription
 } from "./Contact.styles"
 import ContactForm from './ContactForm/ContactForm';
+import { useImgLoad } from "../../hooks/useImgLoad"
+import Footer from "./Footer/Footer";
 
 const Contact = () => {
+   const imgRef = useRef(null)
+
+   const { handleLoadImg } = useImgLoad(imgRef.current)
+
    return (
       <Wrapper>
          <StyledContact>
@@ -19,17 +27,21 @@ const Contact = () => {
                   <StyledTitleOrnament />
                </StyledTitle>
 
-               <p style={{ marginBottom: '40px' }}>
+               <StyledDescription>
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde et quam eveniet saepe amet facere magnam, dignissimos ex pariatur!
-               </p>
+               </StyledDescription>
 
                <ContactForm />
                
             </article>
 
             <aside>
-               <StyledImg>
-                  <img alt="contact" src={imgSrc} />
+               <StyledImg ref={imgRef}>
+                  <img 
+                     alt="contact" 
+                     src={imgSrc}
+                     onLoad={handleLoadImg}
+                  />
                </StyledImg>
             </aside>
          </StyledContact>
@@ -56,13 +68,6 @@ const Contact = () => {
                <a href="#" >sneakers@email.com</a>
             </div>
          </StyledDetails>
-
-         <footer>
-            <StyledTitle>
-               Find Us on Google Maps
-               <StyledTitleOrnament />
-            </StyledTitle>
-         </footer>
       </Wrapper>
    );
 };

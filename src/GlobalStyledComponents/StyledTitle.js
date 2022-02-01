@@ -16,6 +16,7 @@ export const StyledTitle = styled.h1`
          }
       }
    }};
+   width: fit-content;
 
    span{
       font-size: ${({theme}) => theme.fontSize.s};
