@@ -1,4 +1,4 @@
-import { useState, useReducer } from 'react';
+import { useState, useReducer, useRef } from 'react';
 import CustomInput from '../../../Components/CustomInput/CustomInput';
 import LoadingButton from "../../../Components/LoadingButton/LoadingButton"
 import { reducer } from "../Reducer/reducer"
@@ -17,6 +17,8 @@ const ContactForm = () => {
     const [state, dispatch] = useReducer(reducer, initialState)
     const [loading, setLoading] = useState(false)
 
+    const formRef = useRef(null)
+
     const resolveInfoOpen = useInfoOpen()
 
     const reducerActionHandler = (type, field, value) => dispatch({ type: type, field: field, value: value, })
@@ -34,15 +36,26 @@ const ContactForm = () => {
             if (!state.message.value) reducerActionHandler("setIsActive", "message", true)
         }
         else {
-            reducerActionHandler("setValue", "name", "")
-            reducerActionHandler("setValue", "email", "")
-            reducerActionHandler("setValue", "message", "")
-            reducerActionHandler("setIsActive", "name", false)
-            reducerActionHandler("setIsActive", "email", false)
-            reducerActionHandler("setIsActive", "message", false)
-            /* setLoading(true) */
-            resolveInfoOpen("Your Message has been sent", true)
-            console.log(state.name.value, state.email.value, state.message.value)
+            
+            setLoading(true)
+            emailjs.sendForm(process.env.REACT_APP_SERVICE_ID, process.env.REACT_APP_TEMPLATE_ID, e.target, process.env.REACT_APP_USER_ID)
+            .then((result) => {
+                resolveInfoOpen("Your Message has been sent", true)
+                setLoading(false)
+                reducerActionHandler("setValue", "name", "")
+                reducerActionHandler("setValue", "email", "")
+                reducerActionHandler("setValue", "message", "")
+                reducerActionHandler("setIsActive", "name", false)
+                reducerActionHandler("setIsActive", "email", false)
+                reducerActionHandler("setIsActive", "message", false)
+
+                console.log(result.text);
+                console.log(state.name.value, state.email.value, state.message.value)
+            }, (error) => {
+                console.log(error.text);
+                resolveInfoOpen("Sorry, we couldn't send your message. Please try again later.", false)
+                setLoading(false)
+            });
         }
     }
 
@@ -77,6 +90,7 @@ const ContactForm = () => {
                 <StyledLabel isFocused={state.message.value || state.message.isFocused} htmlFor="message">Message *</StyledLabel>
                 <StyledTextarea
                     id="message"
+                    name="message"
                     value={state.message.value}
                     onChange={(e) => {
                         reducerActionHandler("setValue", "message", e.currentTarget.value)
