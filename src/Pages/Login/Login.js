@@ -18,7 +18,7 @@ import ModalsContext from "../../Context/ModalsContext"
 import LoadingButton from '../../Components/LoadingButton/LoadingButton';
 import Content from './Content';
 import { useAuth } from '../../hooks/useAuth';
-import ResetPasswordModal from '../../Components/ResetPasswordModal/ResetPasswordModal';
+import ResetPasswordModal from '../../Modals/ResetPasswordModal/ResetPasswordModal';
 
 const SignupSchema = Yup.object().shape({
    email: Yup.string().email('The email address is invalid.').required('The email address is required'),

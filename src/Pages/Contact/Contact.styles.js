@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled, { keyframes, css } from "styled-components"
 
 export const StyledContact = styled.div`
     display: grid;
@@ -22,29 +22,46 @@ export const StyledDescription = styled.p`
     margin-bottom: 40px;
 `
 
+const move = keyframes`
+    from {
+        transform: translate(-60px, -60px);
+    } to {
+        transform: translate(0, 0);
+    }
+`
+
+const animationStart = css`
+    animation: ${move} forwards;
+    animation-duration: .6s;
+
+    @media(max-width: ${({theme}) => theme.screenSize.medium}){
+        animation: unset;
+    }
+`
+
 export const StyledImg = styled.div`
     position: relative;
     display: flex;
     opacity: 0;
 
-    &::after{
+    &::after, &::before{
         content: "";
         position: absolute;
         bottom: -30px;
         right: -30px;
+        background-color: ${({theme}) => theme.colors.orange};
+        ${({start}) => start && animationStart};
+        z-index: -1;
+    }
+
+    &::after{
         height: 20px;
         width: 120px;
-        background-color: ${({theme}) => theme.colors.orange};
     }
 
     &::before{
-        content: "";
-        position: absolute;
-        bottom: -30px;
-        right: -30px;
         height: 120px;
         width: 20px;
-        background-color: ${({theme}) => theme.colors.orange};
     }
 
     img{
@@ -89,7 +106,7 @@ export const StyledImg = styled.div`
 export const StyledDetails = styled.article`
     display: flex;
     justify-content: center;
-    margin-block: 200px;
+    margin-block: 200px 150px;
     column-gap: 6vw;
     position: relative;
 

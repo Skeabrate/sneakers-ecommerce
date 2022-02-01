@@ -11,12 +11,11 @@ import {
 } from "./Contact.styles"
 import ContactForm from './ContactForm/ContactForm';
 import { useImgLoad } from "../../hooks/useImgLoad"
-import Footer from "./Footer/Footer";
 
 const Contact = () => {
    const imgRef = useRef(null)
 
-   const { handleLoadImg } = useImgLoad(imgRef.current)
+   const { isImgLoaded, handleLoadImg } = useImgLoad(imgRef.current)
 
    return (
       <Wrapper>
@@ -36,7 +35,7 @@ const Contact = () => {
             </article>
 
             <aside>
-               <StyledImg ref={imgRef}>
+               <StyledImg ref={imgRef} start={isImgLoaded}>
                   <img 
                      alt="contact" 
                      src={imgSrc}

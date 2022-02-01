@@ -22,5 +22,5 @@ export const useImgLoad = (...img) => {
         } 
     }, [isImgLoaded])
 
-    return { handleLoadImg };
+    return { isImgLoaded, handleLoadImg };
 };

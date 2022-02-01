@@ -11,6 +11,7 @@ import {
     StyledError,
 } from "./ContactForm.styles"
 import { useInfoOpen } from "../../../hooks/useInfoOpen"
+import emailjs from "@emailjs/browser"
 
 const ContactForm = () => {
     const [state, dispatch] = useReducer(reducer, initialState)

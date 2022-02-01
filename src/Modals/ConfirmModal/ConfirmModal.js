@@ -2,8 +2,7 @@ import React from 'react';
 import styled, { keyframes } from "styled-components"
 
 const appear = keyframes`
-    from{
-        
+    from{   
         opacity: 0;
     } to {
         
@@ -22,9 +21,10 @@ const Wrapper = styled.div`
     justify-content: center;
     align-items: center;
     padding: 3vw;
-    box-shadow: 0px 0px 39px -6px rgba(0, 0, 0, 1);
+    box-shadow: 0px 0px 40px -3px rgba(0, 0, 0, 1);
     z-index: 100;
     color: ${({theme}) => theme.colors.white};
+    width: fit-content;
 
     animation: .2s ease-in forwards ${appear};
 
@@ -34,6 +34,10 @@ const Wrapper = styled.div`
         background-color: ${({theme}) => theme.colors.white};
         border: none;
         margin: 15px 10px 0;
+    }
+
+    @media(max-width: ${({theme}) => theme.screenSize.mobile}){
+        width: 90vw;
     }
 `
 

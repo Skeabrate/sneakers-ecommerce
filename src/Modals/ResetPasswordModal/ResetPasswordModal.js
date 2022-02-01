@@ -1,10 +1,10 @@
 import React from 'react';
 import { useAuth } from "../../hooks/useAuth"
-import LoadingButton from "../LoadingButton/LoadingButton"
+import LoadingButton from "../../Components/LoadingButton/LoadingButton"
 import styled, { keyframes } from "styled-components"
 import { Formik, Form } from "formik"
 import * as Yup from "yup"
-import FormikInput from '../FormikInput/FormikInput';
+import FormikInput from '../../Components/FormikInput/FormikInput';
 
 const appear = keyframes`
     from{
@@ -34,14 +34,14 @@ const Wrapper = styled.div`
 
 const StyledBtn = styled.button`
     position: absolute;
-    top: 5px;
-    right: 5px;
+    top: 10px;
+    right: 10px;
     border: none;
     background-color: transparent;
 
     svg{
-        height: 12px;
-        width: 12px;
+        height: 14px;
+        width: 14px;
         fill: ${({theme}) => theme.colors.white};
     }
 `
