@@ -1,6 +1,11 @@
 import React, { useRef } from 'react';
-import { Wrapper, StyledTitle, StyledContent } from "../GlobalStyles.styles"
 import { useAnimation } from '../../../../hooks/useAnimation';
+import { 
+   Wrapper, 
+   StyledTitle, 
+   StyledContent,
+   StyledImg
+} from "../GlobalStyles.styles"
 
 function Description({ product: { title, description, images }, loading }) {
    const wrapperRef = useRef(null)
@@ -9,7 +14,7 @@ function Description({ product: { title, description, images }, loading }) {
    return (
       <Wrapper ref={wrapperRef}>
          {loading ? (
-            <StyledContent count={2} isDesc>
+            <StyledContent count={2}>
                <div>
                   <header>
                      <StyledTitle>{title}</StyledTitle>
@@ -18,9 +23,9 @@ function Description({ product: { title, description, images }, loading }) {
                   <p>{description}</p>
                </div>
 
-               <div>
-                  <img src={images[2].url} alt="sneakers" loading="lazy" />
-               </div>
+               <StyledImg>
+                  <img src={images[2].url} alt="sneakers" />
+               </StyledImg>
             </StyledContent>
          ) : null}
       </Wrapper>

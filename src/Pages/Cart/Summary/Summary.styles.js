@@ -49,7 +49,7 @@ export const Wrapper = styled.section`
     flex-direction: column;
     row-gap: 60px;
     border-left: 1px solid ${({theme}) => theme.colors.grey};
-    box-shadow: ${({theme}) => theme.boxShadow};;
+    box-shadow: ${({theme}) => theme.boxShadow};
 
     header{
         padding: 1.25vw 1.25vw 0;

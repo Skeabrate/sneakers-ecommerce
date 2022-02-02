@@ -1,16 +1,32 @@
 import styled from "styled-components"
 
 export const Wrapper = styled.article`
-   padding: 60px 0px 130px 30px;
    opacity: 0;
    transform: translateY(50px);
+   position: relative;
+   padding: 6vw 3vw;
+   margin: 0 3vw;
 
-   @media (max-width: 1550px){
-      padding: 60px 0px 80px 30px;
+   &::after{
+      display: ${({ isLast }) => isLast && "none"};
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background-color: ${({ theme }) => theme.colors.grey};
+      border-bottom: 2px solid black;
+      border-radius: 100%;
    }
 
-   @media (max-width: ${({theme}) => theme.screenSize.medium}){
-      padding: 40px 0px 60px 30px;
+   @media (max-width: ${({theme}) => theme.screenSize.medium}) {
+      padding: 6vw 1.25vw;
+      margin: 0 1.25vw;
+   }
+
+   @media (max-width: 800px) {
+      padding: 10vw 1.25vw;
    }
 `
 
@@ -20,6 +36,7 @@ export const StyledTitle = styled.h2`
    position: relative;
    width: fit-content;
    padding-bottom: 5px;
+   margin-bottom: 30px;
 
    &::after{
       position: absolute;
@@ -36,16 +53,13 @@ export const StyledTitle = styled.h2`
 export const StyledContent = styled.div`
    display: grid;
    grid-template-columns: ${({count}) => `repeat(${count}, 1fr)`};
+   column-gap: 40px;
+   row-gap: 30px;
+   align-items: ${({isHigh}) => !isHigh && 'center'};
 
    div{
-      margin-right: 30px;
       display: flex;
       flex-direction: column;
-      justify-content: ${({isDesc}) => isDesc ? 'center' : null};
-
-      img{
-         width: 100%;
-      }
 
       p{
          line-height: 1.6;
@@ -58,8 +72,7 @@ export const StyledContent = styled.div`
    }
 
    h3{
-      padding: 30px 0;
-      padding-bottom: ${({isDesc}) => isDesc ? '30px' : '10px'};
+      padding-bottom: ${({isHigh}) => !isHigh ? '30px' : '10px'};
       font-size: ${({theme}) => theme.fontSize.xxs};
       font-style: italic;
       line-height: 1;
@@ -72,15 +85,7 @@ export const StyledContent = styled.div`
    }
 
    @media (max-width: 800px) {
-      grid-template-columns: ${({isDesc, isHigh}) => {
-         if(isDesc) return '1fr'
-         if(isHigh) return '1fr 1fr'
-         else return '1fr'
-      }};
-
-      img{
-         margin-top: 30px;
-      }
+      grid-template-columns: ${({ isHigh }) => isHigh ? '1fr 1fr' : '1fr'};
    }
 
    @media (max-width: ${({theme}) => theme.screenSize.mobile}){
@@ -91,5 +96,57 @@ export const StyledContent = styled.div`
             line-height: 1.3;
          }
       }
+   }
+`
+
+export const StyledImg = styled.div`
+   position: relative;
+   width: fit-content;
+   height: fit-content;
+
+   img{
+      width: 100%;
+   }
+
+   &::after, &::before{
+      content: "";
+      position: absolute;
+      bottom: -30px;
+      right: ${({ isLeft }) => !isLeft && '-30px'};
+      left: ${({ isLeft }) => isLeft && '-30px'};
+      background-color: ${({theme}) => theme.colors.orange};
+   }
+
+   &::after{
+      height: 20px;
+      width: 120px;
+   }
+
+   &::before{
+      height: 120px;
+      width: 20px;
+   }
+
+   @media(max-width: ${({theme}) => theme.screenSize.medium}){
+      &::after{
+         height: 10px;
+         width: 100px;
+         bottom: -20px;
+         left: 0;
+         right: unset;
+      }
+
+      &::before{
+         height: 10px;
+         width: 100px;
+         bottom: -20px;
+         right: 0;
+         left: unset;
+      }
+   }
+
+   @media (max-width: 800px) {
+      grid-column: 1;
+      grid-row: 2;
    }
 `

@@ -1,15 +1,21 @@
 import React, { useRef } from 'react';
-import { Wrapper, StyledTitle, StyledContent } from "../GlobalStyles.styles"
 import { useAnimation } from '../../../../hooks/useAnimation';
 import styled from "styled-components"
 import { specifications } from "../../../../data/specifications"
+import imgSrc from "../../../../Assets/Images/Contact.png"
+import { 
+   Wrapper, 
+   StyledTitle, 
+   StyledContent, 
+   StyledImg 
+} from "../GlobalStyles.styles"
 
 const StyledList = styled.ul`
    column-count: 2;
-   padding: 20px;
+   padding: 0 0 0 20px;
 
    li{
-      padding: 10px 5px;
+      padding: 8px 0px;
       font-size: ${({theme}) => theme.fontSize.xs};
    }
 `
@@ -19,17 +25,23 @@ const Details = ({ loading }) => {
    useAnimation(wrapperRef.current)
 
    return (
-      <Wrapper ref={wrapperRef}>
-         <header>
-            <StyledTitle>SPECIFICATIONS</StyledTitle>
-         </header>
+      <Wrapper ref={wrapperRef} isLast>
+         <StyledContent count={2} isLast>
+            <StyledImg isLeft>
+               <img alt="specifications" src={imgSrc} />
+            </StyledImg>
 
-         <StyledContent count={1}>
-            <StyledList>
-               {specifications.map((spec, index) => (
-                  <li key={index}>{spec}</li>
-               ))}
-            </StyledList>
+            <div>
+               <header>
+                  <StyledTitle>SPECIFICATIONS</StyledTitle>
+               </header>
+
+               <StyledList>
+                  {specifications.map((spec, index) => (
+                     <li key={index}>{spec}</li>
+                  ))}
+               </StyledList>
+            </div>
          </StyledContent>
 
       </Wrapper>

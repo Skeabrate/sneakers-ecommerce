@@ -7,7 +7,7 @@ const Highlights = ({ loading }) => {
    useAnimation(wrapperRef.current)
 
    return (
-      <Wrapper ref={wrapperRef}>
+      <Wrapper ref={wrapperRef} isHigh>
          <header>
             <StyledTitle>HIGHLIGHTS</StyledTitle>
          </header>
