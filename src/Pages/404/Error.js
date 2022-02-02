@@ -19,6 +19,11 @@ const StyledError = styled.div`
 `
 
 const Error = ({label}) => {
+   React.useEffect(() => {
+      window.scrollTo({ top: 0, left: 0 })
+   }, [])
+
+
    return (
       <StyledError>
          <h1>404</h1>

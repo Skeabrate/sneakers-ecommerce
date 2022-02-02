@@ -36,6 +36,10 @@ const Profile = () => {
     const end = useRef(null)
     const position = useStickyTwo(settingsRef, end)
 
+    React.useEffect(() => {
+        window.scrollTo({ top: 0, left: 0 })
+    }, [])
+
     return (
         <div>
             <Wrapper>

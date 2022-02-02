@@ -15,6 +15,10 @@ const Cart = () => {
     const length = useStoreLength(cart)
 
     useEffect(() => {
+        window.scrollTo({ top: 0, left: 0 })
+    }, [])
+
+    useEffect(() => {
         let totalAmount = 0
   
         if(length) {

@@ -30,6 +30,8 @@ const Wishlist = () => {
    const contentLengthRef = useRef(null)
 
    React.useEffect(() => {
+      window.scrollTo({ top: 0, left: 0 })
+
       tl.current = gsap.timeline()
 
       if(tl.current){

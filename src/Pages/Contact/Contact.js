@@ -1,4 +1,4 @@
-import { useRef } from "react"
+import { useRef, useEffect } from "react"
 import { Wrapper }  from "../../GlobalStyledComponents/Wrapper"
 import { StyledTitle } from '../../GlobalStyledComponents/StyledTitle'
 import { StyledTitleOrnament } from '../../GlobalStyledComponents/StyledTitleOrnament';
@@ -16,6 +16,10 @@ const Contact = () => {
    const imgRef = useRef(null)
 
    const { isImgLoaded, handleLoadImg } = useImgLoad(imgRef.current)
+
+   useEffect(() => {
+      window.scrollTo({ top: 0, left: 0 })
+   }, [])
 
    return (
       <Wrapper>

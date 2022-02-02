@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { StyledTitle } from '../../GlobalStyledComponents/StyledTitle'
 import { Wrapper } from "../../GlobalStyledComponents/Wrapper"
 import {
@@ -41,6 +41,10 @@ const Login = () => {
       ...state,
       info: false,
    }))
+
+   useEffect(() => {
+      window.scrollTo({ top: 0, left: 0 })
+   }, [])
 
    return (
       <Wrapper>

@@ -12,13 +12,12 @@ const ProductPage = ({ setIsProductPage }) => {
    const [product, loading, error] = useProductID() // fetch product from context if it exists if not - fetch from CMS
 
    useEffect(() => {
-      window.scrollTo(0, 0)
-      setIsProductPage(true)
+      window.scrollTo({ top: 0, left: 0 })
 
       return () => {
          setIsProductPage(false)
       }
-   }, [setIsProductPage])
+   }, [])
 
    return (
       <section>
