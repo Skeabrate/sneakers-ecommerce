@@ -20,3 +20,5 @@ Technologies I used for this project:
 
 - Log in - form component using Formik with Yup validation
 - Registration - custom form component with custom validation
+
+- Sending emails with emailJS - contact page
