@@ -23,9 +23,7 @@ Main technologies I used in this project:
 
 You can use my account to test the application:
 
-email: sebastianswiecz458@gmail.com
-
-password: test123
+email: sebastianswiecz458@gmail.com, password: test123
 
 Podział strony:
 
