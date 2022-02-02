@@ -21,6 +21,10 @@ Main technologies I used in this project:
 - react-spinners: loading state spinners.
 - https://excalidraw.com/ and https://www.figma.com : designing layouts.
 
+You can use my account to test the application:
+email: sebastianswiecz458@gmail.com
+password: test123
+
 Podział strony:
 
 1. Hero Page - intro ( https://sneakers-b80b7.web.app/ ) :
