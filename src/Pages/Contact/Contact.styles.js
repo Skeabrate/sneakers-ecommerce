@@ -24,15 +24,16 @@ export const StyledDescription = styled.p`
 
 const move = keyframes`
     from {
-        transform: translate(-60px, -60px);
-    } to {
         transform: translate(0, 0);
+    } to {
+        transform: translate(60px, 60px);
     }
 `
 
 const animationStart = css`
     animation: ${move} forwards;
     animation-duration: .6s;
+    animation-delay: .2s;
 
     @media(max-width: ${({theme}) => theme.screenSize.medium}){
         animation: unset;
@@ -47,8 +48,8 @@ export const StyledImg = styled.div`
     &::after, &::before{
         content: "";
         position: absolute;
-        bottom: -30px;
-        right: -30px;
+        bottom: 30px;
+        right: 30px;
         background-color: ${({theme}) => theme.colors.orange};
         ${({start}) => start && animationStart};
         z-index: -1;
