@@ -22,7 +22,9 @@ Main technologies I used in this project:
 - https://excalidraw.com/ and https://www.figma.com : designing layouts.
 
 You can use my account to test the application:
+
 email: sebastianswiecz458@gmail.com
+
 password: test123
 
 Podział strony:
