@@ -8,7 +8,6 @@ const center = css`
 `
 
 export const StyledContentWrapper = styled.div`
-   background-color: white;
    max-width: 100%;
 `
 
@@ -23,15 +22,15 @@ export const StyledList = styled.ul`
    ${center};
    list-style: none;
    height: 60px;
-   background-color: white;
-   border-top: 1px solid ${({theme}) => theme.colors.lightGrey};
-   border-bottom: 1px solid ${({theme}) => theme.colors.lightGrey};
+   background-color: ${({theme}) => theme.colors.darkBlack};
    position: ${({isSticky}) => isSticky ? 'relative' : 'fixed'};
    width: ${({isSticky}) => isSticky ? 'unset' : '72.5%'};
    top: 0;
    left: 0;
    z-index: 1;
    overflow: hidden;
+   border-top: 1px solid ${({theme}) => theme.colors.grey};
+   border-bottom: 1px solid ${({theme}) => theme.colors.grey};
 
    @media (max-width: ${({theme}) => theme.screenSize.medium}){
       width: ${({isSticky}) => isSticky ? 'unset' : '100%'};

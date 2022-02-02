@@ -1,18 +1,5 @@
 import styled from "styled-components"
 
-export const StyledMoveToWishBtn = styled.button`
-   width: fit-content;
-   background: none;
-   text-decoration: underline;
-   border: none;
-   font-size: ${({theme}) => theme.fontSize.xs};
-   font-style: italic;
-
-   @media(max-width: ${({theme}) => theme.screenSize.mobile}){
-      font-size: ${({theme}) => theme.fontSize.s};
-   }
-`
-
 export const Wrapper = styled.article`
    position: relative;
    display: flex;
@@ -30,8 +17,12 @@ export const Wrapper = styled.article`
       line-height: 1;
    }
 
+   @media(max-width: ${({theme}) => theme.screenSize.medium}){
+      border-bottom: none;
+   }
+
    @media(max-width: ${({theme}) => theme.screenSize.mobile}){
-      padding: 15px 25px 65px 5px;
+      padding: 15px 25px 65px 0px;
 
       h3{
          font-size: ${({ theme }) => theme.fontSize.xs};
@@ -59,15 +50,16 @@ export const StyledRemoveButton = styled.button`
    display: flex;
 
    svg{
-      fill: ${({theme}) => theme.colors.grey};
+      fill: ${({theme}) => theme.colors.orange};
       width: 16px;
       height: 16px;
    }
 
    @media(max-width: ${({theme}) => theme.screenSize.mobile}){
       top: 35px;
-      right: -20px;
       left: unset;
+      right: 0px;
+      justify-content: flex-end;
 
       svg{
          width: 14px;
@@ -123,29 +115,29 @@ export const StyledDetails = styled.div`
    }
 `
 
+export const StyledMoveToWishBtn = styled.button`
+   width: fit-content;
+   background: none;
+   text-decoration: underline;
+   border: none;
+   font-size: ${({theme}) => theme.fontSize.xs};
+   font-style: italic;
+   color: ${({theme}) => theme.colors.orange};
+
+   @media(max-width: ${({theme}) => theme.screenSize.mobile}){
+      font-size: ${({theme}) => theme.fontSize.s};
+   }
+`
+
 export const StyledAmount = styled.div`
    display: flex;
    align-items: center;
    column-gap: 50px;
 
-   input {
-      color: ${({theme}) => theme.colors.black};
-
-      &:focus{
-         outline: 2px solid ${({theme}) => theme.colors.orange};
-      }
-   }
-
-   button{
-      &:focus{
-         outline: 2px solid ${({theme}) => theme.colors.orange};
-      }
-   }
-
    @media(max-width: ${({theme}) => theme.screenSize.mobile}){
       position: absolute;
       bottom: 15px;
-      left: 5px;
+      left: 0px;
    }
 `
 
@@ -164,7 +156,6 @@ export const StyledTotal = styled.div`
    @media(max-width: ${({theme}) => theme.screenSize.mobile}){
       top: unset;
       bottom: 15px;
-      right: 5px;
    }
 `
 

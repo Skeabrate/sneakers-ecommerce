@@ -10,8 +10,8 @@ export const StyledShopp = styled.div`
    z-index: 1;
    height: fit-content;
    min-height: 100vh;
-   color: ${({theme}) => theme.colors.white};
-   background-color: ${({theme}) => theme.colors.black};
+   box-shadow: ${({theme}) => theme.boxShadow};;
+   border-left: 1px solid ${({theme}) => theme.colors.grey};
 
    transition: top .3s ease-in-out;
 
@@ -21,9 +21,10 @@ export const StyledShopp = styled.div`
 
    @media (max-width:  ${({theme}) => theme.screenSize.medium}){
       display: ${({isMobile, isDesktop}) => {
-      if(isMobile) return 'block'
-      if(isDesktop) return 'none'
-   }};
+         if(isMobile) return 'block'
+         if(isDesktop) return 'none'
+      }};
+      border-left: none;
       position: relative;
       width: 100%;
       overflow: unset;
@@ -175,7 +176,7 @@ export const StyledInfoItem = styled.div`
    margin: 30px 0;
 
    p{
-      color: green;
+      color: ${({theme}) => theme.colors.green};
       font-weight: bold;
       margin-top: 10px;
    }

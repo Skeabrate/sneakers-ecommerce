@@ -1,8 +1,7 @@
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 
 export const Wrapper = styled.div`
     position: relative;
-    margin-top: 80px;
     color: ${({theme}) => theme.colors.white};
     display: grid;
     grid-template-columns: auto 1fr;
@@ -14,20 +13,18 @@ export const Wrapper = styled.div`
     @media(max-width: ${({theme}) => theme.screenSize.medium}){
         grid-template-columns: 1fr;
     }
-
-    @media(max-width: ${({theme}) => theme.screenSize.mobile}){
-        margin-top: 60px;
-    }
 `
 
 // Settings - left
 export const StyledSettings = styled.section`
-    background-color: ${({theme}) => theme.colors.orange};
     padding: 3vw;
+    padding-top: calc(3vw + 80px);
     height: fit-content;
     position: sticky;
     top: ${({position}) => `${(-1) * position}px`};
     min-height: 100vh;
+    box-shadow: ${({theme}) => theme.boxShadow};
+    border-right: 1px solid ${({theme}) => theme.colors.grey};
 
     transition: top .3s ease-in-out;
 
@@ -37,6 +34,12 @@ export const StyledSettings = styled.section`
 
     @media(max-width: ${({theme}) => theme.screenSize.medium}){
         position: static;
+        border-bottom: 1px solid ${({theme}) => theme.colors.grey};
+        border-right: none;
+    }
+
+    @media(max-width: ${({theme}) => theme.screenSize.mobile}){
+        padding-top: calc(3vw + 60px);
     }
 `
 
@@ -107,8 +110,8 @@ export const StyledForgotPassword = styled.div`
     }
 `
 
-export const StyledLogoutDesktop = styled.button`
-    position: ${({isSticky}) => isSticky ? 'absolute' : 'fixed'};
+const buttonStyles = css`
+    position: ${({ isSticky }) => isSticky ? 'absolute' : 'fixed'};
     bottom: 0;
     right: 0;
     width: 191px;
@@ -159,9 +162,30 @@ export const StyledLogoutDesktop = styled.button`
         outline: none;
     }
 
-    &:focus span{
-        border: 2px solid white;
+    @media(max-width: ${({ theme }) => theme.screenSize.medium}){
+        position: absolute;
+        bottom: -3vw;
+        right: -3vw;    
     }
+
+    @media (max-width: 750px){
+        font-size: ${({ theme }) => theme.fontSize.xs};
+    }
+
+    @media (max-width: ${({ theme }) => theme.screenSize.mobile}){
+        font-size: ${({ theme }) => theme.fontSize.s};
+        width: 123px;
+        height: 123px;
+
+        span{
+            width: 60px;
+            height: 60px;
+        }
+    }
+`
+
+export const StyledLogoutDesktop = styled.button`
+    ${buttonStyles};
 
     @media(max-width: ${({theme}) => theme.screenSize.medium}){
         display: none;
@@ -170,93 +194,9 @@ export const StyledLogoutDesktop = styled.button`
 
 export const StyledLogoutMobile = styled.button`
     display: none;
+    ${buttonStyles};
 
-    @media (max-width: ${({ theme }) => theme.screenSize.medium}){
+    @media(max-width: ${({theme}) => theme.screenSize.medium}){
         display: block;
-        position: absolute;
-        bottom: -3vw;
-        right: -3vw;
-        width: 191px;
-        height: 191px;
-        color: ${({ theme }) => theme.colors.orange};
-        font-size: 1rem;
-        background: transparent;
-        border: none;
-        font-weight: bold;
-        font-style: italic;
-        z-index: 10;
-        clip-path: polygon(100% 0, 0% 100%, 100% 100%);
-        overflow: hidden;
-
-        span{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: absolute;
-            right: 10px;
-            bottom: 10px;
-            border-radius: 100px;
-            width: 100px;
-            height: 100px;
-            background-color: ${({ theme }) => theme.colors.white};
-
-            &::after{
-                content: "";
-                position: absolute;
-                right: 50%;
-                bottom: 50%;
-                transform: translate(50%, 50%);
-                border-radius: 100px;
-                width: 100%;
-                height: 100%;
-                background-color: ${({ theme }) => theme.colors.white};
-                z-index: -1;
-
-                transition: transform .4s ease-in-out;
-            }
-        }
-
-        &:hover span::after{
-            transform: translate(50%, 50%) scale(5);
-        }
-
-        &:focus{
-            outline: none;
-        }
-
-        &:focus span{
-            border: 2px solid white;
-        }
-    }
-
-    @media (max-width: 750px){
-        font-size: ${({ theme}) => theme.fontSize.xs};
-    }
-
-    @media (max-width: ${({ theme }) => theme.screenSize.mobile}){
-        font-size: ${({ theme}) => theme.fontSize.s};
-        width: 123px;
-        height: 123px;
-
-        span{
-            width: 60px;
-            height: 60px;
-            background-color: ${({ theme }) => theme.colors.white};
-
-            &::after{
-                content: "";
-                position: absolute;
-                right: 50%;
-                bottom: 50%;
-                transform: translate(50%, 50%);
-                border-radius: 100px;
-                width: 100%;
-                height: 100%;
-                background-color: ${({ theme }) => theme.colors.white};
-                z-index: -1;
-
-                transition: transform .4s ease-in-out;
-            }
-        }
     }
 `

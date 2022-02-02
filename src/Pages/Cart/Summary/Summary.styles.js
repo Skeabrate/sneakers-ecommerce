@@ -38,17 +38,18 @@ const before = css`
 
 export const Wrapper = styled.section`
     position: sticky;
-    top: 80px;
-    background-color: ${({theme}) => theme.colors.black};
-    color: ${({theme}) => theme.colors.white};
+    top: 0px;
     overflow-y: auto;
     padding: 1.25vw;
+    padding-top: calc(80px + 1.25vw);
     height: fit-content;
-    min-height: calc(100vh - 80px);
+    min-height: calc(100vh);
     text-transform: uppercase;
     display: flex;
     flex-direction: column;
     row-gap: 60px;
+    border-left: 1px solid ${({theme}) => theme.colors.grey};
+    box-shadow: ${({theme}) => theme.boxShadow};;
 
     header{
         padding: 1.25vw 1.25vw 0;
@@ -63,6 +64,8 @@ export const Wrapper = styled.section`
         min-height: unset;
         padding: 0 1.25vw 30px;
         row-gap: 40px;
+        border-left: none;
+        border-top: 1px solid ${({theme}) => theme.colors.grey};
 
         h3{
             font-size: ${({theme}) => theme.fontSize.xs}

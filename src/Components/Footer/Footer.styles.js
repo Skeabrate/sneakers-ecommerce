@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export const StyledFooter = styled.footer`
    color: ${({theme}) => theme.colors.white};
-   background-color: black;
+   background-color: ${({theme}) => theme.colors.darkBlack};;
    display: flex;
    flex-direction: column;
    justify-content: center;

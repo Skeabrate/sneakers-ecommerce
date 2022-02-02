@@ -3,7 +3,8 @@ import { createGlobalStyle } from "styled-components";
 export const GlobalStyle = createGlobalStyle`
    html{
       box-sizing: border-box;
-      background-color: #1a1a1a;
+      background-color: #252422;
+      color: #EEF0F2;
    }
 
    *, *::after, *::before{

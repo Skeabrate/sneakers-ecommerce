@@ -3,6 +3,7 @@ import styled from "styled-components"
 export const Wrapper = styled.section`
     padding: 3vw;
     overflow: hidden;
+    margin-top: 80px;
     
     table{
         margin-block: 15px 30px;
@@ -11,6 +12,10 @@ export const Wrapper = styled.section`
 
     td{
         padding: 0px 40px 0 0;
+    }
+
+    @media(max-width: ${({theme}) => theme.screenSize.medium}){
+        margin-top: 3vw; 
     }
 
     @media(max-width: ${({theme}) => theme.screenSize.mobile}){
@@ -22,9 +27,7 @@ export const Wrapper = styled.section`
         td{
             padding: 0px 20px 0 0;
         }
-    }
 
-    @media(max-width: ${({theme}) => theme.screenSize.mobile}){
         h3{
             font-size: ${({ theme }) => theme.fontSize.xs};
         }
@@ -49,10 +52,11 @@ export const StyledShoppingItem = styled.article`
         content: "";
         position: absolute;
         width: 100%;
-        height: 4px;
+        height: 5px;
         left: 0;
         bottom: -52px;
         background-color: ${({theme}) => theme.colors.grey};
+        border-bottom: 2px solid black;
         border-radius: 100%;
     }
 

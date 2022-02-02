@@ -1,13 +1,12 @@
 import styled from "styled-components"
 
 export const Wrapper = styled.div`
-    background-color: ${({theme}) => theme.colors.black};
+    background-color: ${({theme}) => theme.colors.orange};
     padding: 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-radius: 5px;
 
     *::selection{
         background-color: ${({theme}) => theme.colors.orange} !important;

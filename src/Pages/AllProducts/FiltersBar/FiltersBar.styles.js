@@ -8,7 +8,7 @@ export const StyledFiltersBar = styled.div`
    width: ${({isSticky}) => isSticky ? 'unset' : `calc(100% - 6vw)`};
    display: flex;
    justify-content: space-between;
-   background-color: ${({isSticky, theme}) => isSticky ? `${theme.colors.black}` : 'black'};
+   background-color: ${({isSticky, theme}) => isSticky ? theme.colors.black : theme.colors.darkBlack};
    padding: ${({isSticky}) => isSticky ? '5px 0' : '5px 10px'};
    border-top: 1px solid ${({theme}) => theme.colors.grey};
    border-bottom: 1px solid ${({theme}) => theme.colors.grey};;

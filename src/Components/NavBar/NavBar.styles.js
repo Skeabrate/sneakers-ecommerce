@@ -20,12 +20,12 @@ export const Wrapper = styled.nav`
    justify-content: space-between;
    padding: 0 3vw;
    align-items: center;
-   background-color: black;
+   background-color: ${({theme}) => theme.colors.darkBlack};
    color: ${({theme}) => theme.colors.white};
    height: 80px;
    font-size: ${({theme}) => theme.fontSize.xxs};
    z-index: 99999;
-   box-shadow: 0px 0px 5px -1px rgba(0, 0, 0, 1);
+   box-shadow: ${({theme}) => theme.boxShadow};
    
    transition: transform .3s .2s ease-in-out,
                opacity .3s .2s ease-in-out;

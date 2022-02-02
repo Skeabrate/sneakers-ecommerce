@@ -129,7 +129,7 @@ const ProfileImage = () => {
                 
 
                 <br />
-                <LoadingButton isBlack loading={loading} onClick={submitHandler} label="Save" />
+                <LoadingButton loading={loading} onClick={submitHandler} label="Save" />
             </StyledContent>
         </Wrapper>
     );

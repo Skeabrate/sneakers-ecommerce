@@ -47,7 +47,7 @@ const Profile = () => {
                     <header>
                         <StyledTitle>
                             profile
-                            <StyledTitleOrnament isBlack />
+                            <StyledTitleOrnament />
                         </StyledTitle>
                     </header>
 
@@ -72,14 +72,14 @@ const Profile = () => {
                                     <StyledOption>ZIP / Postal Code : <StyledSpan>34-563</StyledSpan></StyledOption>
 
                                     <div style={{ marginTop: '30px' }}>
-                                        <LoadingButton onClick={() => console.log('change address')} label="Update Address" />
+                                        <LoadingButton onClick={() => console.log('change address')} label="Update Address" isBlack />
                                     </div>
                                 </div>
                             </StyledProfileInfo>
 
                             <StyledForgotPassword>
                                 <StyledDetailTitle>Forgot Your Password ?</StyledDetailTitle>
-                                <LoadingButton loading={loading} onClick={() => setOpenConfirm(true)} label="Reset Password" />
+                                <LoadingButton loading={loading} onClick={() => setOpenConfirm(true)} label="Reset Password" isBlack />
                             </StyledForgotPassword>
                             
 

@@ -1,10 +1,13 @@
 import styled from "styled-components"
 
 export const Wrapper = styled.section`
-    background-color: white;
     padding: 3vw;
+    margin-top: 80px;
     min-height: calc(100vh - 80px);
-    color: ${({theme}) => theme.colors.black};
+
+    @media(max-width: ${({theme}) => theme.screenSize.mobile}){
+        margin-top: 60px;
+    }
 `
 
 export const StyledEnding = styled.div`

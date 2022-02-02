@@ -36,7 +36,7 @@ const Items = ({ cart, length }) => {
                 <StyledTitle>
                     your bag
                     <span ref={contentLengthRef}>[ { length } ]</span>
-                    <StyledLinkToHome label="GO BACK SHOPPING" title="all products" path="AllProducts" isHeader />
+                    <StyledLinkToHome label="GO BACK SHOPPING" title="all products" path="AllProducts" isHeader isWhite />
                     <StyledTitleOrnament />
                 </StyledTitle>
             </header>
