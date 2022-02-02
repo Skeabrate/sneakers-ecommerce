@@ -13,6 +13,7 @@ const ProductPage = ({ setIsProductPage }) => {
 
    useEffect(() => {
       window.scrollTo({ top: 0, left: 0 })
+      setIsProductPage(true)
 
       return () => {
          setIsProductPage(false)
