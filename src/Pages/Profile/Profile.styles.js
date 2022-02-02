@@ -28,10 +28,6 @@ export const StyledSettings = styled.section`
 
     transition: top .3s ease-in-out;
 
-    *::selection{
-        background-color: ${({theme}) => theme.colors.black};
-    }
-
     @media(max-width: ${({theme}) => theme.screenSize.medium}){
         position: static;
         border-bottom: 1px solid ${({theme}) => theme.colors.grey};
