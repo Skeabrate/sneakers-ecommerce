@@ -1,4 +1,7 @@
 import React from 'react';
+import {
+   Wrapper,
+} from "./About.styles"
 
 const About = () => {
    
@@ -7,9 +10,9 @@ const About = () => {
    }, [])
 
    return (
-      <div style={{height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', color: 'white', fontSize: '2rem'}}>
+      <Wrapper>
          About us
-      </div>
+      </Wrapper>
    );
 };
 
