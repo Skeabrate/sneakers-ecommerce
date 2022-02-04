@@ -3,6 +3,10 @@ import styled from "styled-components"
 import { StyledTitle } from '../../../GlobalStyledComponents/StyledTitle';
 
 const Wrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     padding: 30px 50px 0px 50px;
 

@@ -115,8 +115,9 @@ export const StyledDetails = styled.article`
         content: "";
         position: absolute;
         width: 80%;
-        height: 4px;
-        background-color: ${({theme}) => theme.colors.orange};
+        height: 5px;
+        background-color: ${({theme}) => theme.colors.grey};
+        border-bottom: 2px solid ${({theme}) => theme.colors.darkBlack};
         top: -50px;
         border-radius: 100%;
     }

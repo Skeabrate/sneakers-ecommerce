@@ -118,7 +118,7 @@ const AllProducts = ({ AllProducts }) => {
                <>
                   {error ? (
                      <StyledError>
-                        <h1>Nothing was found! :C</h1>
+                        <h1>Nothing was found!</h1>
                      </StyledError>
                   ) : (
                      <div>

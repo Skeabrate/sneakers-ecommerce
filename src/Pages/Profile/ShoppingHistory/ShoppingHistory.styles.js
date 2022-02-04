@@ -56,7 +56,7 @@ export const StyledShoppingItem = styled.article`
         left: 0;
         bottom: -52px;
         background-color: ${({theme}) => theme.colors.grey};
-        border-bottom: 2px solid black;
+        border-bottom: 2px solid ${({theme}) => theme.colors.darkBlack};
         border-radius: 100%;
     }
 

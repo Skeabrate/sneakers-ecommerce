@@ -26,7 +26,7 @@ const Contact = () => {
          <StyledContact>
             <article>
                <StyledTitle>
-                  Contact
+                  Contact us
                   <StyledTitleOrnament />
                </StyledTitle>
 

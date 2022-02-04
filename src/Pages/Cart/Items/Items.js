@@ -52,7 +52,7 @@ const Items = ({ cart, length }) => {
                             />
                         ))}
                     </div>         
-                ) : <h3>Your bag is empty</h3>}
+                ) : <h3 style={{ fontStyle: 'italic' }}>Your bag is empty</h3>}
             </div>
         </Wrapper>
     );

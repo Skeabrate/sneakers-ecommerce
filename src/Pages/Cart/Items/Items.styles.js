@@ -7,6 +7,7 @@ export const Wrapper = styled.section`
 
     @media(max-width: ${({theme}) => theme.screenSize.mobile}){
         margin-top: 60px;
+        min-height: calc(100vh - 60px);
     }
 `
 
