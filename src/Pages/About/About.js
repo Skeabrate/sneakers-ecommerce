@@ -53,7 +53,7 @@ const About = () => {
                y: 0,
                duration: .4,
                stagger: .05,
-            })
+            }, "-=.15s")
             .to(arrowRef.current, {
                x: '140%',
                duration: .6,
