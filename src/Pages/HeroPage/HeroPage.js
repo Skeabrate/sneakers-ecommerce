@@ -35,7 +35,7 @@ const HeroPage = () => {
             .to(heroRef.current, {
                opacity: 1,
                scale: 1,
-               duration: 1.1,
+               duration: .8,
             })
             .to(textBackgroundRef.current, {
                opacity: 0.4,

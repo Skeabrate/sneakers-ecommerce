@@ -15,7 +15,7 @@ export const StyledHeroImage = styled.div`
    flex-direction: column;
    background: url(${({ hero }) => hero}) center/cover no-repeat;
    opacity: 0.6;
-   transform: scale(1.2);
+   transform: scale(1.1);
    position: relative;
 `
 
