@@ -20,7 +20,7 @@ const Content = ({ product, loading,  }) => {
    const [cheatActive, setCheatActive] = useState(false)
    const navRef = useRef(null)
 
-   const { isSticky } = useSticky(navRef.current)
+   const { isSticky } = useSticky(navRef)
 
    return (
       <StyledContentWrapper>

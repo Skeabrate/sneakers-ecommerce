@@ -18,10 +18,10 @@ export const useSticky = (ref) => {
 
    useEffect(() => {
       const observer = new IntersectionObserver(callbackFunction, options)
-      if(ref) observer.observe(ref)
+      if(ref?.current) observer.observe(ref.current)
 
-      return () => ref && observer.unobserve(ref)
-   }, [ref, options])
+      return () => ref.current && observer.unobserve(ref.current)
+   }, [ref.current, options])
 
    return { isSticky }
 };

@@ -30,7 +30,7 @@ const Profile = () => {
     const { logOutHandler, resetPasswordHandler, loading } = useAuth()
 
     const stickyRef = useRef(null)
-    const { isSticky } = useSticky(stickyRef.current)
+    const { isSticky } = useSticky(stickyRef)
 
     const settingsRef = useRef(null)
     const end = useRef(null)
