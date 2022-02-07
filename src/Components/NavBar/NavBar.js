@@ -24,7 +24,6 @@ import AuthContext from "../../Context/AuthContext"
 const NavBar = ({ isProductPage }) => {
    const [toggle, setToggle] = useState(false)
    const [hideNav, setHideNav] = useState(false)
-   const [locationChange, setLocationChange] = useState('')
 
    const cart = useSelector((state) => state.cart)
    const favorite = useSelector((state) => state.favorite)
@@ -60,8 +59,7 @@ const NavBar = ({ isProductPage }) => {
    }, [])
 
    React.useEffect(() => {
-      setLocationChange(location.pathname)
-      if(location.pathname !== locationChange) setToggle(false)
+      if(toggle) setToggle(false)
    }, [location.pathname])
 
    if(location.pathname === `/`) return null
