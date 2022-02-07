@@ -10,19 +10,23 @@ import {
     StyledBackgroundLeft,
     StyledBackgroundRight,
 } from "./AboutHero.styles"
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger)
 
 const AboutHero = () => {
     const tl = useRef(null)
 
-   const firstTitleRef = useRef(null)
-   const secondTitleRef = useRef(null)
-   const thirdTitleRef = useRef(null)
+    const titleRef = useRef(null)
+    const firstTitleRef = useRef(null)
+    const secondTitleRef = useRef(null)
+    const thirdTitleRef = useRef(null)
 
-   const backgroundLeftRef = useRef(null)
-   const backgroundRightRef = useRef(null)
+    const backgroundLeftRef = useRef(null)
+    const backgroundRightRef = useRef(null)
 
-   const wrapperRef = useRef(null)
-   const arrowRef = useRef(null)
+    const wrapperRef = useRef(null)
+    const arrowRef = useRef(null)
    
     useEffect(() => {
         var image = document.createElement('img')
@@ -51,17 +55,35 @@ const AboutHero = () => {
                     stagger: .05,
                 }, "-=.15s")
                 .to(arrowRef.current, {
-                    opacity: 1,
+                    opacity: 0.8,
                     duration: .6,
                 })
         }
+
+        /*  gsap.to(titleRef.current, {
+            letterSpacing: '20px',
+            scrollTrigger: {
+                trigger: wrapperRef.current,
+                start: 'top',
+                scrub: 1,
+            }
+        }) */
+
+        /* gsap.to(wrapperRef.current, {
+            opacity: 0,
+            scrollTrigger: {
+                trigger: wrapperRef.current,
+                start: 'top',
+                scrub: 1,
+            }
+        }) */
     }, [])
 
     return (
         <Wrapper>
             <StyledHeroImg ref={wrapperRef} />
 
-            <StyledHeroTitle>
+            <StyledHeroTitle ref={titleRef}>
                 <span ref={firstTitleRef}>About</span> 
                 <span ref={secondTitleRef}>Our</span> 
                 <span ref={thirdTitleRef}>Company</span>
@@ -69,8 +91,14 @@ const AboutHero = () => {
                 <StyledBackgroundRight ref={backgroundRightRef} />
             </StyledHeroTitle>
 
-            <StyledArrow ref={arrowRef}>
-                <img alt="arrow" src={arrowImg} />
+            <StyledArrow 
+                to="content"
+                smooth={true}
+                duration={400}
+                spy={true}
+                exact={true}
+            >
+                <img alt="arrow" src={arrowImg} ref={arrowRef} />
             </StyledArrow>
         </Wrapper>
     );

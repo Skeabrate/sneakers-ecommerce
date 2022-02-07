@@ -6,6 +6,7 @@ import {
 import AboutHero from './AboutHero/AboutHero';
 import AboutContent from './AboutContent/AboutContent';
 import AboutFooter from './AboutFooter/AboutFooter';
+import { Element } from "react-scroll"
 
 const About = () => {
    
@@ -16,8 +17,10 @@ const About = () => {
    return (
       <Wrapper>
          <AboutHero />
-         
-         <AboutContent />
+
+         <Element name="content">
+            <AboutContent />
+         </Element>
 
          <AboutFooter />
       </Wrapper>

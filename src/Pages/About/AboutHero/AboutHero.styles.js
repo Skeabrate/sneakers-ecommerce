@@ -1,14 +1,12 @@
 import styled, { css } from "styled-components"
 import heroImg from "../../../Assets/Images/aboutHero.jpg"
+import { Link } from "react-scroll"
 
 export const Wrapper = styled.section`
     position: relative;
     height: 100vh;
     width: 100vw;
     background-color: #c1a98d;
-    transform: translateZ(-199px) scale(3.01);
-    transform-style: preserve-3d;
-    z-index: -1;
 `
 
 export const StyledHeroImg = styled.div`
@@ -38,7 +36,7 @@ export const StyledHeroTitle = styled.h1`
     text-transform: uppercase;
     text-align: center;
     text-shadow: 3px 3px 0px ${({theme}) => theme.colors.darkBlack};
-    transform: translateX(-50%) translateY(-50%) translateZ(100px) scale(0.666);
+    transform: translateX(-50%) translateY(-50%);
     overflow: hidden;
     padding: 20px;
 
@@ -83,21 +81,19 @@ export const StyledBackgroundRight = styled.div`
     ${background};
 `
 
-export const StyledArrow = styled.button`
+export const StyledArrow = styled(Link)`
     position: absolute;
     left: 50%;
-    bottom: 16%;
-    transform: translateX(-50%) translateZ(100px) rotate(90deg) scale(0.666);
-    background-color: transparent;
-    border: none;
+    bottom: 10px;
+    transform: translateX(-50%) rotate(90deg);
     width: 150px;
     border-radius: 100%;
-    opacity: 0;
+    cursor: pointer;
 
     img{
         width: 100%;
         transition: transform .2s ease-in-out;
-        opacity: 0.8;
+        opacity: 0;
     }
 
     &:hover img{
