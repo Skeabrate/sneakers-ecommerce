@@ -1,11 +1,11 @@
-import styled, { css } from "styled-components"
+import styled from "styled-components"
 import heroImg from "../../../Assets/Images/aboutHero.jpg"
 import { Link } from "react-scroll"
 
 export const Wrapper = styled.section`
     position: relative;
-    height: 100vh;
-    width: 100vw;
+    width: 100%;
+    height: 80vh;
     background-color: #c1a98d;
 `
 
@@ -20,86 +20,64 @@ export const StyledHeroImg = styled.div`
     transform: scale(0.9);
 `
 
-export const StyledHeroTitle = styled.h1`
+export const StyledHeroTitle = styled.header`
     position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    column-gap: 20px;
-    top: 50%;
+    top: 100px;
     left: 50%;
-    color: ${({theme}) => theme.colors.white};
-    font-size: 70px;
-    width: 100%;
-    background-color: transparent;
+    width: fit-content;
+    transform: translateX(-50%);
+    font-size: ${({theme}) => theme.fontSize.xxl};
     font-family: 'Shadows Into Light', cursive;
-    text-transform: uppercase;
-    text-align: center;
-    text-shadow: 3px 3px 0px ${({theme}) => theme.colors.darkBlack};
-    transform: translateX(-50%) translateY(-50%);
-    overflow: hidden;
-    padding: 20px;
+    font-style: italic;
+    padding: 0 10px;
+    text-shadow: 3px 3px 0px ${({theme}) => theme.colors.black};
 
-    span{
+    h1{
         display: block;
-        transform: translateY(100%);
         overflow: hidden;
-        opacity: 0;
+        padding: 0 5px;
 
+        span{
+            display: block;
+            height: fit-content;
+            line-height: 1;
+            transform: translateY(100%);
+        }
     }
 
-    @media(max-width: ${({theme}) => theme.screenSize.medium}){
-        font-size: 50px;
+    div{
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 100%;
+        height: 7px;
+        border-radius: 100%;
+        transform-origin: center;
+        transform: scaleX(0);
+        background-color: ${({theme}) => theme.colors.white};   
+        border-bottom: 3px solid ${({theme}) => theme.colors.darkBlack};
     }
-
-    @media(max-width: ${({theme}) => theme.screenSize.mobile}){
-        font-size: ${({theme}) => theme.fontSize.xl};
-        column-gap: 10px;
-    }
-`
-
-const background = css`
-    position: absolute;
-    width: 50%;
-    height: 100%;
-    opacity: 0;
-    background-color: black;
-    z-index: -1;
-`
-
-export const StyledBackgroundLeft = styled.div`
-    left: 0;
-    top: 0;
-    transform-origin: left;
-    transform: translateX(-100%);
-    ${background};
-`
-
-export const StyledBackgroundRight = styled.div`
-    top: 0;
-    right: 0;
-    transform-origin: right;
-    transform: translateX(100%);
-    ${background};
 `
 
 export const StyledArrow = styled(Link)`
     position: absolute;
     left: 50%;
-    bottom: 10px;
+    bottom: -20px;
     transform: translateX(-50%) rotate(90deg);
-    width: 150px;
+    width: 80px;
     border-radius: 100%;
-    cursor: pointer;
+    cursor: pointer; 
 
-    img{
-        width: 100%;
-        transition: transform .2s ease-in-out;
+    svg{
+        width: 30px;
+        height: 30px;
+        transition: transform .3s ease-in-out;
         opacity: 0;
+        fill: ${({theme}) => theme.colors.black};
     }
 
-    &:hover img{
-        transform: translateX(5px) scale(1.05);
+    &:hover svg{
+        transform: scale(1.2);
     }
 
     @media(max-width: ${({theme}) => theme.screenSize.mobile}){

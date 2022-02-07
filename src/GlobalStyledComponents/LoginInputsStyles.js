@@ -78,3 +78,22 @@ export const StyledError = styled.div`
    font-size: ${({theme}) => theme.fontSize.s};
    color: ${({theme}) => theme.colors.red};
 `
+
+export const StyledHidePassword = styled.div`
+   position: absolute;
+   display: flex;
+   align-items: center;
+   top: -25px;
+   right: 0;
+   font-size: ${({theme}) => theme.fontSize.xs};
+   text-decoration: underline;
+   font-style: italic;
+   column-gap: 5px;
+   cursor: pointer;
+
+   svg{
+      height: 20px;
+      width: 20px;
+      fill: ${({theme}) => theme.colors.white};
+   }
+`
