@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledLink } from '../../GlobalStyledComponents/StyledAccountButton';
+import { StyledLink } from '../../GlobalStyledComponents/StyledLink';
 import ClipLoader from "react-spinners/ClipLoader";
 
 const style ={

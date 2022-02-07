@@ -1,21 +1,20 @@
 import styled from "styled-components"
-import heroImg from "../../../Assets/Images/aboutHero.jpg"
+import heroImg from "../../../Assets/Images/abouthero2.png"
 import { Link } from "react-scroll"
 
 export const Wrapper = styled.section`
     position: relative;
     width: 100%;
-    height: 80vh;
-    background-color: #c1a98d;
+    height: 70vh;   
+    background-color: #F1F0EC;
 
     @media(max-width: ${({theme}) => theme.screenSize.medium}){
-        height: 60vh;
+        height: 50vh;
         padding-top: 40px;
     }
 
     @media(max-width: ${({theme}) => theme.screenSize.mobile}){
         height: 35vh;
-        padding-top: 40px;
     }
 `
 

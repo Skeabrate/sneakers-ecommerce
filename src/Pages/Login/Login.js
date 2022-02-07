@@ -10,7 +10,7 @@ import {
    StyledSectionWrapper,
    StyledSocialButton
 } from "./Login.styles"
-import { StyledLink } from "../../GlobalStyledComponents/StyledAccountButton"
+import { StyledLink } from "../../GlobalStyledComponents/StyledLink"
 import { Formik } from "formik"
 import * as Yup from "yup"
 import FormikInput from '../../Components/FormikInput/FormikInput';
