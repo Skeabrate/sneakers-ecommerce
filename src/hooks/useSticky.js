@@ -20,7 +20,7 @@ export const useSticky = (ref) => {
       const observer = new IntersectionObserver(callbackFunction, options)
       if(ref?.current) observer.observe(ref.current)
 
-      return () => ref.current && observer.unobserve(ref.current)
+      return () => ref?.current && observer.unobserve(ref.current)
    }, [ref.current, options])
 
    return { isSticky }

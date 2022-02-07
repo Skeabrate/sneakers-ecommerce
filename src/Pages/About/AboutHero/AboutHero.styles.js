@@ -44,6 +44,8 @@ export const StyledHeroTitle = styled.h1`
         display: block;
         transform: translateY(100%);
         overflow: hidden;
+        opacity: 0;
+
     }
 
     @media(max-width: ${({theme}) => theme.screenSize.medium}){
@@ -58,7 +60,7 @@ export const StyledHeroTitle = styled.h1`
 
 const background = css`
     position: absolute;
-    width: 50vw;
+    width: 50%;
     height: 100%;
     opacity: 0;
     background-color: black;

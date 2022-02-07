@@ -51,6 +51,7 @@ const AboutHero = () => {
                 })
                 .to([firstTitleRef.current, secondTitleRef.current, thirdTitleRef.current], {
                     y: 0,
+                    opacity: 1,
                     duration: .4,
                     stagger: .05,
                 }, "-=.15s")
@@ -58,6 +59,21 @@ const AboutHero = () => {
                     opacity: 0.8,
                     duration: .6,
                 })
+        }
+
+        if(wrapperRef.current){
+            wrapperRef.current.style.backgroundPosition = "50% 0px"; 
+
+            gsap.to(wrapperRef.current, {
+                backgroundPosition: `50% ${window.innerHeight / 2}px`,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: wrapperRef.current,
+                  start: "top top", 
+                  end: "bottom",
+                  scrub: true
+                }
+              })
         }
 
         /*  gsap.to(titleRef.current, {
@@ -94,7 +110,7 @@ const AboutHero = () => {
             <StyledArrow 
                 to="content"
                 smooth={true}
-                duration={400}
+                duration={800}
                 spy={true}
                 exact={true}
             >

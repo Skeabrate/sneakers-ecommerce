@@ -5,6 +5,16 @@ export const Wrapper = styled.nav`
    position: ${({isProductPage}) => isProductPage ? 'unset' : 'fixed'};
    top: 0;
    left: 0;
+   transform: ${({hideNav, isProductPage}) => {
+      if(isProductPage) return 'translateY(0)'
+      if(hideNav) return 'translateY(-100%)'
+      if(!hideNav) return 'translateY(0)'
+   }};
+   opacity: ${({hideNav, isProductPage}) => {
+      if(isProductPage) return '1';
+      if(hideNav) return '0';
+      if(!hideNav) return '1';
+   }};
    width: 100%;
    display: flex;
    justify-content: space-between;
@@ -16,7 +26,11 @@ export const Wrapper = styled.nav`
    font-size: ${({theme}) => theme.fontSize.xxs};
    z-index: 99999;
    box-shadow: ${({theme}) => theme.boxShadow};
-   transition: ease 0.2s;
+   
+   transition: transform .3s .2s ease-in-out,
+               opacity .3s .2s ease-in-out;
+   
+   transition-duration: ${({hideNav}) => hideNav ? '.3s' : '.2s'}; 
 
    @media (max-width: ${({theme}) => theme.screenSize.medium}){
       font-size: ${({theme}) => theme.fontSize.xs};

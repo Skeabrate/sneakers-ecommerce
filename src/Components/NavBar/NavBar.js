@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef } from 'react';
+import React, { useState, useContext } from 'react';
 import { useStoreLength } from '../../hooks/useStoreLength';
 import { Link, useLocation  } from "react-router-dom"
 import { useSelector } from "react-redux"
@@ -20,11 +20,10 @@ import {
    StyledBackButton
 } from "./NavBar.styles"
 import AuthContext from "../../Context/AuthContext"
-import gsap from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const NavBar = ({ isProductPage }) => {
    const [toggle, setToggle] = useState(false)
+   const [hideNav, setHideNav] = useState(false)
 
    const cart = useSelector((state) => state.cart)
    const favorite = useSelector((state) => state.favorite)
@@ -36,35 +35,31 @@ const NavBar = ({ isProductPage }) => {
    
    const location = useLocation()
 
-   const navRef = useRef(null)
-
    const toggleMenu = () => setToggle(!toggle)
 
    React.useEffect(() => {
-      const showAnim = gsap.from(navRef.current, { 
-         yPercent: -100,
-         paused: true,
-         duration: 0.2,
-      }).progress(1);
-       
-      ScrollTrigger.create({
-         start: "top top",
-         end: 99999,
-         onUpdate: (self) => {
-            if(self.direction === -1){
-               showAnim.play()
-            } else {
-               showAnim.reverse()
-               if(toggle) setToggle(false)
-            }
+      const abortController = new AbortController();
+      const { signal } = abortController;
+
+      var lastScrollTop = 0
+
+      window.addEventListener("scroll", function(){ 
+         var st = window.pageYOffset || document.documentElement.scrollTop; 
+         if (st > lastScrollTop){
+            if(lastScrollTop > 40) setHideNav(true)
+         } else {
+            setHideNav(false)
          }
-      });
+         lastScrollTop = st <= 0 ? 0 : st;
+      }, {signal: signal});
+
+      return () => abortController.abort()
    }, [])
 
    if(location.pathname === `/`) return null
 
    return (
-      <Wrapper isProductPage={isProductPage} ref={navRef}>
+      <Wrapper isProductPage={isProductPage} hideNav={hideNav}>
          <StyledTitleWrapper>
             <StyledTitle>
                <StyledHamburger onClick={toggleMenu}>
