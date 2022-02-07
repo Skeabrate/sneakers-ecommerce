@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import arrowImg from "../../../Assets/Images/rotated-right-arrow.png"
 import { imgLoad } from '../../../helpers/imgLoad';
-import gsap from "gsap"
 import {
     Wrapper,
     StyledHeroTitle,
@@ -10,6 +9,7 @@ import {
     StyledBackgroundLeft,
     StyledBackgroundRight,
 } from "./AboutHero.styles"
+import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger)
