@@ -43,7 +43,7 @@ const AboutHero = () => {
             wrapperRef.current.style.backgroundPosition = "50% 0px"; 
 
             gsap.to(wrapperRef.current, {
-                backgroundPosition: `50% ${window.innerHeight / 2}px`,
+                backgroundPosition: `50% ${window.innerHeight / 4}px`,
                 ease: "none",
                 scrollTrigger: {
                   trigger: wrapperRef.current,

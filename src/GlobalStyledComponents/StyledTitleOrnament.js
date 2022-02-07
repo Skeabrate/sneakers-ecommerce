@@ -3,7 +3,7 @@ import styled from "styled-components"
 
 const Wrapper = styled.div`
     position: absolute;
-    bottom: 5px;
+    top: -13px;
     left: -10px;
     width: 0;
     height: 0;
@@ -12,9 +12,13 @@ const Wrapper = styled.div`
     border-bottom: none;
     border-left: 100px solid ${({ theme }) => theme.colors.orange};
 
+    @media(max-width: ${({theme}) => theme.screenSize.medium}){
+        top: -20px;
+    }
+
     @media(max-width: 750px){
         left: -5px;
-        bottom: 3px;
+        top: -11px;
         border-top: 40px solid transparent;
         border-left: 70px solid ${({ theme }) => theme.colors.orange};
     }

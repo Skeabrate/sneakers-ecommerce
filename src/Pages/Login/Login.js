@@ -19,6 +19,7 @@ import LoadingButton from '../../Components/LoadingButton/LoadingButton';
 import Content from './Content';
 import { useAuth } from '../../hooks/useAuth';
 import ResetPasswordModal from '../../Modals/ResetPasswordModal/ResetPasswordModal';
+import { StyledTitleOrnament } from '../../GlobalStyledComponents/StyledTitleOrnament';
 
 const SignupSchema = Yup.object().shape({
    email: Yup.string().email('The email address is invalid.').required('The email address is required'),
@@ -59,6 +60,7 @@ const Login = () => {
                      <button onClick={() => setIsRegisterOpen(true)}>
                         You dont have an account yet? Register now!
                      </button>
+                     <StyledTitleOrnament />
                   </StyledTitle>
                </header>
 

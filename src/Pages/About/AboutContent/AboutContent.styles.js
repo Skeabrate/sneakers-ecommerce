@@ -1,4 +1,4 @@
-import styled, { css, ThemeContext } from "styled-components"
+import styled, { css } from "styled-components"
 
 export const Wrapper = styled.main`
     background-color: ${({theme}) => theme.colors.black};
@@ -10,30 +10,12 @@ export const StyledContentWrapper = styled.article`
     display: flex;
     align-items: flex-end;
     justify-content: center;
+    margin: 30px;
 
-    @media(max-width: ${({theme}) => theme.screenSize.medium}){
-    }
-`
-
-const ornamentLeft = css`
-    content: "";
-    position: absolute;
-    background-color: ${({theme}) => theme.colors.orange};
-    bottom: -30px;
-    left: -30px;
-`
-
-export const StyledLeftOrnament = styled.div`
-    &::after{
-        ${ornamentLeft};
-        width: 20px;
-        height: 120px;
-    }
-
-    &::before{
-        ${ornamentLeft};
-        width: 120px;
-        height: 20px;
+    @media(max-width: 750px){
+        flex-direction: column;
+        row-gap: 10px;
+        margin: 20px;
     }
 `
 
@@ -51,6 +33,74 @@ export const StyledContent = styled.div`
         margin-block: 1vw 2vw;
         font-size: ${({theme}) => theme.fontSize.xs};
     }
+
+    @media(max-width: 750px){
+        margin-right: 0;
+        margin-bottom: 0;
+        max-width: 100%;
+
+        h2{
+            font-size: ${({theme}) => theme.fontSize.xxs};
+        }
+
+        p{
+            margin-block: 10px 20px;
+        }
+    }
+`
+
+export const StyledImg = styled.div`
+    display: flex;
+    position: relative;
+
+    img{
+        width: 55vw;
+    }
+
+    @media(max-width: 750px){
+        img{
+            width: 100%;
+        }
+    }
+`
+
+const ornamentLeft = css`
+    content: "";
+    position: absolute;
+    background-color: ${({theme}) => theme.colors.orange};
+    bottom: -30px;
+    left: -30px;
+
+    @media(max-width: 750px){
+        top: -20px;
+        left: -20px;
+    }
+`
+
+export const StyledLeftOrnament = styled.div`
+    &::after{
+        ${ornamentLeft};
+        width: 20px;
+        height: 100px;
+    }
+
+    &::before{
+        ${ornamentLeft};
+        width: 100px;
+        height: 20px;
+    }
+
+    @media(max-width: 750px){
+        &::after{
+            width: 10px;
+            height: 100px;
+        }
+
+        &::before{
+            width: 100px;
+            height: 10px;
+        }
+    }
 `
 
 const ornamentRight = css`
@@ -59,26 +109,37 @@ const ornamentRight = css`
     background-color: ${({theme}) => theme.colors.orange};
     top: -30px;
     right: -30px;
+
+    @media(max-width: 750px){
+        top: unset;
+        left: unset;
+        bottom: -20px;
+        right: -20px;
+    }
 `
 
 export const StyledRightOrnament = styled.div`
     &::after{
         ${ornamentRight};
         width: 20px;
-        height: 120px;
+        height: 100px;
     }
 
     &::before{
         ${ornamentRight};
-        width: 120px;
+        width: 100px;
         height: 20px;
     }
-`
 
-export const StyledImg = styled.div`
-    position: relative;
+    @media(max-width: 750px){
+        &::after{
+            width: 10px;
+            height: 100px;
+        }
 
-    img{
-        width: 55vw;
+        &::before{
+            width: 100px;
+            height: 10px;
+        }
     }
 `
