@@ -7,6 +7,16 @@ export const Wrapper = styled.section`
     width: 100%;
     height: 80vh;
     background-color: #c1a98d;
+
+    @media(max-width: ${({theme}) => theme.screenSize.medium}){
+        height: 60vh;
+        padding-top: 40px;
+    }
+
+    @media(max-width: ${({theme}) => theme.screenSize.mobile}){
+        height: 35vh;
+        padding-top: 40px;
+    }
 `
 
 export const StyledHeroImg = styled.div`
@@ -81,6 +91,11 @@ export const StyledArrow = styled(Link)`
     }
 
     @media(max-width: ${({theme}) => theme.screenSize.mobile}){
-        width: 100px;
+        bottom: -25px;
+
+        svg{
+            width: 24px;
+            height: 24px;
+        }
     }
 `
