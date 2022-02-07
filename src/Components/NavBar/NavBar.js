@@ -24,6 +24,7 @@ import AuthContext from "../../Context/AuthContext"
 const NavBar = ({ isProductPage }) => {
    const [toggle, setToggle] = useState(false)
    const [hideNav, setHideNav] = useState(false)
+   const [locationChange, setLocationChange] = useState('')
 
    const cart = useSelector((state) => state.cart)
    const favorite = useSelector((state) => state.favorite)
@@ -46,15 +47,22 @@ const NavBar = ({ isProductPage }) => {
       window.addEventListener("scroll", function(){ 
          var st = window.pageYOffset || document.documentElement.scrollTop; 
          if (st > lastScrollTop){
-            if(lastScrollTop > 40) setHideNav(true)
-         } else {
-            setHideNav(false)
-         }
+            if(lastScrollTop > 40) {
+               setHideNav(true)
+               setToggle(false)
+            }
+         } else setHideNav(false)
+
          lastScrollTop = st <= 0 ? 0 : st;
       }, {signal: signal});
 
       return () => abortController.abort()
    }, [])
+
+   React.useEffect(() => {
+      setLocationChange(location.pathname)
+      if(location.pathname !== locationChange) setToggle(false)
+   }, [location.pathname])
 
    if(location.pathname === `/`) return null
 
@@ -75,15 +83,15 @@ const NavBar = ({ isProductPage }) => {
 
             <StyledNav isToggled={toggle}>
                <li>
-                  <StyledNavItem isFirst isToggled={toggle} to="/AllProducts" onClick={toggleMenu}>Home</StyledNavItem>
+                  <StyledNavItem isFirst isToggled={toggle} to="/AllProducts">Home</StyledNavItem>
                </li>
 
                <li>
-                  <StyledNavItem isSecond isToggled={toggle} to="/about" onClick={toggleMenu}>About</StyledNavItem>
+                  <StyledNavItem isSecond isToggled={toggle} to="/about">About</StyledNavItem>
                </li>
 
                <li>
-                  <StyledNavItem isToggled={toggle} to="/contact" onClick={toggleMenu}>Contact</StyledNavItem>
+                  <StyledNavItem isToggled={toggle} to="/contact">Contact</StyledNavItem>
                </li>
 
                <li>
