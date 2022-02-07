@@ -16,6 +16,7 @@ export const Wrapper = styled.nav`
    font-size: ${({theme}) => theme.fontSize.xxs};
    z-index: 99999;
    box-shadow: ${({theme}) => theme.boxShadow};
+   transition: ease 0.2s;
 
    @media (max-width: ${({theme}) => theme.screenSize.medium}){
       font-size: ${({theme}) => theme.fontSize.xs};

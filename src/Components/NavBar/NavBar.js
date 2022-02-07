@@ -44,7 +44,7 @@ const NavBar = ({ isProductPage }) => {
       const showAnim = gsap.from(navRef.current, { 
          yPercent: -100,
          paused: true,
-         duration: 0.3,
+         duration: 0.2,
       }).progress(1);
        
       ScrollTrigger.create({
