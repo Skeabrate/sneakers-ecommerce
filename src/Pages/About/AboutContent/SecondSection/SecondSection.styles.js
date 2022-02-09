@@ -37,6 +37,13 @@ const upDownSmall = css`
     height: 280px;
 `
 
+const triangle = css`
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+`
+
 export const StyledGridContainer = styled.div` 
     ${background};
     top: 0;
@@ -68,16 +75,12 @@ export const StyledUpSmallImg = styled.div`
     left: 630px;
 
     &::after{
-        content: "";
-        position: absolute;
-        bottom: 0px;
-        right: 0px;
-        width: 0;
-        height: 0;
-        z-index: -1;
-        border-top: 60px solid transparent;
+        ${triangle};
+        bottom: 0;
+        right: -250px;
+        border-top: 140px solid transparent;
         border-bottom: none;
-        border-left: 100px solid ${({ theme }) => theme.colors.orange};
+        border-left: 200px solid ${({ theme }) => theme.colors.white};
     }
 `
 
@@ -90,6 +93,15 @@ export const StyledRightImg = styled.div`
     ${leftRight};
     top: 0;
     right: -530px;
+
+    &::after{
+        ${triangle};
+        left: 0;
+        bottom: -250px;
+        border-bottom: 200px solid transparent;
+        border-top: none;
+        border-left: 140px solid ${({ theme }) => theme.colors.white};
+    }
 `
 
 
@@ -109,6 +121,15 @@ export const StyledDownSmallImg = styled.div`
     ${upDownSmall};
     bottom: -330px;
     right: 630px;
+
+    &::after{
+        ${triangle};
+        left: -250px;
+        top: 0px;
+        border-bottom: 140px solid transparent;
+        border-top: none;
+        border-right: 200px solid ${({ theme }) => theme.colors.white};
+    }
 `
 
 
@@ -120,4 +141,13 @@ export const StyledLeftImg = styled.div`
     ${leftRight};
     bottom: 0;
     left: -530px;
+
+    &::after{
+        ${triangle};
+        right: 0;
+        top: -250px;
+        border-top: 200px solid transparent;
+        border-bottom: none;
+        border-right: 140px solid ${({ theme }) => theme.colors.white};
+    }
 `
