@@ -6,6 +6,7 @@ import {
 } from "./Cart.styles"
 import Items from "./Items/Items"
 import Summary from "./Summary/Summary"
+import Helmet from '../../helpers/Helmet';
 
 const Cart = () => {
     const [totalAmount, setTotalAmount] = useState(0)
@@ -31,6 +32,8 @@ const Cart = () => {
 
     return (
         <Wrapper>
+            <Helmet title="Sneakers Journey - Cart" />
+
             <Items cart={cart} length={length} />
 
             <Summary 

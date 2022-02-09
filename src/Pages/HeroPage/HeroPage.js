@@ -4,6 +4,7 @@ import heroImg from "../../Assets/Images/heroPageImg.png"
 import gsap from "gsap"
 import { imgLoad } from "../../helpers/imgLoad"
 import { useNavigate } from 'react-router-dom';
+import Helmet from "../../helpers/Helmet"
 
 const HeroPage = () => {
    let navigate = useNavigate()
@@ -72,22 +73,22 @@ const HeroPage = () => {
    }
 
    return (
-      <>
-         <Wrapper ref={heroWrapperRef}>
-            <StyledHeroImage ref={heroRef} hero={heroImg}>
-               <StyledTitleWrapper ref={titleWrapperRef}>
-                  <StyledTitle><span ref={textRef1}>Sneakers</span></StyledTitle>
-                  <StyledTitle><span ref={textRef2}>Journey</span></StyledTitle>
-                  <div ref={textBackgroundRef}></div>
-               </StyledTitleWrapper>
+      <Wrapper ref={heroWrapperRef}>
+         <Helmet title="Sneakers Journey" />
 
-               <StyledButton ref={btnRef} onClick={handleChangeScene}>
-                  Discover
-                  <span ref={btnSpanRef}></span>
-               </StyledButton>
-            </StyledHeroImage>
-         </Wrapper>
-      </>
+         <StyledHeroImage ref={heroRef} hero={heroImg}>
+            <StyledTitleWrapper ref={titleWrapperRef}>
+               <StyledTitle><span ref={textRef1}>Sneakers</span></StyledTitle>
+               <StyledTitle><span ref={textRef2}>Journey</span></StyledTitle>
+               <div ref={textBackgroundRef}></div>
+            </StyledTitleWrapper>
+
+            <StyledButton ref={btnRef} onClick={handleChangeScene}>
+               Discover
+               <span ref={btnSpanRef}></span>
+            </StyledButton>
+         </StyledHeroImage>
+      </Wrapper>
    )
 }
 

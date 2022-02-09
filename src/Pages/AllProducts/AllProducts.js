@@ -16,6 +16,7 @@ import { StyledContent } from "../../GlobalStyledComponents/StyledContent"
 import ProductItem from '../../Components/ProductItem/ProductItem';
 import Pagination from '../../Components/Pagination/Pagination';
 import { StyledTitleOrnament } from "../../GlobalStyledComponents/StyledTitleOrnament"
+import Helmet from "../../helpers/Helmet"
 
 const AllProducts = ({ AllProducts }) => {
    const { productsCtx, loadingCtx, setLoadingCtx } = useContext(ProductsContext)
@@ -94,6 +95,8 @@ const AllProducts = ({ AllProducts }) => {
 
    return (
       <Wrapper>
+         <Helmet title="Sneakers Journey - All Products" />
+
          <header>
             <StyledTitle>
                <StyledTitleWrapper>

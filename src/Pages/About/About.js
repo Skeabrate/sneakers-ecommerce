@@ -7,6 +7,7 @@ import AboutHero from './AboutHero/AboutHero';
 import AboutContent from './AboutContent/AboutContent';
 import AboutFooter from './AboutFooter/AboutFooter';
 import { Element } from "react-scroll"
+import Helmet from "../../helpers/Helmet"
 
 const About = () => {
    
@@ -16,6 +17,8 @@ const About = () => {
 
    return (
       <Wrapper>
+         <Helmet title="Sneakers Journey - About Us" />
+
          <AboutHero />
 
          <Element name="content">

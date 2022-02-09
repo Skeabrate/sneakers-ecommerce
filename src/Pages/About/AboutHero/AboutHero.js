@@ -3,7 +3,6 @@ import {
     Wrapper,
     StyledArrow,
     StyledHeroImg,
-    StyledHeroTitle,
 } from "./AboutHero.styles"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger";

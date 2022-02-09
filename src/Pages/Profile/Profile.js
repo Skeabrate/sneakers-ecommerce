@@ -21,6 +21,7 @@ import { useSticky } from "../../hooks/useSticky"
 import ShoppingHistory from './ShoppingHistory/ShoppingHistory';
 import { useStickyTwo } from '../../hooks/useStickyTwo';
 import { StyledTitleOrnament } from '../../GlobalStyledComponents/StyledTitleOrnament';
+import Helmet from '../../helpers/Helmet';
 
 const Profile = () => {
     const [openConfirm, setOpenConfirm] = useState(false)
@@ -42,6 +43,8 @@ const Profile = () => {
 
     return (
         <div>
+            <Helmet title="Sneakers Journey - Profile" />
+
             <Wrapper>
                 <StyledSettings ref={settingsRef} position={position}>
                     <header>

@@ -11,6 +11,7 @@ import {
 } from "./Contact.styles"
 import ContactForm from './ContactForm/ContactForm';
 import { useImgLoad } from "../../hooks/useImgLoad"
+import Helmet from "../../helpers/Helmet"
 
 const Contact = () => {
    const imgRef = useRef(null)
@@ -23,6 +24,8 @@ const Contact = () => {
 
    return (
       <Wrapper>
+         <Helmet title="Sneakers Journey - Contact" />
+
          <StyledContact>
             <article>
                <StyledTitle>

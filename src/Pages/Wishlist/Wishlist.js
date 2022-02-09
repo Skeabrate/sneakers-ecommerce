@@ -17,6 +17,7 @@ import ModalsContext from '../../Context/ModalsContext';
 import AuthContext from "../../Context/AuthContext"
 import { StyledLinkToHome } from '../../GlobalStyledComponents/StyledLinkToHome';
 import { StyledTitleOrnament } from '../../GlobalStyledComponents/StyledTitleOrnament';
+import Helmet from '../../helpers/Helmet';
 
 const Wishlist = () => {
    const favorite = useSelector((state) => state.favorite)
@@ -49,6 +50,8 @@ const Wishlist = () => {
 
    return (
       <Wrapper>
+         <Helmet title="Sneakers Journey - Wishlist" />
+
          <header>
             <StyledTitle>
                MY WISH LIST

@@ -7,6 +7,7 @@ import {
 } from './ProductPage.styles';
 import ShopingCart from './ShopingCart/ShopingCart';
 import { StyledLinkToHome } from '../../GlobalStyledComponents/StyledLinkToHome';
+import Helmet from "../../helpers/Helmet"
 
 const ProductPage = ({ setIsProductPage }) => {
    const [product, loading, error] = useProductID() // fetch product from context if it exists if not - fetch from CMS
@@ -26,11 +27,13 @@ const ProductPage = ({ setIsProductPage }) => {
                <Error label="product"/>
             ) : (
                <Wrapper>
-                     <StyledLinkToHome label="BACK" title="all products" path="AllProducts" />
+                  <Helmet title="Sneakers Journey" />
 
-                     <Content product={product} loading={loading} /> 
+                  <StyledLinkToHome label="BACK" title="all products" path="AllProducts" />
 
-                     <ShopingCart product={product} loading={loading} isDesktop />
+                  <Content product={product} loading={loading} /> 
+
+                  <ShopingCart product={product} loading={loading} isDesktop />
                </Wrapper>
             )}
       </section>
