@@ -1,8 +1,8 @@
 import styled from "styled-components"
-import heroImg from "../../../Assets/Images/abouthero2.png"
+import heroImg from "../../../Assets/Images/About/aboutHero.png"
 import { Link } from "react-scroll"
 
-export const Wrapper = styled.section`
+export const Wrapper = styled.div`
     position: relative;
     width: 100%;
     height: 70vh;   
@@ -27,45 +27,6 @@ export const StyledHeroImg = styled.div`
     background-position: center;
     opacity: 0;
     transform: scale(0.9);
-`
-
-export const StyledHeroTitle = styled.header`
-    position: absolute;
-    top: 100px;
-    left: 50%;
-    width: fit-content;
-    transform: translateX(-50%);
-    font-size: ${({theme}) => theme.fontSize.xxl};
-    font-family: 'Shadows Into Light', cursive;
-    font-style: italic;
-    padding: 0 10px;
-    text-shadow: 3px 3px 0px ${({theme}) => theme.colors.black};
-
-    h1{
-        display: block;
-        overflow: hidden;
-        padding: 0 5px;
-
-        span{
-            display: block;
-            height: fit-content;
-            line-height: 1;
-            transform: translateY(100%);
-        }
-    }
-
-    div{
-        position: absolute;
-        bottom: -10px;
-        left: 0;
-        width: 100%;
-        height: 7px;
-        border-radius: 100%;
-        transform-origin: center;
-        transform: scaleX(0);
-        background-color: ${({theme}) => theme.colors.white};   
-        border-bottom: 3px solid ${({theme}) => theme.colors.darkBlack};
-    }
 `
 
 export const StyledArrow = styled(Link)`

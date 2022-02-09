@@ -1,16 +1,11 @@
 import styled, { css } from "styled-components"
 
-export const Wrapper = styled.main`
-    background-color: ${({theme}) => theme.colors.black};
-    padding: 3vw;
-    height: 200vh;
-`
-
 export const StyledContentWrapper = styled.article`
     display: flex;
     align-items: flex-end;
     justify-content: center;
     margin: 30px;
+    margin-bottom: calc(30px + 3%);
 
     @media(max-width: 750px){
         flex-direction: column;
@@ -19,13 +14,13 @@ export const StyledContentWrapper = styled.article`
     }
 `
 
-export const StyledContent = styled.div`
+export const StyledArticle = styled.article`
     background-color: ${({theme}) => theme.colors.orange};
     max-width: 500px;
     padding: 3vw;
     height: fit-content;
     margin-right: -10%;
-    margin-bottom: -50px;
+    margin-bottom: -3%;
     position: relative;
     z-index: 2;
 
