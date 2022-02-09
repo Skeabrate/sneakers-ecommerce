@@ -1,13 +1,53 @@
-import React from 'react';
+import { useEffect, useRef } from 'react';
 import {
-    StyledMainImg,
+    Wrapper,
+    StyledGridContainer,
+    StyledUpBigImg,
+    StyledUpSmallImg,
+    StyledRightImg,
+    StyledDownBigImg,
+    StyledDownSmallImg,
+    StyledLeftImg,
 } from "./SecondSection.styles"
+import gsap from "gsap"
 
 const SecondSection = () => {
+
+    const containerRef = useRef(null)
+    const gridRef = useRef(null)
+    const mainImgRef = useRef(null)
+
+    useEffect(() => {
+        gsap.timeline({
+            scrollTrigger: {
+              trigger: containerRef.current,
+              start: "top top",
+              end: () => window.innerHeight * 3,
+              scrub: true,
+              pin: gridRef.current,
+              anticipatePin: 1
+            }
+          })
+          .from(gridRef.current, {
+            scale: 1,
+            ease: "none",
+          });
+    }, [])
+    
     return (
-        <section>
-            <StyledMainImg />
-        </section>
+        <Wrapper ref={containerRef}>
+            <StyledGridContainer ref={gridRef}>
+                <StyledUpBigImg />
+                <StyledUpSmallImg />
+
+                <StyledRightImg />
+
+                <StyledDownBigImg />
+                <StyledDownSmallImg />
+
+                <StyledLeftImg />
+            </StyledGridContainer>
+        </Wrapper>
     );
 };
 
