@@ -26,8 +26,8 @@ export const StyledContent = styled.div`
     height: fit-content;
     margin-right: -10%;
     margin-bottom: -50px;
-    z-index: 1;
     position: relative;
+    z-index: 2;
 
     p{
         margin-block: 1vw 2vw;
@@ -49,9 +49,50 @@ export const StyledContent = styled.div`
     }
 `
 
+const ornamentLeft = css`
+    position: absolute;
+    background-color: ${({theme}) => theme.colors.orange};
+    bottom: 0;
+    left: 0;
+
+    @media(max-width: 750px){
+        top: -20px;
+        left: -20px;
+    }
+`
+
+export const StyledLeftOrnament = styled.div`
+    span{
+        ${ornamentLeft};
+        width: 20px;
+        height: 100px;
+    }
+
+    div{
+        ${ornamentLeft};
+        width: 100px;
+        height: 20px;
+    }
+
+    @media(max-width: 750px){
+        span{
+            width: 10px;
+            height: 100px;
+        }
+
+        div{
+            width: 100px;
+            height: 10px;
+        }
+    }
+`
+
+
+/* RIGHT - IMG */
 export const StyledImg = styled.div`
     display: flex;
     position: relative;
+    z-index: 1;
 
     img{
         width: 55vw;
@@ -64,51 +105,12 @@ export const StyledImg = styled.div`
     }
 `
 
-const ornamentLeft = css`
-    content: "";
-    position: absolute;
-    background-color: ${({theme}) => theme.colors.orange};
-    bottom: -30px;
-    left: -30px;
-
-    @media(max-width: 750px){
-        top: -20px;
-        left: -20px;
-    }
-`
-
-export const StyledLeftOrnament = styled.div`
-    &::after{
-        ${ornamentLeft};
-        width: 20px;
-        height: 100px;
-    }
-
-    &::before{
-        ${ornamentLeft};
-        width: 100px;
-        height: 20px;
-    }
-
-    @media(max-width: 750px){
-        &::after{
-            width: 10px;
-            height: 100px;
-        }
-
-        &::before{
-            width: 100px;
-            height: 10px;
-        }
-    }
-`
-
 const ornamentRight = css`
     content: "";
     position: absolute;
     background-color: ${({theme}) => theme.colors.orange};
-    top: -30px;
-    right: -30px;
+    top: 0px;
+    right: 0px;
 
     @media(max-width: 750px){
         top: unset;
@@ -119,25 +121,27 @@ const ornamentRight = css`
 `
 
 export const StyledRightOrnament = styled.div`
-    &::after{
+    z-index: -1;
+
+    span{
         ${ornamentRight};
         width: 20px;
         height: 100px;
     }
 
-    &::before{
+    div{
         ${ornamentRight};
         width: 100px;
         height: 20px;
     }
 
     @media(max-width: 750px){
-        &::after{
+        span{
             width: 10px;
             height: 100px;
         }
 
-        &::before{
+        div{
             width: 100px;
             height: 10px;
         }

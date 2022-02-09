@@ -38,6 +38,8 @@ export const Wrapper = styled.nav`
 
    @media (max-width: ${({theme}) => theme.screenSize.mobile}){
       position: fixed;
+      transform: ${({ hideNav }) => hideNav ? 'translateY(-100%)' : 'translateY(0)'};
+      opacity: ${({ hideNav }) => hideNav ? '0' : '1'};
       font-size: 18px;
       padding: 0 1vw;
       height: 60px;

@@ -38,20 +38,25 @@ const AboutHero = () => {
                 })
         }
 
-        if(wrapperRef.current){
-            wrapperRef.current.style.backgroundPosition = "50% 0px"; 
+        const mediaQuery = window.matchMedia('(max-width: 550px)')
 
-            gsap.to(wrapperRef.current, {
-                backgroundPosition: `50% ${window.innerHeight / 4}px`,
-                ease: "none",
-                scrollTrigger: {
-                  trigger: wrapperRef.current,
-                  start: "top top", 
-                  end: "bottom",
-                  scrub: true
-                }
-              })
+        if(!mediaQuery.matches){
+            if(wrapperRef.current){
+                wrapperRef.current.style.backgroundPosition = "50% 0px"; 
+    
+                gsap.to(wrapperRef.current, {
+                    backgroundPosition: `50% ${window.innerHeight / 4}px`,
+                    ease: "none",
+                    scrollTrigger: {
+                      trigger: wrapperRef.current,
+                      start: "top top", 
+                      end: "bottom",
+                      scrub: true
+                    }
+                  })
+            }
         }
+
     }, [])
 
     return (

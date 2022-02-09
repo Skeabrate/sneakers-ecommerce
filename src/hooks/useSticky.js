@@ -17,10 +17,12 @@ export const useSticky = (ref) => {
    }, [])
 
    useEffect(() => {
+      const mediaQuery = window.matchMedia('(max-width: 550px)')
       const observer = new IntersectionObserver(callbackFunction, options)
-      if(ref?.current) observer.observe(ref.current)
 
-      return () => ref?.current && observer.unobserve(ref.current)
+      if(!mediaQuery.matches && ref.current) observer.observe(ref.current)
+      
+      return () => ref.current && observer.unobserve(ref.current)
    }, [ref.current, options])
 
    return { isSticky }
