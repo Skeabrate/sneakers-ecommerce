@@ -1,5 +1,9 @@
 import styled, { css } from "styled-components"
 
+export const Wrapper = styled.section`
+    padding: 3vw;
+`
+
 export const StyledContentWrapper = styled.article`
     display: flex;
     align-items: flex-end;

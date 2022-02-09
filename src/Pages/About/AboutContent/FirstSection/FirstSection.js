@@ -5,6 +5,7 @@ import imgOne from "../../../../Assets/Images/About/aboutContent1.jpg"
 import { StyledLink } from "../../../../GlobalStyledComponents/StyledLink"
 import gsap from "gsap"
 import {
+    Wrapper,
     StyledContentWrapper,
     StyledArticle,
     StyledLeftOrnament,
@@ -73,7 +74,7 @@ const FirstSection = () => {
     }, [])
     
     return (
-        <section>
+        <Wrapper>
             <header>
                 <StyledTitle>
                     <StyledTitleOrnament />
@@ -106,7 +107,7 @@ const FirstSection = () => {
                     </StyledRightOrnament>
                 </StyledImg>
             </StyledContentWrapper>
-        </section>
+        </Wrapper>
     );
 };
 
