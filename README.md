@@ -6,6 +6,7 @@ Main technologies I used in this project:
 - semantic HTML5.
 - styled-components ( RWD - responsive web design, flex and grid layouts ).
 - reactJS.
+- react-helmet
 - global state: redux toolkit with local storage ( for cart and wishlist ), react context ( products, filters, user authentication, open/close modals ).
 - firebase: hosting, user authentication ( firebase hooks: sign in, log in, password reset ), fireStore ( storing users shopping history ), firebase storage ( storing user profile image ).
 - react-router-dom v6 ( routing ).
@@ -19,7 +20,7 @@ Main technologies I used in this project:
 - animations with Gsap and styled-compoents - keyframes.
 - uuid: generating random ID's.
 - react-spinners: loading state spinners.
-- https://excalidraw.com/ and https://www.figma.com : designing layouts.
+- designing layouts: https://excalidraw.com/ and https://www.figma.com.
 
 You can use my account to test the application:
 
