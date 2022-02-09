@@ -10,7 +10,7 @@ import imgSix from "../../../../Assets/Images/About/secondSection6.png"
 export const Wrapper = styled.section`
     margin: 5vw 0;
     width: 100vw;
-    height: 300vh;
+    height: 210vh;
     position: relative;
     overflow: hidden;
 `
@@ -20,6 +20,21 @@ const background = css`
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
+`
+
+const leftRight = css`
+    width: 480px;
+    height: 460px;
+`
+
+const upDownBig = css`
+    width: 580px;
+    height: 560px;
+`
+
+const upDownSmall = css`
+    width: 400px;
+    height: 280px;
 `
 
 export const StyledGridContainer = styled.div` 
@@ -39,20 +54,31 @@ export const StyledGridContainer = styled.div`
 export const StyledUpBigImg = styled.div`
     ${background};
     background-image: url(${imgOne});
-    background-color: #5E593C;
-    width: 30vw;
-    height: 60vh;
-    top: calc(-60vh - 50px);
+    background-color: #5D583A;
+    ${upDownBig};
+    top: -610px;
     left: 0;
 `
 export const StyledUpSmallImg = styled.div`
     ${background};
     background-image: url(${imgFourth});
-    background-color: ##FEA800;
-    width: 20vw;
-    height: 30vh;
-    top: calc(-30vh - 50px);
-    left: calc(30vw + 50px);
+    background-color: #fea800;
+    ${upDownSmall};
+    top: -330px;
+    left: 630px;
+
+    &::after{
+        content: "";
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+        width: 0;
+        height: 0;
+        z-index: -1;
+        border-top: 60px solid transparent;
+        border-bottom: none;
+        border-left: 100px solid ${({ theme }) => theme.colors.orange};
+    }
 `
 
 
@@ -61,10 +87,9 @@ export const StyledRightImg = styled.div`
     ${background};
     background-image: url(${imgThird});
     background-color: #A66CD4;
-    width: 25vw;
-    height: 50vh;
+    ${leftRight};
     top: 0;
-    right: calc(-25vw - 50px);
+    right: -530px;
 `
 
 
@@ -73,19 +98,17 @@ export const StyledDownBigImg = styled.div`
     ${background};
     background-image: url(${imgFifth});
     background-color: #EB3C43;
-    width: 30vw;
-    height: 60vh;
-    bottom: calc(-60vh - 50px);
+    ${upDownBig};
+    bottom: -610px;
     right: 0;
 `
 export const StyledDownSmallImg = styled.div`
     ${background};
     background-image: url(${imgSix});
-    background-color: #F6BFBF;
-    width: 20vw;
-    height: 30vh;
-    bottom: calc(-30vh - 50px);
-    right: calc(30vw + 50px);
+    background-color: #FEC2C2;
+    ${upDownSmall};
+    bottom: -330px;
+    right: 630px;
 `
 
 
@@ -93,9 +116,8 @@ export const StyledDownSmallImg = styled.div`
 export const StyledLeftImg = styled.div`
     ${background};
     background-image: url(${imgTwo});
-    background-color: #E5892F;
-    width: 25vw;
-    height: 50vh;
+    background-color: #EB8A2B;
+    ${leftRight};
     bottom: 0;
-    left: calc(-25vw - 50px);
+    left: -530px;
 `
