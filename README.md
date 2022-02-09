@@ -62,7 +62,7 @@ Podział strony:
 - po poprawnym wprowadzeniu informacji, możliwość wysłania emaila ( emailJS ).
 
 7. About Us Page ( https://sneakers-b80b7.web.app/about ) :
-- strona o firmie ( nieskończona ).
+- strona o firmie, animacje wykonane przy użyciu biblioteki GSAP ( gsap-scrollTriger ).
 
 7. Log In Page ( https://sneakers-b80b7.web.app/login ) :
 - formularz logowania z walidacją ( Formik + Yup ).
