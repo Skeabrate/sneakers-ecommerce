@@ -1,4 +1,9 @@
 import React, { useEffect } from 'react';
+import { StyledTitle } from "../../../../GlobalStyledComponents/StyledTitle"
+import { StyledTitleOrnament } from "../../../../GlobalStyledComponents/StyledTitleOrnament"
+import {
+    Wrapper,
+} from "./ThirdSection.styles"
 
 const ThirdSection = () => {
 
@@ -16,9 +21,14 @@ const ThirdSection = () => {
     }, [])
 
     return (
-        <section>
-            
-        </section>
+        <Wrapper>
+            <header>
+                <StyledTitle>
+                    our products
+                    <StyledTitleOrnament />
+                </StyledTitle>
+            </header>
+        </Wrapper>
     );
 };
 

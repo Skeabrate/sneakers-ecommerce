@@ -13,7 +13,7 @@ export const StyledContentWrapper = styled.article`
 
     @media(max-width: 750px){
         flex-direction: column;
-        row-gap: 10px;
+        row-gap: 30px;
         margin: 20px;
     }
 `
