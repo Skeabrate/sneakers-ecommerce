@@ -12,13 +12,12 @@ import {
 import gsap from "gsap"
 
 const SecondSection = () => {
+    const mediaQuery = window.matchMedia('(max-width: 1000px)')
     const containerRef = useRef(null)
     const gridRef = useRef(null)
 
     useEffect(() => {
-        const mediaQuery = window.matchMedia('(max-width: 1000px)')
-
-        if (!mediaQuery.matches) {
+        if(containerRef.current && gridRef.current){
             gsap
                 .timeline({
                     scrollTrigger: {
@@ -35,7 +34,10 @@ const SecondSection = () => {
                     ease: "none",
                 });
         }
+
     }, [])
+
+    if (mediaQuery.matches) return null
 
     return (
         <Wrapper ref={containerRef}>

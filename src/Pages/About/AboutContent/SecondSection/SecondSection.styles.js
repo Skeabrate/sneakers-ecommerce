@@ -13,6 +13,10 @@ export const Wrapper = styled.section`
     height: 100vh;
     position: relative;
     overflow: hidden;
+
+    @media(max-width: ${({theme}) => theme.screenSize.medium}){
+        display: none;
+    }
 `
 
 const background = css`
