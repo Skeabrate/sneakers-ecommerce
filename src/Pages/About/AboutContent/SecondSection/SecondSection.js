@@ -24,10 +24,10 @@ const SecondSection = () => {
                     scrollTrigger: {
                         trigger: containerRef.current,
                         start: "top top",
-                        end: () => window.innerHeight * 3,
+                        end: () => window.innerHeight * 3.7,
                         scrub: true,
-                        pin: gridRef.current,
-                        anticipatePin: 1
+                        pin: true,
+                        anticipatePin: true,
                     }
                 })
                 .from(gridRef.current, {

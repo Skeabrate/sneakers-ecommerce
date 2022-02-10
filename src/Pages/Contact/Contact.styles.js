@@ -67,6 +67,7 @@ export const StyledImg = styled.div`
 
     img{
         width: 100%;
+        height: auto;
     }
 
     @media (max-width: ${({theme}) => theme.screenSize.medium}) {

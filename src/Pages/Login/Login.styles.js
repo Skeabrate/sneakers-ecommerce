@@ -108,6 +108,7 @@ export const StyledListItem = styled.li`
 
 export const StyledClubImg = styled.img`
    max-width: 440px;
+   height: auto;
    margin-top: 40px;
    opacity: 0;
 

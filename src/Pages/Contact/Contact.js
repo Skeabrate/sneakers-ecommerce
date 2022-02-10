@@ -47,6 +47,8 @@ const Contact = () => {
                      alt="contact" 
                      src={imgSrc}
                      onLoad={handleLoadImg}
+                     width="852"
+                     height="866"
                   />
                </StyledImg>
             </aside>

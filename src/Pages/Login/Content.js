@@ -41,7 +41,8 @@ const Content = () => {
                 alt="sneakers club"
                 ref={clubImgRef}
                 onLoad={handleLoadImg}
-                width="440"
+                width="611"
+                height="279"
             />
 
         </article>

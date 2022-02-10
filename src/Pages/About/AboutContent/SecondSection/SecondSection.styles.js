@@ -10,7 +10,7 @@ import imgSix from "../../../../Assets/Images/About/secondSection6.png"
 export const Wrapper = styled.section`
     margin: 5vw 0;
     width: 100vw;
-    height: 210vh;
+    height: 100vh;
     position: relative;
     overflow: hidden;
 `

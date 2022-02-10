@@ -99,7 +99,7 @@ const FirstSection = () => {
                 </StyledArticle>
 
                 <StyledImg ref={imgRef}>
-                    <img alt="aboutus" src={imgOne} />
+                    <img alt="aboutus" src={imgOne} width="1600" height="1066" />
 
                     <StyledRightOrnament>
                         <span ref={rightOrnUpRef} />

@@ -1,6 +1,5 @@
 import React from 'react';
 import FirstSection from "./FirstSection/FirstSection"
-import styled from "styled-components"
 import SecondSection from './SecondSection/SecondSection';
 import ThirdSection from './ThirdSection/ThirdSection';
 
