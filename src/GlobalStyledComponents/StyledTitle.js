@@ -63,10 +63,10 @@ export const Title = styled.h1`
    }
 `
 
-export const StyledTitle = ({ children }) => {
+export const StyledTitle = ({ children, color }) => {
    return (
       <Title>
-         <StyledTitleOrnament />
+         {!color && <StyledTitleOrnament />}
          { children }
       </Title>
    )
