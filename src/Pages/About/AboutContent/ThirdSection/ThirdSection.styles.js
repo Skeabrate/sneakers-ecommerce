@@ -10,6 +10,10 @@ export const StyledContent = styled.div`
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     column-gap: 30px;
     row-gap: 30px;
+
+    @media(max-width: 750px){
+        grid-template-columns: 1fr;
+    }
 `
 
 export const StyledItem = styled.article`
@@ -17,7 +21,6 @@ export const StyledItem = styled.article`
     background-color: ${({theme}) => theme.colors.darkBlack};
     position: relative;
     text-align: center;
-    height: fit-content;
     height: 60vh;
     min-height: 400px;
     overflow: hidden;
@@ -30,6 +33,22 @@ export const StyledItem = styled.article`
 
     &:hover div:last-child{
         transform: translateY(0);
+    }
+
+    @media(max-width: 750px){
+        height: fit-content;
+        min-height: unset;
+
+        &:hover div:first-child{
+            -ms-filter: "progid:DXImageTransform.Microsoft.gradient(enabled=false)";
+            filter: none !important;
+            height: 30vh;
+            min-height: 30vh;
+        }
+
+        &:hover div:last-child{
+            transform: translateY(0);
+        }
     }
 `
 
@@ -57,6 +76,11 @@ export const StyledItemImg = styled.div`
         background-color: black;
         opacity: 0.1;
     }
+
+    @media(max-width: 750px){
+        height: 30vh;
+        min-height: 30vh;
+    }
 `
 
 export const StyledItemHeader = styled.header`
@@ -66,11 +90,21 @@ export const StyledItemHeader = styled.header`
     align-items: center;
     height: 10vh;
     min-height: 80px;
+
+    @media(max-width: 750px){
+        height: fit-content;
+        min-height: fit-content;
+        padding: 10px 0 0 0;
+    }
 `
 
 export const StyledItemTitle = styled.h2`
     text-transform: uppercase;
     font-style: italic;
+
+    @media(max-width: 750px){
+        font-size: 1.2rem;
+    }
 `
 
 export const StyledItemTitleLower = styled.h4`
@@ -78,10 +112,14 @@ export const StyledItemTitleLower = styled.h4`
    font-weight: normal;
    color: ${({theme}) => theme.colors.orange};
    font-size: ${({theme}) => theme.fontSize.s};
+
+    @media(max-width: 750px){
+        font-size: ${({theme}) => theme.fontSize.micro};
+    }
 `
 
 export const StyledItemContent = styled.div`
-    position: absolute;
+    position: relative;
     bottom: 0;
     height: 150px;
     padding: 10px;
@@ -92,21 +130,29 @@ export const StyledItemContent = styled.div`
     justify-content: space-between;
     font-size: ${({theme}) => theme.fontSize.xs};
     transition: transform .4s ease-in-out;
+
+    @media(max-width: 750px){
+        position: static;
+        transform: translateY(0);
+        height: fit-content;
+        row-gap: 20px;
+        font-size: ${({theme}) => theme.fontSize.s};
+    }
 `
 
 const moveSpanStart = keyframes`
-  to{
-    transform: translateY(-105%);
-  }
+    to{
+        transform: translateY(-105%);
+    }
 `
 
 const moveSpanEnd = keyframes`
-  from{
-    transform: translateY(100%);
-  }
-  to{
-    transform: translateY(0%);
-  }
+    from{
+        transform: translateY(100%);
+    }
+    to{
+        transform: translateY(0%);
+    }
 `
 
 export const StyledItemButton = styled.button`
@@ -123,6 +169,10 @@ export const StyledItemButton = styled.button`
     background-color: ${({theme}) => theme.colors.white};
     overflow: hidden;
     position: relative;
+
+    @media(max-width: 750px){
+        font-size: ${({theme}) => theme.fontSize.s};
+    }
 
     span{
         top: 0;
@@ -158,6 +208,10 @@ export const StyledItemButton = styled.button`
     &:hover::after{
         transition-duration: .4s;
         clip-path: polygon(0 0, 100% 0%, 0 0, 0% 100%);
+    }
+
+    @media(max-width: 750px){
+        width: 100%;
     }
 `
     
