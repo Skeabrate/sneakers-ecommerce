@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { StyledTitle } from "../../../../GlobalStyledComponents/StyledTitle"
+import { aboutCategories } from "../../../../data/aboutCategories"
 import {
     Wrapper,
     StyledContent,
@@ -11,34 +12,8 @@ import {
     StyledItemButton,
     StyledItemHeader
 } from "./ThirdSection.styles"
-import imgRunning from "../../../../Assets/Images/About/imgRunning.jpg"
-import imgEssentials from "../../../../Assets/Images/About/imgEssentials.jpg"
-import imgOriginals from "../../../../Assets/Images/About/imgOriginals.jpg"
-import imgWinter from "../../../../Assets/Images/About/imgWinter.jpg"
-
-const categories = [
-    { category: "Running", img: imgRunning },
-    { category: "Essentials", img: imgEssentials },
-    { category: "Originals", img: imgOriginals },
-    { category: "Winter", img: imgWinter },
-];
 
 const ThirdSection = () => {
-
-    useEffect(() => {
-        /* gsap.to(contentRef.current, {
-            yPercent: -100,
-            ease: "none",
-            scrollTrigger: {
-                trigger: imgRef.current,
-                // start: "top bottom", // the default values
-                // end: "bottom top",
-                scrub: true
-            }, 
-        }); */
-    }, [])
-    /* Running, Essentials, Originals, Winter */
-
     return (
         <Wrapper>
             <header>
@@ -48,7 +23,7 @@ const ThirdSection = () => {
             </header>
 
             <StyledContent>
-                {categories.map(({ category, img }) => (
+                {aboutCategories.map(({ category, img }) => (
                     <StyledItem>
                         <StyledItemImg img={img} />
 

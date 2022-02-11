@@ -3,6 +3,7 @@ import { StyledTitle } from "../../../../GlobalStyledComponents/StyledTitle"
 import imgOne from "../../../../Assets/Images/About/aboutContent1.jpg"
 import { StyledLink } from "../../../../GlobalStyledComponents/StyledLink"
 import gsap from "gsap"
+import { useImgLoad } from "../../../../hooks/useImgLoad"
 import {
     Wrapper,
     StyledContentWrapper,
@@ -21,6 +22,8 @@ const FirstSection = () => {
     const rightOrnUpRef = useRef(null)
     const rightOrnDownRef = useRef(null)
 
+    const imgLoadRef = useRef(null)
+    const { handleLoadImg } = useImgLoad(imgLoadRef.current)
 
     useEffect(() => {
         const mediaQuery = window.matchMedia('(max-width: 750px)')
@@ -97,7 +100,14 @@ const FirstSection = () => {
                 </StyledArticle>
 
                 <StyledImg ref={imgRef}>
-                    <img alt="aboutus" src={imgOne} width="1600" height="1066" />
+                    <img 
+                        alt="aboutus" 
+                        src={imgOne}
+                        ref={imgLoadRef}
+                        onLoad={handleLoadImg}
+                        width="1600" 
+                        height="1066" 
+                    />
 
                     <StyledRightOrnament>
                         <span ref={rightOrnUpRef} />
