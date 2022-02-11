@@ -7,7 +7,6 @@ import {
 } from "./Login.styles"
 import { StyledTitle } from '../../GlobalStyledComponents/StyledTitle'
 import { useImgLoad } from "../../hooks/useImgLoad"
-import { StyledTitleOrnament } from '../../GlobalStyledComponents/StyledTitleOrnament';
 
 const Content = () => {
     const clubImgRef = React.useRef(null)
@@ -19,7 +18,6 @@ const Content = () => {
             <header>
                 <StyledTitle>
                     JOIN THE CLUB. GET REWARDED.
-                    <StyledTitleOrnament />
                 </StyledTitle>
             </header>
                 

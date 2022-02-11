@@ -1,6 +1,5 @@
 import { useRef, useEffect } from 'react';
 import { StyledTitle } from "../../../../GlobalStyledComponents/StyledTitle"
-import { StyledTitleOrnament } from "../../../../GlobalStyledComponents/StyledTitleOrnament"
 import imgOne from "../../../../Assets/Images/About/aboutContent1.jpg"
 import { StyledLink } from "../../../../GlobalStyledComponents/StyledLink"
 import gsap from "gsap"
@@ -77,7 +76,6 @@ const FirstSection = () => {
         <Wrapper>
             <header>
                 <StyledTitle>
-                    <StyledTitleOrnament />
                     About our company
                 </StyledTitle>
             </header>

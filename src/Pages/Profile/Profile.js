@@ -20,7 +20,6 @@ import ConfirmModal from '../../Modals/ConfirmModal/ConfirmModal';
 import { useSticky } from "../../hooks/useSticky"
 import ShoppingHistory from './ShoppingHistory/ShoppingHistory';
 import { useStickyTwo } from '../../hooks/useStickyTwo';
-import { StyledTitleOrnament } from '../../GlobalStyledComponents/StyledTitleOrnament';
 import Helmet from '../../helpers/Helmet';
 
 const Profile = () => {
@@ -50,7 +49,6 @@ const Profile = () => {
                     <header>
                         <StyledTitle>
                             profile
-                            <StyledTitleOrnament />
                         </StyledTitle>
                     </header>
 

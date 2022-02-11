@@ -1,6 +1,7 @@
 import styled from "styled-components"
+import { StyledTitleOrnament } from "./StyledTitleOrnament"
 
-export const StyledTitle = styled.h1`
+export const Title = styled.h1`
    font-size: ${({ theme }) => theme.fontSize.xxl};
    font-display: optional;
    font-style: italic;
@@ -61,3 +62,12 @@ export const StyledTitle = styled.h1`
       }
    }
 `
+
+export const StyledTitle = ({ children }) => {
+   return (
+      <Title>
+         <StyledTitleOrnament />
+         { children }
+      </Title>
+   )
+}

@@ -16,7 +16,6 @@ import { StyledLink } from "../../GlobalStyledComponents/StyledLink"
 import ModalsContext from '../../Context/ModalsContext';
 import AuthContext from "../../Context/AuthContext"
 import { StyledLinkToHome } from '../../GlobalStyledComponents/StyledLinkToHome';
-import { StyledTitleOrnament } from '../../GlobalStyledComponents/StyledTitleOrnament';
 import Helmet from '../../helpers/Helmet';
 
 const Wishlist = () => {
@@ -57,7 +56,6 @@ const Wishlist = () => {
                MY WISH LIST
                <span ref={contentLengthRef}>[ {length} ]</span>
                <StyledLinkToHome label="GO BACK SHOPPING" title="all products" path="AllProducts" isHeader isWhite />
-               <StyledTitleOrnament />
             </StyledTitle>
          </header>
 

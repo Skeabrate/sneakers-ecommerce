@@ -14,7 +14,6 @@ import { useInfoOpen } from "../../../hooks/useInfoOpen"
 import { ADD_DISCOUNT } from '../../../helpers/serverResponse';
 import { StyledTitle } from "../../../GlobalStyledComponents/StyledTitle"
 import ModalsContext from '../../../Context/ModalsContext';
-import { StyledTitleOrnament } from '../../../GlobalStyledComponents/StyledTitleOrnament';
 
 const Summary = ({ totalAmount, textareaValue, setTextareaValue, length }) => {
     const [giftCode, setGiftCode] = useState("")
@@ -39,7 +38,6 @@ const Summary = ({ totalAmount, textareaValue, setTextareaValue, length }) => {
             <header>
                 <StyledTitle>
                     SUMMARY
-                    <StyledTitleOrnament />
                 </StyledTitle>
             </header>
 

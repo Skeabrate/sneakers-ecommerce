@@ -63,7 +63,6 @@ const Login = () => {
                      <button onClick={() => setIsRegisterOpen(true)}>
                         You dont have an account yet? Register now!
                      </button>
-                     <StyledTitleOrnament />
                   </StyledTitle>
                </header>
 

@@ -1,7 +1,6 @@
 import { useRef, useEffect } from "react"
 import { Wrapper }  from "../../GlobalStyledComponents/Wrapper"
 import { StyledTitle } from '../../GlobalStyledComponents/StyledTitle'
-import { StyledTitleOrnament } from '../../GlobalStyledComponents/StyledTitleOrnament';
 import imgSrc from "../../Assets/Images/Contact2.png"
 import {
    StyledContact,
@@ -30,7 +29,6 @@ const Contact = () => {
             <article>
                <StyledTitle>
                   Contact us
-                  <StyledTitleOrnament />
                </StyledTitle>
 
                <StyledDescription>

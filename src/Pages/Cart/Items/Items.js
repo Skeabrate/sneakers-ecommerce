@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import {
     Wrapper
 } from "./Items.styles"
@@ -6,7 +6,6 @@ import CartItem from "./CartItem/CartItem"
 import { StyledTitle } from '../../../GlobalStyledComponents/StyledTitle';
 import gsap from "gsap"
 import { StyledLinkToHome } from '../../../GlobalStyledComponents/StyledLinkToHome';
-import { StyledTitleOrnament } from '../../../GlobalStyledComponents/StyledTitleOrnament';
 
 const Items = ({ cart, length }) => {
 
@@ -37,7 +36,6 @@ const Items = ({ cart, length }) => {
                     your bag
                     <span ref={contentLengthRef}>[ { length } ]</span>
                     <StyledLinkToHome label="GO BACK SHOPPING" title="all products" path="AllProducts" isHeader isWhite />
-                    <StyledTitleOrnament />
                 </StyledTitle>
             </header>
 

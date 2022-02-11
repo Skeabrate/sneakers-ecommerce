@@ -1,9 +1,26 @@
 import React, { useEffect } from 'react';
 import { StyledTitle } from "../../../../GlobalStyledComponents/StyledTitle"
-import { StyledTitleOrnament } from "../../../../GlobalStyledComponents/StyledTitleOrnament"
 import {
     Wrapper,
+    StyledContent,
+    StyledItem,
+    StyledItemImg,
+    StyledItemTitle,
+    StyledItemTitleLower,
+    StyledItemContent,
+    StyledItemButton
 } from "./ThirdSection.styles"
+import imgRunning from "../../../../Assets/Images/About/imgRunning.jpg"
+import imgEssentials from "../../../../Assets/Images/About/imgEssentials.jpg"
+import imgOriginals from "../../../../Assets/Images/About/imgOriginals.jpg"
+import imgWinter from "../../../../Assets/Images/About/imgWinter.jpg"
+
+const categories = [
+    { category: "Running", img: imgRunning },
+    { category: "Essentials", img: imgEssentials },
+    { category: "Originals", img: imgOriginals },
+    { category: "Winter", img: imgWinter },
+];
 
 const ThirdSection = () => {
 
@@ -19,15 +36,33 @@ const ThirdSection = () => {
             }, 
         }); */
     }, [])
+    /* Running, Essentials, Originals, Winter */
 
     return (
         <Wrapper>
-            <header>
-                <StyledTitle>
-                    our products
-                    <StyledTitleOrnament />
-                </StyledTitle>
-            </header>
+            <StyledTitle>
+                our products
+            </StyledTitle>
+
+            <StyledContent>
+                {categories.map(({ category, img }) => (
+                    <StyledItem>
+                        <StyledItemImg img={img} />
+                        <StyledItemTitle>{category}</StyledItemTitle>
+                        <StyledItemTitleLower>Lorem ipsum dolor sit</StyledItemTitleLower>
+
+                        <StyledItemContent>
+                            <p>
+                                Consectetur adipisicing elit. Unde et quam eveniet saepe amet facere magnam, dignissimos ex pariatur! Quaerat earum eveniet architecto voluptates. Velit facere illo, amet debitis vitae ex quidem.
+                            </p>
+
+                            <StyledItemButton>Read more</StyledItemButton>
+                        </StyledItemContent>
+
+                    </StyledItem>
+                ))}
+            </StyledContent>
+
         </Wrapper>
     );
 };
