@@ -94,7 +94,6 @@ export const StyledImg = styled.div`
     z-index: 1;
 
     img{
-        opacity: 0;
         width: 55vw;
         height: auto;
     }
