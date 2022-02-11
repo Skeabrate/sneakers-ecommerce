@@ -17,10 +17,6 @@ export const Wrapper = styled.article`
       line-height: 1;
    }
 
-   @media(max-width: ${({theme}) => theme.screenSize.medium}){
-      border-bottom: none;
-   }
-
    @media(max-width: ${({theme}) => theme.screenSize.mobile}){
       padding: 15px 25px 65px 0px;
 
