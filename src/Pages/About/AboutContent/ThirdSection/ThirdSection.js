@@ -8,7 +8,8 @@ import {
     StyledItemTitle,
     StyledItemTitleLower,
     StyledItemContent,
-    StyledItemButton
+    StyledItemButton,
+    StyledItemHeader
 } from "./ThirdSection.styles"
 import imgRunning from "../../../../Assets/Images/About/imgRunning.jpg"
 import imgEssentials from "../../../../Assets/Images/About/imgEssentials.jpg"
@@ -40,23 +41,30 @@ const ThirdSection = () => {
 
     return (
         <Wrapper>
-            <StyledTitle>
-                our products
-            </StyledTitle>
+            <header>
+                <StyledTitle>
+                    our products
+                </StyledTitle>
+            </header>
 
             <StyledContent>
                 {categories.map(({ category, img }) => (
                     <StyledItem>
                         <StyledItemImg img={img} />
-                        <StyledItemTitle>{category}</StyledItemTitle>
-                        <StyledItemTitleLower>Lorem ipsum dolor sit</StyledItemTitleLower>
+
+                        <StyledItemHeader>
+                            <StyledItemTitle>{category}</StyledItemTitle>
+                            <StyledItemTitleLower>Lorem ipsum dolor sit</StyledItemTitleLower>
+                        </StyledItemHeader>
 
                         <StyledItemContent>
                             <p>
-                                Consectetur adipisicing elit. Unde et quam eveniet saepe amet facere magnam, dignissimos ex pariatur! Quaerat earum eveniet architecto voluptates. Velit facere illo, amet debitis vitae ex quidem.
+                                Consectetur adipisicing elit. Unde et quam eveniet saepe amet facere magnam, dignissimos ex pariatur! Quaerat earum eveniet architecto voluptates.
                             </p>
 
-                            <StyledItemButton>Read more</StyledItemButton>
+                            <StyledItemButton>
+                                <span>READ MORE</span>
+                            </StyledItemButton>
                         </StyledItemContent>
 
                     </StyledItem>
