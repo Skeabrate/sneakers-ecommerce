@@ -8,7 +8,7 @@ const AboutContent = () => {
         <main>
             <FirstSection />
 
-            {/* <SecondSection /> */}
+            <SecondSection />
 
             <ThirdSection /> 
         </main>
