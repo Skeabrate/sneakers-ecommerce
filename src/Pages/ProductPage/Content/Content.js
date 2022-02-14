@@ -15,6 +15,7 @@ import {
    StickyPointer,
    StickyPlaceholder 
 } from "./Content.styles"
+import NewImageSlider from '../../../Components/ImageSlider/NewImageSlider';
 
 const Content = ({ product, loading,  }) => {
    const [cheatActive, setCheatActive] = useState(false)
@@ -25,7 +26,8 @@ const Content = ({ product, loading,  }) => {
    return (
       <StyledContentWrapper>
          <Element name="gallery">
-            <ImageSlider product={product} loading={loading}/>
+            {/* <ImageSlider product={product} loading={loading} /> */}
+            <NewImageSlider product={product} loading={loading} />
          </Element>
 
          <ShopingCart product={product} loading={loading} isMobile />
