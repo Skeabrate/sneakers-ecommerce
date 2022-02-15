@@ -100,7 +100,7 @@ const NavBar = ({ isProductPage }) => {
          </StyledTitleWrapper>
 
          <StyledCart>
-            <StyledCartItem as={Link} to="/wishlist" title="favorite">
+            <StyledCartItem as={Link} to="/wishlist" title="wishlist" aria-label="wishlist">
                {favoriteLength ? (
                   <>
                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M18 1l-6 4-6-4-6 5v7l12 10 12-10v-7z"/></svg>
@@ -111,18 +111,18 @@ const NavBar = ({ isProductPage }) => {
                )} 
             </StyledCartItem>
 
-            <StyledCartItem as={Link} to="/cart" title="cart">
+            <StyledCartItem as={Link} to="/cart" title="cart" aria-label="cart">
                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 19.5c0 .829-.672 1.5-1.5 1.5s-1.5-.671-1.5-1.5c0-.828.672-1.5 1.5-1.5s1.5.672 1.5 1.5zm3.5-1.5c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm-10.563-5l-2.937-7h16.812l-1.977 7h-11.898zm11.233-5h-11.162l1.259 3h9.056l.847-3zm5.635-5l-3.432 12h-12.597l.839 2h13.239l3.474-12h1.929l.743-2h-4.195z"/></svg>
                {cartLength ? <span>{cartLength}</span> : null}  
             </StyledCartItem>
 
             <StyledCartProfile profileImg={isAuthenticated && isAuthenticated.image}>
                {isAuthenticated && isAuthenticated.image ? (
-                  <Link to="/profile" title="Profile">
+                  <Link to="/profile" title="profile" aria-label="profile">
                      <img src={isAuthenticated.image} alt={isAuthenticated.email} />
                   </Link>
                ) : (
-                  <Link to="/login" title="Log in">
+                  <Link to="/login" title="log in" aria-label="log in">
                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2c2.757 0 5 2.243 5 5.001 0 2.756-2.243 5-5 5s-5-2.244-5-5c0-2.758 2.243-5.001 5-5.001zm0-2c-3.866 0-7 3.134-7 7.001 0 3.865 3.134 7 7 7s7-3.135 7-7c0-3.867-3.134-7.001-7-7.001zm6.369 13.353c-.497.498-1.057.931-1.658 1.302 2.872 1.874 4.378 5.083 4.972 7.346h-19.387c.572-2.29 2.058-5.503 4.973-7.358-.603-.374-1.162-.811-1.658-1.312-4.258 3.072-5.611 8.506-5.611 10.669h24c0-2.142-1.44-7.557-5.631-10.647z"/></svg>
                   </Link>
                )}

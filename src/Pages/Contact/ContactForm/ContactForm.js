@@ -1,4 +1,4 @@
-import { useState, useReducer, useRef } from 'react';
+import { useState, useReducer } from 'react';
 import CustomInput from '../../../Components/CustomInput/CustomInput';
 import LoadingButton from "../../../Components/LoadingButton/LoadingButton"
 import { reducer } from "../Reducer/reducer"
@@ -16,8 +16,6 @@ import emailjs from "@emailjs/browser"
 const ContactForm = () => {
     const [state, dispatch] = useReducer(reducer, initialState)
     const [loading, setLoading] = useState(false)
-
-    const formRef = useRef(null)
 
     const resolveInfoOpen = useInfoOpen()
 

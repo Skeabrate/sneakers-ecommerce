@@ -2,7 +2,7 @@ import React, { useState, useContext, useRef } from 'react';
 import { useAuth } from "../../hooks/useAuth"
 import AuthContext from "../../Context/AuthContext"
 import ProfileImage from './ProfileImage/ProfileImage';
-import { StyledTitle } from '../../GlobalStyledComponents/StyledTitle';
+import StyledTitle from '../../GlobalStyledComponents/StyledTitle';
 import LoadingButton from '../../Components/LoadingButton/LoadingButton';
 import {
     StyledSettings,

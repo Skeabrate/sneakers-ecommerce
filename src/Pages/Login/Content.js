@@ -5,7 +5,7 @@ import {
     StyledListItem,
     StyledClubImg,
 } from "./Login.styles"
-import { StyledTitle } from '../../GlobalStyledComponents/StyledTitle'
+import StyledTitle from '../../GlobalStyledComponents/StyledTitle'
 import { useImgLoad } from "../../hooks/useImgLoad"
 
 const Content = () => {

@@ -3,7 +3,7 @@ import {
     Wrapper
 } from "./Items.styles"
 import CartItem from "./CartItem/CartItem"
-import { StyledTitle } from '../../../GlobalStyledComponents/StyledTitle';
+import StyledTitle from '../../../GlobalStyledComponents/StyledTitle';
 import gsap from "gsap"
 import { StyledLinkToHome } from '../../../GlobalStyledComponents/StyledLinkToHome';
 

@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { StyledTitle } from '../../GlobalStyledComponents/StyledTitle'
+import StyledTitle from '../../GlobalStyledComponents/StyledTitle'
 import { Wrapper } from "../../GlobalStyledComponents/Wrapper"
 import {
    StyledForm,
@@ -19,7 +19,6 @@ import LoadingButton from '../../Components/LoadingButton/LoadingButton';
 import Content from './Content';
 import { useAuth } from '../../hooks/useAuth';
 import ResetPasswordModal from '../../Modals/ResetPasswordModal/ResetPasswordModal';
-import { StyledTitleOrnament } from '../../GlobalStyledComponents/StyledTitleOrnament';
 import Helmet from '../../helpers/Helmet';
 
 const SignupSchema = Yup.object().shape({

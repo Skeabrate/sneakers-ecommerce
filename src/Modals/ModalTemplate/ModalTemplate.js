@@ -4,7 +4,7 @@ import {
    Wrapper,
    StyledCloseButton
 } from "./ModalTemplate.styles"
-import { StyledTitle } from "../../GlobalStyledComponents/StyledTitle"
+import StyledTitle from "../../GlobalStyledComponents/StyledTitle"
 import { StyledTitleOrnament } from '../../GlobalStyledComponents/StyledTitleOrnament';
 
 const ModalTemplate = ({ children, isModalOpen, setIsModalOpen, label }) => {

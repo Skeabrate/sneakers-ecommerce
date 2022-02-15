@@ -11,7 +11,7 @@ import {
 } from "./Wishlist.styles"
 import { Wrapper } from '../../GlobalStyledComponents/Wrapper';
 import { StyledContent } from "../../GlobalStyledComponents/StyledContent"
-import { StyledTitle } from "../../GlobalStyledComponents/StyledTitle"
+import StyledTitle from "../../GlobalStyledComponents/StyledTitle"
 import { StyledLink } from "../../GlobalStyledComponents/StyledLink"
 import ModalsContext from '../../Context/ModalsContext';
 import AuthContext from "../../Context/AuthContext"

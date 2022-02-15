@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext, useCallback, useRef } from 'react';
-import { StyledTitle } from "../../../GlobalStyledComponents/StyledTitle"
+import StyledTitle from "../../../GlobalStyledComponents/StyledTitle"
 import { db } from "../../../firebase"
 import AuthContext from '../../../Context/AuthContext';
 import {

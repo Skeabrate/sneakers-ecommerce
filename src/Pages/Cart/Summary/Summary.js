@@ -12,7 +12,7 @@ import {
 } from "./Summary.styles"
 import { useInfoOpen } from "../../../hooks/useInfoOpen"
 import { ADD_DISCOUNT } from '../../../helpers/serverResponse';
-import { StyledTitle } from "../../../GlobalStyledComponents/StyledTitle"
+import StyledTitle from "../../../GlobalStyledComponents/StyledTitle"
 import ModalsContext from '../../../Context/ModalsContext';
 
 const Summary = ({ totalAmount, textareaValue, setTextareaValue, length }) => {

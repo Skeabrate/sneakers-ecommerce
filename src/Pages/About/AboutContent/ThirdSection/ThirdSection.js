@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledTitle } from "../../../../GlobalStyledComponents/StyledTitle"
+import StyledTitle from "../../../../GlobalStyledComponents/StyledTitle"
 import { aboutCategories } from "../../../../data/aboutCategories"
 import {
     Wrapper,

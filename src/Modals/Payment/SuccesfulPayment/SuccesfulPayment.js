@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components"
-import { StyledTitle } from '../../../GlobalStyledComponents/StyledTitle';
+import StyledTitle from '../../../GlobalStyledComponents/StyledTitle';
 
 const Wrapper = styled.div`
     display: flex;

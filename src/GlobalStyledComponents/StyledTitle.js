@@ -14,6 +14,9 @@ export const Title = styled.h1`
          switch(color) {
             case "green":
                return theme.colors.green
+            
+            default:
+               return theme.colors.white
          }
       }
    }};
@@ -63,7 +66,7 @@ export const Title = styled.h1`
    }
 `
 
-export const StyledTitle = ({ children, color }) => {
+export default function StyledTitle({ children, color }) {
    return (
       <Title>
          {!color && <StyledTitleOrnament />}

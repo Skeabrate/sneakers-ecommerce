@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'react';
-import { StyledTitle } from "../../../../GlobalStyledComponents/StyledTitle"
+import StyledTitle from "../../../../GlobalStyledComponents/StyledTitle"
 import imgOne from "../../../../Assets/Images/About/aboutContent1.jpg"
 import { StyledLink } from "../../../../GlobalStyledComponents/StyledLink"
 import gsap from "gsap"
