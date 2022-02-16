@@ -113,7 +113,7 @@ export const StyledNav = styled.ul`
 export const StyledNavItem = styled(NavLink)`
    display: flex;
    justify-content: center;
-   align-items: end;
+   align-items: flex-end;
    margin-right: 30px;
    padding-bottom: 20px;
    height: 80px;
