@@ -20,6 +20,7 @@ import {
    StyledBackButton
 } from "./NavBar.styles"
 import AuthContext from "../../Context/AuthContext"
+import HiddenLink from "../HiddenLink/HiddenLink"
 
 const NavBar = ({ isProductPage }) => {
    const [toggle, setToggle] = useState(false)
@@ -66,6 +67,8 @@ const NavBar = ({ isProductPage }) => {
 
    return (
       <Wrapper isProductPage={isProductPage} hideNav={hideNav}>
+         <HiddenLink />
+
          <StyledTitleWrapper>
             <StyledTitle>
                <StyledHamburger onClick={toggleMenu}>
