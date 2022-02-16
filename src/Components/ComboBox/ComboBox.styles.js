@@ -7,11 +7,11 @@ export const Wrapper = styled.div`
 
 export const StyledOptionBtn = styled.button`
    text-transform: uppercase;
-   background-color: ${({isOpen, theme}) => isOpen ? `${theme.colors.black}` : 'transparent'};
+   background-color: ${({isopen, theme}) => isopen ? `${theme.colors.black}` : 'transparent'};
    color: ${({theme}) => theme.colors.white}; 
    font-size: ${({theme}) => theme.fontSize.xs};
-   border: 1px solid ${({isOpen, theme}) => isOpen ? theme.colors.orange : 'transparent'};
-   border-bottom: ${({isOpen}) => isOpen ? `none` : null};
+   border: 1px solid ${({isopen, theme}) => isopen ? theme.colors.orange : 'transparent'};
+   border-bottom: ${({isopen}) => isopen ? `none` : null};
    height: 40px;
    width: fit-content;
    padding: 10px 30px 10px 12px;
@@ -19,12 +19,12 @@ export const StyledOptionBtn = styled.button`
    span{
       position: absolute;
       right: 10px;
-      transform: ${({isOpen}) => isOpen ? 'rotate(180deg)' : 'rotate(0deg)'}  scale(0.8);
+      transform: ${({isopen}) => isopen ? 'rotate(180deg)' : 'rotate(0deg)'}  scale(0.8);
    }
 
    &:hover{
       border: 1px solid ${({theme}) => theme.colors.orange};
-      border-bottom: ${({isOpen, theme}) => isOpen ? `none` : `1px solid ${theme.colors.orange}`};
+      border-bottom: ${({isopen, theme}) => isopen ? `none` : `1px solid ${theme.colors.orange}`};
    }
 
    &:focus{
@@ -55,9 +55,9 @@ export const StyledList = styled.ul`
    border: 1px solid ${({theme}) => theme.colors.orange};
    background-color: ${({theme}) => theme.colors.black};
    z-index: -1;
-   visibility: ${({isOpen}) => isOpen ? 'visible' : 'hidden'};
+   visibility: ${({isopen}) => isopen ? 'visible' : 'hidden'};
    box-shadow: 0px 0px 26px -11px rgba(0, 0, 0, 1);
-   opacity: ${({isOpen}) => isOpen ? 1 : 0};
+   opacity: ${({isopen}) => isopen ? 1 : 0};
 
    transition: opacity .2s;
 

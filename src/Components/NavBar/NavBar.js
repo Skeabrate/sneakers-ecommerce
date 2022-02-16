@@ -70,7 +70,7 @@ const NavBar = ({ isProductPage }) => {
             <StyledTitle>
                <StyledHamburger onClick={toggleMenu}>
                   <StyledHamburgerWrapper>
-                     <StyledHamburgerInner isToggled={toggle}></StyledHamburgerInner>
+                     <StyledHamburgerInner istoggled={toggle ? "true" : undefined}></StyledHamburgerInner>
                   </StyledHamburgerWrapper>
                </StyledHamburger>
 
@@ -79,17 +79,17 @@ const NavBar = ({ isProductPage }) => {
                </header>
             </StyledTitle>
 
-            <StyledNav isToggled={toggle}>
+            <StyledNav istoggled={toggle ? "true" : undefined}>
                <li>
-                  <StyledNavItem isFirst isToggled={toggle} to="/AllProducts">Home</StyledNavItem>
+                  <StyledNavItem isfirst="true" istoggled={toggle ? "true" : undefined} to="/AllProducts">Home</StyledNavItem>
                </li>
 
                <li>
-                  <StyledNavItem isSecond isToggled={toggle} to="/about">About</StyledNavItem>
+                  <StyledNavItem issecond="true" istoggled={toggle ? "true" : undefined} to="/about">About</StyledNavItem>
                </li>
 
                <li>
-                  <StyledNavItem isToggled={toggle} to="/contact">Contact</StyledNavItem>
+                  <StyledNavItem istoggled={toggle ? "true" : undefined} to="/contact">Contact</StyledNavItem>
                </li>
 
                <li>

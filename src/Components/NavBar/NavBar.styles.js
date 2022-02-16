@@ -90,11 +90,11 @@ export const StyledNav = styled.ul`
       height: calc(100vh - 60px);
       top: 60px;
       left: 0;
-      transform: ${({isToggled}) => isToggled ? 'translateX(0)' : 'translateX(-100%)'};
+      transform: ${({istoggled}) => istoggled ? 'translateX(0)' : 'translateX(-100%)'};
 
       transition: transform .5s ease-in-out;
 
-      ${({isToggled}) => !isToggled && 'transition: .3s'};
+      ${({istoggled}) => !istoggled && 'transition: .3s'};
 
       &::after{
          content: '';
@@ -153,21 +153,21 @@ export const StyledNavItem = styled(NavLink)`
       align-items: center;
       font-weight: bold;
       transform-origin: top;
-      opacity: ${({isToggled}) => isToggled ? 1 : 0};
-      transform: ${({isToggled}) => isToggled ? 'scaleY(1)' : 'scaleY(0)'};
+      opacity: ${({istoggled}) => istoggled ? 1 : 0};
+      transform: ${({istoggled}) => istoggled ? 'scaleY(1)' : 'scaleY(0)'};
 
-      transition: opacity ${({isFirst, isSecond}) => {
-                     if(isFirst) return '.3s .3s ease-in-out'
-                     if(isSecond) return '.3s .4s ease-in-out'
+      transition: opacity ${({isfirst, issecond}) => {
+                     if(isfirst) return '.3s .3s ease-in-out'
+                     if(issecond) return '.3s .4s ease-in-out'
                      else return '.3s .5s ease-in-out'
                   }}, 
-                  transform ${({isFirst, isSecond}) => {
-                     if(isFirst) return '.2s .3s ease-in-out'
-                     if(isSecond) return '.2s .4s ease-in-out'
+                  transform ${({isfirst, issecond}) => {
+                     if(isfirst) return '.2s .3s ease-in-out'
+                     if(issecond) return '.2s .4s ease-in-out'
                      else return '.2s .5s ease-in-out'
                   }};
 
-      ${({isToggled}) => !isToggled && 'transition-delay: 0s'};
+      ${({istoggled}) => !istoggled && 'transition-delay: 0s'};
 
       &.active::after {
          opacity: 0;

@@ -24,7 +24,7 @@ const ThirdSection = () => {
 
             <StyledContent>
                 {aboutCategories.map(({ category, img }) => (
-                    <StyledItem>
+                    <StyledItem key={category}>
                         <StyledItemImg img={img} />
 
                         <StyledItemHeader>

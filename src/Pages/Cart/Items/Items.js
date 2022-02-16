@@ -46,7 +46,7 @@ const Items = ({ cart, length }) => {
                             <CartItem
                                 last={index === cart.length - 1}
                                 item={item} 
-                                key={index} 
+                                key={item.keyID} 
                             />
                         ))}
                     </div>         

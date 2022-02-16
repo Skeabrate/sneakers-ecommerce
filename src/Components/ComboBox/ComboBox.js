@@ -28,20 +28,20 @@ const ComboBox = ({ label, items = [], isPrice, option, filter, setFilters }) =>
 
    return (
       <Wrapper>
-         <StyledOptionBtn isOpen={isOpen} type="button" {...getToggleButtonProps()}>
+         <StyledOptionBtn isopen={isOpen ? "true" : undefined} type="button" {...getToggleButtonProps()}>
             { isPrice && option ? option : label}
-            <span isOpen={isOpen}>&#9660;</span>
+            <span isopen={isOpen ? "true" : undefined}>&#9660;</span>
          </StyledOptionBtn>
 
          <StyledList 
             isPrice={isPrice}
-            isOpen={isOpen} 
+            isopen={isOpen ? "true" : undefined} 
             {...getMenuProps()}
          >
             {isOpen &&
             items.map((item, index) => (
                <li
-                  isOpen={isOpen}
+                  isopen={isOpen ? "true" : undefined}
                   style={
                   highlightedIndex === index
                      ? { backgroundColor: 'black' }

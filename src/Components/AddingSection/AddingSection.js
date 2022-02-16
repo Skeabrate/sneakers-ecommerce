@@ -10,6 +10,7 @@ import {
 import AmountInput from "../AmountInput/AmountInput"
 import { ADDED_TO_CART } from "../../helpers/serverResponse"
 import { useInfoOpen } from '../../hooks/useInfoOpen';
+import { v4 as uuid } from 'uuid';
 
 const AddingSection = ({ loading, size, setError, isClicked, setIsClicked, product: {id, title, gender, price, images = [{url: ""}]} }) => {
    const [inputValue, setInputValue] = useState(1)
@@ -44,7 +45,8 @@ const AddingSection = ({ loading, size, setError, isClicked, setIsClicked, produ
          })
 
          if(!check) {
-            dispatch(addToCart({ 
+            dispatch(addToCart({
+               keyID: uuid(),
                id: id, 
                title: title, 
                price: price,
