@@ -24,7 +24,7 @@ export const StyledHamburgerWrapper = styled.span`
 export const StyledHamburgerInner = styled.span`
    width: 100%;
    height: 2px;
-   background-color: ${({isToggled, theme}) => isToggled ? 'transparent' : theme.colors.white};
+   background-color: ${({istoggled, theme}) => istoggled ? 'transparent' : theme.colors.white};
    position: absolute;
    left: 0;
    top: 50%;
@@ -35,7 +35,7 @@ export const StyledHamburgerInner = styled.span`
       content: '';
       width: 100%;
       height: 2px;
-      background-color: ${({theme, isToggled}) => isToggled ? theme.colors.orange : theme.colors.white};
+      background-color: ${({theme, istoggled}) => istoggled ? theme.colors.orange : theme.colors.white};
       position: absolute;
       left: 0;
       transition: transform .2s .1s ease-in-out, 
@@ -43,10 +43,10 @@ export const StyledHamburgerInner = styled.span`
    }
    &::after{
       bottom: 8px;
-      transform: ${({isToggled}) => isToggled ? 'translateY(8px) rotate(45deg)' : 'unset'};
+      transform: ${({istoggled}) => istoggled ? 'translateY(8px) rotate(45deg)' : 'unset'};
    }
    &::before{
       top: 8px;
-      transform: ${({isToggled}) => isToggled ? 'translateY(-8px) rotate(-45deg)' : 'unset'}
+      transform: ${({istoggled}) => istoggled ? 'translateY(-8px) rotate(-45deg)' : 'unset'}
    }
 `
