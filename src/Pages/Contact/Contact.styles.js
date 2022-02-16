@@ -20,6 +20,7 @@ export const StyledContact = styled.div`
 
 export const StyledDescription = styled.p`
     margin-bottom: 40px;
+    font-size: ${({theme}) => theme.fontSize.xxs};
 `
 
 const move = keyframes`
@@ -111,6 +112,7 @@ export const StyledDetails = styled.article`
     margin-block: 200px 150px;
     column-gap: 6vw;
     position: relative;
+    font-size: ${({theme}) => theme.fontSize.xxs};
 
     &::after{
         content: "";
@@ -136,7 +138,12 @@ export const StyledDetails = styled.article`
         align-items: center;
         text-align: center;
         row-gap: 10px;
-        max-width: 200px; 
+        max-width: 200px;
+
+        h2{
+            font-size: 1.2rem;
+            font-style: italic;
+        }
 
         a{
             color: ${({theme}) => theme.colors.orange};

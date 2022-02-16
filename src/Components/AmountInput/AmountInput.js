@@ -51,14 +51,15 @@ const AmountInput = ({ label, item = false, inputValue, setInputValue = () => {}
         <div>
             {label && <label style={{ fontWeight: 'bold' }}>{label}</label>}
             <Wrapper label={label}>
-                <StyledPlusMinusBtn onClick={minusHandler}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 10h24v4h-24z"/></svg></StyledPlusMinusBtn>
+                <StyledPlusMinusBtn aria-label="decrease amount of products" onClick={minusHandler}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 10h24v4h-24z"/></svg></StyledPlusMinusBtn>
                 <input
                     type="number"
+                    aria-label="amount of products"
                     value={inputValue} 
                     onChange={changeValueHandler}
                     onBlur={blurHandler}
                 />     
-                <StyledPlusMinusBtn onClick={plusHandler}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg></StyledPlusMinusBtn>
+                <StyledPlusMinusBtn aria-label="increase amount of products" onClick={plusHandler}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg></StyledPlusMinusBtn>
             </Wrapper>
       </div>
     );

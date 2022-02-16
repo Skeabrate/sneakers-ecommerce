@@ -50,7 +50,8 @@ const Summary = ({ totalAmount, textareaValue, setTextareaValue, length }) => {
                         </h3>
                     </summary>
                     <div>
-                        <input 
+                        <input
+                            aria-label="add a promo code"
                             id="giftCode"
                             name="giftCode"
                             type="text"
@@ -71,7 +72,8 @@ const Summary = ({ totalAmount, textareaValue, setTextareaValue, length }) => {
                     </summary>
 
                     <div>
-                        <textarea 
+                        <textarea
+                            aria-label="add a comment"
                             id="comment"
                             name="comment"
                             type="text"

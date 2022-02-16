@@ -107,7 +107,7 @@ const ProfileImage = () => {
             <h3>Change Avatar</h3>
 
             <StyledContent>
-                <div >
+                <div>
                     <input
                         style={{ display: 'none' }}
                         type="file"

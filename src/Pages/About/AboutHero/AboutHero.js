@@ -69,6 +69,7 @@ const AboutHero = () => {
                 duration={800}
                 spy={true}
                 exact={true}
+                role="navigation"
                 aria-label="scroll to content"
             >
                 <svg ref={arrowRef} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10.477 0h-8.977l12.024 12-12.024 12h8.977l12.023-12z"/></svg>

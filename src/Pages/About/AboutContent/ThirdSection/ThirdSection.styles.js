@@ -107,7 +107,7 @@ export const StyledItemTitle = styled.h2`
     }
 `
 
-export const StyledItemTitleLower = styled.h4`
+export const StyledItemTitleLower = styled.h3`
    font-style: italic; 
    font-weight: normal;
    color: ${({theme}) => theme.colors.orange};

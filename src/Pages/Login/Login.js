@@ -95,6 +95,7 @@ const Login = () => {
 
                         <StyledCheckbox>
                            <input
+                              id="loggedIn"
                               type="checkbox"
                               name="loggedIn"
                               value={checkboxValue}

@@ -71,7 +71,7 @@ const NavBar = ({ isProductPage }) => {
 
          <StyledTitleWrapper>
             <StyledTitle>
-               <StyledHamburger onClick={toggleMenu}>
+               <StyledHamburger aria-label="open menu" onClick={toggleMenu}>
                   <StyledHamburgerWrapper>
                      <StyledHamburgerInner istoggled={toggle ? "true" : undefined}></StyledHamburgerInner>
                   </StyledHamburgerWrapper>
@@ -96,7 +96,7 @@ const NavBar = ({ isProductPage }) => {
                </li>
 
                <li>
-                  <StyledBackButton onClick={toggleMenu}></StyledBackButton>
+                  <StyledBackButton aria-label="close menu" onClick={toggleMenu}></StyledBackButton>
                </li>
             </StyledNav>
             
@@ -122,7 +122,12 @@ const NavBar = ({ isProductPage }) => {
             <StyledCartProfile profileImg={isAuthenticated && isAuthenticated.image}>
                {isAuthenticated && isAuthenticated.image ? (
                   <Link to="/profile" title="profile" aria-label="profile">
-                     <img src={isAuthenticated.image} alt={isAuthenticated.email} />
+                     <img 
+                        src={isAuthenticated.image} 
+                        alt={isAuthenticated.email}
+                        height="50"
+                        width="50"
+                     />
                   </Link>
                ) : (
                   <Link to="/login" title="log in" aria-label="log in">
