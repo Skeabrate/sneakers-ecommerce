@@ -11,6 +11,7 @@ export const Wrapper = styled.article`
 
    img{
       width: 180px;
+      height: auto;
    }
 
    h3{
@@ -30,6 +31,7 @@ export const Wrapper = styled.article`
 
       img{
          width: 100px;
+         height: auto;
       }
    }
 `

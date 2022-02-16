@@ -66,35 +66,36 @@ const MainView = () => {
    }, [products])
 
    return (
-      <Suspense fallback={<Fallback />}>
-         <Provider store={store}>
-            <Router>
-               <AuthContext.Provider value={{
-                  isAuthenticated: auth,
-                  setIsAuthenticated: setAuth,
+      <Provider store={store}>
+         <Router>
+            <AuthContext.Provider value={{
+               isAuthenticated: auth,
+               setIsAuthenticated: setAuth,
+            }}>
+               <ProductsContext.Provider value={{
+                  productsCtx: productsCtx,
+                  setProductsCtx: setProductsCtx,
+                  loadingCtx: loading,
+                  setLoadingCtx: setLoading,
                }}>
-                  <ProductsContext.Provider value={{
-                     productsCtx: productsCtx,
-                     setProductsCtx: setProductsCtx,
-                     loadingCtx: loading,
-                     setLoadingCtx: setLoading,
+                  <FiltersContext.Provider value={{
+                     filters: filters,
+                     setFilters: setFilters,
                   }}>
-                     <FiltersContext.Provider value={{
-                        filters: filters,
-                        setFilters: setFilters,
+                     <ModalsContext.Provider value={{
+                        isRegisterOpen: isRegisterOpen,
+                        setIsRegisterOpen: setIsRegisterOpen,
+
+                        isPaymentOpen: isPaymentOpen,
+                        setIsPaymentOpen: setIsPaymentOpen,
+
+                        isInfoOpen: isInfoOpen,
+                        setIsInfoOpen: setIsInfoOpen,
                      }}>
-                        <ModalsContext.Provider value={{
-                           isRegisterOpen: isRegisterOpen,
-                           setIsRegisterOpen: setIsRegisterOpen,
-
-                           isPaymentOpen: isPaymentOpen,
-                           setIsPaymentOpen: setIsPaymentOpen,
-
-                           isInfoOpen: isInfoOpen,
-                           setIsInfoOpen: setIsInfoOpen,
-                        }}>
-                           <div>
-                              <NavBar isProductPage={isProductPage} />
+                        <div>
+                           <NavBar isProductPage={isProductPage} />
+                           
+                           <Suspense fallback={<Fallback />}>
 
                               {isRegisterOpen && <Register />}
 
@@ -123,16 +124,16 @@ const MainView = () => {
 
                                  <Route path='*' element={<div style={{marginTop: '80px'}}><Error /></div>} />
                               </Routes>
+                           </Suspense>
 
-                              <Footer />
-                           </div>
-                        </ModalsContext.Provider>
-                     </FiltersContext.Provider>
-                  </ProductsContext.Provider>
-               </AuthContext.Provider>
-            </Router>
-         </Provider>
-      </Suspense>
+                           <Footer />
+                        </div>
+                     </ModalsContext.Provider>
+                  </FiltersContext.Provider>
+               </ProductsContext.Provider>
+            </AuthContext.Provider>
+         </Router>
+      </Provider>
    );
 };
 
