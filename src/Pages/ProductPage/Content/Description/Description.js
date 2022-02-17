@@ -24,7 +24,12 @@ function Description({ product: { title, description, images }, loading }) {
                </div>
 
                <StyledImg>
-                  <img src={images[2].url} alt="sneakers" />
+                  <img 
+                     src={images[2].url} 
+                     alt="sneakers"
+                     height="500"
+                     width="500"
+                  />
                </StyledImg>
             </StyledContent>
          ) : null}

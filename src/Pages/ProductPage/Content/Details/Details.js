@@ -28,7 +28,12 @@ const Details = ({ loading }) => {
       <Wrapper ref={wrapperRef} isLast>
          <StyledContent count={2} isLast>
             <StyledImg isLeft>
-               <img alt="specifications" src={imgSrc} />
+               <img 
+                  alt="specifications"
+                  src={imgSrc}
+                  height="500"
+                  width="500"
+               />
             </StyledImg>
 
             <div>

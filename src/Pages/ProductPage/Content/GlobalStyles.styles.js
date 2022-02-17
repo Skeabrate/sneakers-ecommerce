@@ -106,6 +106,7 @@ export const StyledImg = styled.div`
 
    img{
       width: 100%;
+      height: 100%;
    }
 
    &::after, &::before{
