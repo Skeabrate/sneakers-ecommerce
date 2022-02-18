@@ -30,7 +30,7 @@ export const Wrapper = styled.nav`
    transition: transform .3s .2s ease-in-out,
                opacity .3s .2s ease-in-out;
    
-   transition-duration: ${({hideNav}) => hideNav ? '.3s' : '.2s'}; 
+   transition-duration: ${({hideNav}) => hideNav ? '.2s' : '.3s'}; 
 
    @media (max-width: ${({theme}) => theme.screenSize.medium}){
       font-size: ${({theme}) => theme.fontSize.xs};
