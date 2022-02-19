@@ -83,10 +83,9 @@ const Profile = () => {
                             </StyledLogoutMobile>
                         </StyledAccountDetails>
                     </article>
-                    <div style={{ position: "absolute", bottom: '0', left: '0', height: '100vh', width: '100%', zIndex: '-1'}} />
                 </StyledSettings>
 
-                <ShoppingHistory /> 
+                <ShoppingHistory endRef={stickyRef} /> 
 
                 <StyledLogoutDesktop onClick={logOutHandler} isSticky={isSticky}>
                     <span>Logout</span>
@@ -105,7 +104,7 @@ const Profile = () => {
                 />
             )}
             
-            <div ref={stickyRef} style={{position: 'aboslute', bottom: 0 }}/>
+            <div ref={stickyRef} style={{ position: 'aboslute', bottom: 0 }}/>
         </div>
     );
 };

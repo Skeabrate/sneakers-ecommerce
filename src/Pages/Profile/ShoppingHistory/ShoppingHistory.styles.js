@@ -107,3 +107,10 @@ export const LoadingConteiner = styled.div`
     width: 100%;
     height: calc(100vh - 80px - 52px - 3vw);
 `
+
+export const StyledLoadMoreContent = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+`

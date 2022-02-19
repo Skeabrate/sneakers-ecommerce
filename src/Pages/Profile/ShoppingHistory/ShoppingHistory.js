@@ -1,14 +1,13 @@
-import React, { useEffect, useState, useContext, useCallback, useRef } from 'react';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
 import StyledTitle from "../../../GlobalStyledComponents/StyledTitle"
-import { db } from "../../../firebase"
-import AuthContext from '../../../Context/AuthContext';
 import {
     Wrapper,
     StyledUnderline,
     StyledImages,
     StyledShoppingItem,
     StyledOrderTitle,
-    LoadingConteiner
+    LoadingConteiner,
+    StyledLoadMoreContent,
 } from "./ShoppingHistory.styles"
 import { 
     StyledSpan,   
@@ -16,13 +15,19 @@ import {
 import ShoppingItem from "./ShoppingItem/ShoppingItem"
 import LoadingScreen from '../../../Components/LoadingScreen/LoadingScreen';
 import gsap from "gsap"
+import { useShoppingHistory } from "../../../hooks/useShoppingHistory"
 
 const ShoppingHistory = () => {
-    const [data, setData] = useState([])
-    const [loading, setLoading] = useState(true)
+    const [isEndOfContent, setIsEndOfContent] = useState(false)
+    const [currentPage, setCurrentPage] = useState(1)
 
-    const { isAuthenticated: { token } } = useContext(AuthContext)
+    const [data, loading] = useShoppingHistory()
 
+    const postPerPage = 8
+    const indexOfLastPost = currentPage * postPerPage
+    const currentPosts = data.slice(0, indexOfLastPost)
+
+    const endRef = useRef(null)
     const itemRef = useRef(null)
     const tl = useRef(null)
 
@@ -42,26 +47,35 @@ const ShoppingHistory = () => {
         })
         return newArr.reduce((prev, curr) => prev + curr)
     }
+    
+    const callbackFunction = (entries) => {
+        const [entry] = entries
+        setIsEndOfContent(entry.isIntersecting)
+    }
 
-    const fetchProducts = useCallback(() => {
-        db.collection(token)
-        .orderBy("dateId", "desc")
-        .onSnapshot((snapshot) => {
-            setData(
-                snapshot.docs.map(item => ({
-                    id: item.id,
-                    date: item.data().date,
-                    products: item.data().products
-                }))
-            )
-            setLoading(false) 
-        })
-        
+    const options = useMemo(() => {
+        return {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0,
+        }
     }, [])
 
     useEffect(() => {
-        fetchProducts()
-    }, [])
+        const observer = new IntersectionObserver(callbackFunction, options)
+
+        if(endRef.current && ( currentPosts.length < data.length )) observer.observe(endRef.current)
+        
+        return () => endRef?.current && observer.unobserve(endRef.current)
+    }, [endRef.current, options])
+
+    useEffect(() => {
+        if(isEndOfContent){
+            setTimeout(() => {
+                setCurrentPage((state) => state + 1)
+            }, 500)
+        }
+    }, [isEndOfContent])
 
     useEffect(() =>{
         tl.current = gsap.timeline({ paused: loading })
@@ -70,7 +84,7 @@ const ShoppingHistory = () => {
             tl.current
                 .to(itemRef.current, {
                     opacity: 1,
-                    duration: .6
+                    duration: .8
                 })
         }
     }, [loading])
@@ -87,8 +101,8 @@ const ShoppingHistory = () => {
                 <>
                 {data.length ? (
                     <div style={{ opacity: '0' }} ref={itemRef}>
-                        {data.map(({ id, date, products }, index) => (
-                            <StyledShoppingItem key={id} isLast={index === data.length - 1}>
+                        {currentPosts.map(({ id, date, products }, index) => (
+                            <StyledShoppingItem key={id} isLast={index === currentPosts.length - 1}>
                                 <StyledOrderTitle>
                                     <StyledUnderline>ORDER # </StyledUnderline> <StyledSpan>{id}</StyledSpan>
                                 </StyledOrderTitle>
@@ -120,6 +134,12 @@ const ShoppingHistory = () => {
                                 </StyledImages>
                             </StyledShoppingItem>
                         ))}
+
+                        {currentPosts.length < data.length && (
+                            <StyledLoadMoreContent ref={endRef}>
+                                <LoadingScreen />
+                            </StyledLoadMoreContent>
+                        )}
                     </div>
                 ) : (
                     <h1>You don't have shopping history yet</h1>
