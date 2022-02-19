@@ -19,7 +19,6 @@ import {
 import ConfirmModal from '../../Modals/ConfirmModal/ConfirmModal';
 import { useSticky } from "../../hooks/useSticky"
 import ShoppingHistory from './ShoppingHistory/ShoppingHistory';
-import { useStickyTwo } from '../../hooks/useStickyTwo';
 import Helmet from '../../helpers/Helmet';
 
 const Profile = () => {
@@ -32,10 +31,6 @@ const Profile = () => {
     const stickyRef = useRef(null)
     const { isSticky } = useSticky(stickyRef)
 
-    const settingsRef = useRef(null)
-    const end = useRef(null)
-    const position = useStickyTwo(settingsRef, end)
-
     React.useEffect(() => {
         window.scrollTo({ top: 0, left: 0 })
     }, [])
@@ -45,7 +40,7 @@ const Profile = () => {
             <Helmet title="Sneakers Journey - Profile" />
 
             <Wrapper>
-                <StyledSettings ref={settingsRef} position={position}>
+                <StyledSettings>
                     <header>
                         <StyledTitle>
                             profile
@@ -83,13 +78,12 @@ const Profile = () => {
                                 <LoadingButton loading={loading} onClick={() => setOpenConfirm(true)} label="Reset Password" isBlack />
                             </StyledForgotPassword>
                             
-
                             <StyledLogoutMobile onClick={logOutHandler}>
                                 <span>Logout</span>
                             </StyledLogoutMobile>
                         </StyledAccountDetails>
                     </article>
-                    <div style={{ position: "absolute", bottom: '0', left: '0', height: '100vh', width: '100%', zIndex: '-1'}} ref={end} />
+                    <div style={{ position: "absolute", bottom: '0', left: '0', height: '100vh', width: '100%', zIndex: '-1'}} />
                 </StyledSettings>
 
                 <ShoppingHistory /> 

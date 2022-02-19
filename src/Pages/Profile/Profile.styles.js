@@ -21,8 +21,9 @@ export const StyledSettings = styled.section`
     padding-top: calc(3vw + 80px);
     height: fit-content;
     position: sticky;
-    top: ${({position}) => `${(-1) * position}px`};
-    min-height: 100vh;
+    overflow-y: auto;
+    top: 0;
+    height: 100vh;
     box-shadow: ${({theme}) => theme.boxShadow};
     border-right: 1px solid ${({theme}) => theme.colors.grey};
 
@@ -36,6 +37,20 @@ export const StyledSettings = styled.section`
 
     @media(max-width: ${({theme}) => theme.screenSize.mobile}){
         padding-top: calc(3vw + 60px);
+    }
+
+    ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: #0B0B0A;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background:  ${({theme}) => theme.colors.orange};
+        border-radius: 100px;
     }
 `
 

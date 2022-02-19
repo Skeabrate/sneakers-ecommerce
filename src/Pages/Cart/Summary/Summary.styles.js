@@ -42,8 +42,7 @@ export const Wrapper = styled.section`
     overflow-y: auto;
     padding: 1.25vw;
     padding-top: calc(80px + 1.25vw);
-    height: fit-content;
-    min-height: calc(100vh);
+    height: 100vh;
     text-transform: uppercase;
     display: flex;
     flex-direction: column;
