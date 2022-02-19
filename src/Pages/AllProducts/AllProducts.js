@@ -57,7 +57,6 @@ const AllProducts = ({ AllProducts }) => {
 
    useEffect(() => {
       if(AllProducts.length){
-         scrollFunc()
          if(!productsCtx.length) setError(true)
          else setError(false)
       }
