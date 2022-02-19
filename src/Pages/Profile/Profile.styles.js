@@ -33,6 +33,7 @@ export const StyledSettings = styled.section`
         position: static;
         border-bottom: 1px solid ${({theme}) => theme.colors.grey};
         border-right: none;
+        height: fit-content;
     }
 
     @media(max-width: ${({theme}) => theme.screenSize.mobile}){
