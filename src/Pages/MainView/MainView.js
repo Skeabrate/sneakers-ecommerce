@@ -13,6 +13,7 @@ import Register from '../../Modals/Register/Register'
 import InfoModal from '../../Modals/InfoModal/InfoModal'
 import { authStateChangedHandler } from "../../authStateChange"
 import Payment from '../../Modals/Payment/Payment';
+import Products from '../AllProducts/Products/Products'
 
 import Fallback from '../Fallback/Fallback';
 
@@ -108,7 +109,10 @@ const MainView = () => {
 
                                  <Route path="/about" element={<About />}/>
 
-                                 <Route path="/AllProducts" element={<AllProducts AllProducts={products}/>}/>
+                                 <Route path="/AllProducts" element={<Navigate to="/AllProducts/page/1" />} />
+                                 <Route path="/AllProducts" element={<AllProducts AllProducts={products}/>}>
+                                    <Route path="page/:id" element={<Products />} />
+                                 </Route>
 
                                  <Route path="/product/:id" element={<ProductPage setIsProductPage={setIsProductPage} />} />
 

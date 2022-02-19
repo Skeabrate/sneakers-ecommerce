@@ -1,32 +1,26 @@
 import React, { useEffect, useRef, useState, useContext } from 'react';
 import gsap from 'gsap';
-import LoadingScreen from '../../Components/LoadingScreen/LoadingScreen';
 import FiltersBar from './FiltersBar/FiltersBar';
 import SearchBar from '../../Components/SearchBar/SearchBar';
 import ProductsContext from '../../Context/ProductsContext';
 import { 
-   StyledLoading, 
-   StyledError, 
    StyledTitle, 
    StyledTitleWrapper,
    StyledTitleInfo
 } from './AllProducts.styles';
 import { Wrapper } from "../../GlobalStyledComponents/Wrapper"
-import { StyledContent } from "../../GlobalStyledComponents/StyledContent"
-import ProductItem from '../../Components/ProductItem/ProductItem';
-import Pagination from '../../Components/Pagination/Pagination';
 import { StyledTitleOrnament } from "../../GlobalStyledComponents/StyledTitleOrnament"
 import Helmet from "../../helpers/Helmet"
+import { Outlet, useParams, useNavigate } from "react-router-dom"
 
 const AllProducts = ({ AllProducts }) => {
    const { productsCtx, loadingCtx, setLoadingCtx } = useContext(ProductsContext)
-   const [error, setError] = useState(false)
-   const [currentPage, setCurrentPage] = useState(1)
-   const [ postPerPage ] = useState(12)
 
-   const indexOfLastPost = currentPage * postPerPage
-   const indexOfFirstPost = indexOfLastPost - postPerPage
-   const currentPosts = productsCtx.slice(indexOfFirstPost, indexOfLastPost)
+   const { id } = useParams()
+   const navigate = useNavigate()
+
+   const [error, setError] = useState(false)
+   const [ postPerPage ] = useState(12)
 
    const tl = useRef(null)
    const contentRef = useRef(null)
@@ -39,35 +33,31 @@ const AllProducts = ({ AllProducts }) => {
       behavior: type,
    })
 
-   const paginate = (item, func = () => {}) => {
-      if(func) {
+   const paginate = (func = () => {}) => {
+      if(func){ // filtry
          setLoadingCtx(false)
          setTimeout(() => {
             func()
+            navigate("/AllProducts/page/1")
             setLoadingCtx(true) 
          }, 100)
-   
-         setCurrentPage(item)
-         scrollFunc()
-      } else {
-         if(currentPage !== item){
-            setLoadingCtx(false)
-            setTimeout(() => {
-               setLoadingCtx(true) 
-            }, 100)
-      
-            setCurrentPage(item)
-            scrollFunc()
-         } else scrollFunc("smooth")
+
+      } else { // zmiana routa - pagination
+         setLoadingCtx(false)
+         setTimeout(() => {
+            setLoadingCtx(true) 
+         }, 100)
       }
+      scrollFunc()
    }
 
    useEffect(() => {
-      scrollFunc()
-   }, [])
+      paginate(false)
+   }, [id])
 
    useEffect(() => {
       if(AllProducts.length){
+         scrollFunc()
          if(!productsCtx.length) setError(true)
          else setError(false)
       }
@@ -104,7 +94,7 @@ const AllProducts = ({ AllProducts }) => {
                   {loadingCtx ? (
                      <StyledTitleInfo ref={contentLengthRef}>
                         <span>[ {error ? '0' : productsCtx.length} ]</span> 
-                        <div>Page : <p>{currentPage} / {Math.ceil(productsCtx.length / postPerPage)}</p></div>
+                        <div>Page : <p>{id} / {Math.ceil(productsCtx.length / postPerPage)}</p></div>
                      </StyledTitleInfo>
                   ) : null}
                   <StyledTitleOrnament />
@@ -112,49 +102,12 @@ const AllProducts = ({ AllProducts }) => {
 
                <SearchBar ref={searchBarRef} />
             </StyledTitle>
-            
          </header>
-            <FiltersBar setError={setError} AllProducts={AllProducts} paginate={paginate}/>
 
-         <article>
-            {loadingCtx ? (
-               <>
-                  {error ? (
-                     <StyledError>
-                        <h1>Nothing was found!</h1>
-                     </StyledError>
-                  ) : (
-                     <div>
-                        <StyledContent ref={contentRef}>
-                           {currentPosts.map(
-                              ({ id, images = [], price, title, category, gender }, props) => (
-                                 <ProductItem
-                                    key={id}
-                                    id={id}
-                                    image={images[0].url}
-                                    price={price}
-                                    title={title}
-                                    category={category}
-                                    gender={gender}
-                                 />
-                              )
-                           )}
-                        </StyledContent>
-                        <Pagination 
-                           postsPerPage={postPerPage} 
-                           totalPosts={productsCtx.length} 
-                           paginate={paginate}
-                           currentPage={currentPage}
-                        />
-                     </div>
-                  )}
-               </>
-            ) : (
-               <StyledLoading>
-                  <LoadingScreen />
-               </StyledLoading>
-            )}
-         </article>
+         <FiltersBar setError={setError} AllProducts={AllProducts} paginate={paginate}/>
+
+         <Outlet context={[contentRef, error, postPerPage]} />
+            
       </Wrapper>
    );
 };

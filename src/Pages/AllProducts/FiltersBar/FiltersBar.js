@@ -44,7 +44,7 @@ const FiltersBar = ({ AllProducts, paginate }) => {
    }
 
    useEffect(() => {
-      if(filters.isActive) paginate(1, filterData)
+      if(filters.isActive) paginate(filterData)
    }, [filters]) // eslint-disable-line react-hooks/exhaustive-deps
 
    return (
@@ -94,88 +94,3 @@ const FiltersBar = ({ AllProducts, paginate }) => {
 };
 
 export default FiltersBar;
-
-
-/* 
-const resetOption = (first = true, second = true) => {
-   if(first && category) setCategory(false)
-   if(second && gender) setGender(false)
-}
-
-const unSorted = (value) => setProductsCtx(AllProducts.filter(item => item.category.includes(value)))
-
-const sorted = (value, direction) => {
-   const data = AllProducts.filter(item => item.category.includes(value))
-   sortData(data, direction)
-   return setProductsCtx(data)
-}
-
-const handleSortAll = useCallback((selectedOption) => { 
-   if(selectedOption){ // Dla Women i Men
-      if(price){
-         if(price === priceItems[0]) sorted(selectedOption, "descending")
-         else if(price === priceItems[1]) sorted(selectedOption, "ascending")
-      } else unSorted(selectedOption)
-      paginate()
-   }
-   if(term) {
-      setTerm('')
-      setError(false)
-   }
-}, [gender, category])
-
-const resetHandler = () => { // After clicking X button on filter
-   if(price){
-      if(price === priceItems[0]) sorted('', "descending")
-      else if(price === priceItems[1]) sorted('', "ascending")
-   } else unSorted('')
-
-   if(term) setTerm('')
-   resetOption()
-   setError(false)
-   paginate()
-}
-
-
-useEffect(() => {
-   if(gender){
-      handleSortAll(gender)
-      resetOption(true, false)
-   }
-}, [gender])
-
-
-useEffect(() => {
-   if(category){
-      handleSortAll(category)
-      resetOption(false, true)
-   } 
-}, [category])
-
-
-useEffect(() => {
-   if(price === priceItems[0]) sortData(productsCtx, "descending")  
-   else if(price === priceItems[1]) sortData(productsCtx, "ascending")
-   paginate()
-}, [price])
-
-
-
-useEffect(() => {
-   if(term){
-      const results = AllProducts.filter(item => item.title.toUpperCase().includes(term.toUpperCase()))
-      if(results.length) {
-         setError(false) 
-         if(price === priceItems[0]) setProductsCtx(sortData(results, "descending"))  
-         else if(price === priceItems[1]) setProductsCtx(sortData(results, "ascending"))
-         else setProductsCtx(results)
-         resetOption()
-      }
-      else {
-         setError(true)
-         resetOption()
-      }
-      paginate()
-   }
-}, [term])
- */
