@@ -30,7 +30,7 @@ const Profile = () => {
 
     const stickyRef = useRef(null)
 
-    const { isSticky } = useSticky(stickyRef)
+    const { isSticky } = useSticky(stickyRef, true)
 
     React.useEffect(() => {
         window.scrollTo({ top: 0, left: 0 })
@@ -86,7 +86,7 @@ const Profile = () => {
                     </article>
                 </StyledSettings>
 
-                <ShoppingHistory endRef={stickyRef} />
+                <ShoppingHistory />
 
                 <StyledLogoutDesktop onClick={logOutHandler} isSticky={isSticky}>
                     <span>Logout</span>

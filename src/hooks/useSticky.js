@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 
-export const useSticky = (ref) => {
+export const useSticky = (ref, needMediaQuery = false) => {
    const [isSticky, setIsSticky] = useState(true)
 
    const callbackFunction = (entries) => {
@@ -17,11 +17,11 @@ export const useSticky = (ref) => {
    }, [])
 
    useEffect(() => {
-      const mediaQuery = window.matchMedia('(max-width: 550px)')
+      const mediaQuery = window.matchMedia('(min-width: 550px)')
       const observer = new IntersectionObserver(callbackFunction, options)
       const refCurr = ref.current
 
-      if(!mediaQuery.matches && refCurr) observer.observe(refCurr)
+      if((needMediaQuery || mediaQuery.matches) && refCurr) observer.observe(refCurr)
       
       return () => refCurr && observer.unobserve(refCurr)
    }, [ref, options])

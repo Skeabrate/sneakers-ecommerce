@@ -16,6 +16,7 @@ import ShoppingItem from "./ShoppingItem/ShoppingItem"
 import LoadingScreen from '../../../Components/LoadingScreen/LoadingScreen';
 import gsap from "gsap"
 import { useShoppingHistory } from "../../../hooks/useShoppingHistory"
+import { productValueHandler } from "../../../helpers/productValueHandles"
 
 const ShoppingHistory = () => {
     const [isEndOfContent, setIsEndOfContent] = useState(false)
@@ -30,23 +31,6 @@ const ShoppingHistory = () => {
     const endRef = useRef(null)
     const itemRef = useRef(null)
     const tl = useRef(null)
-
-    const getValue = (arr = [], option) => {
-        let newArr = []
-        arr.map(item => {
-            switch(option){
-                case "quantity":
-                    return newArr.push(item.amount)
-
-                case "price":
-                    return newArr.push(item.price)
-
-                default: 
-                    return newArr
-            }
-        })
-        return newArr.reduce((prev, curr) => prev + curr)
-    }
     
     const callbackFunction = (entries) => {
         const [entry] = entries
@@ -73,7 +57,7 @@ const ShoppingHistory = () => {
         
         if(isEndOfContent){
             setTimeout(() => {
-                setCurrentPage((state) => state + 1)
+                setCurrentPage(state => state + 1)
             }, 500)
         }
     }, [isEndOfContent])
@@ -121,8 +105,8 @@ const ShoppingHistory = () => {
                                     <tbody>
                                         <tr>
                                             <td><h5 style={{ fontWeight: "normal", }}>{date}</h5></td>
-                                            <td><h5 style={{ fontWeight: "normal", }}>{getValue(products, "quantity")}</h5></td>
-                                            <td><h5 style={{ fontWeight: "normal", }}>${getValue(products, "price")}</h5></td>
+                                            <td><h5 style={{ fontWeight: "normal", }}>{productValueHandler(products, "quantity")}</h5></td>
+                                            <td><h5 style={{ fontWeight: "normal", }}>${productValueHandler(products, "price")}</h5></td>
                                             <td><h5 style={{ fontWeight: "normal", }}>Send</h5></td>
                                         </tr>
                                     </tbody>
