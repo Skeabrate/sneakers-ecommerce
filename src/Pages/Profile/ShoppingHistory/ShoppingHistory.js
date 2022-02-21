@@ -47,10 +47,11 @@ const ShoppingHistory = () => {
 
     useEffect(() => {
         const observer = new IntersectionObserver(callbackFunction, options)
+        const currRef = endRef.current
 
-        if(endRef.current && ( currentPosts.length < data.length )) observer.observe(endRef.current)
+        if(currRef && ( currentPosts.length < data.length )) observer.observe(currRef)
         
-        return () => endRef?.current && observer.unobserve(endRef.current)
+        return () => currRef && observer.unobserve(currRef)
     }, [endRef.current, options])
 
     useEffect(() => {
