@@ -29,6 +29,7 @@ const Profile = () => {
     const { logOutHandler, resetPasswordHandler, loading } = useAuth()
 
     const stickyRef = useRef(null)
+
     const { isSticky } = useSticky(stickyRef)
 
     React.useEffect(() => {
@@ -85,7 +86,7 @@ const Profile = () => {
                     </article>
                 </StyledSettings>
 
-                <ShoppingHistory endRef={stickyRef} /> 
+                <ShoppingHistory endRef={stickyRef} />
 
                 <StyledLogoutDesktop onClick={logOutHandler} isSticky={isSticky}>
                     <span>Logout</span>

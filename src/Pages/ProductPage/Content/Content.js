@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { Element } from 'react-scroll'
 import { useSticky } from "../../../hooks/useSticky"
 import Highlights from "./Highlights/Highlights"
@@ -21,6 +21,7 @@ const Content = ({ product, loading,  }) => {
    const navRef = useRef(null)
 
    const { isSticky } = useSticky(navRef)
+   const mediaQuery = window.matchMedia('(max-width: 1000px)')
 
    return (
       <StyledContentWrapper>
@@ -29,7 +30,7 @@ const Content = ({ product, loading,  }) => {
             <NewImageSlider product={product} loading={loading} />
          </Element>
 
-         <ShopingCart product={product} loading={loading} isMobile />
+         {mediaQuery.matches && <ShopingCart product={product} loading={loading} isMobile />}
 
          <div>
             <nav>

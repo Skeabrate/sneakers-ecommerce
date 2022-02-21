@@ -70,6 +70,7 @@ const ShoppingHistory = () => {
     }, [endRef.current, options])
 
     useEffect(() => {
+        
         if(isEndOfContent){
             setTimeout(() => {
                 setCurrentPage((state) => state + 1)

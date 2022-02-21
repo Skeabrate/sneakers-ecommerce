@@ -12,6 +12,8 @@ import Helmet from "../../helpers/Helmet"
 const ProductPage = ({ setIsProductPage }) => {
    const [product, loading, error] = useProductID() // fetch product from context if it exists if not - fetch from CMS
 
+   const mediaQuery = window.matchMedia('(max-width: 1000px)')
+
    useEffect(() => {
       window.scrollTo({ top: 0, left: 0 })
       setIsProductPage(true)
@@ -33,7 +35,7 @@ const ProductPage = ({ setIsProductPage }) => {
 
                   <Content product={product} loading={loading} /> 
 
-                  <ShopingCart product={product} loading={loading} isDesktop />
+                  {!mediaQuery.matches && <ShopingCart product={product} loading={loading} isDesktop />}
                </Wrapper>
             )}
       </section>
