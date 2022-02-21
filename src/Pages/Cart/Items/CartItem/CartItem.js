@@ -73,6 +73,7 @@ const CartItem = ({ item, last }) => {
                      inputValue={inputValue}
                      setInputValue={setInputValue}
                      item={item}
+                     showDelete
                   />
                </StyledAmount>
                
