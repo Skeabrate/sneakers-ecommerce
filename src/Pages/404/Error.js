@@ -27,7 +27,7 @@ const Error = ({ label }) => {
 
 	return (
 		<StyledError>
-			<Helmet title="Sneakers Journey"/>
+			<Helmet title="Sneakers Journey" />
 
 			<h1>404</h1>
 			<h2>{`Sorry, we couldn't find a ${
