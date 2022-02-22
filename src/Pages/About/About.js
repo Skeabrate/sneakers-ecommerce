@@ -13,7 +13,7 @@ const About = () => {
 		<div>
 			<Helmet title="Sneakers Journey - About Us" />
 
-			<AboutHero/>
+			<AboutHero />
 
 			<Element name="content">
 				<AboutContent />
