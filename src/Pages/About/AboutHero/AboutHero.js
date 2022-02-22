@@ -74,7 +74,7 @@ const AboutHero = () => {
 					height="24"
 					viewBox="0 0 24 24"
 				>
-					<path d="M10.477 0h-8.977l12.024 12-12.024 12h8.977l12.023-12z"/>
+					<path d="M10.477 0h-8.977l12.024 12-12.024 12h8.977l12.023-12z" />
 				</svg>
 			</StyledArrow>
 		</Wrapper>
