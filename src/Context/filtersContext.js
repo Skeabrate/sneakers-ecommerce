@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 
 const FiltersContext = React.createContext({
-   filters: "",
-   setFilters: () => {},
-})
+	filters: '',
+	setFilters: () => {},
+});
 
-export default FiltersContext
+export default FiltersContext;

@@ -1,18 +1,18 @@
 import React from 'react';
-import FirstSection from "./FirstSection/FirstSection"
+import FirstSection from './FirstSection/FirstSection';
 import SecondSection from './SecondSection/SecondSection';
 import ThirdSection from './ThirdSection/ThirdSection';
 
 const AboutContent = () => {
-    return (
-        <main>
-            <FirstSection />
+	return (
+		<main>
+			<FirstSection />
 
-            <SecondSection />
+			<SecondSection />
 
-            <ThirdSection /> 
-        </main>
-    );
+			<ThirdSection />
+		</main>
+	);
 };
 
 export default AboutContent;

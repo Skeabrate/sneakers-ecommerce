@@ -1,17 +1,17 @@
-import React from "react"
+import React from 'react';
 
 const ModalsContext = React.createContext({
-   isRegisterOpen: false,
-   setIsRegisterOpen: () => {},
+	isRegisterOpen: false,
+	setIsRegisterOpen: () => {},
 
-   isPaymentOpen: false,
-   setIsPaymentOpen: () => {},
+	isPaymentOpen: false,
+	setIsPaymentOpen: () => {},
 
-   isInfoOpen: {
-      info: false,
-      success: false,
-   },
-   setIsInfoOpen: () => {},
-})
+	isInfoOpen: {
+		info: false,
+		success: false,
+	},
+	setIsInfoOpen: () => {},
+});
 
-export default ModalsContext
+export default ModalsContext;

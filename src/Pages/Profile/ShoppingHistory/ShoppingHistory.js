@@ -1,139 +1,161 @@
 import React, { useEffect, useRef, useState, useMemo } from 'react';
-import StyledTitle from "../../../GlobalStyledComponents/StyledTitle"
+import StyledTitle from '../../../GlobalStyledComponents/StyledTitle';
 import {
-    Wrapper,
-    StyledUnderline,
-    StyledImages,
-    StyledShoppingItem,
-    StyledOrderTitle,
-    LoadingConteiner,
-    StyledLoadMoreContent,
-} from "./ShoppingHistory.styles"
-import { 
-    StyledSpan,   
-} from "../Profile.styles"
-import ShoppingItem from "./ShoppingItem/ShoppingItem"
+	Wrapper,
+	StyledUnderline,
+	StyledImages,
+	StyledShoppingItem,
+	StyledOrderTitle,
+	LoadingConteiner,
+	StyledLoadMoreContent,
+} from './ShoppingHistory.styles';
+import { StyledSpan } from '../Profile.styles';
+import ShoppingItem from './ShoppingItem/ShoppingItem';
 import LoadingScreen from '../../../Components/LoadingScreen/LoadingScreen';
-import gsap from "gsap"
-import { useShoppingHistory } from "../../../hooks/useShoppingHistory"
-import { productValueHandler } from "../../../helpers/productValueHandles"
+import gsap from 'gsap';
+import { useShoppingHistory } from '../../../hooks/useShoppingHistory';
+import { productValueHandler } from '../../../helpers/productValueHandles';
 
 const ShoppingHistory = () => {
-    const [isEndOfContent, setIsEndOfContent] = useState(false)
-    const [currentPage, setCurrentPage] = useState(1)
+	const [isEndOfContent, setIsEndOfContent] = useState(false);
+	const [currentPage, setCurrentPage] = useState(1);
 
-    const [data, loading] = useShoppingHistory()
+	const [data, loading] = useShoppingHistory();
 
-    const postPerPage = 8
-    const indexOfLastPost = currentPage * postPerPage
-    const currentPosts = data.slice(0, indexOfLastPost)
+	const postPerPage = 8;
+	const indexOfLastPost = currentPage * postPerPage;
+	const currentPosts = data.slice(0, indexOfLastPost);
 
-    const endRef = useRef(null)
-    const itemRef = useRef(null)
-    const tl = useRef(null)
-    
-    const callbackFunction = (entries) => {
-        const [entry] = entries
-        setIsEndOfContent(entry.isIntersecting)
-    }
+	const endRef = useRef(null);
+	const itemRef = useRef(null);
+	const tl = useRef(null);
 
-    const options = useMemo(() => {
-        return {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0,
-        }
-    }, [])
+	const callbackFunction = (entries) => {
+		const [entry] = entries;
+		setIsEndOfContent(entry.isIntersecting);
+	};
 
-    useEffect(() => {
-        const observer = new IntersectionObserver(callbackFunction, options)
-        const currRef = endRef.current
+	const options = useMemo(() => {
+		return {
+			root: null,
+			rootMargin: '0px',
+			threshold: 0,
+		};
+	}, []);
 
-        if(currRef && ( currentPosts.length < data.length )) observer.observe(currRef)
-        
-        return () => currRef && observer.unobserve(currRef)
-    }, [endRef.current, options])
+	useEffect(() => {
+		const observer = new IntersectionObserver(callbackFunction, options);
+		const currRef = endRef.current;
 
-    useEffect(() => {
-        
-        if(isEndOfContent){
-            setTimeout(() => {
-                setCurrentPage(state => state + 1)
-            }, 500)
-        }
-    }, [isEndOfContent])
+		if (currRef && currentPosts.length < data.length) observer.observe(currRef);
 
-    useEffect(() =>{
-        tl.current = gsap.timeline({ paused: loading })
-        
-        if(tl.current){
-            tl.current
-                .to(itemRef.current, {
-                    opacity: 1,
-                    duration: .8
-                })
-        }
-    }, [loading])
+		return () => currRef && observer.unobserve(currRef);
+	}, [endRef.current, options]);
 
-    return (
-        <Wrapper>
-            <header>
-                <StyledTitle>
-                    Shopping History
-                </StyledTitle>
-            </header>
+	useEffect(() => {
+		if (isEndOfContent) {
+			setTimeout(() => {
+				setCurrentPage((state) => state + 1);
+			}, 500);
+		}
+	}, [isEndOfContent]);
 
-            {loading ? <LoadingConteiner><LoadingScreen /></LoadingConteiner> : (
-                <>
-                {data.length ? (
-                    <div style={{ opacity: '0' }} ref={itemRef}>
-                        {currentPosts.map(({ id, date, products }, index) => (
-                            <StyledShoppingItem key={id} isLast={index === currentPosts.length - 1}>
-                                <StyledOrderTitle>
-                                    <StyledUnderline>ORDER # </StyledUnderline> <StyledSpan>{id}</StyledSpan>
-                                </StyledOrderTitle>
+	useEffect(() => {
+		tl.current = gsap.timeline({ paused: loading });
 
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <td><h5>DATE</h5></td>
-                                            <td><h5>ITEMS</h5></td>
-                                            <td><h5>PRICE</h5></td>
-                                            <td><h5>STATUS</h5></td>
-                                        </tr>
-                                    </thead>
+		if (tl.current) {
+			tl.current.to(itemRef.current, {
+				opacity: 1,
+				duration: 0.8,
+			});
+		}
+	}, [loading]);
 
-                                    <tbody>
-                                        <tr>
-                                            <td><h5 style={{ fontWeight: "normal", }}>{date}</h5></td>
-                                            <td><h5 style={{ fontWeight: "normal", }}>{productValueHandler(products, "quantity")}</h5></td>
-                                            <td><h5 style={{ fontWeight: "normal", }}>${productValueHandler(products, "price")}</h5></td>
-                                            <td><h5 style={{ fontWeight: "normal", }}>Send</h5></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+	return (
+		<Wrapper>
+			<header>
+				<StyledTitle>Shopping History</StyledTitle>
+			</header>
 
-                                <StyledImages>
-                                    {products.map((item, i) => (
-                                        <ShoppingItem item={item} key={i} />
-                                    ))}
-                                </StyledImages>
-                            </StyledShoppingItem>
-                        ))}
+			{loading ? (
+				<LoadingConteiner>
+					<LoadingScreen />
+				</LoadingConteiner>
+			) : (
+				<>
+					{data.length ? (
+						<div style={{ opacity: '0' }} ref={itemRef}>
+							{currentPosts.map(({ id, date, products }, index) => (
+								<StyledShoppingItem
+									key={id}
+									isLast={index === currentPosts.length - 1}
+								>
+									<StyledOrderTitle>
+										<StyledUnderline>ORDER # </StyledUnderline>{' '}
+										<StyledSpan>{id}</StyledSpan>
+									</StyledOrderTitle>
 
-                        {currentPosts.length < data.length && (
-                            <StyledLoadMoreContent ref={endRef}>
-                                <LoadingScreen />
-                            </StyledLoadMoreContent>
-                        )}
-                    </div>
-                ) : (
-                    <h1>You don't have shopping history yet</h1>
-                )}
-                </>
-            )}
-        </Wrapper>
-    );
+									<table>
+										<thead>
+											<tr>
+												<td>
+													<h5>DATE</h5>
+												</td>
+												<td>
+													<h5>ITEMS</h5>
+												</td>
+												<td>
+													<h5>PRICE</h5>
+												</td>
+												<td>
+													<h5>STATUS</h5>
+												</td>
+											</tr>
+										</thead>
+
+										<tbody>
+											<tr>
+												<td>
+													<h5 style={{ fontWeight: 'normal' }}>{date}</h5>
+												</td>
+												<td>
+													<h5 style={{ fontWeight: 'normal' }}>
+														{productValueHandler(products, 'quantity')}
+													</h5>
+												</td>
+												<td>
+													<h5 style={{ fontWeight: 'normal' }}>
+														${productValueHandler(products, 'price')}
+													</h5>
+												</td>
+												<td>
+													<h5 style={{ fontWeight: 'normal' }}>Send</h5>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+
+									<StyledImages>
+										{products.map((item, i) => (
+											<ShoppingItem item={item} key={i} />
+										))}
+									</StyledImages>
+								</StyledShoppingItem>
+							))}
+
+							{currentPosts.length < data.length && (
+								<StyledLoadMoreContent ref={endRef}>
+									<LoadingScreen />
+								</StyledLoadMoreContent>
+							)}
+						</div>
+					) : (
+						<h1>You don't have shopping history yet</h1>
+					)}
+				</>
+			)}
+		</Wrapper>
+	);
 };
 
 export default ShoppingHistory;

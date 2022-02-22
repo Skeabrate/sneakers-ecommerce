@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 
 export const useStoreLength = (store = []) => {
-   const [length, setLength] = useState(0)
+	const [length, setLength] = useState(0);
 
-   useEffect(() => {
-      setLength(store.reduce((a, b) => a + b.amount, 0))
-   }, [store])
+	useEffect(() => {
+		setLength(store.reduce((a, b) => a + b.amount, 0));
+	}, [store]);
 
-   return length > 0 ? length : 0;
+	return length > 0 ? length : 0;
 };

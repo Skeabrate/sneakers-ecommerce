@@ -1,16 +1,5 @@
-export const genderItems = [
-   "Women", 
-   "Men",
-]
+export const genderItems = ['Women', 'Men'];
 
-export const categoryItems = [
-   "Running", 
-   "Essentials", 
-   "Originals", 
-   "Winter", 
-]
+export const categoryItems = ['Running', 'Essentials', 'Originals', 'Winter'];
 
-export const priceItems =  [
-   "Price (high - low)", 
-   "Price (low - high)"
-]
+export const priceItems = ['Price (high - low)', 'Price (low - high)'];

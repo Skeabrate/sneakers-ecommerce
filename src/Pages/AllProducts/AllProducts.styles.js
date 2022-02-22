@@ -1,92 +1,92 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
 export const StyledTitle = styled.div`
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   margin: 0 0 40px 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 0 0 40px 0;
 
-   @media (max-width: ${({theme}) => theme.screenSize.medium}){
-      margin: 30px 0;
-   }
+	@media (max-width: ${({ theme }) => theme.screenSize.medium}) {
+		margin: 30px 0;
+	}
 
-   @media (max-width: 750px){
-      margin: 20px 0;
-   }
+	@media (max-width: 750px) {
+		margin: 20px 0;
+	}
 
-   @media (max-width: ${({theme}) => theme.screenSize.mobile}){
-      flex-direction: column;
-      align-items: start;
-   }
-`
+	@media (max-width: ${({ theme }) => theme.screenSize.mobile}) {
+		flex-direction: column;
+		align-items: start;
+	}
+`;
 
 export const StyledTitleWrapper = styled.div`
-   display: flex;
-   align-items: flex-end;
-   justify-content: center;
-   font-style: italic;
-   position: relative;
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+	font-style: italic;
+	position: relative;
 
-   h1{
-      font-size: ${({theme}) => theme.fontSize.xxl};
-      font-display: optional
-   }
+	h1 {
+		font-size: ${({ theme }) => theme.fontSize.xxl};
+		font-display: optional;
+	}
 
-   @media (max-width: ${({theme}) => theme.screenSize.medium}){
-      h1{
-         font-size: ${({theme}) => theme.fontSize.xl};
-      }
-   }
+	@media (max-width: ${({ theme }) => theme.screenSize.medium}) {
+		h1 {
+			font-size: ${({ theme }) => theme.fontSize.xl};
+		}
+	}
 
-   @media (max-width: 750px){
-      h1{
-         font-size: ${({theme}) => theme.fontSize.l};
-      }
-   }
-`
+	@media (max-width: 750px) {
+		h1 {
+			font-size: ${({ theme }) => theme.fontSize.l};
+		}
+	}
+`;
 
 export const StyledTitleInfo = styled.div`
-   display: flex;
-   flex-direction: column;
-   opacity: 0;
+	display: flex;
+	flex-direction: column;
+	opacity: 0;
 
-   div{
-      position: absolute;
-      left: 0;
-      bottom: -20px;
-      display: flex;
-      
-      p{
-         color: ${({theme}) => theme.colors.orange};
-         font-weight: bold;
-         margin-left: 10px;
-      }
-   }
+	div {
+		position: absolute;
+		left: 0;
+		bottom: -20px;
+		display: flex;
 
-   span{
-      font-size: ${({theme}) => theme.fontSize.s};
-      padding: 10px 20px;
-   }
+		p {
+			color: ${({ theme }) => theme.colors.orange};
+			font-weight: bold;
+			margin-left: 10px;
+		}
+	}
 
-   @media (max-width: ${({theme}) => theme.screenSize.medium}){
-      span{
-         padding: 8px 20px;
-      }
-   }
+	span {
+		font-size: ${({ theme }) => theme.fontSize.s};
+		padding: 10px 20px;
+	}
 
-   @media (max-width: 750px){
-      div{
-         font-size: ${({theme}) => theme.fontSize.micro};
-         bottom: -12px;
+	@media (max-width: ${({ theme }) => theme.screenSize.medium}) {
+		span {
+			padding: 8px 20px;
+		}
+	}
 
-         p{
-            margin-left: 5px;
-         }
-      }
+	@media (max-width: 750px) {
+		div {
+			font-size: ${({ theme }) => theme.fontSize.micro};
+			bottom: -12px;
 
-      span{
-         font-size: ${({theme}) => theme.fontSize.micro};
-         padding: 5px 15px;
-      }
-   }
-`
+			p {
+				margin-left: 5px;
+			}
+		}
+
+		span {
+			font-size: ${({ theme }) => theme.fontSize.micro};
+			padding: 5px 15px;
+		}
+	}
+`;

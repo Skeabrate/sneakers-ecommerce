@@ -1,27 +1,31 @@
-import { useState, useEffect, useCallback, useContext, useMemo } from 'react'
-import { useParams } from 'react-router-dom'
-import axios from 'axios'
-import ProductsContext from "../Context/ProductsContext"
+import { useState, useEffect, useCallback, useContext, useMemo } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import ProductsContext from '../Context/ProductsContext';
 
 export const useProductID = () => {
-   const [product, setProduct] = useState([])
-   const [loading, setLoading] = useState(false)
-   const [error, setError] = useState(false)
+	const [product, setProduct] = useState([]);
+	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState(false);
 
-   const { productsCtx } = useContext(ProductsContext)
-   let { id } = useParams()
+	const { productsCtx } = useContext(ProductsContext);
+	let { id } = useParams();
 
-   let findProduct = useMemo(() => productsCtx.find((item) => item.id === id), [id])
+	let findProduct = useMemo(
+		() => productsCtx.find((item) => item.id === id),
+		[id]
+	);
 
-   const fetchProduct = useCallback(async () => {
-      if(findProduct) {
-         setProduct(findProduct) 
-         setLoading(true)
-      }
-      else {
-         try{
-            const res = await axios.post('https://graphql.datocms.com/', {
-               query: `
+	const fetchProduct = useCallback(async () => {
+		if (findProduct) {
+			setProduct(findProduct);
+			setLoading(true);
+		} else {
+			try {
+				const res = await axios.post(
+					'https://graphql.datocms.com/',
+					{
+						query: `
                {
                   allProducts(filter: {id: {eq: ${id}}}){
                      id
@@ -35,27 +39,28 @@ export const useProductID = () => {
                      }
                   }
                }`,
-            }, {
-               headers: {
-                  authorization: `Bearer ${process.env.REACT_APP_DATOCMS}`,
-               }
-            })
-   
-            if(!res.data.data.allProducts.length) setError(true)
-            setProduct(res.data.data.allProducts[0])
-   
-         } catch (ex) {
-            console.error(ex.response)
-            setError(true)
-         }
-   
-         setLoading(true)
-      }
-   }, [id])
+					},
+					{
+						headers: {
+							authorization: `Bearer ${process.env.REACT_APP_DATOCMS}`,
+						},
+					}
+				);
 
-   useEffect(() => {
-      fetchProduct()
-   }, [fetchProduct])
+				if (!res.data.data.allProducts.length) setError(true);
+				setProduct(res.data.data.allProducts[0]);
+			} catch (ex) {
+				console.error(ex.response);
+				setError(true);
+			}
 
-   return [product, loading, error]
+			setLoading(true);
+		}
+	}, [id]);
+
+	useEffect(() => {
+		fetchProduct();
+	}, [fetchProduct]);
+
+	return [product, loading, error];
 };

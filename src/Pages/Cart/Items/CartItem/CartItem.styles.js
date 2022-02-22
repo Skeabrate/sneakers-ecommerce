@@ -1,159 +1,159 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
 export const Wrapper = styled.article`
-   position: relative;
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
-   border-top: 1px solid ${({theme}) => theme.colors.grey};
-   border-bottom: ${({last, theme}) => last && `1px solid ${theme.colors.grey}`};
-   padding: 20px 0 20px 30px;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-top: 1px solid ${({ theme }) => theme.colors.grey};
+	border-bottom: ${({ last, theme }) =>
+		last && `1px solid ${theme.colors.grey}`};
+	padding: 20px 0 20px 30px;
 
-   img{
-      width: 180px;
-      height: auto;
-   }
+	img {
+		width: 180px;
+		height: auto;
+	}
 
-   h3{
-      line-height: 1;
-   }
+	h3 {
+		line-height: 1;
+	}
 
-   @media(max-width: ${({theme}) => theme.screenSize.mobile}){
-      padding: 15px 25px 65px 0px;
+	@media (max-width: ${({ theme }) => theme.screenSize.mobile}) {
+		padding: 15px 25px 65px 0px;
 
-      h3{
-         font-size: ${({ theme }) => theme.fontSize.xs};
-      }
+		h3 {
+			font-size: ${({ theme }) => theme.fontSize.xs};
+		}
 
-      h4{
-         font-size: ${({ theme }) => theme.fontSize.s};
-      }
+		h4 {
+			font-size: ${({ theme }) => theme.fontSize.s};
+		}
 
-      img{
-         width: 100px;
-         height: auto;
-      }
-   }
-`
+		img {
+			width: 100px;
+			height: auto;
+		}
+	}
+`;
 
 export const StyledRemoveButton = styled.button`
-   border: none;
-   background: transparent;
-   position: absolute;
-   top: 50%;
-   left: 0;
-   transform: translateY(-50%);
-   width: 40px;
-   height: 40px;
-   display: flex;
+	border: none;
+	background: transparent;
+	position: absolute;
+	top: 50%;
+	left: 0;
+	transform: translateY(-50%);
+	width: 40px;
+	height: 40px;
+	display: flex;
 
-   svg{
-      fill: ${({theme}) => theme.colors.orange};
-      width: 16px;
-      height: 16px;
-   }
+	svg {
+		fill: ${({ theme }) => theme.colors.orange};
+		width: 16px;
+		height: 16px;
+	}
 
-   @media(max-width: ${({theme}) => theme.screenSize.mobile}){
-      top: 35px;
-      left: unset;
-      right: 0px;
-      justify-content: flex-end;
+	@media (max-width: ${({ theme }) => theme.screenSize.mobile}) {
+		top: 35px;
+		left: unset;
+		right: 0px;
+		justify-content: flex-end;
 
-      svg{
-         width: 14px;
-         height: 14px;
-      }
-   }
-`
+		svg {
+			width: 14px;
+			height: 14px;
+		}
+	}
+`;
 
 export const StyledInfo = styled.div`
-   display: flex;
-   width: 480px;
+	display: flex;
+	width: 480px;
 
-   @media(max-width: 700px){
-      width: 350px;
-   }
+	@media (max-width: 700px) {
+		width: 350px;
+	}
 
-   @media(max-width: ${({theme}) => theme.screenSize.mobile}){
-      width: fit-content;
-   }
-`
+	@media (max-width: ${({ theme }) => theme.screenSize.mobile}) {
+		width: fit-content;
+	}
+`;
 
 export const StyledDetails = styled.div`
-   display: flex;
-   flex-direction: column;
-   align-content: space-between;
-   justify-content: space-between;
-   padding: 10px;
+	display: flex;
+	flex-direction: column;
+	align-content: space-between;
+	justify-content: space-between;
+	padding: 10px;
 
-   h4{
-      margin-block: 5px;
-      font-style: italic;
-      font-weight: normal;
+	h4 {
+		margin-block: 5px;
+		font-style: italic;
+		font-weight: normal;
 
-      span{
-         margin-left: 5px;
-         font-weight: bold;
-         font-style: normal;
-      }
-   }
+		span {
+			margin-left: 5px;
+			font-weight: bold;
+			font-style: normal;
+		}
+	}
 
-   @media(max-width: ${({theme}) => theme.screenSize.mobile}){
-      padding: 0 0 5px 5px;
+	@media (max-width: ${({ theme }) => theme.screenSize.mobile}) {
+		padding: 0 0 5px 5px;
 
-      h4{
-         margin-block: 0px;
+		h4 {
+			margin-block: 0px;
 
-         span{
-            margin-left: 5px;
-            font-weight: bold;
-            font-style: normal;
-         }
-      }
-   }
-`
+			span {
+				margin-left: 5px;
+				font-weight: bold;
+				font-style: normal;
+			}
+		}
+	}
+`;
 
 export const StyledMoveToWishBtn = styled.button`
-   width: fit-content;
-   background: none;
-   text-decoration: underline;
-   border: none;
-   font-size: ${({theme}) => theme.fontSize.xs};
-   font-style: italic;
-   color: ${({theme}) => theme.colors.orange};
+	width: fit-content;
+	background: none;
+	text-decoration: underline;
+	border: none;
+	font-size: ${({ theme }) => theme.fontSize.xs};
+	font-style: italic;
+	color: ${({ theme }) => theme.colors.orange};
 
-   @media(max-width: ${({theme}) => theme.screenSize.mobile}){
-      font-size: ${({theme}) => theme.fontSize.s};
-   }
-`
+	@media (max-width: ${({ theme }) => theme.screenSize.mobile}) {
+		font-size: ${({ theme }) => theme.fontSize.s};
+	}
+`;
 
 export const StyledAmount = styled.div`
-   display: flex;
-   align-items: center;
-   column-gap: 50px;
+	display: flex;
+	align-items: center;
+	column-gap: 50px;
 
-   @media(max-width: ${({theme}) => theme.screenSize.mobile}){
-      position: absolute;
-      bottom: 15px;
-      left: 0px;
-   }
-`
+	@media (max-width: ${({ theme }) => theme.screenSize.mobile}) {
+		position: absolute;
+		bottom: 15px;
+		left: 0px;
+	}
+`;
 
 export const StyledTotal = styled.div`
-   color: ${({theme}) => theme.colors.orange};
-   width: 80px;
-   text-align: right;
-   position: relative;
+	color: ${({ theme }) => theme.colors.orange};
+	width: 80px;
+	text-align: right;
+	position: relative;
 
-   @media(max-width: 1200px){
-      position: absolute;
-      top: 30px;
-      right: 0;
-   }
+	@media (max-width: 1200px) {
+		position: absolute;
+		top: 30px;
+		right: 0;
+	}
 
-   @media(max-width: ${({theme}) => theme.screenSize.mobile}){
-      top: unset;
-      bottom: 15px;
-   }
-`
-
+	@media (max-width: ${({ theme }) => theme.screenSize.mobile}) {
+		top: unset;
+		bottom: 15px;
+	}
+`;

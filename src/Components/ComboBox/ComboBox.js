@@ -11,7 +11,7 @@ const ComboBox = ({
 	setFilters,
 }) => {
 	const {
-      isOpen,
+		isOpen,
 		selectedItem,
 		getToggleButtonProps,
 		getMenuProps,

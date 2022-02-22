@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { keyframes } from "styled-components"
+import styled, { keyframes } from 'styled-components';
 
 const appear = keyframes`
     from{   
@@ -8,49 +8,49 @@ const appear = keyframes`
         
         opacity: 1;
     }
-`
+`;
 
 const Wrapper = styled.div`
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: ${({theme}) => theme.colors.black};
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 3vw;
-    box-shadow: 0px 0px 40px -3px rgba(0, 0, 0, 1);
-    z-index: 100;
-    color: ${({theme}) => theme.colors.white};
-    width: fit-content;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: ${({ theme }) => theme.colors.black};
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 3vw;
+	box-shadow: 0px 0px 40px -3px rgba(0, 0, 0, 1);
+	z-index: 100;
+	color: ${({ theme }) => theme.colors.white};
+	width: fit-content;
 
-    animation: .2s ease-in forwards ${appear};
+	animation: 0.2s ease-in forwards ${appear};
 
-    button{
-        padding: 15px 30px;
-        font-weight: bold;
-        background-color: ${({theme}) => theme.colors.white};
-        border: none;
-        margin: 15px 10px 0;
-    }
+	button {
+		padding: 15px 30px;
+		font-weight: bold;
+		background-color: ${({ theme }) => theme.colors.white};
+		border: none;
+		margin: 15px 10px 0;
+	}
 
-    @media(max-width: ${({theme}) => theme.screenSize.mobile}){
-        width: 90vw;
-    }
-`
+	@media (max-width: ${({ theme }) => theme.screenSize.mobile}) {
+		width: 90vw;
+	}
+`;
 
 const ConfirmModal = ({ label, yesHandler, noHandler }) => {
-    return (
-        <Wrapper>
-            <h3>{label}</h3>
-            <div>
-                <button onClick={yesHandler}>Yes</button>
-                <button onClick={noHandler}>No</button>
-            </div>
-        </Wrapper>
-    );
+	return (
+		<Wrapper>
+			<h3>{label}</h3>
+			<div>
+				<button onClick={yesHandler}>Yes</button>
+				<button onClick={noHandler}>No</button>
+			</div>
+		</Wrapper>
+	);
 };
 
 export default ConfirmModal;
