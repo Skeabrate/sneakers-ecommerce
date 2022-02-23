@@ -15,6 +15,7 @@ Main technologies I used in this project:
 - form components: Formik library with Yup validation ( log in page ), custom forms with custom validation ( contact page, sign in modal ).
 - emailJS - sending emails from contact page.
 - react-downshift: combobox components for products filters ( main page ).
+- react-slideshow-image: images slider ( product page ).
 - react-scroll ( scrolling into elements view ).
 - intersection observers ( triggering animations with intersection observers ).
 - animations with Gsap and styled-compoents - keyframes.
@@ -39,7 +40,7 @@ Podział strony:
 - paginacja produktów, z automatycznym podziałem na podstrony. Na jedną stronę ustawione 12 produktów, więc automatycznie produkty zostały podzielone na 3 podstrony.
 
 3. Product Page:
-- slider ze zdjęciami ( 3 zdjęcia dla każdego produktu ). Slider przystosowany do różnej ilości zdjęć.
+- slider ze zdjęciami ( 3 zdjęcia dla każdego produktu ). Slider przystosowany do różnej ilości zdjęć ( react-slideshow-image ).
 - animacje pojawiających się kolejnych sekcji opisu wraz ze scrollowaniem ( intersection observers ).
 - możliwość dodania produtku do koszyka.
 - możliwość dodania produtku do listy życzeń.
