@@ -16,7 +16,6 @@ import { store } from '../../Redux/store';
 import { Provider } from 'react-redux';
 import Register from '../../Modals/Register/Register';
 import InfoModal from '../../Modals/InfoModal/InfoModal';
-import { authStateChangedHandler } from '../../authStateChange';
 import Payment from '../../Modals/Payment/Payment';
 import Products from '../AllProducts/Products/Products';
 
@@ -64,10 +63,6 @@ const MainView = () => {
 		category: '',
 		price: '',
 	});
-
-	useEffect(() => {
-		authStateChangedHandler(auth, setAuth);
-	}, []);
 
 	useEffect(() => {
 		if (products.length) setProductsCtx(products);

@@ -62,7 +62,7 @@ const AmountInput = ({
 
 	React.useEffect(() => {
 		setInputValue(Number(inputValue));
-	}, [inputValue]);
+	}, [inputValue, setInputValue]);
 
 	return (
 		<div>

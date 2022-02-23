@@ -7,7 +7,7 @@ export const usePathChange = (closeModal = () => {}) => {
 
 	useEffect(() => {
 		if (location.pathname !== currPath.current) closeModal();
-	}, [location.pathname]);
+	}, [location.pathname, closeModal]);
 
 	return null;
 };

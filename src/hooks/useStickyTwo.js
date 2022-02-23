@@ -45,7 +45,7 @@ export const useStickyTwo = (sum, end) => {
 		} else window.removeEventListener('scroll', () => {});
 
 		return () => abortController.abort();
-	}, []);
+	}, [end, sum]);
 
 	return position;
 };

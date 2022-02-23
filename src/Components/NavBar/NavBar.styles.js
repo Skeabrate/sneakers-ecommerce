@@ -255,6 +255,7 @@ export const StyledCartProfile = styled.div`
 	margin-left: ${({ profileImg }) => (profileImg ? '10px' : 0)};
 
 	img {
+		object-fit: contain;
 		height: 50px;
 		width: 50px;
 	}

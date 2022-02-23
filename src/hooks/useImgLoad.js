@@ -19,7 +19,7 @@ export const useImgLoad = (...img) => {
 				});
 			});
 		}
-	}, [isImgLoaded]);
+	}, [isImgLoaded, img]);
 
 	return { isImgLoaded, handleLoadImg };
 };

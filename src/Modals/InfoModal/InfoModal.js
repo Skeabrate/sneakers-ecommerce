@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import { useEffect, useContext, useCallback } from 'react';
 import { StyledError, StyledBtn, StyledLoadingBar } from './InfoModal.styles';
 import ModalsContext from '../../Context/ModalsContext';
 import { usePathChange } from '../../hooks/usePathChange';
@@ -6,11 +6,14 @@ import { usePathChange } from '../../hooks/usePathChange';
 const InfoModal = () => {
 	const { isInfoOpen, setIsInfoOpen } = useContext(ModalsContext);
 
-	const handleSetInfo = () =>
-		setIsInfoOpen((state) => ({
-			...state,
-			info: false,
-		}));
+	const handleSetInfo = useCallback(
+		() =>
+			setIsInfoOpen((state) => ({
+				...state,
+				info: false,
+			})),
+		[setIsInfoOpen]
+	);
 
 	usePathChange(handleSetInfo);
 
@@ -20,7 +23,7 @@ const InfoModal = () => {
 		}, 4200);
 
 		return () => clearTimeout(timeout);
-	}, []);
+	}, [handleSetInfo]);
 
 	return (
 		<StyledError success={isInfoOpen.success}>

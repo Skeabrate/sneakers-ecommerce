@@ -1,7 +1,8 @@
 import { useState, useContext } from 'react';
 import firebase from '../firebase';
-import { useNavigate } from 'react-router-dom';
 import AuthContext from '../Context/AuthContext';
+import { useInfoOpen } from './useInfoOpen';
+import { storage } from '../firebase';
 import {
 	SIGNED_UP,
 	SENT_EMAIL,
@@ -15,7 +16,6 @@ import {
 	USER_DOESNT_EXIST,
 	USER_DOESNT_EXIST_RES,
 } from '../helpers/serverResponse.js';
-import { useInfoOpen } from './useInfoOpen';
 
 export const useAuth = () => {
 	const [loading, setLoading] = useState(false);
@@ -23,20 +23,43 @@ export const useAuth = () => {
 	const { setIsAuthenticated } = useContext(AuthContext);
 	const resolveInfoOpen = useInfoOpen();
 
-	const navigate = useNavigate();
-
-	function logInHandler(email, password) {
+	const logInHandler = function (email, password) {
 		setLoading(true);
-		/* console.log(email, password); */
+
 		firebase
 			.auth()
 			.signInWithEmailAndPassword(email, password)
-			.then((userCredential) => {
-				// Signed in
-				// var user = userCredential.user;
-				console.log('logIn');
-				/* navigate("/AllProducts") */
-				window.location.reload(true);
+			.then(({ uid, email }) => {
+				storage
+					.ref(`${uid}`)
+					.getDownloadURL()
+					.then((url) => {
+						window.localStorage.setItem(
+							'authToken',
+							JSON.stringify([{ token: uid }, { email: email }, { image: url }])
+						);
+						setIsAuthenticated({
+							token: uid,
+							email: email,
+							image: url,
+						});
+					})
+					.catch((ex) => {
+						console.log(ex);
+						window.localStorage.setItem(
+							'authToken',
+							JSON.stringify([
+								{ token: uid },
+								{ email: email },
+								{ image: false },
+							])
+						);
+						setIsAuthenticated({
+							token: uid,
+							email: email,
+							image: false,
+						});
+					});
 			})
 			.catch((error) => {
 				// var errorCode = error.code;
@@ -59,9 +82,9 @@ export const useAuth = () => {
 
 				return message;
 			});
-	}
+	};
 
-	function logOutHandler() {
+	const logOutHandler = function () {
 		firebase
 			.auth()
 			.signOut()
@@ -70,28 +93,25 @@ export const useAuth = () => {
 				if (window.localStorage.getItem('authToken'))
 					window.localStorage.removeItem('authToken');
 				setIsAuthenticated(false);
-				navigate('/login');
+				/* navigate('/login'); */
 			})
 			.catch((error) => {
 				// An error happened.
 				console.log(error);
 			});
-	}
+	};
 
-	function registerHandler(email, password) {
+	const registerHandler = function (email, password) {
 		setLoading(true);
-		// console.log(state.email.value, state.password.value)
+
 		firebase
 			.auth()
 			.createUserWithEmailAndPassword(email, password)
 			.then((userCredential) => {
 				// Signed in
-				/* var user = userCredential.user;
-            console.log(user) */
 
 				setLoading(false);
 				resolveInfoOpen(SIGNED_UP, true);
-				navigate('/profile');
 			})
 			.catch((error) => {
 				var errorCode = error.code;
@@ -101,10 +121,11 @@ export const useAuth = () => {
 				setLoading(false);
 				resolveInfoOpen(errorMessage, false);
 			});
-	}
+	};
 
-	function resetPasswordHandler(email) {
+	const resetPasswordHandler = function (email) {
 		setLoading(true);
+
 		firebase
 			.auth()
 			.sendPasswordResetEmail(email)
@@ -124,7 +145,7 @@ export const useAuth = () => {
 
 				setLoading(false);
 			});
-	}
+	};
 
 	return {
 		loading,

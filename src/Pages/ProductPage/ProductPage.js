@@ -7,7 +7,7 @@ import ShopingCart from './ShopingCart/ShopingCart';
 import { StyledLinkToHome } from '../../GlobalStyledComponents/StyledLinkToHome';
 import Helmet from '../../helpers/Helmet';
 
-const ProductPage = ({ setIsProductPage }) => {
+const ProductPage = ({ setIsProductPage = () => {} }) => {
 	const [product, loading, error] = useProductID(); // fetch product from context if it exists if not - fetch from CMS
 
 	const mediaQuery = window.matchMedia('(max-width: 1000px)');
@@ -19,7 +19,7 @@ const ProductPage = ({ setIsProductPage }) => {
 		return () => {
 			setIsProductPage(false);
 		};
-	}, []);
+	}, [setIsProductPage]);
 
 	return (
 		<section>

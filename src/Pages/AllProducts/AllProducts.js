@@ -35,28 +35,31 @@ const AllProducts = ({ AllProducts }) => {
 			behavior: type,
 		});
 
-	const paginate = (func = () => {}) => {
-		if (func) {
-			// filtry
-			setLoadingCtx(false);
-			setTimeout(() => {
-				func();
-				navigate('/AllProducts/page/1');
-				setLoadingCtx(true);
-			}, 100);
-		} else {
-			// zmiana routa - pagination
-			setLoadingCtx(false);
-			setTimeout(() => {
-				setLoadingCtx(true);
-			}, 100);
-		}
-		scrollFunc();
-	};
+	const paginate = React.useCallback(
+		(func = () => {}) => {
+			if (func) {
+				// filtry
+				setLoadingCtx(false);
+				setTimeout(() => {
+					func();
+					navigate('/AllProducts/page/1');
+					setLoadingCtx(true);
+				}, 100);
+			} else {
+				// zmiana routa - pagination
+				setLoadingCtx(false);
+				setTimeout(() => {
+					setLoadingCtx(true);
+				}, 100);
+			}
+			scrollFunc();
+		},
+		[navigate, setLoadingCtx]
+	);
 
 	useEffect(() => {
 		paginate(false);
-	}, [id]);
+	}, [id, paginate]);
 
 	useEffect(() => {
 		if (AllProducts.length) {

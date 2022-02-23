@@ -11,10 +11,9 @@ export const useProductID = () => {
 	const { productsCtx } = useContext(ProductsContext);
 	let { id } = useParams();
 
-	let findProduct = useMemo(
-		() => productsCtx.find((item) => item.id === id),
-		[id]
-	);
+	let findProduct = useMemo(() => {
+		return productsCtx.find((item) => item.id === id);
+	}, [id, productsCtx]);
 
 	const fetchProduct = useCallback(async () => {
 		if (findProduct) {
@@ -26,19 +25,19 @@ export const useProductID = () => {
 					'https://graphql.datocms.com/',
 					{
 						query: `
-               {
-                  allProducts(filter: {id: {eq: ${id}}}){
-                     id
-                     title
-                     category
-                     gender
-                     price
-                     description
-                     images {
-                        url
-                     }
-                  }
-               }`,
+						{
+							allProducts(filter: {id: {eq: ${id}}}){
+								id
+								title
+								category
+								gender
+								price
+								description
+								images {
+									url
+								}
+							}
+						}`,
 					},
 					{
 						headers: {
@@ -56,7 +55,7 @@ export const useProductID = () => {
 
 			setLoading(true);
 		}
-	}, [id]);
+	}, [id, findProduct]);
 
 	useEffect(() => {
 		fetchProduct();

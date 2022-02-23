@@ -15,6 +15,7 @@ import LoadingScreen from '../../../Components/LoadingScreen/LoadingScreen';
 import gsap from 'gsap';
 import { useShoppingHistory } from '../../../hooks/useShoppingHistory';
 import { productValueHandler } from '../../../helpers/productValueHandles';
+import { theme } from 'Assets/Styles/theme';
 
 const ShoppingHistory = () => {
 	const [isEndOfContent, setIsEndOfContent] = useState(false);
@@ -47,10 +48,10 @@ const ShoppingHistory = () => {
 		const observer = new IntersectionObserver(callbackFunction, options);
 		const currRef = endRef.current;
 
-		if (currRef && currentPosts.length < data.length) observer.observe(currRef);
+		if (currRef) observer.observe(currRef);
 
 		return () => currRef && observer.unobserve(currRef);
-	}, [endRef.current, options]);
+	}, [endRef, options, currentPosts]);
 
 	useEffect(() => {
 		if (isEndOfContent) {
@@ -150,7 +151,9 @@ const ShoppingHistory = () => {
 							)}
 						</div>
 					) : (
-						<h1>You don't have shopping history yet</h1>
+						<h1 style={{ fontStyle: 'italic', color: theme.colors.lightGrey }}>
+							You don't have shopping history yet!
+						</h1>
 					)}
 				</>
 			)}

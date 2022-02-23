@@ -25,7 +25,7 @@ export const useSticky = (ref, needMediaQuery = false) => {
 			observer.observe(refCurr);
 
 		return () => refCurr && observer.unobserve(refCurr);
-	}, [ref, options]);
+	}, [ref, options, needMediaQuery]);
 
 	return { isSticky };
 };

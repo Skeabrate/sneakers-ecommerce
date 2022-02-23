@@ -64,7 +64,7 @@ const NavBar = ({ isProductPage }) => {
 	}, []);
 
 	React.useEffect(() => {
-		if (toggle) setToggle(false);
+		setToggle(false);
 	}, [location.pathname]);
 
 	if (location.pathname === `/`) return null;
