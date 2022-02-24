@@ -17,7 +17,7 @@ import FormikInput from '../../Components/FormikInput/FormikInput';
 import ModalsContext from '../../Context/ModalsContext';
 import LoadingButton from '../../Components/LoadingButton/LoadingButton';
 import Content from './Content';
-import { useAuth } from '../../hooks/useAuth';
+import { useAuth } from '../../Api/useAuth';
 import ResetPasswordModal from '../../Modals/ResetPasswordModal/ResetPasswordModal';
 import Helmet from '../../helpers/Helmet';
 

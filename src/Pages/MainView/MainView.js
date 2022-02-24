@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 import NavBar from '../../Components/NavBar/NavBar';
 import Footer from '../../Components/Footer/Footer';
-import { useData } from '../../hooks/useData';
+import { useData } from '../../Api/useData';
 import ProductsContext from '../../Context/ProductsContext';
 import FiltersContext from '../../Context/FiltersContext';
 import ModalsContext from '../../Context/ModalsContext';

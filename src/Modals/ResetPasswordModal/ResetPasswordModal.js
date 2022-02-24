@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAuth } from '../../hooks/useAuth';
+import { useAuth } from '../../Api/useAuth';
 import LoadingButton from '../../Components/LoadingButton/LoadingButton';
 import styled, { keyframes } from 'styled-components';
 import { Formik, Form } from 'formik';

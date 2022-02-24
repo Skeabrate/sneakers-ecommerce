@@ -7,7 +7,7 @@ import { usePathChange } from '../../hooks/usePathChange';
 import CustomInput from '../../Components/CustomInput/CustomInput';
 import LoadingButton from '../../Components/LoadingButton/LoadingButton';
 import { StyledCardInfo } from './Payment.styles';
-import { usePayment } from '../../hooks/usePayment';
+import { usePayment } from '../../Api/usePayment';
 import SuccesfulPayment from './SuccesfulPayment/SuccesfulPayment';
 
 const Payment = () => {

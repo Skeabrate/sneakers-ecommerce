@@ -4,7 +4,7 @@ import CustomInput from '../../Components/CustomInput/CustomInput';
 import { registerReducer } from './Reducer/registerReducer';
 import { initialState } from './Reducer/initialState';
 import LoadingButton from '../../Components/LoadingButton/LoadingButton';
-import { useAuth } from '../../hooks/useAuth';
+import { useAuth } from '../../Api/useAuth';
 import { usePathChange } from '../../hooks/usePathChange';
 import ModalTemplate from '../ModalTemplate/ModalTemplate';
 

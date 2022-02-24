@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react';
 import firebase from '../firebase';
 import AuthContext from '../Context/AuthContext';
-import { useInfoOpen } from './useInfoOpen';
+import { useInfoOpen } from '../hooks/useInfoOpen';
 import { storage } from '../firebase';
 import {
 	SIGNED_UP,

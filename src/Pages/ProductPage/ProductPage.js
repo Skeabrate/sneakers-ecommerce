@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useProductID } from '../../hooks/useProductID';
+import { useProductID } from '../../Api/useProductID';
 import Content from './Content/Content';
 import Error from '../404/Error';
 import { Wrapper } from './ProductPage.styles';

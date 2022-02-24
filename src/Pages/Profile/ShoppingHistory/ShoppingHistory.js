@@ -13,7 +13,7 @@ import { StyledSpan } from '../Profile.styles';
 import ShoppingItem from './ShoppingItem/ShoppingItem';
 import LoadingScreen from '../../../Components/LoadingScreen/LoadingScreen';
 import gsap from 'gsap';
-import { useShoppingHistory } from '../../../hooks/useShoppingHistory';
+import { useShoppingHistory } from '../../../Api/useShoppingHistory';
 import { productValueHandler } from '../../../helpers/productValueHandles';
 import { theme } from 'Assets/Styles/theme';
 
