@@ -4,7 +4,7 @@ import axios from 'axios';
 import ProductsContext from '../Context/ProductsContext';
 
 export const useProductID = () => {
-	const [product, setProduct] = useState([]);
+	const [product, setProduct] = useState({});
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(false);
 

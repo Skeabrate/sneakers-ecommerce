@@ -12,6 +12,7 @@ import AmountInput from '../AmountInput/AmountInput';
 import { ADDED_TO_CART } from '../../helpers/serverResponse';
 import { useInfoOpen } from '../../hooks/useInfoOpen';
 import { v4 as uuid } from 'uuid';
+import PropTypes from 'prop-types';
 
 const AddingSection = ({
 	loading,
@@ -27,7 +28,7 @@ const AddingSection = ({
 
 	const cart = useSelector((state) => state.cart);
 	const dispatch = useDispatch();
-
+	console.log(size);
 	const addToCartHandler = () => {
 		if (!size) {
 			setError(true);
@@ -98,6 +99,19 @@ const AddingSection = ({
 			</StyledButtonContainer>
 		</StyledCart>
 	);
+};
+
+AddingSection.propTypes = {
+	loading: PropTypes.bool.isRequired,
+	size: PropTypes.number.isRequired,
+	setError: PropTypes.func.isRequired,
+	isClicked: PropTypes.bool.isRequired,
+	setIsClicked: PropTypes.func.isRequired,
+	id: PropTypes.number,
+	title: PropTypes.string,
+	gender: PropTypes.string,
+	price: PropTypes.number,
+	images: PropTypes.array,
 };
 
 export default AddingSection;
