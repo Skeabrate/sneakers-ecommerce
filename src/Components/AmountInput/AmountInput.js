@@ -20,9 +20,11 @@ const AmountInput = ({
 
 	const removeHandler = () =>
 		item && dispatch(removeFromCart({ id: item.id, size: item.size }));
+
 	const dispatchChangeAmountHandler = (val) =>
 		item &&
 		dispatch(changeAmount({ id: item.id, size: item.size, amount: val }));
+
 	const dispatchSetAmountHandler = (val) =>
 		item && dispatch(setAmount({ id: item.id, size: item.size, amount: val }));
 

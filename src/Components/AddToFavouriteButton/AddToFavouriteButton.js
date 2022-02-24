@@ -1,40 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import {
 	addToFavorite,
 	removeFromFavorite,
 } from '../../Redux/addToFavoriteSlice';
-
-export const StyledButton = styled.button`
-	position: ${({ isCart }) => (isCart ? 'relative' : 'absolute')};
-	top: ${({ isCart }) => (isCart ? 'unset' : '10px')};
-	right: ${({ isCart }) => (isCart ? 'unset' : '10px')};
-	border: none;
-	background: ${({ isCart, theme }) =>
-		isCart ? theme.colors.white : 'transparent'};
-	padding: ${({ isCart }) => (isCart ? '0 15px' : '0')};
-
-	p {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-
-	svg {
-		width: ${({ isCart }) => (isCart ? '22px' : '16px')};
-		height: ${({ isCart }) => (isCart ? '22px' : '16px')};
-		transition: all 0.1s ease-in-out;
-		fill: ${({ theme }) => theme.colors.black};
-	}
-
-	&:hover {
-		svg {
-			fill: ${({ theme }) => theme.colors.orange};
-			transform: scale(1.2);
-		}
-	}
-`;
+import { StyledButton } from './AddToFavouriteButton.styles';
 
 const AddToFavouriteButton = ({ id, title, price, image = [], isCartPage }) => {
 	const favorite = useSelector((state) => state.favorite);
@@ -63,6 +33,8 @@ const AddToFavouriteButton = ({ id, title, price, image = [], isCartPage }) => {
 			);
 	};
 
+	const isItemFavorite = favorite.find((item) => item.id === id);
+
 	return (
 		<StyledButton
 			isCart={isCartPage}
@@ -70,7 +42,7 @@ const AddToFavouriteButton = ({ id, title, price, image = [], isCartPage }) => {
 			aria-label="add to wishlist"
 		>
 			<p>
-				{favorite.find((item) => item.id === id) ? (
+				{isItemFavorite ? (
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						width="24"

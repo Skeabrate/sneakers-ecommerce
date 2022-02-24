@@ -1,17 +1,12 @@
 export const productValueHandler = (arr = [], option) => {
-	let newArr = [];
-	arr.map((item) => {
-		switch (option) {
-			case 'quantity':
-				return newArr.push(item.amount);
+	switch (option) {
+		case 'quantity':
+			return arr.reduce((prev, curr) => prev + curr.amount, 0);
 
-			case 'price':
-				return newArr.push(item.price);
+		case 'price':
+			return arr.reduce((prev, curr) => prev + curr.price, 0);
 
-			default:
-				return newArr;
-		}
-	});
-
-	return newArr.reduce((prev, curr) => prev + curr);
+		default:
+			return arr;
+	}
 };

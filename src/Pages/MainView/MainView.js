@@ -107,11 +107,11 @@ const MainView = () => {
 									<NavBar isProductPage={isProductPage} />
 
 									<Suspense fallback={<Fallback />}>
-										{isRegisterOpen && <Register />}
+										{!!isRegisterOpen && <Register />}
 
-										{isInfoOpen.info && <InfoModal />}
+										{!!isInfoOpen.info && <InfoModal />}
 
-										{isPaymentOpen && <Payment />}
+										{!!isPaymentOpen && <Payment />}
 
 										<Routes>
 											<Route path="/contact" element={<Contact />} />

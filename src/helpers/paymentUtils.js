@@ -1,10 +1,10 @@
 import Payment from 'payment';
 
-function clearNumber(value = '') {
+const clearNumber = function (value = '') {
 	return value.replace(/\D+/g, '');
-}
+};
 
-export function formatCreditCardNumber(value) {
+export const formatCreditCardNumber = (value) => {
 	if (!value) {
 		return value;
 	}
@@ -20,12 +20,14 @@ export function formatCreditCardNumber(value) {
 				10
 			)} ${clearValue.slice(10, 15)}`;
 			break;
+
 		case 'dinersclub':
 			nextValue = `${clearValue.slice(0, 4)} ${clearValue.slice(
 				4,
 				10
 			)} ${clearValue.slice(10, 14)}`;
 			break;
+
 		default:
 			nextValue = `${clearValue.slice(0, 4)} ${clearValue.slice(
 				4,
@@ -35,9 +37,9 @@ export function formatCreditCardNumber(value) {
 	}
 
 	return nextValue.trim();
-}
+};
 
-export function formatCVC(value, allValues = {}) {
+export const formatCVC = (value, allValues = {}) => {
 	const clearValue = clearNumber(value);
 	let maxLength = 4;
 
@@ -47,9 +49,9 @@ export function formatCVC(value, allValues = {}) {
 	}
 
 	return clearValue.slice(0, maxLength);
-}
+};
 
-export function formatExpirationDate(value) {
+export const formatExpirationDate = (value) => {
 	const clearValue = clearNumber(value);
 
 	if (clearValue.length >= 3) {
@@ -57,4 +59,4 @@ export function formatExpirationDate(value) {
 	}
 
 	return clearValue;
-}
+};

@@ -6,13 +6,12 @@ const Footer = () => {
 	const location = useLocation();
 	if (location.pathname === `/`) return null;
 
+	const scrollTopHandler = () =>
+		window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+
 	return (
 		<StyledFooter>
-			<h1
-				onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })}
-			>
-				sneakers
-			</h1>
+			<h1 onClick={scrollTopHandler}>sneakers</h1>
 			<ul>
 				<li>
 					<svg

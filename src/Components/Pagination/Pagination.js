@@ -10,6 +10,10 @@ const Pagination = ({ postsPerPage, totalPosts }) => {
 		pageNumber.push(i);
 	}
 
+	const handleChangePage = (item) =>
+		item.toString() === id &&
+		window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+
 	return (
 		<nav>
 			<StyledList>
@@ -17,10 +21,7 @@ const Pagination = ({ postsPerPage, totalPosts }) => {
 					<li key={item}>
 						<StyledButton
 							to={`/AllProducts/page/${item}`}
-							onClick={() =>
-								item.toString() === id &&
-								window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
-							}
+							onClick={() => handleChangePage(item)}
 						>
 							{item}
 						</StyledButton>

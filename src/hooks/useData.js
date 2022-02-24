@@ -14,31 +14,31 @@ export const useData = () => {
 	const [products, setProducts] = useState([]);
 	const [loading, setLoading] = useState(false);
 
-	const queryVal = `
-   {
-      allProducts(first: ${dataCount}, skip: 0){
-         id
-         title
-         category
-         gender
-         price
-         description
-         images {
-            url
-         }
-      }
-      _allProductsMeta {
-         count
-      }
-   }
-   `;
+	const query = `
+   	{
+      	allProducts(first: ${dataCount}, skip: 0){
+			id
+			title
+			category
+			gender
+			price
+			description
+			images {
+				url
+			}
+      	}
+		_allProductsMeta {
+			count
+		}
+   	}
+   	`;
 
 	const fetchProducts = useCallback(async () => {
 		try {
 			const res = await axios.post(
 				'https://graphql.datocms.com/',
 				{
-					query: queryVal,
+					query: query,
 				},
 				{
 					headers: {
@@ -57,7 +57,7 @@ export const useData = () => {
 			console.log(ex.response);
 		}
 		setLoading(true);
-	}, [queryVal]);
+	}, [query]);
 
 	useEffect(() => {
 		(async function () {

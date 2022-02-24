@@ -7,6 +7,8 @@ const style = {
 };
 
 const LoadingButton = ({ loading, label, disabled, onClick, isBlack }) => {
+	const colorCheck = isBlack ? '#1a1a1a' : '#fe7901';
+
 	return (
 		<StyledLink
 			isBlack={isBlack}
@@ -17,7 +19,7 @@ const LoadingButton = ({ loading, label, disabled, onClick, isBlack }) => {
 		>
 			{loading ? (
 				<div style={style}>
-					<ClipLoader color={isBlack ? '#1a1a1a' : '#fe7901'} />
+					<ClipLoader color={colorCheck} />
 				</div>
 			) : (
 				<>{label}</>
