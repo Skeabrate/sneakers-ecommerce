@@ -23,7 +23,7 @@ const ShopingCart = ({ product, loading, isDesktop, isMobile }) => {
 	const [size, setSize] = useState(0);
 	const [error, setError] = useState(false);
 	const [isClicked, setIsClicked] = useState(false);
-	console.log(product);
+
 	const t1 = useRef(null);
 
 	const productInfoRef = useRef(null);

@@ -28,7 +28,7 @@ const AddingSection = ({
 
 	const cart = useSelector((state) => state.cart);
 	const dispatch = useDispatch();
-	console.log(size);
+
 	const addToCartHandler = () => {
 		if (!size) {
 			setError(true);
