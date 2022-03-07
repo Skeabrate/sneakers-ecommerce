@@ -1,9 +1,9 @@
 import React from 'react';
 import SearchBar from './SearchBar';
-import { renderWithThemeProvider } from '../../helpers/renderWithThemeProvider';
+import { renderWithProviders } from '../../helpers/renderWithProviders';
 
 describe('Searchbar', () => {
 	it('render component', () => {
-		renderWithThemeProvider(<SearchBar />);
+		renderWithProviders(<SearchBar />);
 	});
 });

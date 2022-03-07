@@ -40,6 +40,7 @@ const AddToFavouriteButton = ({ id, title, price, image = [], isCartPage }) => {
 			isCart={isCartPage}
 			onClick={(e) => handleFavorite(e)}
 			aria-label="add to wishlist"
+			data-testid="addBtn"
 		>
 			<p>
 				{isItemFavorite ? (
