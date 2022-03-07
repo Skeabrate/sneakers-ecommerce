@@ -1,4 +1,4 @@
-import React, { useState, useEffect, lazy, Suspense } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
 	BrowserRouter as Router,
 	Routes,
@@ -19,18 +19,16 @@ import InfoModal from '../../Modals/InfoModal/InfoModal';
 import Payment from '../../Modals/Payment/Payment';
 import Products from '../AllProducts/Products/Products';
 
-import Fallback from '../Fallback/Fallback';
-
-const AllProducts = lazy(() => import('../AllProducts/AllProducts'));
-const ProductPage = lazy(() => import('../ProductPage/ProductPage'));
-const Contact = lazy(() => import('../Contact/Contact'));
-const About = lazy(() => import('../About/About'));
-const HeroPage = lazy(() => import('../HeroPage/HeroPage'));
-const Profile = lazy(() => import('../Profile/Profile'));
-const Cart = lazy(() => import('../Cart/Cart'));
-const Wishlist = lazy(() => import('../Wishlist/Wishlist'));
-const Error = lazy(() => import('../404/Error'));
-const Login = lazy(() => import('../Login/Login'));
+import AllProducts from '../AllProducts/AllProducts';
+import ProductPage from '../ProductPage/ProductPage';
+import Contact from '../Contact/Contact';
+import About from '../About/About';
+import HeroPage from '../HeroPage/HeroPage';
+import Profile from '../Profile/Profile';
+import Cart from '../Cart/Cart';
+import Wishlist from '../Wishlist/Wishlist';
+import Error from '../Error/Error';
+import Login from '../Login/Login';
 
 const MainView = () => {
 	const [isProductPage, setIsProductPage] = useState(false);
@@ -106,62 +104,60 @@ const MainView = () => {
 								<div>
 									<NavBar isProductPage={isProductPage} />
 
-									<Suspense fallback={<Fallback />}>
-										{!!isRegisterOpen && <Register />}
+									{!!isRegisterOpen && <Register />}
 
-										{!!isInfoOpen.info && <InfoModal />}
+									{!!isInfoOpen.info && <InfoModal />}
 
-										{!!isPaymentOpen && <Payment />}
+									{!!isPaymentOpen && <Payment />}
 
-										<Routes>
-											<Route path="/contact" element={<Contact />} />
+									<Routes>
+										<Route path="/contact" element={<Contact />} />
 
-											<Route path="/about" element={<About />} />
+										<Route path="/about" element={<About />} />
 
-											<Route
-												path="/AllProducts"
-												element={<Navigate to="/AllProducts/page/1" />}
-											/>
-											<Route
-												path="/AllProducts"
-												element={<AllProducts AllProducts={products} />}
-											>
-												<Route path="page/:id" element={<Products />} />
-											</Route>
+										<Route
+											path="/AllProducts"
+											element={<Navigate to="/AllProducts/page/1" />}
+										/>
+										<Route
+											path="/AllProducts"
+											element={<AllProducts allProducts={products} />}
+										>
+											<Route path="page/:id" element={<Products />} />
+										</Route>
 
-											<Route
-												path="/product/:id"
-												element={
-													<ProductPage setIsProductPage={setIsProductPage} />
-												}
-											/>
+										<Route
+											path="/product/:id"
+											element={
+												<ProductPage setIsProductPage={setIsProductPage} />
+											}
+										/>
 
-											<Route path="/wishlist" element={<Wishlist />} />
+										<Route path="/wishlist" element={<Wishlist />} />
 
-											<Route
-												path="/login"
-												element={auth ? <Navigate to="/profile" /> : <Login />}
-											/>
+										<Route
+											path="/login"
+											element={auth ? <Navigate to="/profile" /> : <Login />}
+										/>
 
-											<Route
-												path="/profile"
-												element={auth ? <Profile /> : <Navigate to="/login" />}
-											/>
+										<Route
+											path="/profile"
+											element={auth ? <Profile /> : <Navigate to="/login" />}
+										/>
 
-											<Route path="/cart" element={<Cart />} />
+										<Route path="/cart" element={<Cart />} />
 
-											<Route path="/" element={<HeroPage />} />
+										<Route path="/" element={<HeroPage />} />
 
-											<Route
-												path="*"
-												element={
-													<div style={{ marginTop: '80px' }}>
-														<Error />
-													</div>
-												}
-											/>
-										</Routes>
-									</Suspense>
+										<Route
+											path="*"
+											element={
+												<div style={{ marginTop: '80px' }}>
+													<Error />
+												</div>
+											}
+										/>
+									</Routes>
 
 									<Footer />
 								</div>

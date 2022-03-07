@@ -13,7 +13,7 @@ import { StyledTitleOrnament } from '../../GlobalStyledComponents/StyledTitleOrn
 import Helmet from '../../helpers/Helmet';
 import { Outlet, useParams, useNavigate } from 'react-router-dom';
 
-const AllProducts = ({ AllProducts }) => {
+const AllProducts = ({ allProducts }) => {
 	const { productsCtx, loadingCtx, setLoadingCtx } =
 		useContext(ProductsContext);
 
@@ -27,6 +27,8 @@ const AllProducts = ({ AllProducts }) => {
 	const contentRef = useRef(null);
 	const contentLengthRef = useRef(null);
 	const searchBarRef = useRef(null);
+
+	const pageNumber = `${id} / ${Math.ceil(productsCtx.length / postPerPage)}`;
 
 	const scrollFunc = (type = 'auto') =>
 		window.scrollTo({
@@ -62,7 +64,7 @@ const AllProducts = ({ AllProducts }) => {
 	}, [id, paginate]);
 
 	useEffect(() => {
-		if (AllProducts.length) {
+		if (allProducts.length) {
 			if (!productsCtx.length) setError(true);
 			else setError(false);
 		}
@@ -108,10 +110,7 @@ const AllProducts = ({ AllProducts }) => {
 							<StyledTitleInfo ref={contentLengthRef}>
 								<span>[ {error ? '0' : productsCtx.length} ]</span>
 								<div>
-									Page :{' '}
-									<p>
-										{id} / {Math.ceil(productsCtx.length / postPerPage)}
-									</p>
+									Page : <p>{pageNumber}</p>
 								</div>
 							</StyledTitleInfo>
 						) : null}
@@ -124,7 +123,7 @@ const AllProducts = ({ AllProducts }) => {
 
 			<FiltersBar
 				setError={setError}
-				AllProducts={AllProducts}
+				allProducts={allProducts}
 				paginate={paginate}
 			/>
 

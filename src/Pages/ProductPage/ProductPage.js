@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useProductID } from '../../Api/useProductID';
 import Content from './Content/Content';
-import Error from '../404/Error';
+import Error from '../Error/Error';
 import { Wrapper } from './ProductPage.styles';
 import ShopingCart from './ShopingCart/ShopingCart';
 import { StyledLinkToHome } from '../../GlobalStyledComponents/StyledLinkToHome';
