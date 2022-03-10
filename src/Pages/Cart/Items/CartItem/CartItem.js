@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { removeFromCart } from '../../../../Redux/addToCartSlice';
-import { addToFavorite } from '../../../../Redux/addToFavoriteSlice';
+import {
+	addToFavorite,
+	removeFromFavorite,
+} from '../../../../Redux/addToFavoriteSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import {
 	Wrapper,
@@ -30,8 +33,15 @@ const CartItem = ({ item, last }) => {
 		dispatch(removeFromCart({ id: item.id, size: item.size }));
 
 	const handleMoveToWishlist = () => {
-		if (favorite.find((val) => val.id === item.id))
-			resolveInfoOpen(ALREADY_IN_WISHLIST, false);
+		let check = false;
+
+		favorite.find((curr) => {
+			if (curr.id === 0) dispatch(removeFromFavorite({ id: 0 }));
+			if (curr.id === item.id) check = true;
+			return check;
+		});
+
+		if (check) resolveInfoOpen(ALREADY_IN_WISHLIST, false);
 		else {
 			dispatch(
 				addToFavorite({
