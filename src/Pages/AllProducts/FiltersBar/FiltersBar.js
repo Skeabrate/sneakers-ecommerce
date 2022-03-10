@@ -13,7 +13,7 @@ import {
 	FiltersPlaceholder,
 } from './FiltersBar.styles';
 
-const FiltersBar = ({ AllProducts, paginate }) => {
+const FiltersBar = ({ allProducts, paginate }) => {
 	const { setProductsCtx } = useContext(ProductsContext);
 	const { filters, setFilters } = useContext(FiltersContext);
 
@@ -35,12 +35,12 @@ const FiltersBar = ({ AllProducts, paginate }) => {
 
 	const filterData = () => {
 		if (filters.price === 'Price (high - low)')
-			sortData(AllProducts, 'descending');
+			sortData(allProducts, 'descending');
 		else if (filters.price === 'Price (low - high)')
-			sortData(AllProducts, 'ascending');
+			sortData(allProducts, 'ascending');
 
 		return setProductsCtx(
-			AllProducts.filter(
+			allProducts.filter(
 				(item) =>
 					(item.gender.includes(filters.gender) ||
 						item.gender.includes('Unisex')) &&
