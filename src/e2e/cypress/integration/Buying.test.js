@@ -46,5 +46,18 @@ describe('Buying sneakers', () => {
 		// Add product to wishlist
 		cy.findByText('Add to Wishlist').click();
 		cy.findByText('Added to wishlist').should('exist');
+		cy.get('[title="wishlist"] > span').should('exist');
+
+		// finalize transaction
+		cy.findByText('Checkout').click();
+		cy.findByLabelText(/name/).type('testowe imie');
+		cy.findByLabelText(/card number/).type('1234123412341234');
+		cy.findByLabelText(/expiration/).type('0102');
+		cy.findByLabelText(/security code/).type('123');
+		cy.get('.sc-ieecCq').click();
+
+		// check if user can find his order in shopping history and bag is empty after purchase
+		cy.get('.sc-dlVxhl > svg').click();
+		cy.findByText('Your bag is empty');
 	});
 });

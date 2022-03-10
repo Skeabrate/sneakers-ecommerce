@@ -32,7 +32,7 @@ const SuccesfulPayment = () => {
 			<StyledTitle color="green">
 				Payment
 				<br />
-				Succesful
+				Successful
 			</StyledTitle>
 		</Wrapper>
 	);
