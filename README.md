@@ -1,4 +1,4 @@
-##Sneakers e-commerce.
+Sneakers e-commerce.
 
 Website URL: https://sneakers-b80b7.web.app/
 
