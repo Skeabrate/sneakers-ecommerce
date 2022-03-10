@@ -47,12 +47,19 @@ export const StyledSettings = styled.section`
 	}
 
 	::-webkit-scrollbar-track {
-		background-color: #0b0b0a;
+		background-color: ${({ theme }) => theme.colors.black};
 	}
 
 	::-webkit-scrollbar-thumb {
-		background: ${({ theme }) => theme.colors.orange};
+		background: ${({ theme }) => theme.colors.lightGrey};
 		border-radius: 100px;
+		display: none;
+	}
+
+	&:hover {
+		::-webkit-scrollbar-thumb {
+			display: initial;
+		}
 	}
 `;
 
