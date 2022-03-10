@@ -23,6 +23,11 @@ Main technologies I used in this project:
 - react-spinners: loading state spinners.
 - designing layouts: https://excalidraw.com/ and https://www.figma.com.
 
+Testing with:
+- react testing library
+- jest
+- cypress
+
 You can use my account to test the application:
 
 email: sebastianswiecz458@gmail.com, password: test123
