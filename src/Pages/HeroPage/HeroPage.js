@@ -92,10 +92,14 @@ const HeroPage = () => {
 			<StyledHeroImage ref={heroRef} hero={heroImg}>
 				<StyledTitleWrapper ref={titleWrapperRef}>
 					<StyledTitle>
-						<span ref={textRef1}>Sneakers</span>
+						<span ref={textRef1} translate="no">
+							Sneakers
+						</span>
 					</StyledTitle>
 					<StyledTitle>
-						<span ref={textRef2}>Journey</span>
+						<span ref={textRef2} translate="no">
+							Journey
+						</span>
 					</StyledTitle>
 					<div ref={textBackgroundRef}></div>
 				</StyledTitleWrapper>

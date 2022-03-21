@@ -84,7 +84,9 @@ const NavBar = ({ isProductPage }) => {
 					</StyledHamburger>
 
 					<header>
-						<StyledLogo to="/">sneakers</StyledLogo>
+						<StyledLogo to="/" translate="no">
+							sneakers
+						</StyledLogo>
 					</header>
 				</StyledTitle>
 
