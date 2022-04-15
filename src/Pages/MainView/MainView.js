@@ -1,24 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import {
-	BrowserRouter as Router,
-	Routes,
-	Route,
-	Navigate,
-} from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { useData } from '../../Api/useData';
+import MainProviders from './MainProviders';
 import NavBar from '../../Components/NavBar/NavBar';
 import Footer from '../../Components/Footer/Footer';
-import { useData } from '../../Api/useData';
-import ProductsContext from '../../Context/ProductsContext';
-import FiltersContext from '../../Context/FiltersContext';
-import ModalsContext from '../../Context/ModalsContext';
-import AuthContext from '../../Context/AuthContext';
-import { store } from '../../Redux/store';
-import { Provider } from 'react-redux';
 import Register from '../../Modals/Register/Register';
 import InfoModal from '../../Modals/InfoModal/InfoModal';
 import Payment from '../../Modals/Payment/Payment';
 import Products from '../AllProducts/Products/Products';
-
 import AllProducts from '../AllProducts/AllProducts';
 import ProductPage from '../ProductPage/ProductPage';
 import Contact from '../Contact/Contact';
@@ -33,6 +22,7 @@ import Login from '../Login/Login';
 const MainView = () => {
 	const [isProductPage, setIsProductPage] = useState(false);
 
+	// Products
 	const [productsCtx, setProductsCtx] = useState([]);
 	const [products, loading, setLoading] = useData();
 
@@ -66,107 +56,96 @@ const MainView = () => {
 		if (products.length) setProductsCtx(products);
 	}, [products]);
 
+	const authValue = {
+		isAuthenticated: auth,
+		setIsAuthenticated: setAuth,
+	};
+
+	const productsValue = {
+		productsCtx: productsCtx,
+		setProductsCtx: setProductsCtx,
+		loadingCtx: loading,
+		setLoadingCtx: setLoading,
+	};
+
+	const filtersValue = {
+		filters: filters,
+		setFilters: setFilters,
+	};
+
+	const modalsValue = {
+		isRegisterOpen: isRegisterOpen,
+		setIsRegisterOpen: setIsRegisterOpen,
+		isPaymentOpen: isPaymentOpen,
+		setIsPaymentOpen: setIsPaymentOpen,
+		isInfoOpen: isInfoOpen,
+		setIsInfoOpen: setIsInfoOpen,
+	};
+
 	return (
-		<Provider store={store}>
-			<Router>
-				<AuthContext.Provider
-					value={{
-						isAuthenticated: auth,
-						setIsAuthenticated: setAuth,
-					}}
+		<MainProviders
+			authValue={authValue}
+			productsValue={productsValue}
+			filtersValue={filtersValue}
+			modalsValue={modalsValue}
+		>
+			<NavBar isProductPage={isProductPage} />
+
+			{!!isRegisterOpen && <Register />}
+
+			{!!isInfoOpen.info && <InfoModal />}
+
+			{!!isPaymentOpen && <Payment />}
+
+			<Routes>
+				<Route path="/contact" element={<Contact />} />
+
+				<Route path="/about" element={<About />} />
+
+				<Route
+					path="/AllProducts"
+					element={<Navigate to="/AllProducts/page/1" />}
+				/>
+				<Route
+					path="/AllProducts"
+					element={<AllProducts allProducts={products} />}
 				>
-					<ProductsContext.Provider
-						value={{
-							productsCtx: productsCtx,
-							setProductsCtx: setProductsCtx,
-							loadingCtx: loading,
-							setLoadingCtx: setLoading,
-						}}
-					>
-						<FiltersContext.Provider
-							value={{
-								filters: filters,
-								setFilters: setFilters,
-							}}
-						>
-							<ModalsContext.Provider
-								value={{
-									isRegisterOpen: isRegisterOpen,
-									setIsRegisterOpen: setIsRegisterOpen,
+					<Route path="page/:id" element={<Products />} />
+				</Route>
 
-									isPaymentOpen: isPaymentOpen,
-									setIsPaymentOpen: setIsPaymentOpen,
+				<Route
+					path="/product/:id"
+					element={<ProductPage setIsProductPage={setIsProductPage} />}
+				/>
 
-									isInfoOpen: isInfoOpen,
-									setIsInfoOpen: setIsInfoOpen,
-								}}
-							>
-								<div>
-									<NavBar isProductPage={isProductPage} />
+				<Route path="/wishlist" element={<Wishlist />} />
 
-									{!!isRegisterOpen && <Register />}
+				<Route
+					path="/login"
+					element={auth ? <Navigate to="/profile" /> : <Login />}
+				/>
 
-									{!!isInfoOpen.info && <InfoModal />}
+				<Route
+					path="/profile"
+					element={auth ? <Profile /> : <Navigate to="/login" />}
+				/>
 
-									{!!isPaymentOpen && <Payment />}
+				<Route path="/cart" element={<Cart />} />
 
-									<Routes>
-										<Route path="/contact" element={<Contact />} />
+				<Route path="/" element={<HeroPage />} />
 
-										<Route path="/about" element={<About />} />
+				<Route
+					path="*"
+					element={
+						<div style={{ marginTop: '80px' }}>
+							<Error />
+						</div>
+					}
+				/>
+			</Routes>
 
-										<Route
-											path="/AllProducts"
-											element={<Navigate to="/AllProducts/page/1" />}
-										/>
-										<Route
-											path="/AllProducts"
-											element={<AllProducts allProducts={products} />}
-										>
-											<Route path="page/:id" element={<Products />} />
-										</Route>
-
-										<Route
-											path="/product/:id"
-											element={
-												<ProductPage setIsProductPage={setIsProductPage} />
-											}
-										/>
-
-										<Route path="/wishlist" element={<Wishlist />} />
-
-										<Route
-											path="/login"
-											element={auth ? <Navigate to="/profile" /> : <Login />}
-										/>
-
-										<Route
-											path="/profile"
-											element={auth ? <Profile /> : <Navigate to="/login" />}
-										/>
-
-										<Route path="/cart" element={<Cart />} />
-
-										<Route path="/" element={<HeroPage />} />
-
-										<Route
-											path="*"
-											element={
-												<div style={{ marginTop: '80px' }}>
-													<Error />
-												</div>
-											}
-										/>
-									</Routes>
-
-									<Footer />
-								</div>
-							</ModalsContext.Provider>
-						</FiltersContext.Provider>
-					</ProductsContext.Provider>
-				</AuthContext.Provider>
-			</Router>
-		</Provider>
+			<Footer />
+		</MainProviders>
 	);
 };
 
