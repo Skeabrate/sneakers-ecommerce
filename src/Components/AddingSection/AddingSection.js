@@ -39,7 +39,6 @@ const AddingSection = ({
 		} else {
 			let check = false;
 
-			cart.find((item) => item.id === 0 && dispatch(removeFromCart({ id: 0 })));
 			cart.find((item) => {
 				if (item.id === id && item.size === size) {
 					dispatch(

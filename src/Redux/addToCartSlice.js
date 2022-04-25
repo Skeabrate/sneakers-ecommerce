@@ -7,7 +7,7 @@ import {
 	resetCartReducer,
 } from './Reducers/cartReducers';
 
-const initialState = JSON.parse(localStorage.getItem('cart')) || [{ id: 0 }];
+const initialState = JSON.parse(localStorage.getItem('cart')) || [];
 
 export const addToCartSlice = createSlice({
 	name: 'cart',

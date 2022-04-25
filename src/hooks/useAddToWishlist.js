@@ -10,7 +10,6 @@ export const useAddToWishlist = (id, title, price, image = []) => {
 		let check = false;
 
 		favorite.find((item) => {
-			if (item.id === 0) dispatch(removeFromFavorite({ id: 0 }));
 			if (item.id === id) check = true;
 			return check;
 		});

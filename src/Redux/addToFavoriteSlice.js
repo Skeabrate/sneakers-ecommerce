@@ -4,9 +4,7 @@ import {
 	addToFavoriteReducer,
 } from './Reducers/favoriteReducers';
 
-const initialState = JSON.parse(localStorage.getItem('favorite')) || [
-	{ id: 0 },
-];
+const initialState = JSON.parse(localStorage.getItem('favorite')) || [];
 
 export const addToFavoriteSlice = createSlice({
 	name: 'favorite',
