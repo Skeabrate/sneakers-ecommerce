@@ -22,7 +22,7 @@ const Cart = () => {
 
 		if (length) {
 			/* for(const key in cart) totalAmount += cart[key].amount * cart[key].price */
-			cart.map(({ amount, price }) => (totalAmount += amount * price));
+			cart.forEach(({ amount, price }) => (totalAmount += amount * price));
 		}
 
 		setTotalAmount(totalAmount);
