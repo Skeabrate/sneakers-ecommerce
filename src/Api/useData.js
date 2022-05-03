@@ -1,44 +1,23 @@
 import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 
-const queryAll = `
-{
-   _allProductsMeta {
-      count
-   }
-} 
-`;
-
 export const useData = () => {
-	const [dataCount, setDataCount] = useState(0);
 	const [products, setProducts] = useState([]);
 	const [loading, setLoading] = useState(false);
 
-	const query = `
-   	{
-      	allProducts(first: ${dataCount}, skip: 0){
-			id
-			title
-			category
-			gender
-			price
-			description
-			images {
-				url
-			}
-      	}
-		_allProductsMeta {
-			count
-		}
-   	}
-   	`;
-
-	const fetchProducts = useCallback(async () => {
+	const getDataCount = useCallback(async () => {
+		setLoading(false);
 		try {
-			const res = await axios.post(
+			const dataCount = await axios.post(
 				'https://graphql.datocms.com/',
 				{
-					query: query,
+					query: `
+					{
+						 _allProductsMeta {
+								count
+						 }
+					} 
+					`,
 				},
 				{
 					headers: {
@@ -46,44 +25,44 @@ export const useData = () => {
 					},
 				}
 			);
-
-			/* const arr = []
-         console.log('fetching data')
-         for(const key in res.data.data.allProducts){
-            arr.push({...res.data.data.allProducts[key], isLoaded: false})
-         } */
-			setProducts(res.data.data.allProducts);
-		} catch (ex) {
-			console.log(ex.response);
-		}
-		setLoading(true);
-	}, [query]);
-
-	useEffect(() => {
-		(async function () {
-			try {
-				const res = await axios.post(
-					'https://graphql.datocms.com/',
+			const data = await axios.post(
+				'https://graphql.datocms.com/',
+				{
+					query: `
 					{
-						query: queryAll,
-					},
-					{
-						headers: {
-							authorization: `Bearer ${process.env.REACT_APP_DATOCMS}`,
-						},
+						 allProducts(first: ${dataCount.data.data._allProductsMeta.count}, skip: 0){
+					 id
+					 title
+					 category
+					 gender
+					 price
+					 description
+					 images {
+						 url
+					 }
+						 }
+				 _allProductsMeta {
+					 count
+				 }
 					}
-				);
-
-				setDataCount(res.data.data._allProductsMeta.count);
-			} catch (ex) {
-				console.log(ex.response);
-			}
-		})();
+					`,
+				},
+				{
+					headers: {
+						authorization: `Bearer ${process.env.REACT_APP_DATOCMS}`,
+					},
+				}
+			);
+			setProducts(data.data.data.allProducts);
+			setLoading(true);
+		} catch (ex) {
+			console.log(ex);
+		}
 	}, []);
 
 	useEffect(() => {
-		if (dataCount) fetchProducts();
-	}, [dataCount, fetchProducts]);
+		getDataCount();
+	}, [getDataCount]);
 
 	return [products, loading, setLoading, setProducts];
 };
