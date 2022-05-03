@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-	addToCart,
-	removeFromCart,
-	changeAmount,
-} from '../../Redux/addToCartSlice';
+import { addToCart, changeAmount } from '../../Redux/addToCartSlice';
 import StyledButton from '../../GlobalStyledComponents/StyledButton';
 import AddToFavouriteButton from '../AddToFavouriteButton/AddToFavouriteButton';
 import { StyledCart, StyledButtonContainer } from './AddingSection.styles';
